@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'default',
+    'hacker',
+    'organizer',
+    'sponsor',
+    'teams',
+
 ]
 
 MIDDLEWARE = [
@@ -66,6 +72,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'default.CustomUser'
 
 WSGI_APPLICATION = 'aslan.wsgi.application'
 

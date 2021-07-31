@@ -1,0 +1,11 @@
+{% extends 'defaults/base.html' %}
+
+
+
+{% block content %}
+<form method ="POST"> {% csrf_token %}
+    {{user.as_p}}
+    {{hacker.as_p}}
+    <input type="submit" value="save">
+</form>
+{% endblock %}
