@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'default.loginMiddleware.loginMiddleware',
+    'default.loginMiddleware.accountsMiddleware'
 ]
 
 ROOT_URLCONF = 'aslan.urls'
@@ -131,3 +133,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+LOGIN_EXEMPT_URLS = {
+    r'^$',
+    r'login',
+    r'signup',
+    r'reset'
+}

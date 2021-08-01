@@ -5,17 +5,12 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from hacker.models import hacker
 from organizer.models import organizer
+from .helper import add_group, decide_redirect
 
 def landing(request):
     context = {}
     return render(request, 'defaults/landing.html', context)
 
-
-def decide_redirect(user):
-    if hacker.objects.filter(hacker__email=user.email).exists():
-        return "hacker-dash"
-    if organizer.objects.filter(organizer__email=user.email).exists():
-        return "organizer-dash"
 
 
 def register_hacker(request):
@@ -27,9 +22,11 @@ def register_hacker(request):
         if hacker.is_valid() and user.is_valid():
             pword = user.cleaned_data['password1']
             user = user.save()
+
             hacker = hacker.save(commit=False)
             hacker.hacker = user
             hacker.save()
+            add_group(user, 'hacker')
 
             user = authenticate(request,username=user.email, password=pword)
             if user is not None:
