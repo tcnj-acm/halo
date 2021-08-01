@@ -48,8 +48,8 @@ hacker_mods = {
 organizer_mods = {
     "organizer.views",
 }
-head_organizer_mods = {
-    "organizer.views",
+head_organizer_not_mods = {
+    "hacker.views",
 }
 # sponsor_mods = {
 #     "hacker.views",
@@ -63,7 +63,7 @@ HEAD_ORGANIZER_EXEMPT_URLS = [re.compile(url) for url in haed_organizer_exempt_U
 
 
 
-class loginMiddleware:
+class loginMiddleware():
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -76,10 +76,12 @@ class loginMiddleware:
         assert hasattr(request,'user')
         path = request.path_info.lstrip('/')
         url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
-
+        print(url_is_exempt)
+        print('running loggin')
         if request.user.is_authenticated and url_is_exempt:
             return redirect(decide_redirect(request.user))
         elif request.user.is_authenticated or url_is_exempt:
+            print('returning')
             return None
         else:
             return redirect('login')
@@ -100,9 +102,10 @@ class accountsMiddleware():
         module_name = view_func.__module__
         user = request.user
         path = request.path_info.lstrip('/')
-
-        if path == 'logout/':
+        print('running account')
+        if path == 'logout/' or not request.user.is_authenticated:
             return None
+
 
         if any(url.match(path) for url in ALL_EXEMPT_URLS):
             return None
@@ -124,11 +127,10 @@ class accountsMiddleware():
             elif any(url.match(path) for url in ORGANIZER_EXEMPT_URLS):
                 pass
             else:
-                return redirect('organizer_dash')
+                return redirect('organizer-dash')
         else: #head organizer
-            if any(mod == module_name for mod in head_organizer_mods):
-                pass
-            elif any(url.match(path) for url in HEAD_ORGANIZER_EXEMPT_URLS): 
-                pass
+            if any(mod == module_name for mod in head_organizer_not_mods):
+                print("foundone")
+                return redirect('organizer-dash')   
             else:
-                return redirect('organizer_dash')
+                pass

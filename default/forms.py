@@ -31,4 +31,4 @@ class CustomUserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
     class Meta:
         model = CustomUser
-        fields = ('email', 'first_name', 'last_name', 'password', 'is_active', 'is_admin')
+        fields = ('email', 'first_name', 'last_name', 'password', 'is_active', 'is_admin', 'is_superuser')

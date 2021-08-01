@@ -139,6 +139,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_EXEMPT_URLS = {
     r'^$',
     r'login',
-    r'signup',
-    r'reset'
+    r'register',
+    r'reset',
 }

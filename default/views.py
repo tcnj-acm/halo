@@ -49,6 +49,7 @@ def login_page(request):
 
         if user is not None:
             login(request,user)
+
             return redirect(decide_redirect(user))
         else:
             HttpResponse("Username or Password Incorrect")
