@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'default',
+    'hacker',
+    'organizer',
+    'sponsor',
+    'teams',
+
 ]
 
 MIDDLEWARE = [
@@ -47,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'default.loginMiddleware.loginMiddleware',
+    'default.loginMiddleware.accountsMiddleware'
 ]
 
 ROOT_URLCONF = 'aslan.urls'
@@ -66,6 +74,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'default.CustomUser'
 
 WSGI_APPLICATION = 'aslan.wsgi.application'
 
@@ -123,3 +133,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+LOGIN_EXEMPT_URLS = {
+    r'^$',
+    r'login',
+    r'register',
+    r'reset',
+}
