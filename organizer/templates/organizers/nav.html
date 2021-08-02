@@ -1,13 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'organizer-dash' %}">Dashboard</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'all-hackers' %}">Hackers</a>
+    <div class="collapse navbar-collapse " id="navbarNav" >
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'organizer-dash' %}">Dash</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'all-hackers' %}">Hackers</a>
+            </li>            
+        </ul>
+    </div>
+    <div class="navbar-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+            <span class="text-right">Hello, {{request.user.first_name}} {{request.user.last_name}}</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <span class="text-right" style="margin-left: 1rem;"><a class="btn btn-outline-dark" href="{% url 'logout' %}"> Logout</a></span>
         </div>
     </div>
-    <span >Hello, {{request.user.first_name}} {{request.user.last_name}}</span>
-    <span  style="margin-left: 1rem;"><a class="btn btn-outline-dark" href="{% url 'logout' %}"> Logout</a></span>
+
+
+    
 </nav>
