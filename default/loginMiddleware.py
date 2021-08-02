@@ -12,28 +12,29 @@ if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
 The exempt URLS for each type. This will allow them to 
 bypass in certain specific scenarios.
 """
-ALL_EXEMPT_URLS = { #URLS that anyone should be able to access outside of their views
+ALL_EXEMPT_URLS = {  # URLS that anyone should be able to access outside of their views
 
 }
 
-hacker_exempt_URLS = { #Any urls outside of hacker.views that they can access
+hacker_exempt_URLS = {  # Any urls outside of hacker.views that they can access
 
 }
 
-organizer_exempt_URLS = { #Any urls outside of organizer.views that they can access
+organizer_exempt_URLS = {  # Any urls outside of organizer.views that they can access
 
 }
 
-not_organizer_exempt_URLS = { #Any urls inside of organizer.views that regular Organizers can not access
+not_organizer_exempt_URLS = {  # Any urls inside of organizer.views that regular Organizers can not access
+    r'organizers',
 
 }
 
-haed_organizer_exempt_URLS = { #Any urls outside of organizer.views that head can access can access
-    
+head_organizer_exempt_URLS = {  # Any urls outside of organizer.views that head can access can access
+
 }
 
 # sponsor_exempt_URLS = { #Any urls outside of sponsors.views that they can access
-# 
+#
 # }
 
 
@@ -57,10 +58,11 @@ head_organizer_not_mods = {
 
 HACKER_EXEMPT_URLS = [re.compile(url) for url in hacker_exempt_URLS]
 ORGANIZER_EXEMPT_URLS = [re.compile(url) for url in organizer_exempt_URLS]
-NOT_ORGANIZER_EXEMPT_URLS = [re.compile(url) for url in not_organizer_exempt_URLS]
-HEAD_ORGANIZER_EXEMPT_URLS = [re.compile(url) for url in haed_organizer_exempt_URLS]
+NOT_ORGANIZER_EXEMPT_URLS = [re.compile(url)
+                             for url in not_organizer_exempt_URLS]
+HEAD_ORGANIZER_EXEMPT_URLS = [re.compile(
+    url) for url in head_organizer_exempt_URLS]
 # SPONSOR_EXEMPT_URLS = [re.compile(url) for url in sponsor_exempt_URLS]
-
 
 
 class loginMiddleware():
@@ -73,19 +75,17 @@ class loginMiddleware():
         return response
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        assert hasattr(request,'user')
+        assert hasattr(request, 'user')
         path = request.path_info.lstrip('/')
         url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
-        print(url_is_exempt)
-        print('running loggin')
+
         if request.user.is_authenticated and url_is_exempt:
             return redirect(decide_redirect(request.user))
         elif request.user.is_authenticated or url_is_exempt:
-            print('returning')
+
             return None
         else:
             return redirect('login')
-
 
 
 class accountsMiddleware():
@@ -96,16 +96,14 @@ class accountsMiddleware():
     def __call__(self, request):
         response = self.get_response(request)
         return response
-   
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         module_name = view_func.__module__
         user = request.user
         path = request.path_info.lstrip('/')
-        print('running account')
+
         if path == 'logout/' or not request.user.is_authenticated:
             return None
-
 
         if any(url.match(path) for url in ALL_EXEMPT_URLS):
             return None
@@ -122,15 +120,15 @@ class accountsMiddleware():
         elif user_type == 'organizer':
             if any(mod == module_name for mod in organizer_mods):
                 if any(url.match(path) for url in NOT_ORGANIZER_EXEMPT_URLS):
-                    return redirect(user_type)
+                    return redirect('organizer-dash')
                 pass
             elif any(url.match(path) for url in ORGANIZER_EXEMPT_URLS):
                 pass
             else:
                 return redirect('organizer-dash')
-        else: #head organizer
+        else:  # head organizer
             if any(mod == module_name for mod in head_organizer_not_mods):
                 print("foundone")
-                return redirect('organizer-dash')   
+                return redirect('organizer-dash')
             else:
                 pass

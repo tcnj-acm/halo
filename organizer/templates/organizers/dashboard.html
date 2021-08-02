@@ -1,7 +1,38 @@
 {% extends 'organizers/base.html' %}
 
 {% block content %}
-organizer dashboard let's go
 
+    {% if head_org %}
+
+        <div class="row text-center justify-content-center mt-5">
+            <div class="col-lg-4 col-md-12">
+                <div class="card-deck">
+                    <div class="card border-dark" style="width: 18rem;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Django Admin Panel</h5>
+                            <p class="card-text">Access Django's Admin dashboard for awesome power</p>
+                            <a href="admin" class="btn btn-outline-primary">Admin</a>
+                        </div>
+                    </div>
+                
+                </div>
+                
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card-deck">
+                    <div class="card border-dark" style="width: 18rem;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Organizers</h5>
+                            <p class="card-text">See other planning committee members</p>
+                            <a href="{% url 'all-organizers' %}" class="btn btn-outline-primary">Organizers</a>
+                        </div>
+                    </div>
+                
+                </div>
+                
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}
