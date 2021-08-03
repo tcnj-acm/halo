@@ -2,11 +2,11 @@
  {% block content %}
  
  <br>
-<a href="{% url 'registered-hackers' %}" class='btn btn-secondary'>Unchecked-in Hackers</a>
+
 <div class="container w-75 mt-3">
     <div class="row justify-content-between align-items-center" style="margin-top: 5px; ">
         <div class="col-3">
-            <h2 class="text-left" >Hackers</h2>
+            <h2 class="text-left" >Unchecked in Hackers</h2>
         </div>
         <div class="col-5 d-flex align-self-center justify-content-end" >
             <form class="form-inline" action="{% url 'all-hackers' %}" method="GET"">
@@ -29,14 +29,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for h in hackers_all %}
+                {% for h in uncheckedin_hackers %}
                     <tr>
                         {% comment %} <th scope="row">{{g.emp_id}}</th> {% endcomment %}
                         <td>{{h.hacker.first_name}} {{h.hacker.last_name}}</td>
                         <td>{{h.hacker.email}}</td>
-                        <td>{{h.food_preference}}</td>
-                        <td>{{h.shirt_size}}</td>
-                        <td>{{h.checked_in}}</td>
+                        <td><a class="btn btn-primary" href="#">🍕</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

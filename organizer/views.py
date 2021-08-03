@@ -34,6 +34,22 @@ def all_hackers(request):
     context = {'hackers_all': hackers_all}
     return render(request, 'organizers/hackersdisplay.html', context)
 
+# This is a view that shows people that are not checked in to the event
+
+
+def registered_hackers(request):
+
+    uncheckedin_hackers = hacker.objects.exclude(
+        hacker__groups__name='checked-in')
+
+    context = {'uncheckedin_hackers': uncheckedin_hackers}
+    return render(request, 'organizers/uncheckedinhackers.html', context)
+
+# def checkin_hacker(request, hacker_user):
+
+
+#     context = {}
+#     return render(request, 'organizers/checkinhacker.html', context)
 
 # head organizer only function: show other organizers on the system
 def display_organizer(request):
