@@ -1,0 +1,30 @@
+{% extends 'organizers/base.html' %}
+
+{% block content %}
+    <form method="POST" >{% csrf_token %}
+        <div class="form-row">
+            <div class="col-md-12 mb-3 " >
+                {{form.fname}}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-12 mb-3 " >
+                {{form.lname}}
+            </div>
+        </div>
+
+        <div class="form-row" >
+            <div class="col-md-12 mb-3 " >
+                {{form.email}}
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center" >
+            <div class="col-md-6 mb-3 text-center" >
+                <button class="btn btn-lg btn-outline-success" type="submit" value="save">Invite</button>
+            </div>                    
+        </div>
+        
+    </form>
+{% endblock %}

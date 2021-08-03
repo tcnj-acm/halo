@@ -1,9 +1,14 @@
+from organizer.forms import NewOrganizer
 from django.db.models.query_utils import select_related_descend
+from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import hacker
 from .models import organizer
+from default.models import CustomUser
+from default.helper import add_group
 from django.db.models import Q
 
+from default.emailer import new_organizer_added
 # Create your views here.
 
 
@@ -14,6 +19,7 @@ def dash(request):
     return render(request, 'organizers/dashboard.html', context)
 
 
+# All organizers can see hackers (all or those checked in)
 def all_hackers(request):
 
     url_parameter = request.GET.get("q")
@@ -29,6 +35,7 @@ def all_hackers(request):
     return render(request, 'organizers/hackersdisplay.html', context)
 
 
+# head organizer only function: show other organizers on the system
 def display_organizer(request):
 
     all_organizers = organizer.objects.all().exclude(
@@ -37,6 +44,7 @@ def display_organizer(request):
     return render(request, 'organizers/organizerdisplay.html', context)
 
 
+# Head organizer only function: remove someone from the system.
 def delete_organizer(request, id):
     selected_organizer = organizer.objects.get(id=id)
     selected_user = selected_organizer.organizer
@@ -46,3 +54,28 @@ def delete_organizer(request, id):
 
     context = {}
     return redirect('all-organizers')
+
+
+# head organizer can add another organizer to the system
+def add_organizer(request):
+    form = NewOrganizer()
+    if request.method == 'POST':
+        new_organizer = NewOrganizer(request.POST)
+        if new_organizer.is_valid():
+            fname = new_organizer.cleaned_data['fname']
+            lname = new_organizer.cleaned_data['lname']
+            email = new_organizer.cleaned_data['email']
+            passwd = 'cistheworstlangever'
+            new_user = CustomUser.objects.create(
+                first_name=fname, last_name=lname, email=email)
+            new_user.set_password(passwd)
+            add_group(new_user, 'organizer')
+            new_user.save()
+
+            new_organizer = organizer.objects.create(organizer=new_user)
+            new_organizer.save()
+
+            new_organizer_added(new_user)
+            return redirect('all-organizers')
+    context = {'form': form}
+    return render(request, 'organizers/addorganizer.html', context)
