@@ -39,6 +39,13 @@ def all_hackers(request):
 
 def registered_hackers(request):
 
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        hack = CustomUser.objects.get(email=email)
+        add_group(hack, "checked-in")
+
+
+
     uncheckedin_hackers = hacker.objects.exclude(
         hacker__groups__name='checked-in')
 
