@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from hacker.forms import HackerCreationForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import PasswordResetCompleteView
 from hacker.models import hacker
 from organizer.models import organizer
 from .helper import add_group, decide_redirect
@@ -10,7 +11,7 @@ from .emailer import *
 
 
 def landing(request):
-    test_mail()
+
     context = {}
     return render(request, 'defaults/landing.html', context)
 
@@ -64,6 +65,3 @@ def login_page(request):
 def logout_user(request):
     logout(request)
     return redirect('landing')
-
-
-# Password reset stuff

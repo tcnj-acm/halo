@@ -16,6 +16,21 @@ def test_mail():
               recipient_list=to_email, message=body, fail_silently=False)
 
 
+def password_reset_success(user):
+    subject = "You've successfully reset your password!"
+
+    to_email = [user.email]
+    body = '''
+        Hey! You've successfully reset your password! 
+
+        Thanks!
+        <Insert team name here>
+    '''
+
+    send_mail(subject=subject, from_email=from_email,
+              recipient_list=to_email, message=body, fail_silently=False)
+
+
 def hacker_checkin_success(hacker):
     subject = "{}, you have checked in at HackTCNJ!".format(hacker.first_name)
     body = '''
