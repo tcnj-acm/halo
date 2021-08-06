@@ -1,0 +1,48 @@
+{% extends 'organizers/base.html' %}
+{% block content %}
+ 
+ <br>
+
+<div class="container w-75 mt-3">
+    <div class="row justify-content-between align-items-center" style="margin-top: 5px; ">
+        <div class="col-5">
+            <h2 class="text-left" >Your Dope Ass Team</h2>
+        </div>
+        <div class="col-5 d-flex align-self-center justify-content-end">
+            <a class="btn btn-success" href="{% url 'add-organizer' %}">+</a>
+        </div
+        <div class="col-5 d-flex align-self-center justify-content-end" >
+            {% comment %} <form class="form-inline" action="{% url 'all-hackers' %}" method="GET"">
+                <i id="search-icon" class="fas fa-search" ></i>
+                <input id="user-input" name="q" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Search" aria-label="Search">
+                <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'all-hackers' %}">Reset Search</a>
+            </form>  {% endcomment %}
+        </div>
+    </div>
+{% comment %} </div>  {% endcomment %}
+ <div class="d-flex justify-content-center">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in all_organizers %}
+                    <tr>
+                        {% comment %} <th scope="row">{{g.emp_id}}</th> {% endcomment %}
+                        <td>{{o.organizer.first_name}} {{o.organizer.last_name}}</td>
+                        <td>{{o.organizer.email}}</td>
+                        <td><a class="btn-caution" href="{% url 'delete-organizer' o.id %}">Delete</a>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<hr>
+{% endblock %}

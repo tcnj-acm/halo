@@ -1,0 +1,100 @@
+{% extends 'organizers/base.html' %}
+{% block content %}
+ 
+    <br>
+<a href="{% url 'registered-hackers' %}" class='btn btn-secondary'>All Hackers</a>
+<a href="{% url 'checkedin-hackers' %}" class='btn btn-secondary'>Checked-in Hackers</a>
+    <div class="container w-75 mt-3">
+        <div class="row justify-content-between align-items-center" style="margin-top: 5px; ">
+            <div class="col-3">
+                <h2 class="text-left" >Unchecked-in Hackers</h2>
+            </div>
+            <div class="col-5 d-flex align-self-center justify-content-end" >
+                <form class="form-inline" action="{% url 'all-hackers' %}" method="GET">
+                    <i id="search-icon" class="fas fa-search" ></i>
+                    <input id="user-input" name="q" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Search" aria-label="Search">
+                    <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'all-hackers' %}">Reset Search</a>
+                </form> 
+            </div>
+        </div>
+        <form method="POST" id="check-in-form">{% csrf_token %}
+            <input type="hidden" name="email" id="check-in-email-field">
+        </form>
+    {% comment %} </div>  {% endcomment %}
+    <div class="d-flex justify-content-center">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="" scope="col">Name</th>
+                        <th class="" scope="col">Email</th>
+                        <th class="d-none" scope="col">Shirt Size</th>
+                        <th class="" scope="col">Checked in</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for h in uncheckedin_hackers %}
+                        <tr id="hacker{{ forloop.counter }}">
+                            <td class="">{{h.hacker.first_name}} {{h.hacker.last_name}}</td>
+                            <td class="">{{h.hacker.email}}</td>
+                            <td class="d-none">{{h.shirt_size}}</td>
+                            <td class=""><a  class="btn btn-outline-info" data-toggle="modal" data-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+    <div class="modal fade" id="Confirmation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="confirmationLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content ">
+				<div class="modal-header text-center">
+					<h2>Check In The Hacker with the Following Credentials</h2>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row justify-content-center" >
+						<div class="col col-lg-6 col-md-12" id="confirmSess" >
+							<div class="card h-100">
+								<div class="card-body">
+									<h4 class="card-title"><u>Session Information</u></h4>
+									<h5>Name - <span class="kcolor" id="HackerName"></span></h5>
+									<h5>Email - <span class="kcolor" id="Email"></span></h5>
+									<!-- <h5>Food Preference -	<span class="kcolor" id="Food"></span></h5> -->
+									<h5>Shirt Size - <span class="kcolor" id="Shirt"></span></h5>
+									<!-- <h5>Education - <span id="Education" class="kcolor"></span></h5> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-info" tabindex="0" value="Add" id="confirmationButton" form="check-in-form">Confirm!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block script %}
+
+<script type="text/javascript">
+    $('#Confirmation').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var rowId = button.data('confirm')
+        var info = document.getElementById(rowId).childNodes
+        var n = info[1].textContent
+        var e = info[3].textContent
+        var s = info[5].textContent
+        document.getElementById("HackerName").innerHTML = (n)
+        document.getElementById("Email").innerHTML = (e)
+        document.getElementById("Shirt").innerHTML = (s)
+        document.getElementById("check-in-email-field").setAttribute("value",e)
+    })
+</script>
+
+{% endblock %}
