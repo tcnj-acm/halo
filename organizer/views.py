@@ -1,5 +1,5 @@
 from organizer.forms import NewOrganizer
-from django.db.models.query_utils import select_related_descend
+from django.db.models.query_utils import check_rel_lookup_compatibility, select_related_descend
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import hacker
@@ -44,21 +44,25 @@ def registered_hackers(request):
         hack = CustomUser.objects.get(email=email)
         add_group(hack, "checked-in")
 
-
-
     uncheckedin_hackers = hacker.objects.exclude(
         hacker__groups__name='checked-in')
 
     context = {'uncheckedin_hackers': uncheckedin_hackers}
     return render(request, 'organizers/uncheckedinhackers.html', context)
 
-# def checkin_hacker(request, hacker_user):
+# These are hackers that have registered AND CHECKED IN to the event
 
 
-#     context = {}
-#     return render(request, 'organizers/checkinhacker.html', context)
+def checkedin_hacker(request):
+
+    checkedin_hackers = hacker.objects.filter(hacker__groups__name='checked-in')
+
+    context = {'checkedin_hackers': checkedin_hackers}
+    return render(request, 'organizers/checkedinhacker.html', context)
 
 # head organizer only function: show other organizers on the system
+
+
 def display_organizer(request):
 
     all_organizers = organizer.objects.all().exclude(
