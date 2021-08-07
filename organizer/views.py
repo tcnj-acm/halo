@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from hacker.models import hacker
 from .models import organizer
 from default.models import CustomUser
-from default.helper import add_group
+from default.helper import add_group, remove_group
 from django.db.models import Q
 
 from default.emailer import new_organizer_added
@@ -39,22 +39,35 @@ def all_hackers(request):
 
 def registered_hackers(request):
 
+    just_registered = None
+
     if request.method == 'POST':
-        email = request.POST.get('email')
-        hack = CustomUser.objects.get(email=email)
-        add_group(hack, "checked-in")
+        if 'undo-check-in-form' in request.POST:
+            email = request.POST.get('email')
+            hack = hacker.objects.get(hacker__email=email)
+            remove_group(hack.hacker, "checked-in")
+        if "check-in-form" in request.POST:
+            email = request.POST.get('email')
+            hack = hacker.objects.get(hacker__email=email)
+            add_group(hack.hacker, "checked-in")
+            just_registered = hack
 
     uncheckedin_hackers = hacker.objects.exclude(
         hacker__groups__name='checked-in')
 
-    context = {'uncheckedin_hackers': uncheckedin_hackers}
+    context = {'uncheckedin_hackers': uncheckedin_hackers, 'just_registered':just_registered}
     return render(request, 'organizers/uncheckedinhackers.html', context)
 
 # These are hackers that have registered AND CHECKED IN to the event
 
 
 def checkedin_hacker(request):
-
+    
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        hack = CustomUser.objects.get(email=email)
+        remove_group(hack, "checked-in")
+    
     checkedin_hackers = hacker.objects.filter(hacker__groups__name='checked-in')
 
     context = {'checkedin_hackers': checkedin_hackers}

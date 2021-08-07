@@ -17,6 +17,9 @@
             </form> 
         </div>
     </div>
+    <form method="POST" id="check-out-form">{% csrf_token %}
+        <input type="hidden" name="email" id="check-out-email-field">
+    </form>
 {% comment %} </div>  {% endcomment %}
  <div class="d-flex justify-content-center">
         <table class="table">
@@ -24,19 +27,21 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Food Preference</th>
+                    <th class="d-none" scope="col">Food Preference</th>
                     <th scope="col">Shirt Size</th>
+                    <th class="d-none" scope="col">Education</th>
                     <th scope="col">Checked in</th>
                 </tr>
             </thead>
             <tbody>
                 {% for h in checkedin_hackers %}
-                    <tr>
+                    <tr id="hacker{{ forloop.counter }}">
                         <td>{{h.hacker.first_name}} {{h.hacker.last_name}}</td>
                         <td>{{h.hacker.email}}</td>
-                        <td>{{h.food_preference}}</td>
+                        <td class="d-none" >{{h.food_preference}}</td>
                         <td>{{h.shirt_size}}</td>
-                        <td>{{h.checked_in}}</td>
+                        <td class="d-none" >{{h.education}}</td>
+                        <td class=""><a  class="btn btn-outline-info" data-toggle="modal" data-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check-Out</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -46,4 +51,57 @@
 
 
 <hr>
+
+<div class="modal fade" id="Confirmation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="confirmationLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header text-center">
+                <h2>Check Out The Hacker with the Following Credentials</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center" >
+                    <div class="col col-lg-6 col-md-12" id="confirmSess" >
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="card-title"><u>Session Information</u></h4>
+                                <h5>Name - <span class="kcolor" id="HackerName"></span></h5>
+                                <h5>Email - <span class="kcolor" id="Email"></span></h5>
+                                <h5>Food Preference -	<span class="kcolor" id="Food"></span></h5>
+                                <h5>Shirt Size - <span class="kcolor" id="Shirt"></span></h5>
+                                <h5>Education - <span id="Education" class="kcolor"></span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-info" tabindex="0" value="Add" id="confirmationButton" form="check-out-form">Confirm!</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+{% block script %}
+<script>
+    $('#Confirmation').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var rowId = button.data('confirm')
+        var info = document.getElementById(rowId).childNodes
+        var n = info[1].textContent
+        var e = info[3].textContent
+        var f = info[5].textContent
+        var s = info[7].textContent
+        var edu = info[9].textContent
+        document.getElementById("HackerName").innerHTML = (n)
+        document.getElementById("Email").innerHTML = (e)
+        document.getElementById("Shirt").innerHTML = (s)
+        document.getElementById("Food").innerHTML = (f)
+        document.getElementById("Education").innerHTML = (edu)
+        document.getElementById("check-out-email-field").setAttribute("value",e)
+    })
+</script>
+{% endblock %} 
