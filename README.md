@@ -26,7 +26,6 @@
 
 ## About The Project
 
-![Screen Shot](C:\Program Files\Typora\images\screenshot.png)
 
 Aslan is a web application that gives alleviates hackathon operations. From handling registration to hacker and organizer management, Aslan works as a resource management tool
 
@@ -76,13 +75,13 @@ TODO -- add heroku and postgres info here
 
 4. Create the `pipenv` environment
 
-   ```
+   ```shell
    pipenv install
    ```
 
    Once you install the pipenv environment, you can activate it by doing:
    
-   ```
+   ```shell
    pipenv shell
    ```
 
@@ -94,7 +93,7 @@ If you are organizing a hackathon and want a smooth process to manage your hacke
 
 ## Contributing
 
-Please read our [Contributing](https://github.com/tcnj-acm/aslan/.github/blob/main/CONTRIBUTING.md) guide and [Code Of Conduct](https://github.com/tcnj-acm/aslan/blob/main/CODEOFCONDUCT.md).
+Please read our [Contributing](https://github.com/tcnj-acm/aslan/blob/main/.github/CONTRIBUTING.md) guide and [Code Of Conduct](https://github.com/tcnj-acm/aslan/blob/main/.github/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -102,8 +101,8 @@ Distributed under the MIT License. See [LICENSE](https://github.com/tcnj-acm/asl
 
 ## Authors
 
-* **Abhi Vempati** - *Co-founder; believes chocolate is the only superior ice cream flavor* - [Abhi Vempati](https://github.com/abhivemp) 
-* **Kevin Williams** - *Co-founder; who the heck likes chocolate frosted flakes anyway??* - [Kevin Williams](https://github.com/kvnwill) 
+* **[Abhi Vempati]**(https://github.com/abhivemp)  - *Co-founder; believes chocolate is the only superior ice cream flavor*  
+* **[Kevin Williams]**(https://github.com/kvnwill) - *Co-founder; who the heck likes chocolate frosted flakes anyway??*
 
 ## Acknowledgements
 
