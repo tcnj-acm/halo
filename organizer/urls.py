@@ -9,6 +9,7 @@ urlpatterns = [
     path('organizers-add', views.add_organizer, name='add-organizer'),
     path('uncheckedin-hackers', views.registered_hackers,name='registered-hackers'),
     path('checkedin-hackers', views.checkedin_hacker, name='checkedin-hackers'),
+    path('build-schedule', views.build_schedule, name='build-schedule'),
 
 
 ]

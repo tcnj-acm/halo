@@ -1,0 +1,32 @@
+{% extends 'organizers/base.html' %}
+ {% block content %}
+ <div class="d-flex justify-content-center">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for e in all_events %}
+                    <tr>
+                        {% comment %} <th scope="row">{{g.emp_id}}</th> {% endcomment %}
+                        <td>{{e.title}}</td>
+                        <td>{{e.date}}</td>
+                        <td>{{e.description}}</td>
+                        <td>{{e.start_time}}</td>
+                        <td>{{e.end_time}}</td>
+                    
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
+</div>
+
+{{form.as_p}}
+ {% endblock %}

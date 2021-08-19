@@ -3,7 +3,9 @@ from django.db.models.query_utils import check_rel_lookup_compatibility, select_
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import hacker
+from .forms import NewEvent
 from .models import organizer
+from default.models import event
 from default.models import CustomUser
 from default.helper import add_group, remove_group
 from django.db.models import Q
@@ -119,3 +121,17 @@ def add_organizer(request):
             return redirect('all-organizers')
     context = {'form': form}
     return render(request, 'organizers/addorganizer.html', context)
+
+
+def build_schedule(request):
+
+    all_events = event.objects.all().order_by('date','start_time')
+
+    form = NewEvent()
+
+    if request.method == 'POST':
+        new_event = NewEvent(request.POST)
+        if new_event.is_valid():
+            new_event.save()
+    context = {'all_events':all_events, 'form':form}
+    return render(request, 'organizers/buildschedule.html', context)

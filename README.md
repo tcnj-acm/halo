@@ -14,9 +14,9 @@
     <br/>
     <a href="https://github.com/tcnj-acm/aslan">View Demo</a>
     .
-    <a href="https://github.com/tcnj-acm/aslan/issues">Report Bug</a>
+    <a href="https://github.com/tcnj-acm/aslan/issues/new?assignees=&labels=bug&template=bug_report.md">Report Bug</a>
     .
-    <a href="https://github.com/tcnj-acm/aslan/issues">Request Feature</a>
+    <a href="https://github.com/tcnj-acm/aslan/issues/new?assignees=&labels=enhancement&template=feature_report.md">Request Feature</a>
   </p>
 
 
@@ -101,8 +101,8 @@ Distributed under the MIT License. See [LICENSE](https://github.com/tcnj-acm/asl
 
 ## Authors
 
-* **[Abhi Vempati]**(https://github.com/abhivemp)  - *Co-founder; believes chocolate is the only superior ice cream flavor*  
-* **[Kevin Williams]**(https://github.com/kvnwill) - *Co-founder; who the heck likes chocolate frosted flakes anyway??*
+* **[Abhi Vempati](https://github.com/abhivemp)**  - *Co-founder; believes chocolate is the only superior ice cream flavor*  
+* **[Kevin Williams](https://github.com/kvnwill)** - *Co-founder; who the heck likes chocolate frosted flakes anyway??*
 
 ## Acknowledgements
 
