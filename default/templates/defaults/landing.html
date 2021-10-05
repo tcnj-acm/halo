@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -11,17 +12,17 @@
 
    <title>HackTCNJ - 24 hour annual hackathon </title>
     <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{% static 'plugins/plugins/bootstrap/css/bootstrap.css' %}">
     <!-- Icofont Css -->
-    <link rel="stylesheet" href="plugins/fontawesome/css/all.css">
+    <link rel="stylesheet" href="{% static 'plugins/plugins/fontawesome/css/all.css' %}">
     <!-- animate.css -->
-    <link rel="stylesheet" href="plugins/animate-css/animate.css">
+    <link rel="stylesheet" href="{% static 'plugins/plugins/animate-css/animate.css' %}">
     <!-- Icofont -->
-    <link rel="stylesheet" href="plugins/icofont/icofont.css">
+    <link rel="stylesheet" href="{% static 'plugins/plugins/icofont/icofont.css' %}">
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+    
 
 </head>
 
@@ -32,7 +33,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top trans-navigation">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{% url 'landing' %}">
            <!-- <img src="images/logo.png" alt="" class="img-fluid b-logo"> -->
            <h4 style = "color: white">HackTCNJ</h4>
         </a>
@@ -45,16 +46,13 @@
         <div class="collapse navbar-collapse justify-content-end" id="mainNav">
             <ul class="navbar-nav ">
                 <li class="nav-item">
-                    <a class="nav-link active smoth-scroll" href=".banner-area">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link active smoth-scroll" href="#home">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link smoth-scroll" href="#service">FAQ</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link smoth-scroll" href="#sponsors">Sponsors</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link smoth-scroll" href="#contact">Contact</a>
                 </li>
             </ul>
         </div>
@@ -64,7 +62,7 @@
 
 
  <!--MAIN BANNER AREA STARt -->
-<div class="banner-area banner-1">
+<div id = "home" class="banner-area banner-1">
     <div class="overlay gr-overlay"></div>
     <div class="d-table">
         <div class="d-table-cell">
@@ -77,10 +75,6 @@
                             <p>The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games! Afterwards, walk away with new experiences and friendships :)</p>
 
                             <!--<a href="#" class="btn btn-white btn-circled">lets start</a>-->                            
-                            {% extends 'defaults/base.html' %}
-                            {% block content %}
-
-                            This is da landing page
                             
                             <div class="button box" style="display: flex;">
                             <a href="{% url 'login' %}" class="btn btn-info">Login</a>
@@ -90,8 +84,6 @@
                             <a href="{% url 'reset_password' %}" class="btn btn-secondary">Forgot Password</a>
                             </div>
                             
-                            {% endblock %}   
-
                         </div>
                     </div>
                 </div>
@@ -306,16 +298,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                <img src="images/sponsors/sponsorstickermule.png" alt="partner" class="img-fluid">
+                <img src="{% static 'images/images/sponsors/sponsorstickermule.png' %}" alt="partner" class="img-fluid">
             </div>
             <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                <img src="images/sponsors/sponsorjetbrains.png" alt="partner" class="img-fluid">
+                <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid">
             </div>
             <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                 <img src="images/sponsors/sponsorSFB.png" alt="partner" class="img-fluid">
+                 <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
             </div>
             <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                <img src="images/sponsors/sponsorTRHC.png" alt="partner" class="img-fluid">
+                <img src="{% static 'images/images/sponsors/sponsorTRHC.png' %}" alt="partner" class="img-fluid">
             </div>
         </div>
     </div>
@@ -324,6 +316,7 @@
 <!--  PARTNER END  -->
 
  <!--  CONTACT START  -->
+ <!--
     <section id="contact" class="section-padding ">
         <div class="container">
             <div class="row">
@@ -338,7 +331,9 @@
                 <div class="col-lg-8 col-sm-12 m-auto">
                     <div class="contact-form ">
                         <form class="contact__form" method="post" action="mail.php">
+                        -->
                             <!-- form message -->
+                            <!--
                             <div class="row">
                                 <div class="col-12">
                                     <div class="alert alert-success contact__msg" style="display: none" role="alert">
@@ -346,7 +341,9 @@
                                     </div>
                                 </div>
                             </div>
+                          -->
                             <!-- end message -->
+                            <!--
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input name="name" type="text" class="form-control" placeholder="Name" required>
@@ -370,9 +367,11 @@
             </div>
         </div>
     </section>
+  -->
     <!--  CONTACT END  -->
 
 <!--  COUNTER AREA START  -->
+<!--
 <section id="counter" class="section-padding">
     <div class="overlay dark-overlay"></div>
     <div class="container">
@@ -408,6 +407,7 @@
         </div>
     </div>
 </section>
+-->
 <!--  COUNTER AREA END  -->
 
     <!-- 
@@ -416,23 +416,23 @@
 
     
     <!-- Main jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="{% static 'plugins/plugins/jquery/jquery.min.js' %}"></script>
     <!-- Bootstrap 4.3.1 -->
-    <script src="plugins/bootstrap/js/popper.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'plugins/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'plugins/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
    <!-- Woow animtaion -->
-    <script src="plugins/counterup/wow.min.js"></script>
-    <script src="plugins/counterup/jquery.easing.1.3.js"></script>
+    <script src="{% static 'plugins/plugins/counterup/wow.min.js' %}"></script>
+    <script src="{% static 'plugins/plugins/counterup/jquery.easing.1.3.js' %}"></script>
      <!-- Counterup -->
-    <script src="plugins/counterup/jquery.waypoints.js"></script>
-    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <script src="{% static 'plugins/plugins/counterup/jquery.waypoints.js' %}"></script>
+    <script src="{% static 'plugins/plugins/counterup/jquery.counterup.min.js' %}"></script>
 
     <!-- Google Map -->
-    <script src="plugins/google-map/gmap3.min.js"></script>
+    <script src="{% static 'plugins/plugins/google-map/gmap3.min.js' %}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>   
     <!-- Contact Form -->
-    <script src="plugins/jquery/contact.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{% static 'plugins/plugins/jquery/contact.js' %}"></script>
+    <script src="{% static 'js/landing_js/custom.js' %}" ></script>
 
   </body>
   </html>
