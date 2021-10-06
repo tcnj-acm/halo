@@ -46,7 +46,7 @@
 
 
     $(window).on('scroll', function () {
-        if ($(window).scrollTop() > 70) {
+        if ($(window).scrollTop() > 650) {
             $('.site-navigation,.trans-navigation').addClass('header-white');
         } else {
             $('.site-navigation,.trans-navigation').removeClass('header-white');
