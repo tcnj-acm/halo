@@ -984,7 +984,7 @@ SERVICE PAGE
 
 .pricing-block:hover i {
   background-image: -webkit-linear-gradient(135deg, #2f1ce0 0%, #53a0fd 50%, #51eca5 100%);
-  background-iamge: -linear-gradient(135deg, #2f1ce0 0%, #53a0fd 50%, #51eca5 100%);
+  background-image: -linear-gradient(135deg, #2f1ce0 0%, #53a0fd 50%, #51eca5 100%);
   color: #fff;
   border: 1px solid #53a0fd;
 }
