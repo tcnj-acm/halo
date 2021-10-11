@@ -101,10 +101,13 @@ Distributed under the MIT License. See [LICENSE](https://github.com/tcnj-acm/asl
 
 ## Authors
 
-* **[Abhi Vempati]**(https://github.com/abhivemp)  - *Co-founder; believes chocolate is the only superior ice cream flavor*  
-* **[Kevin Williams]**(https://github.com/kvnwill) - *Co-founder; who the heck likes chocolate frosted flakes anyway??*
+[Abhi Vempati](https://github.com/abhivemp) - *Co-founder; believes chocolate is the only superior ice cream flavor*
+
+[Kevin Williams](https://github.com/kvnwill) - *Co-founder; who the heck likes chocolate frosted flakes anyway??* 
+
+[Sterly Deracy](https://github.com/sderacy) - *Co-founder; maestro of finesse, hustler extraordinaire* 
 
 ## Acknowledgements
 
-* [Abhi Vempati](https://github.com/abhivemp)
-* [Kevin Williams](https://github.com/kvnwill)
+We'd like to thank our contributors here
+
