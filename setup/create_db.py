@@ -36,6 +36,7 @@ address_organizer = [
     '5 Bellflower Ct',
     '6 Cranberry Ct'
 ]
+
 def create_users():
 
     for i in range(5):
@@ -50,5 +51,115 @@ def create_organizers():
         new_org = organizer.objects.create(organizer=user, address=address_organizer[i])
     
 
-create_users()
-create_organizers()
+# create_users()
+# create_organizers()
+
+
+
+first_name_hackers = [
+    'Sophie',
+    'Daryll',
+    'Chandler',
+    'Rachel',
+    'Tony',
+    'Jake',
+    'Amy',
+    'Raymond',
+    'Mani',
+    'Sabrina',
+    'Brandon'
+]
+
+last_name_hackers = [
+    'Goldberg',
+    'Johnson',
+    'Bing',
+    'Green',
+    'Stark',
+    'Peralta',
+    'Santiago',
+    'Holt',
+    'Yeluri',
+    'May',
+    'Kim'
+]
+email_hackers = [
+    'sophie@tcnj.edu',
+    'daryl@dm.com',
+    'chandler@ps.com',
+    'rachel@rl.com',
+    'tony@mit.edu',
+    'jake@b99.gov',
+    'amy@b99.gov',
+    'ray@b99.gov,
+    'mani@tcnj.edu',
+    'brandon@tcnj.edu'
+]
+address_hackers = [
+    '56 Matawan Ln',
+    '44 Scranton Rd',
+    '120 46 W 10 Ave',
+    '121 46 W 10 Ave',
+    '1044 Malibu Pt',
+    '33 Brooklyn Ln',
+    '33 Brooklyn Ln',
+    '60 Brooklyn Ln',
+    '4 Galston Dr',
+    '30 Pennington Rd',
+    '2000 Pennington Rd'
+]
+
+major_hackers = [
+    'Computer Science',
+    'Civil Engineering',
+    'Accounting',
+    'Communications',
+    'Computer Engineering',
+    'Computer Science',
+    'Arts History',
+    'Architectural Design',
+    'Computer Science',
+    'Computer Science',
+
+]
+education_hackers = [
+    "University (Undergrad)",
+    "University (Undergrad)",
+    "University (Undergrad)",
+    "University (Undergrad)",
+    "University (Undergrad)",
+    "University (Undergrad)",
+    "University (Undergrad)",
+    "High School/Secondary School",
+    "University (Undergrad)",
+    "University (Undergrad)"
+]
+
+food_choices_hackers = [
+    "Vegan",
+    "Gluten-Free",
+    "Vegetarian",
+    "None",
+    "None",
+    "None",
+    "Vegetarian",
+    "Vegetarian",
+    "None",
+    "None",
+]
+
+shirt_sizes_hackers = [
+    "Unisex (M)",
+    "Unisex (M)",
+    "Unisex (S)",
+    "Unisex (S)",
+    "Unisex (L)",
+    "Unisex (L)",
+    "Unisex (M)",
+    "Unisex (M)",
+    "Unisex (L)"
+    "Unisex (L)"
+]
+
+def create_hackers():
+
