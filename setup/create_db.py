@@ -5,7 +5,11 @@
 #             new_user.save()
 from default.models import CustomUser
 from organizer.models import organizer
+from hacker.models import hacker
 
+# total count
+TOTAL_ORGANIZERS = 5
+TOTAL_HACKERS = 10
 first_name_organizers = [
     'Abhi',
     'Kevin',
@@ -37,23 +41,8 @@ address_organizer = [
     '6 Cranberry Ct'
 ]
 
-def create_users():
-
-    for i in range(5):
-        new_user = CustomUser.objects.create(email = email_organizers[i], first_name=first_name_organizers[i], last_name = last_name_organizers[i])
-        new_user.set_password('cistheworstlangever')
-        new_user.save()
-
-def create_organizers():
-
-    for i in range(5):
-        user = CustomUser.objects.get(email=email_organizers[i])
-        new_org = organizer.objects.create(organizer=user, address=address_organizer[i])
-    
-
-# create_users()
-# create_organizers()
-
+###################################
+###################################
 
 
 first_name_hackers = [
@@ -91,7 +80,7 @@ email_hackers = [
     'tony@mit.edu',
     'jake@b99.gov',
     'amy@b99.gov',
-    'ray@b99.gov,
+    'ray@b99.gov',
     'mani@tcnj.edu',
     'brandon@tcnj.edu'
 ]
@@ -106,7 +95,7 @@ address_hackers = [
     '60 Brooklyn Ln',
     '4 Galston Dr',
     '30 Pennington Rd',
-    '2000 Pennington Rd'
+
 ]
 
 major_hackers = [
@@ -157,9 +146,34 @@ shirt_sizes_hackers = [
     "Unisex (L)",
     "Unisex (M)",
     "Unisex (M)",
-    "Unisex (L)"
-    "Unisex (L)"
+    "Unisex (L)",
+    "Unisex (L)",
+   
 ]
+def create_users():
+
+    for i in range(TOTAL_ORGANIZERS):
+        new_user = CustomUser.objects.create(email = email_organizers[i], first_name=first_name_organizers[i], last_name = last_name_organizers[i])
+        new_user.set_password('cistheworstlangever')
+        new_user.save()
+
+def create_organizers():
+
+    for i in range(TOTAL_ORGANIZERS):
+        user = CustomUser.objects.get(email=email_organizers[i])
+        new_org = organizer.objects.create(organizer=user, address=address_organizer[i])
+    
+
 
 def create_hackers():
+    for i in range(TOTAL_HACKERS):
+        new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i])
+        new_user.set_password('hacker123!')
+        new_user.save()
+
+        new_hacker = hacker.objects.create(hacker=new_user,address = address_hackers[i], major=major_hackers[i], education=education_hackers[i],food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
+
+create_users()
+create_organizers()
+create_hackers()
 
