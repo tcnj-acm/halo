@@ -3,13 +3,21 @@
 # new_user = User.objects.create(username = row["email"], first_name= row["first"], last_name= row["last"], email = row["email"] + "@tcnj.edu")
 #             new_user.set_password('tacos')
 #             new_user.save()
+from django.contrib.auth.models import User, Group
 from default.models import CustomUser
 from organizer.models import organizer
 from hacker.models import hacker
+from default.helper import add_group
 
 # total count
 TOTAL_ORGANIZERS = 5
 TOTAL_HACKERS = 10
+
+# Create the necessary groups for the users
+Group.objects.create(name="hacker")
+Group.objects.create(name="organizer")
+
+
 first_name_organizers = [
     'Abhi',
     'Kevin',
@@ -162,7 +170,7 @@ def create_organizers():
     for i in range(TOTAL_ORGANIZERS):
         user = CustomUser.objects.get(email=email_organizers[i])
         new_org = organizer.objects.create(organizer=user, address=address_organizer[i])
-    
+        add_group(user, 'organizer')    
 
 
 def create_hackers():
@@ -172,7 +180,10 @@ def create_hackers():
         new_user.save()
 
         new_hacker = hacker.objects.create(hacker=new_user,address = address_hackers[i], major=major_hackers[i], education=education_hackers[i],food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
+        add_group(new_user, 'hacker')
 
+
+# Driver code
 create_users()
 create_organizers()
 create_hackers()
