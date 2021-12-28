@@ -1,13 +1,21 @@
 {% extends 'defaults/base.html' %}
 
+{% load static %}
 
 {% block content %}
-
-    <form method="POST"> {% csrf_token %}
+  <head>
+    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+  </head>
+  <body class="overlay gr-overlay">
+    <div class="loginFormBorder">
+      <form class="centerForm" method="POST"> {% csrf_token %}
+        <h4 class="centerHeaderText"> Sign in</h4>
         <input type="text" name="email" placeholder="Email">
+        <br>
         <input type="password" name="password" placeholder="Password">
-
-        <button type="submit">Submit</button>
-    </form>
-
+        <br>
+        <button class="btn" style="width:100%" type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
 {% endblock %}

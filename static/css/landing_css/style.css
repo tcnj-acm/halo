@@ -1,24 +1,9 @@
 /*=== MEDIA QUERY ===*/
 /*
 * ----------------------------------------------------------------------------------------
-Author       : Themefisher
-Template Name: Promodise
+Author       : HackTCNJ
+Template Name: Humble Abode
 Version      : 1.0
-* ----------------------------------------------------------------------------------------
-*/
-/*
-* ----------------------------------------------------------------------------------------
-* 01.GLOBAL CSS STYLE
-* 02.PRELOADER & BOUNCE CCS STYLE
-* 03.HOMEPAGE CSS STYLE
-    -LOGO CSS
-    -MENU CSS
-* 04.ABOUT CSS STYLE
-* 05.SERVICE CSS STYLE
-* 06.WORK CSS STYLE
-* 07.AVAILABLE CSS STYLE
-* 08.CONTACT CSS STYLE
-* 09.FOOTER CSS STYLE
 * ----------------------------------------------------------------------------------------
 */
 /*
@@ -76,6 +61,10 @@ a {
 
 img {
   max-width: 100%;
+}
+
+input {
+  margin-bottom: 5px;
 }
 
 a:hover {
@@ -304,6 +293,81 @@ h5.subtitle {
   background-color: #fff;
 }
 
+.centerForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loginFormBorder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15%;
+  height: 27%;
+  background-color: #292e2c;
+  border-radius: 25px;
+}
+
+.registerFormBorder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: 95%;
+  background-color: #292e2c;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.passwordResetForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 37%;
+  height: 25%;
+  background-color: #292e2c;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+
+.passwordResetSuccessForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 37%;
+  height: 25%;
+  background-color: #292e2c;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+
+.centerHeaderText {
+  text-align: center;
+  color: #fff;
+}
+
+.passwordResetSuccessBtn {
+  font: 600 10.5px/1;
+  display:block !important;
+  margin: 0 auto;
+  padding: 15px 45px 15px 45px;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  transition: all .2s;
+  border-radius: 0px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
 .d-table {
   width: 100%;
 }
@@ -337,7 +401,6 @@ h5.subtitle {
 }
 
 /* ========================
-
 ==============================*/
 .heading {
   margin-bottom: 40px;
@@ -575,12 +638,6 @@ h5.subtitle {
   position: relative;
 }
 
-.banner-3 {
-  background: url("../images/banner/banner-bg.jpg");
-  background-size: cover;
-  position: relative;
-}
-
 .section-heading h2 {
   margin-bottom: 20px;
   font-weight: 400;
@@ -592,11 +649,6 @@ INner Pages
 #page-banner {
   position: relative;
   padding: 60px 0px 80px;
-}
-
-.page-banner-area {
-  background: url("../images/banner/1.jpg") no-repeat 50% 50%;
-  background-size: cover;
 }
 
 /*-------------------- ------------
@@ -665,18 +717,6 @@ INner Pages
   padding-bottom: 85px;
 }
 
-.about-bg-img {
-  position: absolute;
-  right: 0px;
-  content: "";
-  background: url("../images/banner/1.jpg") 50% 50%;
-  width: 40%;
-  height: 100%;
-  max-height: 560px;
-  top: 0px;
-  box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
-}
-
 .about-content {
   margin-top: 94px;
 }
@@ -741,74 +781,8 @@ HISTORY MISSION
   width: 200px;
 }
 
-/* ========================
-
-==============================*/
-#section-strategy {
-  background: url("../images/bg/bg-1.jpg") 50% 50% no-repeat;
-  background-size: cover;
-}
-
-.strategy-text {
-  margin-bottom: 50px;
-}
-
-.strategy-text h4 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.strategy-text span {
-  font-size: 61px;
-  color: #635CDB;
-  margin-bottom: 15px;
-  display: block;
-}
-
-/*--------------------------------
- COUNTER SECTION
------------------------------*/
-.counter {
-  font-size: 60px;
-  line-height: 60px;
-  font-weight: 700;
-  line-height: 70px;
-  margin: 10px 0px;
-  color: #635CDB;
-}
-
-.counter-stat i {
-  font-size: 40px;
-  color: #fff;
-  margin-right: 10px;
-}
-
-.counter-stat h5 {
-  font-weight: 400;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.counter-block span {
-  font-size: 30px;
-}
-
-#counter .dark-overlay {
-  background: #000;
-  opacity: 0.95;
-}
-
-#counter {
-  background: url("../images/banner/pattern-3.png") fixed 50% 50%;
-  position: relative;
-  background-size: cover;
-  padding-top: 87px;
-  padding-bottom: 95px;
-}
-
 /*--------------------------
-  SERVICE AREA SECTION
+  SERVICE (FAQ) AREA SECTION
 ----------------------*/
 .page-banner-area.page-service {
   background: url("../images/bg/bg-2.jpg") no-repeat;
@@ -922,94 +896,6 @@ SERVICE PAGE
 }
 
 /*------------------------------------
-  PRICING SECTION AREA
---------------------------------*/
-#pricing {
-  padding-bottom: 100px;
-}
-
-.pricing-block {
-  text-align: center;
-  transition: all .3s 0s ease;
-  border-radius: 5px;
-  border: 1px solid #eee;
-}
-
-.price-header {
-  padding-bottom: 30px;
-  padding-top: 30px;
-}
-
-.price-header i {
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  padding-top: 25px;
-  font-size: 50px;
-  display: inline-block;
-  border-radius: 100%;
-  transition: all .3s ease 0s;
-  color: #635CDB;
-  border: 1px solid #eee;
-}
-
-.price-header .price {
-  font-size: 70px;
-  margin-top: 40px;
-  margin-bottom: 0px;
-}
-
-.price-header h5 {
-  font-weight: 400;
-}
-
-.price-header .price small {
-  font-size: 18px;
-}
-
-.pricing-block ul {
-  padding: 20px 20px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #eee;
-}
-
-.pricing-block ul li {
-  padding: 6px 0px;
-}
-
-.pricing-block .btn {
-  margin-bottom: 30px;
-}
-
-.pricing-block:hover i {
-  background-image: -webkit-linear-gradient(135deg, #2f1ce0 0%, #53a0fd 50%, #51eca5 100%);
-  background-image: -linear-gradient(135deg, #2f1ce0 0%, #53a0fd 50%, #51eca5 100%);
-  color: #fff;
-  border: 1px solid #53a0fd;
-}
-
-.pricing-block:hover,
-.pricing-block.active {
-  background: #fff;
-  box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
-}
-
-#pricing .section-heading {
-  margin-bottom: 90px;
-}
-
-/* -------------------
-PRICING PAGE
---------------------*/
-#section-counter .counter-stat i {
-  color: #000;
-}
-
-#section-counter .counter-stat h5 {
-  color: #777;
-}
-
-/*------------------------------------
   CLIENT PARTNER AREA SECTION
 --------------------------------*/
 #clients {
@@ -1020,286 +906,6 @@ PRICING PAGE
 
 .client-img {
   background: #fff;
-}
-
-/*------------------------------------
-  TESTIMONIAL AREA SECTION
----------------------------------*/
-.author-img img {
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  border: 5px solid #ddd;
-}
-
-.author-info p {
-  margin: 0px;
-  font-size: 14px;
-}
-
-.carousel-indicators {
-  bottom: 0px;
-  margin-bottom: 0px;
-}
-
-.carousel-indicators li {
-  background: #111;
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-}
-
-.carousel-indicators li.active {
-  background: #635CDB;
-}
-
-.testimonial-content {
-  padding: 0px 40px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.testimonial-content .author-text {
-  padding-top: 10px;
-}
-
-.testimonial-content .author-info {
-  display: block;
-  margin-bottom: 25px;
-}
-
-.testimonial-content p {
-  font-size: 20px;
-  line-height: 36px;
-  color: #222;
-  margin: 35px 0px;
-  display: block;
-}
-
-.author-text h5 {
-  text-transform: uppercase;
-}
-
-.author-text p {
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 36px;
-  color: #888;
-  margin: 0px;
-}
-
-.testimonial-content p i {
-  margin: 0px 8px;
-}
-
-/*--------------------------
- CONTACT SECTION AREA
-----------------------*/
-#contact {
-  padding-bottom: 100px;
-}
-
-.text-color {
-  color: #635CDB;
-}
-
-input[type=text], input[type=email] {
-  height: 50px;
-}
-
-.form-control {
-  border: 1px solid #eee;
-  padding-left: 20px;
-}
-
-.form-control:hover,
-.form-control:focus {
-  box-shadow: 0px 5px 35px 0px rgba(148, 146, 245, 0.15);
-}
-
-.input:focus {
-  outline: none;
-}
-
-.form-control::-webkit-input-placeholder {
-  color: #888;
-  opacity: .9;
-  font-size: 13px;
-  padding-left: 10px;
-}
-
-.form-control::-moz-placeholder {
-  color: #888;
-  opacity: .9;
-  font-size: 13px;
-  padding-left: 10px;
-}
-
-.form-control:-ms-input-placeholder {
-  color: #888;
-  opacity: .9;
-  font-size: 13px;
-  padding-left: 10px;
-}
-
-.form-control:-moz-placeholder {
-  color: #888;
-  opacity: .9;
-  font-size: 13px;
-  padding-left: 10px;
-}
-
-/* --------------
-    MAP
------------------*/
-#map {
-  height: 400px;
-  width: 100%;
-  position: relative;
-}
-
-#map:after {
-  position: absolute;
-  content: "";
-  left: 0px;
-  background: rgba(99, 92, 219, 0.4);
-  top: 0px;
-  width: 100%;
-  height: 100%;
-}
-
-/*--------------------------
- BLOG SECTION AREA
-----------------------*/
-#blog {
-  padding-bottom: 55px;
-}
-
-.blog-block {
-  overflow: hidden;
-  transition: all .3s ease 0s;
-}
-
-.blog-block img {
-  margin-bottom: 10px;
-}
-
-.blog-text {
-  padding: 20px;
-}
-
-.blog-text .author-name {
-  font-weight: 400;
-}
-
-.blog-text .author-name span {
-  margin-right: 10px;
-  font-weight: 600;
-}
-
-.blog-block .read-more,
-.blog-block span {
-  color: #635CDB;
-}
-
-/* =================================
-BLOG PAGE
-===================================*/
-.blog-post {
-  margin-bottom: 50px;
-}
-
-.blog-post img {
-  border-radius: 5px;
-}
-
-.blog-post .post-author i,
-.blog-post .post-info i {
-  margin-right: 5px;
-  font-size: 14px;
-}
-
-.blog-post .post-author span, .blog-post .post-info span {
-  font-size: 14px;
-}
-
-.sidebar-widget {
-  margin-bottom: 40px;
-  padding-left: 20px;
-}
-
-.category ul li {
-  margin-bottom: 10px;
-  text-transform: capitalize;
-  position: relative;
-  padding-left: 20px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-}
-
-.category ul li:before {
-  position: absolute;
-  content: "\f105";
-  left: 0px;
-  top: 0px;
-  font-family: "Font Awesome 5 Free";
-  color: #635CDB;
-  font-weight: 900;
-}
-
-.tag a {
-  text-transform: capitalize;
-  padding: 5px 8px;
-  border: 1px solid #eee;
-  margin-bottom: 5px;
-  font-size: 14px;
-  display: inline-block;
-}
-
-.search i {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  margin-right: 35px;
-  margin-top: 15px;
-  color: #635CDB;
-}
-
-.download a {
-  display: block;
-  padding: 12px 20px;
-  border: 1px solid #eee;
-  margin-bottom: 10px;
-  background: #f2f2f2;
-}
-
-.download a i {
-  margin-right: 15px;
-  color: #635CDB;
-}
-
-/* ==================================
-BLOG SINGLE
-=====================================*/
-.quote i {
-  font-size: 50px;
-  margin-right: 10px;
-  position: absolute;
-  left: 0px;
-}
-
-.quote {
-  font-size: 18px;
-  line-height: 32px;
-  color: #222;
-  position: relative;
-  margin: 50px 0px;
-  padding-left: 70px;
-}
-
-.comments img {
-  width: 80px;
-  height: 80px;
 }
 
 /*--------------------------
@@ -1405,6 +1011,51 @@ BLOG SINGLE
   .navbar-expand-lg.trans-navigation .navbar-nav .nav-link {
     margin-bottom: 10px;
   }
+  .loginFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 27%;
+    background-color: #292e2c;
+    border-radius: 25px;
+  }
+  .registerFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 95%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+  }
+  .passwordResetForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 30%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  .passwordResetSuccessForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 37%;
+    height: 35%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
@@ -1472,6 +1123,51 @@ BLOG SINGLE
   /*---------------
      NAVIGATION
     ----------------*/
+    .loginFormBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30%;
+      height: 27%;
+      background-color: #292e2c;
+      border-radius: 25px;
+    }
+    .registerFormBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 95%;
+      background-color: #292e2c;
+      border-radius: 25px;
+      color: #fff;
+    }
+    .passwordResetForm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 45%;
+      height: 30%;
+      background-color: #292e2c;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+    }
+    .passwordResetSuccessForm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 37%;
+      height: 35%;
+      background-color: #292e2c;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+    }
   .navbar-toggler {
     background: #fff;
     border-radius: 0px;
@@ -1582,6 +1278,51 @@ BLOG SINGLE
   }
   .navbar-expand-lg.trans-navigation .navbar-nav .nav-link {
     margin-bottom: 10px;
+  }
+  .loginFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 27%;
+    background-color: #292e2c;
+    border-radius: 25px;
+  }
+  .registerFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 95%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+  }
+  .passwordResetForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 30%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  .passwordResetSuccessForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 37%;
+    height: 35%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
   }
   /*----------------------
      SECTION HEAINDG
