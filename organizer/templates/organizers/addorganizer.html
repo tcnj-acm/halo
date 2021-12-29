@@ -1,7 +1,15 @@
 {% extends 'organizers/base.html' %}
 
+{% load static %}
+
 {% block content %}
-    <form method="POST" >{% csrf_token %}
+  <head>
+    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+  </head>
+  <body>
+    <div>
+      <form class="organizerForm" method="POST" >{% csrf_token %}
+        <h4 class="centerHeaderText" style="margin-bottom: 3%"> Add Organizer </h4>
         <div class="form-row">
             <div class="col-md-12 mb-3 " >
                 {{form.fname}}
@@ -22,9 +30,11 @@
 
         <div class="form-row justify-content-center" >
             <div class="col-md-6 mb-3 text-center" >
-                <button class="btn btn-lg btn-outline-success" type="submit" value="save">Invite</button>
+                <button class="btn btn-lg btn-outline-success" style="background-color: rgb(54, 94, 60); color: #fff;"  type="submit" value="save">Invite</button>
             </div>                    
         </div>
         
-    </form>
+      </form>
+    </div>
+  </body>
 {% endblock %}
