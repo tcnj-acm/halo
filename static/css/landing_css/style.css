@@ -349,6 +349,19 @@ h5.subtitle {
   padding: 2%;
 }
 
+.hackerDashboardBorder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 37%;
+  height: 25%;
+  background-color: #292e2c;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+
 .centerHeaderText {
   text-align: center;
   color: #fff;
