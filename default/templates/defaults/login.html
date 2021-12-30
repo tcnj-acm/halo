@@ -6,15 +6,19 @@
   <head>
     <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
   </head>
+  <a class="navbar-brand" href="{% url 'landing' %}">
+    <!-- <img src="images/logo.png" alt="" class="img-fluid b-logo"> -->
+    <h4 style = "color: white; margin-top: 10%;">HackTCNJ</h4>
+ </a>
   <body class="overlay gr-overlay">
     <div class="loginFormBorder">
-      <form class="centerForm" method="POST"> {% csrf_token %}
+      <form class="centerForm" style="margin-bottom: 2%" method="POST"> {% csrf_token %}
         <h4 class="centerHeaderText"> Sign in</h4>
-        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="email" placeholder="Email" style="border-radius: 10px">
         <br>
-        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password" style="border-radius: 10px">
         <br>
-        <button class="btn" style="width:100%" type="submit">Submit</button>
+        <button class="btn" style="width:100%; border-radius: 10px;" type="submit">Submit</button>
       </form>
     </div>
   </body>
