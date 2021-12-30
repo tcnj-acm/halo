@@ -1039,8 +1039,9 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    width: 85%;
     height: 95%;
+    zoom: .95;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
@@ -1155,6 +1156,7 @@ SERVICE PAGE
       transform: translate(-50%, -50%);
       width: 50%;
       height: 35%;
+      zoom: .9;
       background-color: #292e2c;
       border-radius: 25px;
     }
@@ -1331,8 +1333,9 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    width: 75%;
     height: 95%;
+    zoom: 0.75;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
