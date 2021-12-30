@@ -5,9 +5,14 @@
 {% block content %}
   <head>
     <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+    <style>
+    input {
+      border-radius: 10px;
+    }
+    </style>
   </head>
   <body class="overlay gr-overlay">
-    <div class="registerFormBorder" style="margin-top:5px; padding:5px">
+    <div class="registerFormBorder" style="margin-top:5px; padding:5px;">
       <h4 class="centerHeaderText"> Register </h4>
       <form class="centerForm" method ="POST"> {% csrf_token %}
         {{user.as_p}}
