@@ -1,11 +1,24 @@
 {% extends 'defaults/base.html' %}
 
-
+{% load static %}
 
 {% block content %}
-<form method ="POST"> {% csrf_token %}
-    {{user.as_p}}
-    {{hacker.as_p}}
-    <input type="submit" value="save">
-</form>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+    <style>
+    input {
+      border-radius: 10px;
+    }
+    </style>
+  </head>
+  <body class="overlay gr-overlay">
+    <div class="registerFormBorder" style="margin-top:5px; padding:5px;">
+      <h4 class="centerHeaderText"> Register </h4>
+      <form class="centerForm" method ="POST"> {% csrf_token %}
+        {{user.as_p}}
+        {{hacker.as_p}}
+      <input type="submit" style="width:100%; background-color: #fcef41a4; color: #fff" value="Register">
+      </form>
+    </div>
+  </body>
 {% endblock %}

@@ -6,9 +6,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="seo & digital marketing">
-    <meta name="keywords" content="marketing,digital marketing,creative, agency, startup,promodise,onepage, clean, modern,seo,business, company">
-    <meta name="author" content="Themefisher.com">
+    <meta name="description" content="TCNJ's 24-hour Hackathon">
+    <meta name="keywords" content="hackathon, TCNJ, 24-hour">
+    <meta name="author" content="acm@tcnj.edu">
 
    <title>HackTCNJ | 2021 </title>
     <!-- bootstrap.min css -->
@@ -23,7 +23,8 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
     
-
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'tcnjlogo.jpg' %}"/>
 </head>
 
 
@@ -76,12 +77,12 @@
 
                             <!--<a href="#" class="btn btn-white btn-circled">lets start</a>-->                            
                             
-                            <div class="button box" >
-                            <a href="{% url 'login' %}" class="btn btn-info">Login</a>
-    
-                            <a href="{% url 'hacker' %}" class="btn btn-success">Register Today !</a>
+                            <div class="button-box" >
+                            <a href="{% url 'hacker' %}" class="btn" style="background-color: #fcef41a4; color: #fff">Register Today!</a>
+                            
+                            <a href="{% url 'login' %}" class="btn" style="background-color: #383593ea; color: #fff">Login</a>
 
-                            <a href="{% url 'reset_password' %}" class="btn btn-secondary">Forgot Password</a>
+                            <a href="{% url 'reset_password' %}" class="btn" style="background-color: rgba(88, 88, 88, 0.863); color: #fff">Forgot Password</a>
                             </div>
                             
                         </div>
