@@ -315,7 +315,7 @@ h5.subtitle {
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
-  background-color: #292e2c;
+  background-color: #1d201f;
   border-radius: 25px;
 }
 
@@ -327,7 +327,7 @@ h5.subtitle {
   width: 40%;
   height: -moz-available;          
   height: -webkit-fill-available;
-  background-color: #292e2c;
+  background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
 }
@@ -339,7 +339,7 @@ h5.subtitle {
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
-  background-color: #292e2c;
+  background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
   padding: 2%;
@@ -352,7 +352,7 @@ h5.subtitle {
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
-  background-color: #292e2c;
+  background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
   padding: 2%;
@@ -365,7 +365,7 @@ h5.subtitle {
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
-  background-color: #292e2c;
+  background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
   padding: 2%;
@@ -378,7 +378,7 @@ h5.subtitle {
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
-  background-color: #292e2c;
+  background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
   padding: 2%;
@@ -393,7 +393,7 @@ h5.subtitle {
   transform: translate(-50%, -50%);
   width: 35%;
   height: 49%;
-  background-color: #343a40;
+  background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
   padding: 2%;
@@ -1092,7 +1092,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: fit-content;
     height: fit-content;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
@@ -1227,7 +1227,7 @@ SERVICE PAGE
       transform: translate(-50%, -50%);
       width: fit-content;
       height: fit-content;
-      background-color: #292e2c;
+      background-color: #1d201f;
       border-radius: 25px;
       color: #fff;
       padding: 2%;
@@ -1396,7 +1396,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: fit-content;
     height: fit-content;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
   }
   .registerFormBorder {
@@ -1408,7 +1408,7 @@ SERVICE PAGE
     height: -moz-available;          
     height: -webkit-fill-available;
     zoom: .9;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
   }
@@ -1420,7 +1420,7 @@ SERVICE PAGE
     width: fit-content;
     height: fit-content;
     zoom: .9;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
