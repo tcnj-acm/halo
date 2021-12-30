@@ -409,8 +409,8 @@ h5.subtitle {
 }
 
 .gr-overlay {
-  background: linear-gradient(135deg, #2f1ce0 0%, #182f4b 30%, #292e2c 100%);
-  opacity: .87;
+  background: linear-gradient(135deg, #fcef41 0%, #292e2c 30%, #383593 100%);
+  opacity: .95;
 }
 
 /* ========================
@@ -1029,8 +1029,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30%;
-    height: 27%;
+    width: 50%;
+    height: 35%;
     background-color: #292e2c;
     border-radius: 25px;
   }
@@ -1153,8 +1153,8 @@ SERVICE PAGE
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 30%;
-      height: 27%;
+      width: 50%;
+      height: 35%;
       background-color: #292e2c;
       border-radius: 25px;
     }
@@ -1321,8 +1321,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30%;
-    height: 27%;
+    width: 63%;
+    height: 35%;
     background-color: #292e2c;
     border-radius: 25px;
   }
