@@ -305,8 +305,8 @@ h5.subtitle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 15%;
-  height: 27%;
+  width: fit-content;
+  height: fit-content;
   background-color: #292e2c;
   border-radius: 25px;
 }
@@ -316,8 +316,9 @@ h5.subtitle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 35%;
-  height: 95%;
+  width: 50%;
+  height: -moz-available;          
+  height: -webkit-fill-available;
   background-color: #292e2c;
   border-radius: 25px;
   color: #fff;
@@ -328,8 +329,8 @@ h5.subtitle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 37%;
-  height: 25%;
+  width: fit-content;
+  height: fit-content;
   background-color: #292e2c;
   border-radius: 25px;
   color: #fff;
@@ -341,8 +342,8 @@ h5.subtitle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 37%;
-  height: 25%;
+  width: fit-content;
+  height: fit-content;
   background-color: #292e2c;
   border-radius: 25px;
   color: #fff;
@@ -354,8 +355,8 @@ h5.subtitle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 37%;
-  height: 50%;
+  width: fit-content;
+  height: fit-content;
   background-color: #292e2c;
   border-radius: 25px;
   color: #fff;
@@ -1029,8 +1030,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 35%;
+    width: fit-content;
+    height: fit-content;
     background-color: #292e2c;
     border-radius: 25px;
   }
@@ -1039,9 +1040,10 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 85%;
-    height: 95%;
-    zoom: .95;
+    width: 90%;
+    height: -moz-available;          
+    height: -webkit-fill-available;
+    zoom: .9;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
@@ -1051,8 +1053,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 45%;
-    height: 30%;
+    width: fit-content;
+    height: fit-content;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
@@ -1063,8 +1065,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 55%;
-    height: 35%;
+    width: fit-content;
+    height: fit-content;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
@@ -1075,8 +1077,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 45%;
-    height: 55%;
+    width: fit-content;
+    height: fit-content;
     zoom: .7;
     background-color: #292e2c;
     border-radius: 25px;
@@ -1162,8 +1164,8 @@ SERVICE PAGE
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 50%;
-      height: 35%;
+      width: fit-content;
+      height: fit-content;
       zoom: .9;
       background-color: #292e2c;
       border-radius: 25px;
@@ -1173,8 +1175,10 @@ SERVICE PAGE
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      height: 95%;
+      width: 90%;
+      height: -moz-available;          
+      height: -webkit-fill-available;
+      zoom: .9;
       background-color: #292e2c;
       border-radius: 25px;
       color: #fff;
@@ -1184,8 +1188,8 @@ SERVICE PAGE
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 45%;
-      height: 30%;
+      width: fit-content;
+      height: fit-content;
       background-color: #292e2c;
       border-radius: 25px;
       color: #fff;
@@ -1196,8 +1200,8 @@ SERVICE PAGE
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 55%;
-      height: 35%;
+      width: fit-content;
+      height: fit-content;
       background-color: #292e2c;
       border-radius: 25px;
       color: #fff;
@@ -1208,8 +1212,8 @@ SERVICE PAGE
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 45%;
-      height: 55%;
+      width: fit-content;
+      height: fit-content;
       zoom: .7;
       background-color: #292e2c;
       border-radius: 25px;
@@ -1339,8 +1343,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 63%;
-    height: 35%;
+    width: fit-content;
+    height: fit-content;
     background-color: #292e2c;
     border-radius: 25px;
   }
@@ -1349,9 +1353,10 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 75%;
-    height: 95%;
-    zoom: 0.75;
+    width: 90%;
+    height: -moz-available;          
+    height: -webkit-fill-available;
+    zoom: .9;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
@@ -1361,8 +1366,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 95%;
-    height: 30%;
+    width: fit-content;
+    height: fit-content;
     zoom: .9;
     background-color: #292e2c;
     border-radius: 25px;
@@ -1374,8 +1379,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 65%;
-    height: 35%;
+    width: fit-content;
+    height: fit-content;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
@@ -1386,8 +1391,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 97%;
-    height: 67%;
+    width: fit-content;
+    height: fit-content;
     zoom: .8;
     background-color: #292e2c;
     border-radius: 25px;
