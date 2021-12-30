@@ -1082,6 +1082,13 @@ SERVICE PAGE
     color: #fff;
     padding: 2%;
   }
+  .centerForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: .9;
+  }
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
@@ -1207,6 +1214,13 @@ SERVICE PAGE
       color: #fff;
       padding: 2%;
     }
+    .centerForm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      zoom: .9;
+    }
   .navbar-toggler {
     background: #fff;
     border-radius: 0px;
@@ -1298,6 +1312,40 @@ SERVICE PAGE
   }
 }
 
+@media (min-width: 411px) and (max-width: 823px) {
+  .passwordResetForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 20% !important;
+    zoom: .9;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+
+}
+
+@media (min-width: 411px) and (max-width: 731px) {
+  .passwordResetForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 20% !important;
+    zoom: .9;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+
+}
+
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
   /*---------------
@@ -1345,8 +1393,9 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 45%;
+    width: 95%;
     height: 30%;
+    zoom: .9;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
@@ -1375,6 +1424,13 @@ SERVICE PAGE
     border-radius: 25px;
     color: #fff;
     padding: 2%;
+  }
+  .centerForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: .85;
   }
   /*----------------------
      SECTION HEAINDG
