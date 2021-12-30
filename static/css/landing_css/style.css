@@ -1181,6 +1181,18 @@ SERVICE PAGE
       color: #fff;
       padding: 2%;
     }
+    .hackerDashboardBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 45%;
+      height: 25%;
+      background-color: #292e2c;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+    }
   .navbar-toggler {
     background: #fff;
     border-radius: 0px;
@@ -1332,6 +1344,18 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: 37%;
     height: 35%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  .hackerDashboardBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 25%;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
