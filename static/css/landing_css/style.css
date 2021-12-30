@@ -1222,6 +1222,7 @@ SERVICE PAGE
       color: #fff;
       padding: 2%;
     }
+  
     .passwordResetEntryForm {
       position: fixed;
       top: 50%;
@@ -1229,6 +1230,18 @@ SERVICE PAGE
       transform: translate(-50%, -50%);
       width: 45%;
       height: 55%;
+      background-color: #292e2c;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+    }
+    .hackerDashboardBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 45%;
+      height: 25%;
       background-color: #292e2c;
       border-radius: 25px;
       color: #fff;
@@ -1390,7 +1403,7 @@ SERVICE PAGE
     color: #fff;
     padding: 2%;
   }
-
+    
   .passwordResetEntryForm {
     position: fixed;
     top: 50%;
@@ -1398,6 +1411,19 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: 45%;
     height: 55%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }   
+    
+  .hackerDashboardBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 25%;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
