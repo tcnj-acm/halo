@@ -362,6 +362,35 @@ h5.subtitle {
   color: #fff;
   padding: 2%;
 }
+  
+.hackerDashboardBorder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 37%;
+  height: 25%;
+  background-color: #292e2c;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+
+
+
+.organizerForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: 49%;
+  background-color: #343a40;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+  text-align: center;
+}
 
 .centerHeaderText {
   text-align: center;
@@ -1207,6 +1236,7 @@ SERVICE PAGE
       color: #fff;
       padding: 2%;
     }
+  
     .passwordResetEntryForm {
       position: fixed;
       top: 50%;
@@ -1220,13 +1250,26 @@ SERVICE PAGE
       color: #fff;
       padding: 2%;
     }
-    .centerForm {
+
+    .hackerDashboardBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 45%;
+      height: 25%;
+      background-color: #292e2c;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+     } 
+     .centerForm {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       zoom: .9;
-    }
+     }
   .navbar-toggler {
     background: #fff;
     border-radius: 0px;
@@ -1386,6 +1429,7 @@ SERVICE PAGE
     color: #fff;
     padding: 2%;
   }
+    
   .passwordResetEntryForm {
     position: fixed;
     top: 50%;
@@ -1398,7 +1442,21 @@ SERVICE PAGE
     border-radius: 25px;
     color: #fff;
     padding: 2%;
+  }   
+    
+  .hackerDashboardBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 30%;
+    background-color: #292e2c;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
   }
+  
   .centerForm {
     position: fixed;
     top: 50%;
@@ -1406,6 +1464,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     zoom: .85;
   }
+
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
