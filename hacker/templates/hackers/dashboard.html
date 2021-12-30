@@ -6,11 +6,15 @@
   <head>
     <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
   </head>
+  <a class="navbar-brand" href="{% url 'landing' %}">
+    <!-- <img src="images/logo.png" alt="" class="img-fluid b-logo"> -->
+    <h4 style = "color: white; margin-top: 10%;">HackTCNJ</h4>
+ </a>
   <body class="overlay gr-overlay">
     <div class="hackerDashboardBorder">
     <h4 class="centerHeaderText"> User Dashboard </h4>
     <br>
-    <a href="{% url 'logout' %}" class="btn btn-danger" style="display:block !important; margin: 0 auto;">logout</a>
+    <a href="{% url 'logout' %}" class="btn btn-danger" style="display:block !important; margin: 0 auto; border-radius: 10px">logout</a>
     </div>
   </body>
 {% endblock %}

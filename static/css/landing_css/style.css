@@ -368,8 +368,8 @@ h5.subtitle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 37%;
-  height: 25%;
+  width: fit-content;
+  height: fit-content;
   background-color: #292e2c;
   border-radius: 25px;
   color: #fff;
@@ -1256,8 +1256,8 @@ SERVICE PAGE
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 45%;
-      height: 25%;
+      width: fit-content;
+      height: fit-content;
       background-color: #292e2c;
       border-radius: 25px;
       color: #fff;
@@ -1449,8 +1449,8 @@ SERVICE PAGE
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 30%;
+    width: fit-content;
+    height: fit-content;
     background-color: #292e2c;
     border-radius: 25px;
     color: #fff;
