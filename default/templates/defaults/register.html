@@ -10,11 +10,13 @@
       border-radius: 10px;
     }
     </style>
+    
   </head>
   <body class="overlay gr-overlay">
-    <div class="registerFormBorder" style="margin-top:5px; padding:5px;">
-      <h4 class="centerHeaderText"> Register </h4>
-      <form class="centerForm" method ="POST"> {% csrf_token %}
+    <div class="centerTextDiv">
+    <h4 class="centerHeaderText" style="margin-top:5%"> Register </h4>
+    <div class="registerFormBorder" style="margin-top:2%; padding:5px;">
+      <form class="centerForm"  style="height: 85%" method ="POST"> {% csrf_token %}
         {{user.first_name}}
         <br>
         {{user.last_name}}
@@ -45,6 +47,7 @@
       <input type="submit" style="width:100%; background-color: #fcef41a4; color: #fff" value="Register">
       </form>
     </div>
+  </div>
   </body>
 {% endblock %}
 

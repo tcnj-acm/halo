@@ -325,12 +325,19 @@ h5.subtitle {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 40%;
-  height: -moz-available;          
-  height: -webkit-fill-available;
+  height: 80%;
+  overflow: overlay;
   background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;
 }
+
+.registerFormBorder::-webkit-scrollbar {
+  display: none;
+}
+
 
 .passwordResetForm {
   position: fixed;
@@ -1069,7 +1076,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: fit-content;
     height: fit-content;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
   }
   .registerFormBorder {
@@ -1078,12 +1085,14 @@ SERVICE PAGE
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    height: -moz-available;          
-    height: -webkit-fill-available;
+    height: 80%;
+    overflow: overlay;
     zoom: .9;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
   }
   .passwordResetForm {
     position: fixed;
@@ -1104,7 +1113,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: fit-content;
     height: fit-content;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
@@ -1117,7 +1126,7 @@ SERVICE PAGE
     width: fit-content;
     height: fit-content;
     zoom: .7;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
@@ -1204,7 +1213,7 @@ SERVICE PAGE
       width: fit-content;
       height: fit-content;
       zoom: .9;
-      background-color: #292e2c;
+      background-color: #1d201f;
       border-radius: 25px;
     }
     .registerFormBorder {
@@ -1213,12 +1222,14 @@ SERVICE PAGE
       left: 50%;
       transform: translate(-50%, -50%);
       width: 90%;
-      height: -moz-available;          
-      height: -webkit-fill-available;
+      height: 80%;
+      overflow: overlay;
       zoom: .9;
-      background-color: #292e2c;
+      background-color: #1d201f;
       border-radius: 25px;
       color: #fff;
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+      scrollbar-width: none;
     }
     .passwordResetForm {
       position: fixed;
@@ -1239,7 +1250,7 @@ SERVICE PAGE
       transform: translate(-50%, -50%);
       width: fit-content;
       height: fit-content;
-      background-color: #292e2c;
+      background-color: #1d201f;
       border-radius: 25px;
       color: #fff;
       padding: 2%;
@@ -1253,7 +1264,7 @@ SERVICE PAGE
       width: fit-content;
       height: fit-content;
       zoom: .7;
-      background-color: #292e2c;
+      background-color: #1d201f;
       border-radius: 25px;
       color: #fff;
       padding: 2%;
@@ -1266,7 +1277,7 @@ SERVICE PAGE
       transform: translate(-50%, -50%);
       width: fit-content;
       height: fit-content;
-      background-color: #292e2c;
+      background-color: #1d201f;
       border-radius: 25px;
       color: #fff;
       padding: 2%;
@@ -1405,12 +1416,14 @@ SERVICE PAGE
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    height: -moz-available;          
-    height: -webkit-fill-available;
+    height: 80%;
+    overflow: overlay;
     zoom: .9;
     background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
   }
   .passwordResetForm {
     position: fixed;
@@ -1432,7 +1445,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: fit-content;
     height: fit-content;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
@@ -1446,7 +1459,7 @@ SERVICE PAGE
     width: fit-content;
     height: fit-content;
     zoom: .8;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
@@ -1459,7 +1472,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: fit-content;
     height: fit-content;
-    background-color: #292e2c;
+    background-color: #1d201f;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
