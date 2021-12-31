@@ -10,15 +10,55 @@
       border-radius: 10px;
     }
     </style>
+    
   </head>
   <body class="overlay gr-overlay">
-    <div class="registerFormBorder" style="margin-top:5px; padding:5px;">
-      <h4 class="centerHeaderText"> Register </h4>
-      <form class="centerForm" method ="POST"> {% csrf_token %}
-        {{user.as_p}}
-        {{hacker.as_p}}
+    <div class="centerTextDiv">
+    <h4 class="centerHeaderText" style="margin-top:5%"> Register </h4>
+    <div class="registerFormBorder" style="margin-top:2%; padding:5px;">
+      <form class="centerForm"  style="height: 85%" method ="POST"> {% csrf_token %}
+        {{user.first_name}}
+        <br>
+        {{user.last_name}}
+        <br>
+        {{user.email}}
+        <br>
+        {{user.password1}}
+        <br>
+        {{user.password2}}
+        <br>
+        {{hacker.address.label_tag}}
+        {{hacker.address}}
+        <br>
+        {{hacker.education.label_tag}}
+        {{hacker.education}}
+        <br>
+        {{hacker.major.label_tag}}
+        {{hacker.major}}
+        <br>
+        {{hacker.shirt_size.label_tag}}
+        {{hacker.shirt_size}}
+        <br>
+        {{hacker.food_preference.label_tag}}
+        {{hacker.food_preference}}
+        <br>
+        
+
       <input type="submit" style="width:100%; background-color: #fcef41a4; color: #fff" value="Register">
       </form>
     </div>
+  </div>
   </body>
+{% endblock %}
+
+{% block script %}
+<script>
+  // Note -- This could be done more with more control by getting a singular feild by its id and adding that way. 
+  // In this case, im adding bootstrap stying to all select fields on the page. Could be problematic
+  var form_selects = document.getElementsByTagName('select')
+  for (var field in form_selects){	
+      form_selects[field].className += ' form-control'
+  }
+
+</script>
 {% endblock %}
