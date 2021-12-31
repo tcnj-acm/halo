@@ -47,3 +47,15 @@
     </div>
   </body>
 {% endblock %}
+
+{% block script %}
+<script>
+  // Note -- This could be done more with more control by getting a singular feild by its id and adding that way. 
+  // In this case, im adding bootstrap stying to all select fields on the page. Could be problematic
+  var form_selects = document.getElementsByTagName('select')
+  for (var field in form_selects){	
+      form_selects[field].className += ' form-control'
+  }
+
+</script>
+{% endblock %}
