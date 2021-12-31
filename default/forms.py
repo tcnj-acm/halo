@@ -6,17 +6,17 @@ from .models import CustomUser
 from hacker.models import hacker
 
 class CustomUserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': "Place Holder"}))
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'placeholder': "Place Holder"}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': "Password"}))
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'placeholder': "Password Confirmation"}))
 
     class Meta:
         model = CustomUser
         fields = ('first_name', 'last_name', 'email')
 
         widgets = {
-            'first_name' : forms.TextInput(attrs = {'placeholder':'Place Holder'}),
-            'last_name' : forms.TextInput(attrs = {'placeholder':'Place Holder'}),
-            'email' : forms.TextInput(attrs = {'placeholder':'Place Holder'}),
+            'first_name' : forms.TextInput(attrs = {'placeholder':'First Name'}),
+            'last_name' : forms.TextInput(attrs = {'placeholder':'Last Name'}),
+            'email' : forms.TextInput(attrs = {'placeholder':'Email Address'}),
         }
 
     def clean_password2(self):
@@ -40,8 +40,8 @@ class HackerCreationForm(forms.ModelForm):
         fields = ('address', 'education','major','shirt_size','food_preference')
 
         widgets = {
-            'address' : forms.TextInput(attrs = {'placeholder':'Place Holder'}),
-            'major' : forms.TextInput(attrs = {'placeholder':'Place Holder'}),
+            'address' : forms.TextInput(attrs = {'placeholder':''}),
+            'major' : forms.TextInput(attrs = {'placeholder':'Other'}),
             'education' : forms.Select(attrs = {}),
             'shirt_size' : forms.Select(attrs = {}),
             'food_preference' : forms.Select(attrs = {}),
