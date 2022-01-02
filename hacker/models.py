@@ -32,3 +32,9 @@ class hacker(models.Model):
     major = models.CharField(default="other", max_length=60, blank=False, null=False)
     food_preference = models.CharField(default="None", max_length=20, blank=False, null=False, choices=food_choices)
     shirt_size = models.CharField(default="Unisex (M)", max_length=20, blank=False, null=False, choices=size_choices)
+
+    class Meta():
+        verbose_name = 'Hacker'
+    
+    def __str__(self):
+        return self.hacker.email + ": " + self.hacker.first_name + " " + self.hacker.last_name

@@ -16,6 +16,8 @@ TOTAL_HACKERS = 10
 # Create the necessary groups for the users
 Group.objects.create(name="hacker")
 Group.objects.create(name="organizer")
+Group.objects.create(name="head-organizer")
+
 
 
 first_name_organizers = [
