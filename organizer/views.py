@@ -58,9 +58,13 @@ def registered_hackers(request):
     context = {'uncheckedin_hackers': uncheckedin_hackers, 'just_registered':just_registered}
     return render(request, 'organizers/uncheckedinhackers.html', context)
 
+# Check in hacker page. This page is accessed when an organizer scans this from a hacker view
+def checkin_hacker(request, pk):
+    this_hacker = hacker.objects.get(hacker__hacker__id=pk)
+    context = {'this_hacker':this_hacker}
+    return render(request, 'organizers/checkinhacker.html', context)
+
 # These are hackers that have registered AND CHECKED IN to the event
-
-
 def checkedin_hacker(request):
     
     if request.method == 'POST':
