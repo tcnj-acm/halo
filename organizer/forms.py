@@ -1,14 +1,14 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.forms import fields, widgets
-from .models import WaitingListSupervisors, organizer, WaitingListControl
+from .models import OrganizerInfo, WebsiteSettings, WaitingListSupervisor
 
 
-class NewOrganizer(forms.Form):
+class OrganizerCreationForm(forms.Form):
 
-    fname = forms.CharField(max_length=50, required=True, widget=forms.TextInput(
+    first_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(
         attrs={'placeholder': "First Name"}))
-    lname = forms.CharField(max_length=50, required=True, widget=forms.TextInput(
+    last_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(
         attrs={'placeholder': "Last Name"}))
     email = forms.EmailField(max_length=50, required=True, widget=forms.TextInput(
         attrs={'placeholder': "Email"}))
@@ -16,7 +16,7 @@ class NewOrganizer(forms.Form):
 
 class WaitingListControlForm(forms.ModelForm):
     class Meta:
-        model = WaitingListControl
+        model = WebsiteSettings
         fields = ['waiting_list_status']
 
         widgets = {
@@ -24,9 +24,9 @@ class WaitingListControlForm(forms.ModelForm):
         }
 
 
-class AddWaitingListSupervisor(forms.ModelForm):
+class WaitingListSuperVisorForm(forms.ModelForm):
     class Meta:
-        model = WaitingListSupervisors
+        model = WaitingListSupervisor
         fields = ['email',]
 
         widgets = {

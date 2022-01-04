@@ -1,9 +1,9 @@
 from django.db import models
 from default.models import CustomUser
 # Create your models here.
-class organizer(models.Model):
-    organizer = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="organizer")
-    address = models.CharField(max_length=60, null=False, blank=False)
+
+class OrganizerInfo(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="organizer")
 
     class Meta():
         verbose_name = 'Organizer'
@@ -13,7 +13,7 @@ class organizer(models.Model):
 
 
 
-class WaitingListControl(models.Model):
+class WebsiteSettings(models.Model):
     waiting_list_status = models.BooleanField(blank=False, choices = [(True, 'Yes'), (False, 'No')])
 
     class Meta():
@@ -25,7 +25,7 @@ class WaitingListControl(models.Model):
         return "Waiting List Disabled"
 
 
-class WaitingListSupervisors(models.Model):
+class WaitingListSupervisor(models.Model):
     email = models.EmailField(verbose_name='email', max_length=60, unique=True)
 
     class Meta():
