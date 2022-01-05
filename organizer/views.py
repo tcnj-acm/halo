@@ -24,12 +24,12 @@ def display_hackers(request):
 
     url_parameter = request.GET.get("q")
     if url_parameter:
-        all_hackers = hacker.objects.filter(
-            Q(hacker__first_name__icontains=url_parameter) | Q(hacker__last_name__icontains=url_parameter) |
-            Q(hacker__email__icontains=url_parameter)
+        all_hackers = HackerInfo.objects.filter(
+            Q(user__first_name__icontains=url_parameter) | Q(user__last_name__icontains=url_parameter) |
+            Q(user__email__icontains=url_parameter)
         )
     else:
-        all_hackers = hacker.objects.all()
+        all_hackers = HackerInfo.objects.all()
 
     context = {'all_hackers': all_hackers}
     return render(request, 'organizers/hackersdisplay.html', context)
@@ -44,16 +44,16 @@ def manual_checkin(request):
     if request.method == 'POST':
         if 'undo-check-in-form' in request.POST:
             email = request.POST.get('email')
-            hack = hacker.objects.get(hacker__email=email)
-            remove_group(hack.hacker, "checked-in")
+            hack = HackerInfo.objects.get(user__email=email)
+            remove_group(hack.user, "checked-in")
         if "check-in-form" in request.POST:
             email = request.POST.get('email')
-            hack = hacker.objects.get(hacker__email=email)
-            add_group(hack.hacker, "checked-in")
+            hack = HackerInfo.objects.get(user__email=email)
+            add_group(hack.user, "checked-in")
             just_registered = hack
 
-    uncheckedin_hackers = hacker.objects.exclude(
-        hacker__groups__name='checked-in')
+    uncheckedin_hackers = HackerInfo.objects.exclude(
+        user__groups__name='checked-in')
 
     context = {'uncheckedin_hackers': uncheckedin_hackers, 'just_registered':just_registered}
     return render(request, 'organizers/manualcheckin.html', context)
@@ -63,7 +63,7 @@ def manual_checkin(request):
 def display_organizers(request):
 
     all_organizers = OrganizerInfo.objects.all().exclude(
-        OrganizerInfo__email=request.user.email)
+        user__email=request.user.email)
     context = {'all_organizers': all_organizers}
     return render(request, 'organizers/organizersdisplay.html', context)
 
@@ -84,10 +84,10 @@ def delete_organizer(request, id):
 def add_organizer(request):
     create_organizer_form = OrganizerCreationForm()
     if request.method == 'POST':
-        new_organizer = NewOrganizer(request.POST)
+        new_organizer = OrganizerCreationForm(request.POST)
         if new_organizer.is_valid():
-            first_name = new_organizer.cleaned_data['fname']
-            last_name = new_organizer.cleaned_data['lname']
+            first_name = new_organizer.cleaned_data['first_name']
+            last_name = new_organizer.cleaned_data['last_name']
             email = new_organizer.cleaned_data['email']
             passwrd = 'hacker123!'
             new_user = CustomUser.objects.create(
@@ -96,7 +96,7 @@ def add_organizer(request):
             add_group(new_user, 'organizer')
             new_user.save()
 
-            new_organizer = OrganizerInfo.objects.create(uesr=new_user)
+            new_organizer = OrganizerInfo.objects.create(user=new_user)
             new_organizer.save()
 
             new_organizer_added(new_user)

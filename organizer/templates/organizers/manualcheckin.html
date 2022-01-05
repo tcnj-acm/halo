@@ -4,14 +4,14 @@
     <br>
     
     <div class="container w-75 mt-3">
-        <a href="{% url 'registered-hackers' %}" class='btn btn-secondary'>All Hackers</a>
-        <a href="{% url 'checkedin-hackers' %}" class='btn btn-secondary'>Checked-in Hackers</a>
-        
+        <a href="{% url 'display-hackers' %}" class='btn btn-secondary'>All Hackers</a>
+        {% comment %} <!-- <a href="{% url 'checkedin-hackers' %}" class='btn btn-secondary'>Checked-in Hackers</a> --> {% endcomment %}
+    
         {% if just_registered is not None %}
             <div class="alert alert-info alert-dismissible fade show" role="alert" id="success-alert">
                 <form method="POST">{% csrf_token %}
-                    <input type="hidden" name="email" id="undo-check-in-email-field" value="{{just_registered.hacker.email}}">
-                    <p>Hacker, {{ just_registered.hacker.first_name }} {{ just_registered.hacker.last_name }}, was succeccfully checked in. Undo if this was a mistake     <button class="btn btn-outline-info ml-3"  type="submit" name="undo-check-in-form" value="undo">Undo</button> </p>
+                    <input type="hidden" name="email" id="undo-check-in-email-field" value="{{just_registered.user.email}}">
+                    <p>Hacker, {{ just_registered.user.first_name }} {{ just_registered.user.last_name }}, was succeccfully checked in. Undo if this was a mistake     <button class="btn btn-outline-info ml-3"  type="submit" name="undo-check-in-form" value="undo">Undo</button> </p>
                     
                 </form>
                 <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -25,10 +25,10 @@
                 <h2 class="text-left" >Unchecked-in Hackers</h2>
             </div>
             <div class="col-5 d-flex align-self-center justify-content-end" >
-                <form class="form-inline" action="{% url 'all-hackers' %}" method="GET">
+                <form class="form-inline" action="{% url 'display-hackers' %}" method="GET">
                     <i id="search-icon" class="fas fa-search" ></i>
                     <input id="user-input" name="q" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Search" aria-label="Search">
-                    <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'all-hackers' %}">Reset Search</a>
+                    <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'display-hackers' %}">Reset Search</a>
                 </form> 
             </div>
         </div>
@@ -45,16 +45,16 @@
                         <th class="d-none" scope="col">Food Preference</th>
                         <th class="d-none" scope="col">Shirt Size</th>
                         <th class="d-none" scope="col">Education</th>
-                        <th scope="col">Checked in</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for h in uncheckedin_hackers %}
                         <tr id="hacker{{ forloop.counter }}">
-                            <td>{{h.hacker.first_name}} {{h.hacker.last_name}}</td>
-                            <td>{{h.hacker.email}}</td>
-                            <td class="d-none" >{{h.food_preference}}</td>
-                            <td class="d-none">{{h.shirt_size}}</td>
+                            <td>{{h.user.first_name}} {{h.user.last_name}}</td>
+                            <td>{{h.user.email}}</td>
+                            <td class="d-none" >{{h.user.food_preference}}</td>
+                            <td class="d-none">{{h.user.shirt_size}}</td>
                             <td class="d-none" >{{h.education}}</td>
                             <td class=""><a  class="btn btn-outline-info" data-toggle="modal" data-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
                         </tr>

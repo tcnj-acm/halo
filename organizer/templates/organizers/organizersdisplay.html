@@ -12,10 +12,10 @@
             <a class="btn btn-success" href="{% url 'add-organizer' %}">+</a>
         </div
         <div class="col-5 d-flex align-self-center justify-content-end" >
-            {% comment %} <form class="form-inline" action="{% url 'all-hackers' %}" method="GET"">
+            {% comment %} <form class="form-inline" action="{% url 'display-hackers' %}" method="GET"">
                 <i id="search-icon" class="fas fa-search" ></i>
                 <input id="user-input" name="q" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Search" aria-label="Search">
-                <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'all-hackers' %}">Reset Search</a>
+                <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'display-hackers' %}">Reset Search</a>
             </form>  {% endcomment %}
         </div>
     </div>
@@ -33,8 +33,8 @@
                 {% for o in all_organizers %}
                     <tr>
                         {% comment %} <th scope="row">{{g.emp_id}}</th> {% endcomment %}
-                        <td>{{o.organizer.first_name}} {{o.organizer.last_name}}</td>
-                        <td>{{o.organizer.email}}</td>
+                        <td>{{o.user.first_name}} {{o.user.last_name}}</td>
+                        <td>{{o.user.email}}</td>
                         <td><a class="btn-caution" href="{% url 'delete-organizer' o.id %}">Delete</a>
                     </tr>
                 {% endfor %}

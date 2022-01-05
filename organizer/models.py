@@ -9,7 +9,7 @@ class OrganizerInfo(models.Model):
         verbose_name = 'Organizer'
     
     def __str__(self):
-        return self.organizer.email + ": " + self.organizer.first_name + " " + self.organizer.last_name
+        return self.user.email + ": " + self.user.first_name + " " + self.user.last_name
 
 
 

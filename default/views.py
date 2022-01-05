@@ -20,9 +20,10 @@ def registration(request):
         create_user_form = CustomUserCreationForm(request.POST)
         create_hacker_form = HackerCreationForm(request.POST)
 
-        # print("in thingy")
+        print("in thingy")
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():
+            print("heellooo")
             pword = create_user_form.cleaned_data['password1']
             user = create_user_form.save()
 
