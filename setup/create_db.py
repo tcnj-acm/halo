@@ -5,18 +5,14 @@
 #             new_user.save()
 from django.contrib.auth.models import User, Group
 from default.models import CustomUser
-from organizer.models import organizer
-from hacker.models import hacker
+from organizer.models import OrganizerInfo
+from hacker.models import HackerInfo
 from default.helper import add_group
 
-# total count
+
+# total count (make less than 30 for each for now)
 TOTAL_ORGANIZERS = 5
 TOTAL_HACKERS = 10
-
-# Create the necessary groups for the users
-Group.objects.create(name="hacker")
-Group.objects.create(name="organizer")
-Group.objects.create(name="head-organizer")
 
 
 
@@ -43,7 +39,7 @@ email_organizers = [
     'jm@aslan.com',
     'tracy@aslan.com'
 ]
-address_organizer = [
+address_organizers = [
     '2 Braemer Dr',
     '100 Primrose Cr',
     '10 Crabapple Ct',
@@ -108,19 +104,42 @@ address_hackers = [
 
 ]
 
-major_hackers = [
-    'Computer Science',
-    'Civil Engineering',
+majors = [
     'Accounting',
+    'Biology', 
+    'Biomedical Engineering', 
+    'Business Administration', 
+    'Chemistry',
+    'Civil Engineering',
     'Communications',
-    'Computer Engineering',
-    'Computer Science',
-    'Arts History',
-    'Architectural Design',
-    'Computer Science',
-    'Computer Science',
-
+    'Computer Engineering', 
+    'Computer Science', 
+    'Construction Management', 
+    'Cybersecurity', 
+    'Economics', 
+    'Education', 
+    'Electronics Engineering', 
+    'English', 
+    'Finance', 
+    'Game Design', 
+    'Health Informatics', 
+    'Industrial Engineering',
+    'Interactive Multimedia'
+    'Information Technology', 
+    'Liberal Arts', 
+    'Management', 
+    'Management Information Systems', 
+    'Marketing', 
+    'Mechanical Engineering', 
+    'Nuclear Engineering', 
+    'Nursing', 
+    'Petroleum Engineering', 
+    'Physics', 
+    'Political Science', 
+    'Public Administration', 
+    'Software Engineering'
 ]
+
 education_hackers = [
     "University (Undergrad)",
     "University (Undergrad)",
@@ -160,33 +179,47 @@ shirt_sizes_hackers = [
     "Unisex (L)",
    
 ]
+
+# Create the necessary groups for the users
+def create_groups():
+    Group.objects.create(name="hacker")
+    Group.objects.create(name="organizer")
+    Group.objects.create(name="head-organizer")
+    Group.objects.create(name="checked-in")
 def create_users():
 
     for i in range(TOTAL_ORGANIZERS):
-        new_user = CustomUser.objects.create(email = email_organizers[i], first_name=first_name_organizers[i], last_name = last_name_organizers[i])
+        new_user = CustomUser.objects.create(email = email_organizers[i], first_name=first_name_organizers[i], last_name = last_name_organizers[i], address=address_organizers[i])
         new_user.set_password('cistheworstlangever')
+        new_user.save()
+    
+    for i in range(TOTAL_HACKERS):
+        new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i], address = address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
+        new_user.set_password('hacker123!')
         new_user.save()
 
 def create_organizers():
 
     for i in range(TOTAL_ORGANIZERS):
-        user = CustomUser.objects.get(email=email_organizers[i])
-        new_org = organizer.objects.create(organizer=user, address=address_organizer[i])
-        add_group(user, 'organizer')    
+        new_user = CustomUser.objects.get(email=email_organizers[i])
+        new_org = OrganizerInfo.objects.create(user=new_user)
+        add_group(new_user, 'organizer')    
 
 
 def create_hackers():
     for i in range(TOTAL_HACKERS):
-        new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i])
-        new_user.set_password('hacker123!')
-        new_user.save()
-
-        new_hacker = hacker.objects.create(hacker=new_user,address = address_hackers[i], major=major_hackers[i], education=education_hackers[i],food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
+        new_user = CustomUser.objects.get(email=email_hackers[i])
+        new_hacker = HackerInfo.objects.create(user=new_user,major=majors[i], education=education_hackers[i])
         add_group(new_user, 'hacker')
 
 
-# Driver code
-create_users()
-create_organizers()
-create_hackers()
+def add_admin_to_group():
+    admin_user = CustomUser.objects.get(email='admin@aslan.com')
+    add_group(admin_user, 'head-organizer')
 
+# Driver code
+# create_groups()
+# create_users()
+# create_organizers()
+# create_hackers()
+add_admin_to_group()

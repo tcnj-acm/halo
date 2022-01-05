@@ -43,7 +43,7 @@ class HackerCreationForm(forms.ModelForm):
         fields = ('education','major')
 
         widgets = {
-            'major' : forms.TextInput(attrs = {'placeholder':'Other'}),
+            'major' : forms.Select(attrs = {}),
             'education' : forms.Select(attrs = {}),
         }
 
