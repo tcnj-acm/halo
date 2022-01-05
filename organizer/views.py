@@ -24,14 +24,19 @@ def display_hackers(request):
 
     url_parameter = request.GET.get("q")
     if url_parameter:
-        all_hackers = HackerInfo.objects.filter(
+        checked_in_hackers = HackerInfo.objects.filter(user__groups__name='checked-in').filter(
+            Q(user__first_name__icontains=url_parameter) | Q(user__last_name__icontains=url_parameter) |
+            Q(user__email__icontains=url_parameter)
+        )
+        nonchecked_in_hackers = HackerInfo.objects.exclude(user__groups__name='checked-in').filter(
             Q(user__first_name__icontains=url_parameter) | Q(user__last_name__icontains=url_parameter) |
             Q(user__email__icontains=url_parameter)
         )
     else:
-        all_hackers = HackerInfo.objects.all()
+        checked_in_hackers = HackerInfo.objects.filter(user__groups__name='checked-in')
+        nonchecked_in_hackers = HackerInfo.objects.exclude(user__groups__name='checked-in')
 
-    context = {'all_hackers': all_hackers}
+    context = {'checked_in_hackers': checked_in_hackers, 'nonchecked_in_hackers': nonchecked_in_hackers}
     return render(request, 'organizers/hackersdisplay.html', context)
 
 

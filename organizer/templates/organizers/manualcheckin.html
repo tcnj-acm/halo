@@ -2,11 +2,8 @@
 {% block content %}
  
     <br>
-    
     <div class="container w-75 mt-3">
         <a href="{% url 'display-hackers' %}" class='btn btn-secondary'>All Hackers</a>
-        {% comment %} <!-- <a href="{% url 'checkedin-hackers' %}" class='btn btn-secondary'>Checked-in Hackers</a> --> {% endcomment %}
-    
         {% if just_registered is not None %}
             <div class="alert alert-info alert-dismissible fade show" role="alert" id="success-alert">
                 <form method="POST">{% csrf_token %}
@@ -19,10 +16,11 @@
                 </button> -->
             </div>
         {% endif %}
-            
+    </div>
+    <div class="container">
         <div class="row justify-content-between align-items-center" style="margin-top: 5px; ">
             <div class="col-3">
-                <h2 class="text-left" >Unchecked-in Hackers</h2>
+                <h3 class="text-left" >Unchecked-in Hackers</h3>
             </div>
             <div class="col-5 d-flex align-self-center justify-content-end" >
                 <form class="form-inline" action="{% url 'display-hackers' %}" method="GET">
@@ -35,7 +33,8 @@
         <form method="POST" id="check-in-form">{% csrf_token %}
             <input type="hidden" name="email" id="check-in-email-field">
         </form>
-    {% comment %} </div>  {% endcomment %}
+    </div>
+    <div class="container w-75 mt-3">
     <div class="d-flex justify-content-center">
             <table class="table">
                 <thead class="thead-dark">
@@ -126,4 +125,7 @@
     })
 </script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 {% endblock %}

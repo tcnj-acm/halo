@@ -3,33 +3,68 @@
  
 <br>
 {% comment %} <a href="{% url 'checkedin-hackers' %}" class='btn btn-secondary'>Checked-in Hackers</a> {% endcomment %}
-<a href="{% url 'manual-checkin' %}" class='btn btn-secondary'>Check-in</a>
+
 <div class="container w-75 mt-3">
-    <div class="row justify-content-between align-items-center" style="margin-top: 5px; ">
-        <div class="col-3">
-            <h2 class="text-left" >All Hackers</h2>
+    <a href="{% url 'manual-checkin' %}" class='btn btn-secondary'>Check-in</a>
+</div>
+<div class="container">
+    <div class="row justify-content-between no-gutters " style="margin-top: 5px;">
+        <div class="col-3 pl-5" >
+            <h3 class="text-left" >All Hackers</h3>
         </div>
         <div class="col-5 d-flex align-self-center justify-content-end" >
-            <form class="form-inline" action="{% url 'display-hackers' %}" method="GET">
+            <form class="form-inline " action="{% url 'display-hackers' %}" method="GET">
                 <i id="search-icon" class="fas fa-search" ></i>
                 <input id="user-input" name="q" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Search" aria-label="Search">
                 <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'display-hackers' %}">Reset Search</a>
             </form> 
         </div>
     </div>
-{% comment %} </div>  {% endcomment %}
- <div class="d-flex justify-content-center">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Food Preference</th>
-                    <th scope="col">Shirt Size</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for h in all_hackers %}
+</div>
+<div class="container w-75 mt-1">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#checkedin">Checked-In</a></li>
+        <li><a data-toggle="tab" href="#noncheckedin">Non Checked-In</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="checkedin" class="tab-pane fade in active">
+            <div class="d-flex justify-content-center">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Food Preference</th>
+                            <th scope="col">Shirt Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in checked_in_hackers %}
+                        <tr>
+                            {% comment %} <th scope="row">{{g.emp_id}}</th> {% endcomment %}
+                            <td>{{h.user.first_name}} {{h.user.last_name}}</td>
+                            <td>{{h.user.email}}</td>
+                            <td>{{h.user.food_preference}}</td>
+                            <td>{{h.user.shirt_size}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="noncheckedin" class="tab-pane fade">
+        <div class="d-flex justify-content-center">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Food Preference</th>
+                        <th scope="col">Shirt Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for h in nonchecked_in_hackers %}
                     <tr>
                         {% comment %} <th scope="row">{{g.emp_id}}</th> {% endcomment %}
                         <td>{{h.user.first_name}} {{h.user.last_name}}</td>
@@ -37,12 +72,21 @@
                         <td>{{h.user.food_preference}}</td>
                         <td>{{h.user.shirt_size}}</td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
     </div>
 </div>
 
-
 <hr>
 {% endblock %}
+
+
+
+{% block script %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock script %}

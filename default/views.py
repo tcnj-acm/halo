@@ -19,8 +19,6 @@ def registration(request):
     if request.method == 'POST':
         create_user_form = CustomUserCreationForm(request.POST)
         create_hacker_form = HackerCreationForm(request.POST)
-
-        print("in thingy")
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():
             print("heellooo")
@@ -41,6 +39,7 @@ def registration(request):
     else:
         create_user_form = CustomUserCreationForm()
         create_hacker_form = HackerCreationForm()
+
 
     context = {'create_hacker_form': create_hacker_form, 'create_user_form': create_user_form}
     return render(request, 'defaults/register.html', context)
