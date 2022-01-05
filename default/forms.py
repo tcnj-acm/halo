@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from .models import CustomUser
-from hacker.models import hacker
+from hacker.models import HackerInfo
 
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': "Password"}))
@@ -11,12 +11,15 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name', 'email', 'address','shirt_size','food_preference')
 
         widgets = {
             'first_name' : forms.TextInput(attrs = {'placeholder':'First Name'}),
             'last_name' : forms.TextInput(attrs = {'placeholder':'Last Name'}),
             'email' : forms.TextInput(attrs = {'placeholder':'Email Address'}),
+            'address' : forms.TextInput(attrs = {'placeholder':'Address'}),
+            'shirt_size' : forms.Select(attrs = {}),
+            'food_preference' : forms.Select(attrs = {})
         }
 
     def clean_password2(self):
@@ -36,19 +39,16 @@ class CustomUserCreationForm(forms.ModelForm):
 class HackerCreationForm(forms.ModelForm):
 
     class Meta:
-        model = hacker
-        fields = ('address', 'education','major','shirt_size','food_preference')
+        model = HackerInfo
+        fields = ('education','major')
 
         widgets = {
-            'address' : forms.TextInput(attrs = {'placeholder':''}),
-            'major' : forms.TextInput(attrs = {'placeholder':'Other'}),
+            'major' : forms.Select(attrs = {}),
             'education' : forms.Select(attrs = {}),
-            'shirt_size' : forms.Select(attrs = {}),
-            'food_preference' : forms.Select(attrs = {}),
         }
 
 class CustomUserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
     class Meta:
         model = CustomUser
-        fields = ('email', 'first_name', 'last_name', 'password', 'is_active', 'is_admin', 'is_superuser')
+        fields = ('email', 'first_name', 'last_name', 'password', 'address', 'shirt_size', 'food_preference', 'is_active', 'is_admin', 'is_superuser')

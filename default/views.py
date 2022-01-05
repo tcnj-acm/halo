@@ -3,8 +3,8 @@ from django.shortcuts import redirect, render
 from .forms import CustomUserCreationForm, HackerCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordResetCompleteView
-from hacker.models import hacker
-from organizer.models import organizer
+from hacker.models import HackerInfo
+from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
 from .emailer import *
 
@@ -15,48 +15,48 @@ def landing(request):
     return render(request, 'defaults/landing.html', context)
 
 
-def register_hacker(request):
+def registration(request):
     if request.method == 'POST':
-        user = CustomUserCreationForm(request.POST)
-        hacker = HackerCreationForm(request.POST)
-
-        # print("in thingy")
+        create_user_form = CustomUserCreationForm(request.POST)
+        create_hacker_form = HackerCreationForm(request.POST)
         
-        if hacker.is_valid() and user.is_valid():
-            pword = user.cleaned_data['password1']
-            user = user.save()
+        if create_hacker_form.is_valid() and create_user_form.is_valid():
+            print("heellooo")
+            pword = create_user_form.cleaned_data['password1']
+            user = create_user_form.save()
 
-            hacker = hacker.save(commit=False)
-            hacker.hacker = user
+            hacker = create_hacker_form.save(commit=False)
+            hacker.user = user
             hacker.save()
             add_group(user, 'hacker')
 
             user = authenticate(request, username=user.email, password=pword)
             if user is not None:
                 login(request, user)
-                return redirect('hacker-dash')
+                return redirect('hacker-dash') #TODO
         else:
             print('fail')
     else:
-        user = CustomUserCreationForm()
-        hacker = HackerCreationForm()
-        print(hacker)
-    context = {'hacker': hacker, 'user': user}
+        create_user_form = CustomUserCreationForm()
+        create_hacker_form = HackerCreationForm()
+
+
+    context = {'create_hacker_form': create_hacker_form, 'create_user_form': create_user_form}
     return render(request, 'defaults/register.html', context)
 
 
 def login_page(request):
     if request.method == "POST":
         email = request.POST.get('email')
-        pword = request.POST.get('password')
+        passwrd = request.POST.get('password')
 
-        user = authenticate(request, email=email, password=pword)
+        user = authenticate(request, email=email, password=passwrd)
 
         if user is not None:
             print(user)
             login(request, user)
 
-            return redirect(decide_redirect(user))
+            return redirect(decide_redirect(user)) #TODO
         else:
             HttpResponse("Username or Password Incorrect")
 
@@ -66,4 +66,4 @@ def login_page(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('landing')
+    return redirect('landing') #TODO

@@ -3,8 +3,8 @@ from default.models import CustomUser
 # Create your models here.
 
 
-class hacker(models.Model):
-    hacker = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="hacker")
+class HackerInfo(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="hacker")
 
     ed_choices = [
         ("High School/Secondary School", "High School/Secondary School"),
@@ -12,29 +12,47 @@ class hacker(models.Model):
         ("University (Master's/Doctoral)", "University (Master's/Doctoral)"),
     ]
 
-    food_choices = [
-        ("None", "None"),
-        ("Vegetarian", "Vegetarian"),
-        ("Vegan", "Vegan"),
-        ("Gluten-Free", "Gluten-Free")
+    major_hackers = [
+        ('Accounting','Accounting'),
+        ('Biology', 'Biology'),
+        ('Biomedical Engineering', 'Biomedical Engineering'),
+        ('Business Administration', 'Business Administration'),
+        ('Chemistry','Chemistry'),
+        ('Civil Engineering','Civil Engineering'),
+        ('Communications','Communications'),
+        ('Computer Engineering', 'Computer Engineering'),
+        ('Computer Science', 'Computer Science'),
+        ('Construction Management', 'Construction Management'),
+        ('Cybersecurity', 'Cybersecurity'),
+        ('Economics', 'Economics'),
+        ('Education', 'Education'),
+        ('Electronics Engineering', 'Electronics Engineering'),
+        ('English', 'English'), 
+        ('Finance', 'Finance'),
+        ('Game Design', 'Game Design'),
+        ('Health Informatics', 'Health Informatics'),
+        ('Industrial Engineering', 'Industrial Engineering'),
+        ('Interactive Multimedia', 'Interactive Multimedia'),
+        ('Information Technology', 'Information Technology'), 
+        ('Liberal Arts', 'Liberal Arts'), 
+        ('Management', 'Management'),
+        ('Management Information Systems', 'Management Information Systems'), 
+        ('Marketing', 'Marketing'), 
+        ('Mechanical Engineering', 'Mechanical Engineering'), 
+        ('Nuclear Engineering', 'Nuclear Engineering'),
+        ('Nursing', 'Nursing'), 
+        ('Petroleum Engineering', 'Petroleum Engineering'), 
+        ('Physics', 'Physics'), 
+        ('Political Science', 'Political Science'), 
+        ('Public Administration', 'Public Administration'), 
+        ('Software Engineering', 'Software Engineering')
     ]
-
-    size_choices = [
-        ("Unisex (XS)", "Unisex (XS)"),
-        ("Unisex (S)", "Unisex (S)"),
-        ("Unisex (M)", "Unisex (M)"),
-        ("Unisex (L)", "Unisex (L)"),
-        ("Unisex (2XL)", "Unisex (2XL)"),
-        ("Unisex (3XL)", "Unisex (3XL)")
-    ]
-    address = models.CharField(max_length=60, null=False, blank=False)
-    education = models.CharField(max_length=60, null=False, blank=False, choices=ed_choices)
-    major = models.CharField(default="other", max_length=60, blank=False, null=False)
-    food_preference = models.CharField(default="None", max_length=20, blank=False, null=False, choices=food_choices)
-    shirt_size = models.CharField(default="Unisex (M)", max_length=20, blank=False, null=False, choices=size_choices)
+    education = models.CharField(default="other", max_length=60, null=False, blank=False, choices=ed_choices)
+    major = models.CharField(default="other", max_length=60, blank=False,choices=major_hackers)
+    
 
     class Meta():
         verbose_name = 'Hacker'
     
     def __str__(self):
-        return self.hacker.email + ": " + self.hacker.first_name + " " + self.hacker.last_name
+        return self.user.email + ": " + self.user.first_name + " " + self.user.last_name

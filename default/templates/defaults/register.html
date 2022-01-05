@@ -17,30 +17,29 @@
     <h4 class="centerHeaderText" style="margin-top:5%"> Register </h4>
     <div class="registerFormBorder" style="margin-top:2%; padding:5px;">
       <form class="centerForm"  style="height: 85%" method ="POST"> {% csrf_token %}
-        {{user.first_name}}
+        {{create_user_form.first_name}}
         <br>
-        {{user.last_name}}
+        {{create_user_form.last_name}}
         <br>
-        {{user.email}}
+        {{create_user_form.email}}
         <br>
-        {{user.password1}}
+        {{create_user_form.password1}}
         <br>
-        {{user.password2}}
+        {{create_user_form.password2}}
         <br>
-        {{hacker.address.label_tag}}
-        {{hacker.address}}
+        {{create_user_form.address}}
         <br>
-        {{hacker.education.label_tag}}
-        {{hacker.education}}
+        {{create_user_form.shirt_size.label_tag}}
+        {{create_user_form.shirt_size}}
         <br>
-        {{hacker.major.label_tag}}
-        {{hacker.major}}
+        {{create_user_form.food_preference.label_tag}}
+        {{create_user_form.food_preference}}
         <br>
-        {{hacker.shirt_size.label_tag}}
-        {{hacker.shirt_size}}
+        {{create_hacker_form.education.label_tag}}
+        {{create_hacker_form.education}}
         <br>
-        {{hacker.food_preference.label_tag}}
-        {{hacker.food_preference}}
+        {{create_hacker_form.major.label_tag}}
+        {{create_hacker_form.major}}
         <br>
         
 
