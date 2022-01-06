@@ -8,6 +8,7 @@ urlpatterns = [
     path('organizers/delete/<int:id>',views.delete_organizer, name='delete-organizer'),
     path('organizers/add', views.add_organizer, name='add-organizer'),
     path('check-in', views.manual_checkin,name='manual-checkin'),
+    path('check-in/<str:fcode>/<str:lcode>/<int:pk>', views.qrcheckin,name='qr-checkin')
 
 
 ]

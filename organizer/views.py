@@ -64,6 +64,15 @@ def manual_checkin(request):
     return render(request, 'organizers/manualcheckin.html', context)
 
 
+# checkin view with qr code stuff
+def qr_checkin(request, fcode, lcode, id):
+
+    context = {}
+    return render(request, 'organizers/qrcheckin.html', context)
+
+
+
+
 # head organizer only function: show other organizers on the system
 def display_organizers(request):
 
