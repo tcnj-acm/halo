@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from qr_code import urls as qr_code_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('qr_code/', include('qr_code.urls', namespace="qr_code")),
     path('', include('hacker.urls')),
     path('', include('default.urls')),
     path('', include('organizer.urls')),

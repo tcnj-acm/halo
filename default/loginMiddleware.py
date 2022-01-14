@@ -1,7 +1,7 @@
 import re
 from django.conf import settings
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, resolve
 from .helper import decide_redirect, decide_type
 
 if hasattr(settings, 'LOGIN_EXEMPT_URLS'):

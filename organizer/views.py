@@ -9,6 +9,8 @@ from default.helper import add_group, remove_group
 from django.db.models import Q
 
 from default.emailer import new_organizer_added
+
+
 # Create your views here.
 
 
@@ -65,9 +67,11 @@ def manual_checkin(request):
 
 
 # checkin view with qr code stuff
-def qr_checkin(request, fcode, lcode, id):
+def qr_checkin(request, pk, first_name_hash, last_name_hash):
+   
 
-    context = {}
+
+    context = {'hacker':hacker}
     return render(request, 'organizers/qrcheckin.html', context)
 
 

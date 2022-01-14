@@ -1,16 +1,24 @@
 {% extends 'hackers/base.html' %}
 
 {% load static %}
-
+{% load qr_code %}
 {% block content %}
   <head>
-    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}"> {% endcomment %}
   </head>
-  <body class="overlay gr-overlay">
-    <div class="hackerDashboardBorder">
-    <h4 class="centerHeaderText"> User Dashboard </h4>
-    <br>
+  <body>
+
     <a href="{% url 'logout' %}" class="btn btn-danger" style="display:block !important; margin: 0 auto; border-radius: 10px">logout</a>
-    </div>
+  <h2>Your Profile</h2>
+  <h3>Name:</h3> <h4>{{ hacker.user.first_name }} {{ hacker.user.last_name }}</h4>
+  <h3>Email:</h3><h4>{{ hacker.user.email }}</h4>
+  <h3>Address:</h3><h4>{{ hacker.user.address }}</h4>
+  <h3>Shirt Size:</h3><h4>{{ hacker.user.shirt_size }}</h4>
+  <h3>Food Preference:</h3><h4>{{ hacker.user.food_preference }}</h4>
+
+  <br>
+  <h2>Use this QR code to check in to event</h2>
+    <center>{% qr_from_text check_in_url size="T" dark_color="darkblue" image_format="png"%}</center>
+
   </body>
 {% endblock %}
