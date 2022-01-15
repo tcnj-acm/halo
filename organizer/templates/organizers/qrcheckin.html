@@ -1,6 +1,12 @@
 {% extends 'organizers/base.html' %}
 {% block content %}
  
- Currently you are checking in this person
-  {{hacker.user.first_name}} {{hacker.user.last_name}}
+ <h1>Check-in<h1>
+  <h3>{{hacker.user.first_name}} {{hacker.user.last_name}}</h3>
+  <h3>{{hacker.user.email}}</h3>
+  <h3>{{hacker.address}}</h3>
+  <h3>{{hacker.user.food_prefence}}</h3>
+  <h3>{{hacker.user.shirt_size}}</h3>
+
+  
 {% endblock %}

@@ -69,6 +69,7 @@ def manual_checkin(request):
 # checkin view with qr code stuff
 def qr_checkin(request, pk, first_name_hash, last_name_hash):
    
+    hacker = HackerInfo.objects.get(user__id=pk)
 
 
     context = {'hacker':hacker}
