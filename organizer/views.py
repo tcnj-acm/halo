@@ -71,7 +71,12 @@ def qr_checkin(request, pk, first_name_hash, last_name_hash):
    
     hacker = HackerInfo.objects.get(user__id=pk)
 
-
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        hack = HackerInfo.objects.get(user__email=email)
+        add_group(hack.user, "checked-in")
+        return redirect('display-hackers')
+    
     context = {'hacker':hacker}
     return render(request, 'organizers/qrcheckin.html', context)
 
