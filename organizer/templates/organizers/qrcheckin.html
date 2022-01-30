@@ -1,12 +1,16 @@
 {% extends 'organizers/base.html' %}
 {% block content %}
- 
- <h1>Check-in<h1>
-  <h3>{{hacker.user.first_name}} {{hacker.user.last_name}}</h3>
-  <h3>{{hacker.user.email}}</h3>
-  <h3>{{hacker.address}}</h3>
-  <h3>{{hacker.user.food_prefence}}</h3>
-  <h3>{{hacker.user.shirt_size}}</h3>
 
-  <button type="submit" class="btn btn-info" method="POST">Confirm!</button>
-{% endblock %}
+<h1>Check-in<h1>
+    <h3>{{hacker.user.first_name}} {{hacker.user.last_name}}</h3>
+    <h3>{{hacker.user.email}}</h3>
+    <h3>{{hacker.address}}</h3>
+    <h3>{{hacker.user.food_prefence}}</h3>
+    <h3>{{hacker.user.shirt_size}}</h3>
+
+    <form method="POST"> {% csrf_token %}
+      <input type="hidden" value={{hacker.user.email}} name="email">
+      <button type="submit" class="btn btn-info" method="POST">Confirm Check-in</button>
+    </form>
+
+    {% endblock %}
