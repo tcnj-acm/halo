@@ -9,6 +9,8 @@ from default.helper import add_group, remove_group
 from django.db.models import Q
 
 from default.emailer import new_organizer_added
+
+
 # Create your views here.
 
 
@@ -62,6 +64,23 @@ def manual_checkin(request):
 
     context = {'uncheckedin_hackers': uncheckedin_hackers, 'just_registered':just_registered}
     return render(request, 'organizers/manualcheckin.html', context)
+
+
+# checkin view with qr code stuff
+def qr_checkin(request, pk, first_name_hash, last_name_hash):
+   
+    hacker = HackerInfo.objects.get(user__id=pk)
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        hack = HackerInfo.objects.get(user__email=email)
+        add_group(hack.user, "checked-in")
+        return redirect('display-hackers')
+    
+    context = {'hacker':hacker}
+    return render(request, 'organizers/qrcheckin.html', context)
+
+
 
 
 # head organizer only function: show other organizers on the system

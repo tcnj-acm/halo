@@ -385,7 +385,7 @@ h5.subtitle {
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
-  background-color: #1d201f;
+  background-color: #c5c5c5;
   border-radius: 25px;
   color: #fff;
   padding: 2%;
@@ -1277,7 +1277,7 @@ SERVICE PAGE
       transform: translate(-50%, -50%);
       width: fit-content;
       height: fit-content;
-      background-color: #1d201f;
+      background-color: #c5c5c5;
       border-radius: 25px;
       color: #fff;
       padding: 2%;
@@ -1472,7 +1472,7 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     width: fit-content;
     height: fit-content;
-    background-color: #1d201f;
+    background-color: #c5c5c5;
     border-radius: 25px;
     color: #fff;
     padding: 2%;
