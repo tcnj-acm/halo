@@ -39,7 +39,8 @@ class FeaturePermission(models.Model):
 
 
 class OrganizerPermission(models.Model):
-    permission = models.ManyToManyField(FeaturePermission)
+    permission = models.ManyToManyField(
+        FeaturePermission, related_name='organizer_permission')
     organizer = models.ForeignKey(
         OrganizerInfo, on_delete=models.CASCADE, related_name='organizer')
 
