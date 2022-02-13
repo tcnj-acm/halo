@@ -39,10 +39,9 @@ class FeaturePermission(models.Model):
 
 
 class OrganizerPermission(models.Model):
-    permission = models.ForeignKey(
-        model=FeaturePermission, on_delete=models.CASCADE, related_name='organizer_permission')
+    permission = models.ManyToManyField(FeaturePermission)
     organizer = models.ForeignKey(
-        model=OrganizerInfo, on_delete=models.CASCADE, related_name='organizer')
+        OrganizerInfo, on_delete=models.CASCADE, related_name='organizer')
 
     class Meta():
         verbose_name = 'Organizer Permissions'
