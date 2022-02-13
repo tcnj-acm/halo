@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.forms import fields, widgets
-from .models import OrganizerInfo, WebsiteSettings, WaitingListSupervisor
+from .models import OrganizerInfo, WebsiteSettings
 
 
 class OrganizerCreationForm(forms.Form):
@@ -20,15 +20,5 @@ class WaitingListControlForm(forms.ModelForm):
         fields = ['waiting_list_status']
 
         widgets = {
-            'waiting_list_status' : forms.Select(attrs = {})
-        }
-
-
-class WaitingListSuperVisorForm(forms.ModelForm):
-    class Meta:
-        model = WaitingListSupervisor
-        fields = ['email',]
-
-        widgets = {
-            'email' : forms.TextInput(attrs = {'placeholder':'Email Address'}),
+            'waiting_list_status': forms.Select(attrs={})
         }
