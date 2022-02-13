@@ -15,7 +15,6 @@ TOTAL_ORGANIZERS = 5
 TOTAL_HACKERS = 10
 
 
-
 first_name_organizers = [
     'Abhi',
     'Kevin',
@@ -106,37 +105,37 @@ address_hackers = [
 
 majors = [
     'Accounting',
-    'Biology', 
-    'Biomedical Engineering', 
-    'Business Administration', 
+    'Biology',
+    'Biomedical Engineering',
+    'Business Administration',
     'Chemistry',
     'Civil Engineering',
     'Communications',
-    'Computer Engineering', 
-    'Computer Science', 
-    'Construction Management', 
-    'Cybersecurity', 
-    'Economics', 
-    'Education', 
-    'Electronics Engineering', 
-    'English', 
-    'Finance', 
-    'Game Design', 
-    'Health Informatics', 
+    'Computer Engineering',
+    'Computer Science',
+    'Construction Management',
+    'Cybersecurity',
+    'Economics',
+    'Education',
+    'Electronics Engineering',
+    'English',
+    'Finance',
+    'Game Design',
+    'Health Informatics',
     'Industrial Engineering',
     'Interactive Multimedia'
-    'Information Technology', 
-    'Liberal Arts', 
-    'Management', 
-    'Management Information Systems', 
-    'Marketing', 
-    'Mechanical Engineering', 
-    'Nuclear Engineering', 
-    'Nursing', 
-    'Petroleum Engineering', 
-    'Physics', 
-    'Political Science', 
-    'Public Administration', 
+    'Information Technology',
+    'Liberal Arts',
+    'Management',
+    'Management Information Systems',
+    'Marketing',
+    'Mechanical Engineering',
+    'Nuclear Engineering',
+    'Nursing',
+    'Petroleum Engineering',
+    'Physics',
+    'Political Science',
+    'Public Administration',
     'Software Engineering'
 ]
 
@@ -177,39 +176,47 @@ shirt_sizes_hackers = [
     "Unisex (M)",
     "Unisex (L)",
     "Unisex (L)",
-   
+
 ]
 
 # Create the necessary groups for the users
+
+
 def create_groups():
     Group.objects.create(name="hacker")
     Group.objects.create(name="organizer")
     Group.objects.create(name="head-organizer")
     Group.objects.create(name="checked-in")
+
+
 def create_users():
 
     for i in range(TOTAL_ORGANIZERS):
-        new_user = CustomUser.objects.create(email = email_organizers[i], first_name=first_name_organizers[i], last_name = last_name_organizers[i], address=address_organizers[i])
+        new_user = CustomUser.objects.create(
+            email=email_organizers[i], first_name=first_name_organizers[i], last_name=last_name_organizers[i], address=address_organizers[i])
         new_user.set_password('cistheworstlangever')
         new_user.save()
-    
+
     for i in range(TOTAL_HACKERS):
-        new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i], address = address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
+        new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i],
+                                             address=address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
         new_user.set_password('hacker123!')
         new_user.save()
+
 
 def create_organizers():
 
     for i in range(TOTAL_ORGANIZERS):
         new_user = CustomUser.objects.get(email=email_organizers[i])
         new_org = OrganizerInfo.objects.create(user=new_user)
-        add_group(new_user, 'organizer')    
+        add_group(new_user, 'organizer')
 
 
 def create_hackers():
     for i in range(TOTAL_HACKERS):
         new_user = CustomUser.objects.get(email=email_hackers[i])
-        new_hacker = HackerInfo.objects.create(user=new_user,major=majors[i], education=education_hackers[i])
+        new_hacker = HackerInfo.objects.create(
+            user=new_user, major=majors[i], education=education_hackers[i])
         add_group(new_user, 'hacker')
 
 
@@ -217,9 +224,10 @@ def add_admin_to_group():
     admin_user = CustomUser.objects.get(email='admin@aslan.com')
     add_group(admin_user, 'head-organizer')
 
+
 # Driver code
-# create_groups()
-# create_users()
-# create_organizers()
-# create_hackers()
+create_groups()
+create_users()
+create_organizers()
+create_hackers()
 add_admin_to_group()
