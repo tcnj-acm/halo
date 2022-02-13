@@ -25,3 +25,27 @@ class WebsiteSettings(models.Model):
         if self.waiting_list_status:
             return "Waiting List Enabled"
         return "Waiting List Disabled"
+
+
+class FeaturePermission(models.Model):
+    url_name = models.CharField(max_length=100, blank=False, null=False)
+    permission_name = models.CharField(max_length=100, blank=False, null=False)
+
+    class Meta():
+        verbose_name = 'Feature Permission'
+
+    def __str__(self):
+        return self.permission_name
+
+
+class OrganizerPermission(models.Model):
+    permission = models.ForeignKey(
+        model=FeaturePermission, on_delete=models.CASCADE, related_name='organizer_permission')
+    organizer = models.ForeignKey(
+        model=OrganizerInfo, on_delete=models.CASCADE, related_name='organizer')
+
+    class Meta():
+        verbose_name = 'Organizer Permissions'
+
+    def __str__(self):
+        return self.organizer.user.first_name + " - " + self.permission.permission_name
