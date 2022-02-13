@@ -19,7 +19,7 @@ class WebsiteSettings(models.Model):
         blank=False, choices=[(True, 'Yes'), (False, 'No')])
 
     class Meta():
-        verbose_name = 'Waiting List Setting'
+        verbose_name = 'Website Settings'
 
     def __str__(self):
         if self.waiting_list_status:

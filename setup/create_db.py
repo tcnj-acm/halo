@@ -5,7 +5,7 @@
 #             new_user.save()
 from django.contrib.auth.models import User, Group
 from default.models import CustomUser
-from organizer.models import OrganizerInfo
+from organizer.models import OrganizerInfo, WebsiteSettings
 from hacker.models import HackerInfo
 from default.helper import add_group
 
@@ -194,7 +194,7 @@ def create_users():
     for i in range(TOTAL_ORGANIZERS):
         new_user = CustomUser.objects.create(
             email=email_organizers[i], first_name=first_name_organizers[i], last_name=last_name_organizers[i], address=address_organizers[i])
-        new_user.set_password('cistheworstlangever')
+        new_user.set_password('hacker123!')
         new_user.save()
 
     for i in range(TOTAL_HACKERS):
@@ -225,9 +225,19 @@ def add_admin_to_group():
     add_group(admin_user, 'head-organizer')
 
 
+# TODO Add website settings
+def add_website_setting():
+    WebsiteSettings.objects.create(waiting_list_status=False)
+
+
 # Driver code
+
+# site startup code
 create_groups()
 create_users()
 create_organizers()
 create_hackers()
+
+# admin startup code
 add_admin_to_group()
+add_website_setting()
