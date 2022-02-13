@@ -48,4 +48,4 @@ class OrganizerPermission(models.Model):
         verbose_name = 'Organizer Permissions'
 
     def __str__(self):
-        return self.organizer.user.first_name + " - " + self.permission.permission_name
+        return f"{self.organizer.user.first_name} of {[permission for permission in self.permission.all()]}" 
