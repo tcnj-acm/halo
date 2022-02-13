@@ -233,28 +233,41 @@ def add_website_setting():
     WebsiteSettings.objects.create(waiting_list_status=False)
 
 
+permissions_list = []
+
+
 def create_feature_permissions():
-    FeaturePermission.objects.create('display-hackers', 'h-hackers')
-    FeaturePermission.objects.create('qr_checkin', 'h-QR Checkin')
-    FeaturePermission.objects.create('manual_checkin', 'h-Checkin')
-    FeaturePermission.objects.create('waiting-list', 'w-Waiting List')
-    FeaturePermission.objects.create(
-        'edit-waiting-list', 'w-Edit Waiting List')
+    permissions_list.append(FeaturePermission.objects.create(
+        url_name='display-hackers', permission_name='h-hackers'))
+    permissions_list.append(
+        FeaturePermission.objects.create(url_name='qr_checkin', permission_name='h-QR Checkin'))
+    permissions_list.append(FeaturePermission.objects.create(
+        url_name='manual_checkin', permission_name='h-Checkin'))
+    permissions_list.append(FeaturePermission.objects.create(
+        url_name='waiting-list', permission_name='w-Waiting List'))
+    permissions_list.append(FeaturePermission.objects.create(
+        url_name='edit-waiting-list', permission_name='w-Edit Waiting List'))
 
 
 def add_organizers_to_features():
-    pass
+    for i in range(TOTAL_ORGANIZERS):
+        user = CustomUser.objects.get(email=email_organizers[i])
+        org = OrganizerInfo.objects.get(user=user)
+
+        org_perm = OrganizerPermission.objects.create(organizer=org)
+        org_perm.permission.add(permissions_list[0], permissions_list[1],
+                                permissions_list[2], permissions_list[3], permissions_list[4])
+
+
 # Driver code
-
-
 # site startup code
-create_groups()
-create_super_user()
-create_users()
-create_organizers()
-create_hackers()
-
-# admin startup code
-add_admin_to_group()
-add_website_setting()
+# create_groups()
+# create_super_user()
+# create_users()
+# create_organizers()
+# create_hackers()
+# # admin startup code
+# add_admin_to_group()
+# add_website_setting()
+create_feature_permissions()
 add_organizers_to_features()
