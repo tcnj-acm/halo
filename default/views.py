@@ -1,3 +1,4 @@
+import re
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from .forms import CustomUserCreationForm, HackerCreationForm
@@ -14,6 +15,10 @@ def landing(request):
     context = {}
     return render(request, 'defaults/landing.html', context)
 
+def waitlist(request):
+
+    context = {}
+    return render(request, 'defaults/waitlist.html', context)
 
 def registration(request):
     if request.method == 'POST':

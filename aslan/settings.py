@@ -60,7 +60,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'default.loginMiddleware.loginMiddleware',
-    'default.loginMiddleware.accountsMiddleware'
+    'default.loginMiddleware.accountsMiddleware',
+    'default.organizerFeatureMiddleware.OrganizerFeatureMiddleware',
+
 ]
 
 ROOT_URLCONF = 'aslan.urls'
@@ -156,6 +158,12 @@ LOGIN_EXEMPT_URLS = {
     r'^$',
     r'login',
     r'register',
+    r'reset',
+}
+
+WAITLIST_EXEMPT_URLS = {
+    r'coming-soon',
+    r'login',
     r'reset',
 }
 
