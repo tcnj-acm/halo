@@ -60,7 +60,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'default.loginMiddleware.loginMiddleware',
-    'default.loginMiddleware.accountsMiddleware'
+    'default.loginMiddleware.accountsMiddleware',
+    'default.organizerFeatureMiddleware.OrganizerFeatureMiddleware',
+
 ]
 
 ROOT_URLCONF = 'aslan.urls'
