@@ -5,7 +5,7 @@
 #             new_user.save()
 from django.contrib.auth.models import User, Group
 from default.models import CustomUser
-from organizer.models import OrganizerInfo, WebsiteSettings
+from organizer.models import OrganizerInfo, WebsiteSettings, FeaturePermission, OrganizerPermission
 from hacker.models import HackerInfo
 from default.helper import add_group
 
@@ -189,6 +189,10 @@ def create_groups():
     Group.objects.create(name="checked-in")
 
 
+def create_super_user():
+    CustomUser.objects.create_superuser('admin@aslan.com', 'hacker123!')
+
+
 def create_users():
 
     for i in range(TOTAL_ORGANIZERS):
@@ -225,15 +229,27 @@ def add_admin_to_group():
     add_group(admin_user, 'head-organizer')
 
 
-# TODO Add website settings
 def add_website_setting():
     WebsiteSettings.objects.create(waiting_list_status=False)
 
 
+def create_feature_permissions():
+    FeaturePermission.objects.create('display-hackers', 'h-hackers')
+    FeaturePermission.objects.create('qr_checkin', 'h-QR Checkin')
+    FeaturePermission.objects.create('manual_checkin', 'h-Checkin')
+    FeaturePermission.objects.create('waiting-list', 'w-Waiting List')
+    FeaturePermission.objects.create(
+        'edit-waiting-list', 'w-Edit Waiting List')
+
+
+def add_organizers_to_features():
+    pass
 # Driver code
+
 
 # site startup code
 create_groups()
+create_super_user()
 create_users()
 create_organizers()
 create_hackers()
@@ -241,3 +257,4 @@ create_hackers()
 # admin startup code
 add_admin_to_group()
 add_website_setting()
+add_organizers_to_features()
