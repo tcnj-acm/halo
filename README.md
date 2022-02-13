@@ -26,7 +26,7 @@
 
 ## About The Project
 
-
+-dev mode baby-
 Aslan is a web application that gives alleviates hackathon operations. From handling registration to hacker and organizer management, Aslan works as a resource management tool
 
 1. Seamless Registration and Check-in module from the platform
