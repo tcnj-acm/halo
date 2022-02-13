@@ -159,6 +159,12 @@ LOGIN_EXEMPT_URLS = {
     r'reset',
 }
 
+WAITLIST_EXEMPT_URLS = {
+    r'coming-soon',
+    r'login',
+    r'reset',
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_URL = '/static/'
