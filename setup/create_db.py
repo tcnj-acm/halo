@@ -261,13 +261,17 @@ def add_organizers_to_features():
 
 # Driver code
 # site startup code
-# create_groups()
-# create_super_user()
-# create_users()
-# create_organizers()
-# create_hackers()
-# # admin startup code
-# add_admin_to_group()
-# add_website_setting()
+create_groups()
+create_super_user()
+create_users()
+create_organizers()
+create_hackers()
+
+# admin startup code
+'''
+NOTE: Please run create_feature_permissions() together with add_organizers_to_features()
+'''
+add_admin_to_group()
+add_website_setting()
 create_feature_permissions()
 add_organizers_to_features()
