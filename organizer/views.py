@@ -129,9 +129,13 @@ def add_organizer(request):
     context = {'create_organizer_form': create_organizer_form}
     return render(request, 'organizers/addorganizer.html', context)
 
+
 # head organizer settings page
-
-
 def settings(request):
     context = {}
     return render(request, 'organizers/websitesettings.html', context)
+
+
+def stats_page(request):
+    context = {}
+    return render(request, 'organizers/statspage.html', context)

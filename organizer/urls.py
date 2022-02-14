@@ -12,6 +12,7 @@ urlpatterns = [
     path('check-in/<str:first_name_hash>/<str:last_name_hash>/<int:pk>',
          views.qr_checkin, name='qr-checkin'),
     path('settings/', views.settings, name='website-settings'),
+    path('stats/', views.stats_page, name='statistics'),
 
 
 ]
