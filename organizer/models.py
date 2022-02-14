@@ -41,11 +41,11 @@ class FeaturePermission(models.Model):
 class OrganizerPermission(models.Model):
     permission = models.ManyToManyField(
         FeaturePermission, related_name='organizer_permission')
-    organizer = models.ForeignKey(
-        OrganizerInfo, on_delete=models.CASCADE, related_name='organizer')
+    user = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name='user')
 
     class Meta():
         verbose_name = 'Organizer Permissions'
 
     def __str__(self):
-        return f"{self.organizer.user.first_name} of {[permission for permission in self.permission.all()]}" 
+        return f"{self.user.first_name} of {[permission for permission in self.permission.all()]}" 

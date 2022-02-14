@@ -309,22 +309,26 @@ def create_feature_permissions():
         url_name='waiting-list', permission_name='w-Waiting List'))
     permissions_list.append(FeaturePermission.objects.create(
         url_name='edit-waiting-list', permission_name='w-Edit Waiting List'))
-
+    permissions_list.append(FeaturePermission.objects.create(
+        url_name='statistics', permission_name='s-Stats'))
 
 def add_organizers_to_features():
     for i in range(TOTAL_ORGANIZERS):
         user = CustomUser.objects.get(email=email_organizers[i])
-        org = OrganizerInfo.objects.get(user=user)
+ 
 
-        org_perm = OrganizerPermission.objects.create(organizer=org)
+        org_perm = OrganizerPermission.objects.create(user=user)
         org_perm.permission.add(permissions_list[0], permissions_list[1],
                                 permissions_list[2], permissions_list[3], permissions_list[4])
 
-    for i in range(TOTAL_VOLUNTEERS):
-        user = CustomUser.objects.get(email=email_organizers[i])
-        org = OrganizerInfo.objects.get(user=user)
+        if i % 2 ==  0:
+            org_perm.permission.add(permissions_list[5])
 
-        org_perm = OrganizerPermission.objects.create(organizer=org)
+    for i in range(TOTAL_VOLUNTEERS):
+        user = CustomUser.objects.get(email=email_volunteers[i])
+ 
+
+        org_perm = OrganizerPermission.objects.create(user=user)
         org_perm.permission.add(permissions_list[1],
                                 permissions_list[2], permissions_list[3])
 
