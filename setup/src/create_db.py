@@ -3,11 +3,20 @@
 # new_user = User.objects.create(username = row["email"], first_name= row["first"], last_name= row["last"], email = row["email"] + "@tcnj.edu")
 #             new_user.set_password('tacos')
 #             new_user.save()
+
+from dotenv import load_dotenv
+
+import os
+import json
+
+
 from django.contrib.auth.models import User, Group
 from default.models import CustomUser
 from organizer.models import OrganizerInfo, WebsiteSettings, FeaturePermission, OrganizerPermission
 from hacker.models import HackerInfo
 from default.helper import add_group
+
+load_dotenv()
 
 
 # total count (make less than 30 for each for now)
@@ -216,7 +225,20 @@ def create_groups():
 
 
 def create_super_user():
-    CustomUser.objects.create_superuser('admin@aslan.com', 'hacker123!')
+    # print(os.getenv('HEAD_ORG_EMAIL'))
+    # print(os.getenv('HEAD_ORG_PASSWORD'))
+    # print(os.getenv('HEAD_ORG_FIRST_NAME'))
+    # print(os.getenv('HEAD_ORG_LAST_NAME'))
+
+    # print("The types")
+
+    # print(type(str(os.getenv('HEAD_ORG_EMAIL'))))
+    # print(type(str(os.getenv('HEAD_ORG_PASSWORD'))))
+    # print(type(str(os.getenv('HEAD_ORG_FIRST_NAME'))))
+    # print(type(str(os.getenv('HEAD_ORG_LAST_NAME'))))
+    new_admin=CustomUser.objects.create_superuser(email=os.getenv('HEAD_ORG_EMAIL'), password=os.getenv('HEAD_ORG_PASSWORD'))
+    new_admin.first_name=os.getenv('HEAD_ORG_FIRST_NAME')
+    new_admin.last_name=os.getenv('HEAD_ORG_LAST_NAME')
 
 
 def create_users():
@@ -224,7 +246,7 @@ def create_users():
     for i in range(TOTAL_ORGANIZERS):
         new_user = CustomUser.objects.create(
             email=email_organizers[i], first_name=first_name_organizers[i], last_name=last_name_organizers[i], address=address_organizers[i])
-        new_user.set_password('hacker123!')
+        new_user.set_password(os.getenv('ORGANIZER_PASSWORD'))
         new_user.save()
 
     for i in range(TOTAL_VOLUNTEERS):
@@ -232,12 +254,12 @@ def create_users():
             email=email_volunteers[i], first_name=first_name_volunteers[
                 i], last_name=last_name_volunteers[i], address=address_volunteers[i]
         )
-        new_user.set_password('hacker123!')
+        new_user.set_password(os.getenv('ORGANIZER_PASSWORD'))
         new_user.save()
     for i in range(TOTAL_HACKERS):
         new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i],
                                              address=address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
-        new_user.set_password('hacker123!')
+        new_user.set_password(os.getenv('HACKER_PASSWORD'))
         new_user.save()
 
 
@@ -265,7 +287,7 @@ def create_hackers():
 
 
 def add_admin_to_group():
-    admin_user = CustomUser.objects.get(email='admin@aslan.com')
+    admin_user = CustomUser.objects.get(email=os.getenv('HEAD_ORG_EMAIL'))
     add_group(admin_user, 'head-organizer')
 
 
