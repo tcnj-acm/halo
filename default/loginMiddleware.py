@@ -138,7 +138,7 @@ class accountsMiddleware():
                 return redirect('organizer-dash')
         else:  # head organizer
             if any(mod == module_name for mod in head_organizer_not_mods):
-                print("foundone")
+                # print("foundone")
                 return redirect('organizer-dash')
             else:
                 pass

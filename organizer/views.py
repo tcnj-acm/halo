@@ -3,7 +3,7 @@ from django.db.models.query_utils import check_rel_lookup_compatibility, select_
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import HackerInfo
-from .models import OrganizerInfo
+from .models import OrganizerInfo, OrganizerPermission, FeaturePermission
 from default.models import CustomUser
 from default.helper import add_group, remove_group
 from django.db.models import Q
@@ -16,8 +16,10 @@ from default.emailer import new_organizer_added
 
 def dash(request):
 
+    can_see_stats = OrganizerPermission.objects.filter(user = request.user, permission=FeaturePermission.objects.get(
+        url_name='statistics')).exists()
     head_org = request.user.groups.filter(name='head-organizer').exists()
-    context = {'head_org': head_org}
+    context = {'head_org': head_org, 'can_see_stats': can_see_stats}
     return render(request, 'organizers/dashboard.html', context)
 
 
