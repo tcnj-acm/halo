@@ -1,7 +1,58 @@
-{% extends 'defaults/base.html' %}
-
 {% load static %}
 
-{% block content %}
-Coming Soon
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2b86215731.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css\waiting_css\waitlist_css.css' %}">
+    <title>Project: Taco</title>
+
+</head>
+<body>
+    
+    <div class="shade" >
+        
+        <div class="container">
+            
+            <div class="header">
+                <p>Taco</p>
+    
+            </div>
+    
+            <div class="main">
+
+                <div class="m1">
+                    <p>We like Tacos</p>
+                </div>
+                <div class="m2">
+                    <p>Join the waiting list for the Tacos. We keep you posted.</p>
+                </div>
+    
+            </div>
+    
+            <div class="footer">
+                <div class="notify">
+                    <form class="MyFor" method="POST"> {% csrf_token %}
+                        <div>
+                            <input type="text" name="full_name" id="full_name" placeholder="Full Name here..." class="MyNot">
+                            <input type="text" name="email" id="email" placeholder="Your Email here..." class="MyNot">
+                        </div>
+                        <input type="submit" value="Notify Me" class="MyButt">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="sidenote">
+                <p>Made with <i class="fas fa-heart"></i> by the Chefs</p>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>

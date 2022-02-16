@@ -8,6 +8,7 @@ from hacker.models import HackerInfo
 from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
 from .emailer import *
+from .models import WaitingList
 
 
 def landing(request):
@@ -16,7 +17,15 @@ def landing(request):
     return render(request, 'defaults/landing.html', context)
 
 def waitlist(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        name = request.POST.get('full_name')
 
+        if WaitingList.objects.filter(email=email).exists():
+            return redirect("waitlist")
+        
+        WaitingList.objects.create(full_name=name, email=email)
+        return redirect("waitlist")
     context = {}
     return render(request, 'defaults/waitlist.html', context)
 
