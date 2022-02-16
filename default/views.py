@@ -26,7 +26,6 @@ def registration(request):
         create_hacker_form = HackerCreationForm(request.POST)
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():
-            print("heellooo")
             pword = create_user_form.cleaned_data['password1']
             user = create_user_form.save()
 

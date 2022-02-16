@@ -3,7 +3,7 @@ from django.db.models.query_utils import check_rel_lookup_compatibility, select_
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import HackerInfo
-from .models import OrganizerInfo, OrganizerPermission, FeaturePermission
+from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, WebsiteSettings
 from default.models import CustomUser
 from default.helper import add_group, remove_group
 from django.db.models import Q
@@ -46,7 +46,9 @@ def display_hackers(request):
                'nonchecked_in_hackers': nonchecked_in_hackers}
     return render(request, 'organizers/hackersdisplay.html', context)
 
-
+def display_waitlist(request):
+    context = {}
+    return render(request, 'organizers/waitlistdisplay.html',context)
 # This is a view that shows people that are not checked in to the event
 def manual_checkin(request):
 
@@ -132,10 +134,18 @@ def add_organizer(request):
     return render(request, 'organizers/addorganizer.html', context)
 
 def organizer_setting(request, pk):
+
     user = CustomUser.objects.get(id = pk)
     org_perm = OrganizerPermission.objects.get(user = user)
+    
+    if request.method == 'POST':
+        form = OrganizerPermissionControlForm(request.POST)
+        form.user = user
+        form.save()
+        return redirect('all-organizers')
+    else:
+        form = OrganizerPermissionControlForm(instance=org_perm)
 
-    form = OrganizerPermissionControlForm(instance=org_perm)
     context={'form':form, 'user':user}
     return render(request, 'organizers/editorganizer.html', context)
 
@@ -143,9 +153,17 @@ def organizer_setting(request, pk):
 
 # head organizer settings page
 def settings(request):
+    current_setting = WebsiteSettings.objects.first()
     head_org = request.user.groups.filter(name='head-organizer').exists()
-
-    context = {'head_org':head_org}
+    if request.method == 'POST':
+        value = request.POST.get('toggle-waitlist-control')
+        if value == 'on':
+            current_setting.waiting_list_status = True
+        else:
+            current_setting.waiting_list_status = False
+        current_setting.save()
+    
+    context = {'head_org':head_org, 'current_setting':current_setting}
     return render(request, 'organizers/websitesettings.html', context)
 
 

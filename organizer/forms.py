@@ -23,12 +23,16 @@ class WebsiteSettingsControlForm(forms.ModelForm):
             'waiting_list_status': forms.Select(attrs={})
         }
 
+class CustomMMCF(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, member):
+        return member.permission_name[2:].title()
+
 class OrganizerPermissionControlForm(forms.ModelForm):
     class Meta:
         model = OrganizerPermission
         fields = ['user', 'permission']
 
-    permission = forms.ModelMultipleChoiceField(
+    permission = CustomMMCF(
         queryset=FeaturePermission.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
