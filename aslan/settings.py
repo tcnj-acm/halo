@@ -148,11 +148,14 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email stuff
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = None
-EMAIL_HOST_PASSWORD = None
+EMAIL_BACKEND = os.getenv('EM_BACKEND')
+
+EMAIL_HOST = os.getenv('EM_HOST')
+EMAIL_PORT = os.getenv('EM_PORT')
+EMAIL_HOST_USER = os.getenv('EM_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EM_HOST_PASSWORD')
+EMAIL_OUTGOING = os.getenv('EM_OUTGOING')
+EMAIL_USE_TLS=os.getenv('EM_USE_TLS')
 
 LOGIN_EXEMPT_URLS = {
     r'^$',

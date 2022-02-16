@@ -35,12 +35,14 @@ def display_hackers(request):
             Q(user__email__icontains=url_parameter)
         )
     else:
-        checked_in_hackers = HackerInfo.objects.filter(user__groups__name='checked-in')
-        nonchecked_in_hackers = HackerInfo.objects.exclude(user__groups__name='checked-in')
+        checked_in_hackers = HackerInfo.objects.filter(
+            user__groups__name='checked-in')
+        nonchecked_in_hackers = HackerInfo.objects.exclude(
+            user__groups__name='checked-in')
 
-    context = {'checked_in_hackers': checked_in_hackers, 'nonchecked_in_hackers': nonchecked_in_hackers}
+    context = {'checked_in_hackers': checked_in_hackers,
+               'nonchecked_in_hackers': nonchecked_in_hackers}
     return render(request, 'organizers/hackersdisplay.html', context)
-
 
 
 # This is a view that shows people that are not checked in to the event
@@ -62,13 +64,14 @@ def manual_checkin(request):
     uncheckedin_hackers = HackerInfo.objects.exclude(
         user__groups__name='checked-in')
 
-    context = {'uncheckedin_hackers': uncheckedin_hackers, 'just_registered':just_registered}
+    context = {'uncheckedin_hackers': uncheckedin_hackers,
+               'just_registered': just_registered}
     return render(request, 'organizers/manualcheckin.html', context)
 
 
 # checkin view with qr code stuff
 def qr_checkin(request, pk, first_name_hash, last_name_hash):
-   
+
     hacker = HackerInfo.objects.get(user__id=pk)
 
     if request.method == 'POST':
@@ -76,11 +79,9 @@ def qr_checkin(request, pk, first_name_hash, last_name_hash):
         hack = HackerInfo.objects.get(user__email=email)
         add_group(hack.user, "checked-in")
         return redirect('display-hackers')
-    
-    context = {'hacker':hacker}
+
+    context = {'hacker': hacker}
     return render(request, 'organizers/qrcheckin.html', context)
-
-
 
 
 # head organizer only function: show other organizers on the system
@@ -124,6 +125,18 @@ def add_organizer(request):
             new_organizer.save()
 
             new_organizer_added(new_user)
+
             return redirect('all-organizers')
     context = {'create_organizer_form': create_organizer_form}
     return render(request, 'organizers/addorganizer.html', context)
+
+
+# head organizer settings page
+def settings(request):
+    context = {}
+    return render(request, 'organizers/websitesettings.html', context)
+
+
+def stats_page(request):
+    context = {}
+    return render(request, 'organizers/statspage.html', context)
