@@ -125,6 +125,7 @@ def add_organizer(request):
             new_organizer.save()
 
             new_organizer_added(new_user)
+
             return redirect('all-organizers')
     context = {'create_organizer_form': create_organizer_form}
     return render(request, 'organizers/addorganizer.html', context)

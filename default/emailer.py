@@ -11,7 +11,7 @@ def test_mail():
     body = '''
      Hey yo what's good dawg
     '''
-    to_email = ['test@email.com']
+    to_email = ['abhijitvempati@gmail.com']
 
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
@@ -69,7 +69,7 @@ def new_organizer_added(organizer):
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
-
+    print("END OF EMAIL FUNCTION")
 def new_waitlister_added(email, name):
     subject = "Success! You've been added to the HackTCNJ Waiting List!"
     from_email=FROM_EMAIL
