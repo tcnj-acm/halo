@@ -1,4 +1,4 @@
-from organizer.forms import OrganizerCreationForm
+from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm
 from django.db.models.query_utils import check_rel_lookup_compatibility, select_related_descend
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
@@ -131,13 +131,26 @@ def add_organizer(request):
     context = {'create_organizer_form': create_organizer_form}
     return render(request, 'organizers/addorganizer.html', context)
 
+def organizer_setting(request, pk):
+    user = CustomUser.objects.get(id = pk)
+    org_perm = OrganizerPermission.objects.get(user = user)
+
+    form = OrganizerPermissionControlForm(instance=org_perm)
+    context={'form':form, 'user':user}
+    return render(request, 'organizers/editorganizer.html', context)
+
+    
 
 # head organizer settings page
 def settings(request):
-    context = {}
+    head_org = request.user.groups.filter(name='head-organizer').exists()
+
+    context = {'head_org':head_org}
     return render(request, 'organizers/websitesettings.html', context)
 
 
 def stats_page(request):
     context = {}
     return render(request, 'organizers/statspage.html', context)
+
+

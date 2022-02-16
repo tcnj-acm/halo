@@ -2,5 +2,28 @@
 {% block content %}
  
 <br>
-Present that settings here boii
+
+
+{% if head_org %}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Waiting List Mode</h5>
+        <div class="row justify-content-between">
+            <div class="col-8">
+              <p class="card-text">Change the deployed site from waiting list mode to a live site. This site visitors to register for the hackathon, see the current sponsors, read FAQ</p>
+            </div>
+            <div class="col-2">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" style="font-size:1.67em;" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                </div>
+            </div>
+          </div>
+          <br>
+          <a href="#" class="btn btn-primary">Confirm Changes</a>
+    </div>
+  </div>
+
+{% endif %}
+
 {% endblock %}
