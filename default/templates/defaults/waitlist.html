@@ -1,35 +1,33 @@
+{% extends 'defaults/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block head %}
 
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/2b86215731.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css\waiting_css\waitlist_css.css' %}">
-    <title>Project: Taco</title>
+<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/2b86215731.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css\waiting_css\waitlist_css.css' %}">
 
-</head>
-<body>
-    
+{% endblock head %}
+
+
+
+{% block content %}
+
+
     <div class="shade" >
         
         <div class="container">
             
-            <div class="header">
-                <p>Taco</p>
-    
+            <div>
+                <img src="{% static 'images/images/logodetailed-05.png' %}" alt="TCNJ">
             </div>
-    
             <div class="main">
 
                 <div class="m1">
-                    <p>We like Tacos</p>
+                    <p>April 9th-10th,2022</p>
                 </div>
                 <div class="m2">
-                    <p>Join the waiting list for the Tacos. We keep you posted.</p>
+                    <p>Join the waiting list. We will keep you posted.</p>
                 </div>
     
             </div>
@@ -38,11 +36,33 @@
                 <div class="notify">
                     <form class="MyFor" method="POST"> {% csrf_token %}
                         <div>
-                            <input type="text" name="full_name" id="full_name" placeholder="Full Name here..." class="MyNot">
-                            <input type="text" name="email" id="email" placeholder="Your Email here..." class="MyNot">
+                            {{ waitlist_form.email }}
+                            {{ waitlist_form.full_name }}
                         </div>
                         <input type="submit" value="Notify Me" class="MyButt">
                     </form>
+                </div>
+                <br>
+                <div>
+                    {% for field in waitlist_form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                                <strong>Request Failed: </strong> {{ error|escape }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                        {% endfor %}
+                    {% endfor %}
+                    {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                            <strong>{{message}}</strong> 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -51,8 +71,5 @@
         </div>
     </div>
 
-
-
-
-</body>
-</html>
+{% endblock content %}
+    

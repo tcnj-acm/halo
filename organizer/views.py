@@ -139,8 +139,7 @@ def organizer_setting(request, pk):
     org_perm = OrganizerPermission.objects.get(user = user)
     
     if request.method == 'POST':
-        form = OrganizerPermissionControlForm(request.POST)
-        form.user = user
+        form = OrganizerPermissionControlForm(request.POST, instance=org_perm)
         form.save()
         return redirect('all-organizers')
     else:

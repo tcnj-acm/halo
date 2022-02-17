@@ -1,7 +1,9 @@
+from email import message
 import re
 from django.http.response import HttpResponse
+from django.contrib import messages
 from django.shortcuts import redirect, render
-from .forms import CustomUserCreationForm, HackerCreationForm
+from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordResetCompleteView
 from hacker.models import HackerInfo
@@ -17,17 +19,20 @@ def landing(request):
     return render(request, 'defaults/landing.html', context)
 
 def waitlist(request):
-    if request.method == "POST":
-        email = request.POST.get('email')
-        name = request.POST.get('full_name')
 
-        if WaitingList.objects.filter(email=email).exists():
-            return redirect("waitlist")
-        
-        WaitingList.objects.create(full_name=name, email=email)
-        return redirect("waitlist")
-    context = {}
-    return render(request, 'defaults/waitlist.html', context)
+
+    if request.method == "POST":
+        waitlist_create_form = WaitingListCreationForm(request.POST)
+        if waitlist_create_form.is_valid():
+            waitlist = waitlist_create_form.save()
+            messages.success(request, "Thank You for joining the wait list, You will recive an email with more information soon!")
+            return redirect('waitlist')
+    else:
+        waitlist_create_form = WaitingListCreationForm()
+    
+    
+    context = {'waitlist_form':waitlist_create_form}
+    return render(request, 'defaults/coming-soon.html', context)
 
 def registration(request):
     if request.method == 'POST':

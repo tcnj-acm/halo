@@ -1,4 +1,5 @@
-from default.models import CustomUser
+from dataclasses import field
+from default.models import CustomUser, WaitingList
 from django import forms
 from default.forms import CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -15,5 +16,6 @@ class CustomHackerChangeForm(CustomUserChangeForm):
             'education' : forms.Select(attrs = {}),
         }
 
+ 
 
     

@@ -4,8 +4,8 @@ html{
 
 body{
     background-image: url("tacofall.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: repeat;
     color: white;
 } 
 
@@ -23,7 +23,7 @@ body{
 }
 
 .container{
-    width: 1024px;
+    width: 50%;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
