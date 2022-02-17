@@ -33,9 +33,9 @@
                 {% for o in all_organizers %}
                     <tr>
                         {% comment %} <th scope="row">{{g.emp_id}}</th> {% endcomment %}
-                        <td>{{o.user.first_name}} {{o.user.last_name}}</td>
+                        <td><a href="{% url 'edit-organizer' o.user.id %}">{{o.user.first_name}} {{o.user.last_name}}</a> </td>
                         <td>{{o.user.email}}</td>
-                        <td><a class="btn-caution" href="{% url 'delete-organizer' o.id %}">Delete</a>
+                        <td><a class="btn-caution" href="{% url 'delete-organizer' o.id %}">Delete</a><td>
                     </tr>
                 {% endfor %}
             </tbody>

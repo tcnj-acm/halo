@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.forms import fields, widgets
-from .models import OrganizerInfo, WebsiteSettings
+from .models import OrganizerInfo, WebsiteSettings, OrganizerPermission, FeaturePermission
 
 
 class OrganizerCreationForm(forms.Form):
@@ -14,7 +14,7 @@ class OrganizerCreationForm(forms.Form):
         attrs={'placeholder': "Email"}))
 
 
-class WaitingListControlForm(forms.ModelForm):
+class WebsiteSettingsControlForm(forms.ModelForm):
     class Meta:
         model = WebsiteSettings
         fields = ['waiting_list_status']
@@ -22,3 +22,20 @@ class WaitingListControlForm(forms.ModelForm):
         widgets = {
             'waiting_list_status': forms.Select(attrs={})
         }
+
+class CustomMMCF(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, member):
+        return member.permission_name[2:].title()
+
+class OrganizerPermissionControlForm(forms.ModelForm):
+    class Meta:
+        model = OrganizerPermission
+        fields = ['user', 'permission']
+
+    permission = CustomMMCF(
+        queryset=FeaturePermission.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
+
+
+
