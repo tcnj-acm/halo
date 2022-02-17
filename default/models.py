@@ -67,3 +67,6 @@ class WaitingList(models.Model):
 
     email = models.EmailField(verbose_name='email', max_length=60, unique=True)
     full_name = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.email + ": " + self.full_name

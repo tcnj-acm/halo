@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
-from .models import CustomUser
+from .models import CustomUser, WaitingList
 from hacker.models import HackerInfo
 
 class CustomUserCreationForm(forms.ModelForm):
@@ -52,3 +52,24 @@ class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'first_name', 'last_name', 'password', 'address', 'shirt_size', 'food_preference', 'is_active', 'is_admin', 'is_superuser')
+
+
+class WaitingListCreationForm(forms.ModelForm):
+    class Meta:
+        model = WaitingList
+        fields = ('full_name', 'email')
+
+        widgets = {
+            'full_name' : forms.TextInput(attrs = { 'placeholder':'Full Name', 'class':'form-control transparent'}),
+            'email' : forms.TextInput(attrs = { 'placeholder':'Email', 'class':'form-control transparent'}),
+        }
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+
+        if CustomUser.objects.filter(email=email).exists():
+            self.add_error('email',"This Email is already on the waitlist!")
+        
+        return email
+
+       

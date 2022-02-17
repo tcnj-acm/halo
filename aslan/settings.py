@@ -60,7 +60,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'default.loginMiddleware.loginMiddleware',
-    'default.loginMiddleware.accountsMiddleware'
+    'default.loginMiddleware.accountsMiddleware',
+    'default.organizerFeatureMiddleware.OrganizerFeatureMiddleware',
+
 ]
 
 ROOT_URLCONF = 'aslan.urls'
@@ -89,23 +91,22 @@ WSGI_APPLICATION = 'aslan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': str(os.getenv('DB_NAME')),
-        'USER': str(os.getenv('DB_USER')),
-        'PASSWORD': str(os.getenv('DB_PASSWORD')),
-        'HOST': str(os.getenv('DB_HOST')),
-        'PORT': str(os.getenv('DB_PORT')),
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': str(os.getenv('DB_NAME')),
+#         'USER': str(os.getenv('DB_USER')),
+#         'PASSWORD': str(os.getenv('DB_PASSWORD')),
+#         'HOST': str(os.getenv('DB_HOST')),
+#         'PORT': str(os.getenv('DB_PORT')),
 #     }
 # }
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -147,16 +148,25 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email stuff
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = None
-EMAIL_HOST_PASSWORD = None
+EMAIL_BACKEND = os.getenv('EM_BACKEND')
+
+EMAIL_HOST = os.getenv('EM_HOST')
+EMAIL_PORT = os.getenv('EM_PORT')
+EMAIL_HOST_USER = os.getenv('EM_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EM_HOST_PASSWORD')
+EMAIL_OUTGOING = os.getenv('EM_OUTGOING')
+EMAIL_USE_TLS=os.getenv('EM_USE_TLS')
 
 LOGIN_EXEMPT_URLS = {
     r'^$',
     r'login',
     r'register',
+    r'reset',
+}
+
+WAITLIST_EXEMPT_URLS = {
+    r'coming-soon',
+    r'login',
     r'reset',
 }
 
@@ -167,7 +177,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
-  BASE_DIR/'static'
+    BASE_DIR/'static'
 ]
 
 MEDIA_ROOT = BASE_DIR/'static/images'

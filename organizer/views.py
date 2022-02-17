@@ -1,9 +1,9 @@
-from organizer.forms import OrganizerCreationForm
+from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm
 from django.db.models.query_utils import check_rel_lookup_compatibility, select_related_descend
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import HackerInfo
-from .models import OrganizerInfo
+from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, WebsiteSettings
 from default.models import CustomUser
 from default.helper import add_group, remove_group
 from django.db.models import Q
@@ -16,8 +16,10 @@ from default.emailer import new_organizer_added
 
 def dash(request):
 
+    can_see_stats = OrganizerPermission.objects.filter(user = request.user, permission=FeaturePermission.objects.get(
+        url_name='statistics')).exists()
     head_org = request.user.groups.filter(name='head-organizer').exists()
-    context = {'head_org': head_org}
+    context = {'head_org': head_org, 'can_see_stats': can_see_stats}
     return render(request, 'organizers/dashboard.html', context)
 
 
@@ -35,14 +37,18 @@ def display_hackers(request):
             Q(user__email__icontains=url_parameter)
         )
     else:
-        checked_in_hackers = HackerInfo.objects.filter(user__groups__name='checked-in')
-        nonchecked_in_hackers = HackerInfo.objects.exclude(user__groups__name='checked-in')
+        checked_in_hackers = HackerInfo.objects.filter(
+            user__groups__name='checked-in')
+        nonchecked_in_hackers = HackerInfo.objects.exclude(
+            user__groups__name='checked-in')
 
-    context = {'checked_in_hackers': checked_in_hackers, 'nonchecked_in_hackers': nonchecked_in_hackers}
+    context = {'checked_in_hackers': checked_in_hackers,
+               'nonchecked_in_hackers': nonchecked_in_hackers}
     return render(request, 'organizers/hackersdisplay.html', context)
 
-
-
+def display_waitlist(request):
+    context = {}
+    return render(request, 'organizers/waitlistdisplay.html',context)
 # This is a view that shows people that are not checked in to the event
 def manual_checkin(request):
 
@@ -62,13 +68,14 @@ def manual_checkin(request):
     uncheckedin_hackers = HackerInfo.objects.exclude(
         user__groups__name='checked-in')
 
-    context = {'uncheckedin_hackers': uncheckedin_hackers, 'just_registered':just_registered}
+    context = {'uncheckedin_hackers': uncheckedin_hackers,
+               'just_registered': just_registered}
     return render(request, 'organizers/manualcheckin.html', context)
 
 
 # checkin view with qr code stuff
 def qr_checkin(request, pk, first_name_hash, last_name_hash):
-   
+
     hacker = HackerInfo.objects.get(user__id=pk)
 
     if request.method == 'POST':
@@ -76,11 +83,9 @@ def qr_checkin(request, pk, first_name_hash, last_name_hash):
         hack = HackerInfo.objects.get(user__email=email)
         add_group(hack.user, "checked-in")
         return redirect('display-hackers')
-    
-    context = {'hacker':hacker}
+
+    context = {'hacker': hacker}
     return render(request, 'organizers/qrcheckin.html', context)
-
-
 
 
 # head organizer only function: show other organizers on the system
@@ -124,6 +129,46 @@ def add_organizer(request):
             new_organizer.save()
 
             new_organizer_added(new_user)
+
             return redirect('all-organizers')
     context = {'create_organizer_form': create_organizer_form}
     return render(request, 'organizers/addorganizer.html', context)
+
+def organizer_setting(request, pk):
+
+    user = CustomUser.objects.get(id = pk)
+    org_perm = OrganizerPermission.objects.get(user = user)
+    
+    if request.method == 'POST':
+        form = OrganizerPermissionControlForm(request.POST, instance=org_perm)
+        form.save()
+        return redirect('all-organizers')
+    else:
+        form = OrganizerPermissionControlForm(instance=org_perm)
+
+    context={'form':form, 'user':user}
+    return render(request, 'organizers/editorganizer.html', context)
+
+    
+
+# head organizer settings page
+def settings(request):
+    current_setting = WebsiteSettings.objects.first()
+    head_org = request.user.groups.filter(name='head-organizer').exists()
+    if request.method == 'POST':
+        value = request.POST.get('toggle-waitlist-control')
+        if value == 'on':
+            current_setting.waiting_list_status = True
+        else:
+            current_setting.waiting_list_status = False
+        current_setting.save()
+    
+    context = {'head_org':head_org, 'current_setting':current_setting}
+    return render(request, 'organizers/websitesettings.html', context)
+
+
+def stats_page(request):
+    context = {}
+    return render(request, 'organizers/statspage.html', context)
+
+

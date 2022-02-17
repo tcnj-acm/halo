@@ -3,9 +3,13 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.urls import reverse, resolve
 from .helper import decide_redirect, decide_type
+from organizer.models import WebsiteSettings
 
 if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
     EXEMPT_URLS = [re.compile(url) for url in settings.LOGIN_EXEMPT_URLS]
+
+if hasattr(settings, 'WAITLIST_EXEMPT_URLS'):
+    WL_EXEMPT_URLS = [re.compile(url) for url in settings.WAITLIST_EXEMPT_URLS]
 
 
 """
@@ -77,13 +81,19 @@ class loginMiddleware():
     def process_view(self, request, view_func, view_args, view_kwargs):
         assert hasattr(request, 'user')
         path = request.path_info.lstrip('/')
-        url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
 
-        if request.user.is_authenticated and url_is_exempt:
+        site_mode = WebsiteSettings.objects.filter(
+            waiting_list_status=True).exists()
+        site_mode_exmpt_URLs = WL_EXEMPT_URLS if site_mode else EXEMPT_URLS
+        url_is_exempt = any(url.match(path) for url in site_mode_exmpt_URLs)
+        url_is_still_exempt = any(url.match(path) for url in EXEMPT_URLS)
+
+        if request.user.is_authenticated and url_is_still_exempt:
             return redirect(decide_redirect(request.user))
         elif request.user.is_authenticated or url_is_exempt:
-
             return None
+        elif site_mode:
+            return redirect('waitlist')
         else:
             return redirect('login')
 
@@ -128,7 +138,7 @@ class accountsMiddleware():
                 return redirect('organizer-dash')
         else:  # head organizer
             if any(mod == module_name for mod in head_organizer_not_mods):
-                print("foundone")
+                # print("foundone")
                 return redirect('organizer-dash')
             else:
                 pass

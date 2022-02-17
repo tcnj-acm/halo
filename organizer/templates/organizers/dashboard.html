@@ -26,7 +26,29 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-4 col-md-12">
+            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Stat Sheet</h5>
+                    <p class="card-text">All the Hackathon Data</p>
+                    <a href="{% url 'statistics' %}" class="btn btn-outline-primary">Stats</a>
+                </div>
+            </div>
+        </div>
   
     {% endif %}
+    {% if can_see_stats %}
+    <div class="col-lg-4 col-md-12">
+        <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
+            <div class="card-body text-center">
+                <h5 class="card-title">Stat Sheet</h5>
+                <p class="card-text">All the Hackathon Data</p>
+                <a href="{% url 'statistics' %}" class="btn btn-outline-primary">Stats</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 
 {% endblock %}
