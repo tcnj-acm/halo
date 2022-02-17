@@ -663,7 +663,6 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 
 
 .main{
-    background-image: url("tacofall.jpg");
     background-position: center center;
     background-size: cover;
     height: auto;
