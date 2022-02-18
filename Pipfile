@@ -10,6 +10,7 @@ python-dotenv = "*"
 django-qr-code = "*"
 django-storages = "*"
 boto3 = "*"
+django-configurations = "*"
 
 [dev-packages]
 

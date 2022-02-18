@@ -1,4 +1,5 @@
 # This file sends emails from the default app
+from configurations import Configuration 
 from django.core.mail import send_mail
 from django.conf import settings
 
