@@ -25,6 +25,9 @@ def waitlist(request):
         waitlist_create_form = WaitingListCreationForm(request.POST)
         if waitlist_create_form.is_valid():
             waitlist = waitlist_create_form.save()
+            new_email = waitlist_create_form.cleaned_data['email']
+            new_name = waitlist_create_form.cleaned_data['full_name']
+            new_waitlister_added(new_name, new_name)
             messages.success(request, "Thank You for joining the wait list, You will recive an email with more information soon!")
             return redirect('waitlist')
     else:
