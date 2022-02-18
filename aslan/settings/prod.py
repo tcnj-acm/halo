@@ -5,10 +5,19 @@ import dj_database_url
 import os 
 
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
-DEBUG = False
+DEBUG = True
 
 
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': str(os.getenv('DB_NAME')),
+#         'USER': str(os.getenv('DB_USER')),
+#         'PASSWORD': str(os.getenv('DB_PASSWORD')),
+#         'HOST': str(os.getenv('DB_HOST')),
+#         'PORT': str(os.getenv('DB_PORT')),
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -40,4 +49,4 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-# django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), test_runner=False)
