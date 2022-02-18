@@ -1,9 +1,9 @@
 # This file sends emails from the default app
 from django.core.mail import send_mail
-from django.conf import settings
+from aslan.settings.base import EMAIL_OUTGOING
 
 TEAM_NAME="HackTCNJ"
-FROM_EMAIL= settings.EMAIL_OUTGOING
+FROM_EMAIL= EMAIL_OUTGOING
 
 def test_mail():
     subject = "Testing mail"
