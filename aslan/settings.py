@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from configurations import Configuration, pristinemethod
+import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -55,6 +56,7 @@ class Base(Configuration):
 
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -182,14 +184,17 @@ class Prod(Base):
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': str(os.getenv('DB_NAME')),
-            'USER': str(os.getenv('DB_USER')),
-            'PASSWORD': str(os.getenv('DB_PASSWORD')),
-            'HOST': str(os.getenv('DB_HOST')),
-            'PORT': str(os.getenv('DB_PORT')),
+            'ENGINE': 'django.db.backends.postgresql',
+            # 'NAME': str(os.getenv('DB_NAME')),
+            # 'USER': str(os.getenv('DB_USER')),
+            # 'PASSWORD': str(os.getenv('DB_PASSWORD')),
+            # 'HOST': str(os.getenv('DB_HOST')),
+            # 'PORT': str(os.getenv('DB_PORT')),
         }
     }   
+
+
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
     # Email stuff
     EMAIL_BACKEND = os.getenv('EM_BACKEND')
