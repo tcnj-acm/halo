@@ -10,8 +10,13 @@ python-dotenv = "*"
 django-qr-code = "*"
 django-storages = "*"
 boto3 = "*"
+gunicorn = "*"
+dj-database-url = "*"
+whitenoise = "*"
+psycopg2-binary = "*"
+django-heroku = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9.6"
+python_version = "3.9.10"

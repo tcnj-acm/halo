@@ -14,7 +14,6 @@ from .models import WaitingList
 
 
 def landing(request):
-
     context = {}
     return render(request, 'defaults/landing.html', context)
 

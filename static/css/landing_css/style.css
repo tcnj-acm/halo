@@ -690,12 +690,6 @@ h5.subtitle {
   position: relative;
 }
 
-.banner-2 {
-  background: url("../images/banner/slider-3.jpg");
-  background-size: cover;
-  position: relative;
-}
-
 .section-heading h2 {
   margin-bottom: 20px;
   font-weight: 400;
@@ -842,10 +836,6 @@ HISTORY MISSION
 /*--------------------------
   SERVICE (FAQ) AREA SECTION
 ----------------------*/
-.page-banner-area.page-service {
-  background: url("../images/bg/bg-2.jpg") no-repeat;
-  background-size: cover;
-}
 
 #service-head {
   padding-bottom: 100px;
@@ -933,11 +923,6 @@ SERVICE PAGE
   margin-top: -15px;
 }
 
-.service-style-two {
-  background: url("../images/bg/bg-2.jpg") no-repeat;
-  background-size: cover;
-  position: relative;
-}
 
 .service-style-two:before {
   position: absolute;
@@ -969,12 +954,6 @@ SERVICE PAGE
 /*--------------------------
  FOOTER
 ----------------------*/
-#footer {
-  padding-bottom: 60px;
-  position: relative;
-  background: url("../images/bg/2.png");
-  border-top: 1px solid #eee;
-}
 
 .footer-widget ul li {
   padding: 5px 0px;
