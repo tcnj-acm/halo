@@ -8,6 +8,8 @@ django = "*"
 mysqlclient = "*"
 python-dotenv = "*"
 django-qr-code = "*"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 
