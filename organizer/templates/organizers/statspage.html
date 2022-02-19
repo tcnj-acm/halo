@@ -1,7 +1,119 @@
 {% extends 'organizers/base.html' %}
 {% block content %}
- 
-    <br>
-    Display them stats here boii
+<div class="container text-center">
+
+    <h1>Statistics Page</h1>
+    <div class="row row-cols-md-3 row-cols-sm-1 g-3">
+        <div class="col">
+            <div class="card ">
+                <div class="card-header text-center">
+                    Total Waitlist Count
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{waitlist_count}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card ">
+                <div class="card-header text-center">
+                    Total Registered Count
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{register_count}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card ">
+                <div class="card-header text-center">
+                    Checked In Hacker Count
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{checked_in_count}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Hacker Information</h3>
+    <div class="row row-cols-md-2 row-cols-sm-1 g-3">
+        <div class="col ">
+            <div class="card h-100">
+                <div class="card-header text-center">
+                    Education Level Counts
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Education Level</th>
+                                <th scope="col">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for education_stat in hacker_education %}
+                            <tr>
+                                <td>{{education_stat.0}}</td>
+                                <td>{{education_stat.1}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header text-center">
+                    Hacker Food Stats
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            {% for food_stat in hacker_food %}
+                                <th>{{food_stat.0}}</th>
+                            {% endfor %}
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for food_stat in hacker_food %}
+                                    <td scope="col">{{food_stat.1}}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header text-center">
+                    Top 5 Majors
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Major</th>
+                                <th scope="col">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for major_stat in hacker_major %}
+                            <tr>
+                                <td>{{major_stat.0}}</td>
+                                <td>{{major_stat.1}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     
 {% endblock %}

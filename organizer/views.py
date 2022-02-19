@@ -1,10 +1,13 @@
+from email import message
+from django.contrib import messages
 from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm
 from django.db.models.query_utils import check_rel_lookup_compatibility, select_related_descend
+from django.db.models import Count
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import HackerInfo
 from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, WebsiteSettings
-from default.models import CustomUser
+from default.models import CustomUser, WaitingList
 from default.helper import add_group, remove_group
 from django.db.models import Q
 
@@ -46,9 +49,6 @@ def display_hackers(request):
                'nonchecked_in_hackers': nonchecked_in_hackers}
     return render(request, 'organizers/hackersdisplay.html', context)
 
-def display_waitlist(request):
-    context = {}
-    return render(request, 'organizers/waitlistdisplay.html',context)
 # This is a view that shows people that are not checked in to the event
 def manual_checkin(request):
 
@@ -157,18 +157,52 @@ def settings(request):
     head_org = request.user.groups.filter(name='head-organizer').exists()
     if request.method == 'POST':
         value = request.POST.get('toggle-waitlist-control')
-        if value == 'on':
-            current_setting.waiting_list_status = True
+        if value == 'on' and current_setting.waiting_list_status == True:
+            message = "Waiting List Status Unaffected"
+        elif value == None and current_setting.waiting_list_status == False:
+            message = "Waiting List Status Unaffected"
         else:
-            current_setting.waiting_list_status = False
-        current_setting.save()
+            if value == 'on':
+                current_setting.waiting_list_status = True
+                message = "Waiting List Activated"
+                current_setting.save()
+            else:
+                current_setting.waiting_list_status = False
+                message = "Waiting List Deactivated" 
+                current_setting.save()
+        messages.info(request, message)
     
     context = {'head_org':head_org, 'current_setting':current_setting}
     return render(request, 'organizers/websitesettings.html', context)
 
 
 def stats_page(request):
-    context = {}
+    hacker_food = HackerInfo.objects.values_list('user__food_preference').annotate(fc=Count('user__food_preference')).order_by('-fc')
+    hacker_major = HackerInfo.objects.values_list('major').annotate(fc=Count('major')).order_by('-fc')[:5]
+    hacker_education = HackerInfo.objects.values_list('education').annotate(fc=Count('education')).order_by('-fc')
+    waitlist_count = WaitingList.objects.all().count()
+    register_count = HackerInfo.objects.all().count()
+    checked_in_count = HackerInfo.objects.filter(user__groups__name='checked-in').count()
+    context = { 'hacker_food':hacker_food,
+                'hacker_major':hacker_major,
+                'hacker_education':hacker_education,
+                'waitlist_count':waitlist_count,
+                'register_count':register_count,
+                'checked_in_count':checked_in_count
+    }
     return render(request, 'organizers/statspage.html', context)
 
 
+def display_waitlist(request):
+    waiting_list = WaitingList.objects.all()
+    waitlist_count = waiting_list.count()
+    waiting_list_emails = waiting_list.values_list('email')
+    registered_hackers_emails = HackerInfo.objects.values_list('user__email')
+    non_registered_count = waiting_list_emails.difference(registered_hackers_emails).count()
+    
+    
+    context = { 'waitlist_count':waitlist_count,
+                'waiting_list':waiting_list, 
+                'non_registered_count':non_registered_count
+    }
+    return render(request, 'organizers/waitlistdisplay.html',context)
