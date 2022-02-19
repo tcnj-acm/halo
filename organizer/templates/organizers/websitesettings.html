@@ -9,23 +9,67 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Waiting List Mode</h5>
-        <form method="POST">  {% csrf_token %}
+        <form method="POST" id="Waitlist-Form">  {% csrf_token %}
           <div class="row justify-content-between">
             <div class="col-8">
               <p class="card-text">Change the deployed site from waiting list mode to a live site. This site visitors to register for the hackathon, see the current sponsors, read FAQ</p>
             </div>
             <div class="col-2">
               <div class="form-check form-switch">
-                  <input name="toggle-waitlist-control" class="form-check-input" style="font-size:1.67em;" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if current_setting.waiting_list_status %} checked {% endif %} >
+                  <input name="toggle-waitlist-control"  id="waiting_list_state" class="form-check-input" style="font-size:1.67em;" type="checkbox" role="switch" {% if current_setting.waiting_list_status %} checked {% endif %}>
               </div>
             </div>
           </div>
           <br>
-          <input type="submit" class="btn btn-primary" value="Confirm Changes">
+          <a class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Confirmation">Confirm</a>
         </form>
+    </div>
+</div>
+<div class="container w-25 mt-2">
+  {% for message in messages %}
+    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="modal fade" id="Confirmation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmationLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h2>Action Confirmation Required</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h3>Please confirm the following Action</h3>
+        <h5>The Current State of the Waitlist is <u>{% if current_setting.waiting_list_status %} ON {% else %} OFF {% endif %}</u></h5>
+        <h6>Your Actions May Change the Flow of the Site Drastically</h6>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-info" name="waitlist-form" tabindex="0" value="Add" id="confirmationButton" form="Waitlist-Form">Confirm!</button>
+      </div>
+    </div>
   </div>
 </div>
 
 {% endif %}
 
+
+
 {% endblock %}
+
+
+
+{% block script %}
+<script>
+  var myModal = document.getElementById('Confirmation')
+  myModal.addEventListener('show.bs.modal', function (event){
+    var state = document.getElementById("waiting_list_state")
+    console.log(state)
+  })
+</script>
+
+{% endblock script %}
+  

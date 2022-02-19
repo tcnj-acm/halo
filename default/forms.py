@@ -67,7 +67,7 @@ class WaitingListCreationForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data['email']
 
-        if CustomUser.objects.filter(email=email).exists():
+        if WaitingList.objects.filter(email=email).exists():
             self.add_error('email',"This Email is already on the waitlist!")
         
         return email
