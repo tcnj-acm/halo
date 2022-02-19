@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/2b86215731.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+        <link href="{% static '/css/waitinglist/coming-sssoon.css' %}" rel="stylesheet" />
+
+        <link rel="shortcut icon" type="image/jpg" href="{% static 'hackathonicon.jpg' %}"/>
+        <!--     Fonts     -->
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet" />
+        <link href="http://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div class="main" style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
+            <div class="cover black" data-color="black"></div>
+
+            <!--    Change the image source '/images/default.jpg' with your favourite image.     -->
+
+            <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
+
+            <div class="container">
+                <h1 class="logo cursive">
+                    HackTCNJ 2022
+                </h1>
+                <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
+
+                <div class="content">
+                    <h4 class="motto">April 9th - 10th, 2022</h4>
+                    <div class="subscribe">
+                        <h5 class="info-text">
+                            Join the Hype List. We'll keep you posted!
+                        </h5>
+                        
+                        <div class="row justify-content-center mt-1">
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-5 align-self-center text-center">
+                                {% for field in waitlist_form %} {% for error in field.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                                    <strong>Request Failed: </strong> {{ error|escape }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                {% endfor %} {% endfor %} {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                                    <strong>{{message}}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-4 align-self-center text-center">
+                                <form class="form" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group mt-1">
+                                        {{ waitlist_form.full_name }}
+                                        <br />
+                                        {{ waitlist_form.email }}
+                                    </div>
+                                    <input type="submit" class="btn btn-danger btn-fill" />
+                                </form>
+                            </div>
+                        </div>
+                        <h5 class="info-text">For Now, Peep The Socials :) </h5>
+                        <div class="row justify-content-center mt-2">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-4 align-self-center text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="https://www.facebook.com/hacktcnj" target="_blank" rel="noopener noreferrer" class="text-white" style="font-size: larger;"><i class="fa fa-facebook"></i></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="https://twitter.com/HackTCNJ" target="_blank" rel="noopener noreferrer" class="text-white" style="font-size: larger;"><i class="fa fa-twitter"></i></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="mailto: contact@hacktcnj.com" target="_blank" rel="noopener noreferrer" class="text-white" style="font-size: larger;"><i class="fa fa-envelope"></i></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="https://www.instagram.com/hacktcnj/" target="_blank" rel="noopener noreferrer" class="text-white" style="font-size: larger;"><i class="fa fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="container">Made with <i class="fa fa-heart heart"></i> by The Architects</div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</html>

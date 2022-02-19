@@ -1,0 +1,12 @@
+{% extends 'organizers/base.html' %}
+{% block content %}
+ 
+<br>
+
+<h1>Edit Organizer {{user.first_name}} {{user.last_name}}</h2>
+
+<form method="POST"> {% csrf_token %}
+    {{form}}
+    <input type="submit" class="btn btn-success" value="Confirm Changes">
+</form>
+{% endblock %}

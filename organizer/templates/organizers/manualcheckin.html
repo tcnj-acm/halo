@@ -2,40 +2,39 @@
 {% block content %}
  
     <br>
-    
     <div class="container w-75 mt-3">
-        <a href="{% url 'registered-hackers' %}" class='btn btn-secondary'>All Hackers</a>
-        <a href="{% url 'checkedin-hackers' %}" class='btn btn-secondary'>Checked-in Hackers</a>
-        
+        <a href="{% url 'display-hackers' %}" class='btn btn-secondary'>All Hackers</a>
         {% if just_registered is not None %}
             <div class="alert alert-info alert-dismissible fade show" role="alert" id="success-alert">
                 <form method="POST">{% csrf_token %}
-                    <input type="hidden" name="email" id="undo-check-in-email-field" value="{{just_registered.hacker.email}}">
-                    <p>Hacker, {{ just_registered.hacker.first_name }} {{ just_registered.hacker.last_name }}, was succeccfully checked in. Undo if this was a mistake     <button class="btn btn-outline-info ml-3"  type="submit" name="undo-check-in-form" value="undo">Undo</button> </p>
-                    
+                    <input type="hidden" name="email" id="undo-check-in-email-field" value="{{just_registered.user.email}}">
+                    <p>Hacker, {{ just_registered.user.first_name }} {{ just_registered.user.last_name }}, was succeccfully checked in. Undo if this was a mistake     <button class="btn btn-outline-info ml-3"  type="submit" name="undo-check-in-form" value="undo">Undo</button> </p>
                 </form>
-                <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button> -->
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endif %}
-            
+    </div>
+    <div class="container" style="width: 90%;">
         <div class="row justify-content-between align-items-center" style="margin-top: 5px; ">
-            <div class="col-3">
-                <h2 class="text-left" >Unchecked-in Hackers</h2>
+            <div class="col-4">
+                <h3 class="text-center" >Unchecked-in Hackers</h3>
             </div>
-            <div class="col-5 d-flex align-self-center justify-content-end" >
-                <form class="form-inline" action="{% url 'all-hackers' %}" method="GET">
-                    <i id="search-icon" class="fas fa-search" ></i>
-                    <input id="user-input" name="q" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Search" aria-label="Search">
-                    <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'all-hackers' %}">Reset Search</a>
+            <div class="col-5 align-self-center justify-content-end" >
+                <form class="row justify-content-end" action="{% url 'display-hackers' %}" method="GET">
+                    <div class="col">
+                        <input id="user-input" name="q" class="form-control form-control-sm ml-3" type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'display-hackers' %}">Reset Search</a>
+                    </div>
                 </form> 
             </div>
         </div>
         <form method="POST" id="check-in-form">{% csrf_token %}
             <input type="hidden" name="email" id="check-in-email-field">
         </form>
-    {% comment %} </div>  {% endcomment %}
+    </div>
+    <div class="container w-75 mt-3">
     <div class="d-flex justify-content-center">
             <table class="table">
                 <thead class="thead-dark">
@@ -45,18 +44,18 @@
                         <th class="d-none" scope="col">Food Preference</th>
                         <th class="d-none" scope="col">Shirt Size</th>
                         <th class="d-none" scope="col">Education</th>
-                        <th scope="col">Checked in</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for h in uncheckedin_hackers %}
                         <tr id="hacker{{ forloop.counter }}">
-                            <td>{{h.hacker.first_name}} {{h.hacker.last_name}}</td>
-                            <td>{{h.hacker.email}}</td>
-                            <td class="d-none" >{{h.food_preference}}</td>
-                            <td class="d-none">{{h.shirt_size}}</td>
+                            <td>{{h.user.first_name}} {{h.user.last_name}}</td>
+                            <td>{{h.user.email}}</td>
+                            <td class="d-none" >{{h.user.food_preference}}</td>
+                            <td class="d-none">{{h.user.shirt_size}}</td>
                             <td class="d-none" >{{h.education}}</td>
-                            <td class=""><a  class="btn btn-outline-info" data-toggle="modal" data-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
+                            <td class=""><a  class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -65,21 +64,20 @@
     </div>
 
     <hr>
-    <div class="modal fade" id="Confirmation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="confirmationLabel" aria-hidden="true">
+    <div class="modal fade" id="Confirmation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmationLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content ">
 				<div class="modal-header text-center">
 					<h2>Check In The Hacker with the Following Credentials</h2>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
+                    <h5>Please confirm the following with participant</h5>
 					<div class="row justify-content-center" >
 						<div class="col col-lg-6 col-md-12" id="confirmSess" >
 							<div class="card h-100">
 								<div class="card-body">
-									<h4 class="card-title"><u>Session Information</u></h4>
+									<h4 class="card-title"><u>Hacker Information</u></h4>
 									<h5>Name - <span class="kcolor" id="HackerName"></span></h5>
 									<h5>Email - <span class="kcolor" id="Email"></span></h5>
 									<h5>Food Preference -	<span class="kcolor" id="Food"></span></h5>
@@ -91,7 +89,7 @@
 					</div>
 				</div>
 				<div class="modal-footer justify-content-center">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-info" name="check-in-form" tabindex="0" value="Add" id="confirmationButton" form="check-in-form">Confirm!</button>
 				</div>
 			</div>
@@ -102,15 +100,11 @@
 {% block script %}
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        // show the alert
-        setTimeout(function() {
-            $(".alert").alert('close');
-        }, 8000);
-    });
-    $('#Confirmation').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var rowId = button.data('confirm')
+    var myModal = document.getElementById('Confirmation')
+
+    myModal.addEventListener('show.bs.modal', function (event){
+        var button = event.relatedTarget
+        var rowId = button.dataset.confirm
         var info = document.getElementById(rowId).childNodes
         var n = info[1].textContent
         var e = info[3].textContent

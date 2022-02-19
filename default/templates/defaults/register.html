@@ -1,11 +1,63 @@
 {% extends 'defaults/base.html' %}
 
-
+{% load static %}
 
 {% block content %}
-<form method ="POST"> {% csrf_token %}
-    {{user.as_p}}
-    {{hacker.as_p}}
-    <input type="submit" value="save">
-</form>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+    <style>
+    input {
+      border-radius: 10px;
+    }
+    </style>
+    
+  </head>
+  <body class="overlay gr-overlay">
+    <div class="centerTextDiv">
+    <h4 class="centerHeaderText" style="margin-top:5%"> Register </h4>
+    <div class="registerFormBorder" style="margin-top:2%; padding:5px;">
+      <form class="centerForm"  style="height: 85%" method ="POST"> {% csrf_token %}
+        {{create_user_form.first_name}}
+        <br>
+        {{create_user_form.last_name}}
+        <br>
+        {{create_user_form.email}}
+        <br>
+        {{create_user_form.password1}}
+        <br>
+        {{create_user_form.password2}}
+        <br>
+        {{create_user_form.address}}
+        <br>
+        {{create_user_form.shirt_size.label_tag}}
+        {{create_user_form.shirt_size}}
+        <br>
+        {{create_user_form.food_preference.label_tag}}
+        {{create_user_form.food_preference}}
+        <br>
+        {{create_hacker_form.education.label_tag}}
+        {{create_hacker_form.education}}
+        <br>
+        {{create_hacker_form.major.label_tag}}
+        {{create_hacker_form.major}}
+        <br>
+        
+
+      <input type="submit" style="width:100%; background-color: #fcef41a4; color: #fff" value="Register">
+      </form>
+    </div>
+  </div>
+  </body>
+{% endblock %}
+
+{% block script %}
+<script>
+  // Note -- This could be done more with more control by getting a singular feild by its id and adding that way. 
+  // In this case, im adding bootstrap stying to all select fields on the page. Could be problematic
+  var form_selects = document.getElementsByTagName('select')
+  for (var field in form_selects){	
+      form_selects[field].className += ' form-control'
+  }
+
+</script>
 {% endblock %}

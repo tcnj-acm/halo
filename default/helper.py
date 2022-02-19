@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
-from hacker.models import hacker
-from organizer.models import organizer
+from hacker.models import HackerInfo
+from organizer.models import OrganizerInfo
 
 
 

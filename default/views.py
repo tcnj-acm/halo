@@ -1,60 +1,84 @@
+from email import message
+import re
 from django.http.response import HttpResponse
+from django.contrib import messages
 from django.shortcuts import redirect, render
-from hacker.forms import HackerCreationForm
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordResetCompleteView
-from hacker.models import hacker
-from organizer.models import organizer
+from hacker.models import HackerInfo
+from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
 from .emailer import *
+from .models import WaitingList
 
 
 def landing(request):
-
     context = {}
     return render(request, 'defaults/landing.html', context)
 
+def waitlist(request):
 
-def register_hacker(request):
+    if request.method == "POST":
+        waitlist_create_form = WaitingListCreationForm(request.POST)
+        if waitlist_create_form.is_valid():
+            waitlist = waitlist_create_form.save()
+            new_email = waitlist_create_form.cleaned_data['email']
+            new_name = waitlist_create_form.cleaned_data['full_name']
+            print("returned from form: {} and {}. types are".format(new_email, new_name))
+            print(type(new_email))
+            print(type(new_name))
+            new_waitlister_added(new_email, new_name)
+            messages.success(request, "Thanks for joining the waiting list! You will recieve an email with more information soon!")
+            return redirect('waitlist')
+    else:
+        waitlist_create_form = WaitingListCreationForm()
+    
+    
+    context = {'waitlist_form':waitlist_create_form}
+    return render(request, 'defaults/coming-soon.html', context)
+
+def registration(request):
     if request.method == 'POST':
-        user = CustomUserCreationForm(request.POST)
-        hacker = HackerCreationForm(request.POST)
+        create_user_form = CustomUserCreationForm(request.POST)
+        create_hacker_form = HackerCreationForm(request.POST)
+        
+        if create_hacker_form.is_valid() and create_user_form.is_valid():
+            pword = create_user_form.cleaned_data['password1']
+            user = create_user_form.save()
 
-        # print("in thingy")
-        if hacker.is_valid() and user.is_valid():
-            pword = user.cleaned_data['password1']
-            user = user.save()
-
-            hacker = hacker.save(commit=False)
-            hacker.hacker = user
+            hacker = create_hacker_form.save(commit=False)
+            hacker.user = user
             hacker.save()
             add_group(user, 'hacker')
 
             user = authenticate(request, username=user.email, password=pword)
             if user is not None:
                 login(request, user)
-                return redirect('hacker-dash')
+                return redirect('hacker-dash') #TODO
         else:
             print('fail')
     else:
-        user = CustomUserCreationForm()
-        hacker = HackerCreationForm()
-    context = {'hacker': hacker, 'user': user}
+        create_user_form = CustomUserCreationForm()
+        create_hacker_form = HackerCreationForm()
+
+
+    context = {'create_hacker_form': create_hacker_form, 'create_user_form': create_user_form}
     return render(request, 'defaults/register.html', context)
 
 
 def login_page(request):
     if request.method == "POST":
         email = request.POST.get('email')
-        pword = request.POST.get('password')
+        passwrd = request.POST.get('password')
 
-        user = authenticate(request, email=email, password=pword)
+        user = authenticate(request, email=email, password=passwrd)
 
         if user is not None:
+            print(user)
             login(request, user)
 
-            return redirect(decide_redirect(user))
+            return redirect(decide_redirect(user)) #TODO
         else:
             HttpResponse("Username or Password Incorrect")
 
@@ -64,4 +88,4 @@ def login_page(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('landing')
+    return redirect('landing') #TODO

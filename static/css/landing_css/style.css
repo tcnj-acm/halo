@@ -1,24 +1,9 @@
 /*=== MEDIA QUERY ===*/
 /*
 * ----------------------------------------------------------------------------------------
-Author       : Themefisher
-Template Name: Promodise
+Author       : HackTCNJ
+Template Name: Humble Abode
 Version      : 1.0
-* ----------------------------------------------------------------------------------------
-*/
-/*
-* ----------------------------------------------------------------------------------------
-* 01.GLOBAL CSS STYLE
-* 02.PRELOADER & BOUNCE CCS STYLE
-* 03.HOMEPAGE CSS STYLE
-    -LOGO CSS
-    -MENU CSS
-* 04.ABOUT CSS STYLE
-* 05.SERVICE CSS STYLE
-* 06.WORK CSS STYLE
-* 07.AVAILABLE CSS STYLE
-* 08.CONTACT CSS STYLE
-* 09.FOOTER CSS STYLE
 * ----------------------------------------------------------------------------------------
 */
 /*
@@ -76,6 +61,10 @@ a {
 
 img {
   max-width: 100%;
+}
+
+input {
+  margin-bottom: 5px;
 }
 
 a:hover {
@@ -184,10 +173,14 @@ h5.subtitle {
   text-transform: uppercase;
   border: 2px solid transparent;
   transition: all .2s;
-  border-radius: 0px;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 1px;
+}
+
+.btn:hover {
+  border-color: #fff;
 }
 
 .btn:focus,
@@ -304,6 +297,135 @@ h5.subtitle {
   background-color: #fff;
 }
 
+.button-box {
+  margin: 0 auto;
+}
+
+.centerForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loginFormBorder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: #1d201f;
+  border-radius: 25px;
+}
+
+.registerFormBorder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 80%;
+  overflow: overlay;
+  background-color: #1d201f;
+  border-radius: 25px;
+  color: #fff;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+}
+
+.registerFormBorder::-webkit-scrollbar {
+  display: none;
+}
+
+
+.passwordResetForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: #1d201f;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+
+.passwordResetSuccessForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: #1d201f;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+
+.passwordResetEntryForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: #1d201f;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+  
+.hackerDashboardBorder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: #c5c5c5;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+}
+
+
+
+.organizerForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: 49%;
+  background-color: #1d201f;
+  border-radius: 25px;
+  color: #fff;
+  padding: 2%;
+  text-align: center;
+}
+
+.centerHeaderText {
+  text-align: center;
+  color: #fff;
+}
+
+.passwordResetSuccessBtn {
+  font: 600 10.5px/1;
+  display:block !important;
+  margin: 0 auto;
+  padding: 15px 45px 15px 45px;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  transition: all .2s;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
 .d-table {
   width: 100%;
 }
@@ -332,12 +454,11 @@ h5.subtitle {
 }
 
 .gr-overlay {
-  background: linear-gradient(135deg, #2f1ce0 0%, #182f4b 30%, #292e2c 100%);
-  opacity: .87;
+  background: linear-gradient(135deg, #fcef41 0%, #292e2c 30%, #383593 100%);
+  opacity: .95;
 }
 
 /* ========================
-
 ==============================*/
 .heading {
   margin-bottom: 40px;
@@ -569,12 +690,6 @@ h5.subtitle {
   position: relative;
 }
 
-.banner-2 {
-  background: url("../images/banner/slider-3.jpg");
-  background-size: cover;
-  position: relative;
-}
-
 .section-heading h2 {
   margin-bottom: 20px;
   font-weight: 400;
@@ -721,10 +836,6 @@ HISTORY MISSION
 /*--------------------------
   SERVICE (FAQ) AREA SECTION
 ----------------------*/
-.page-banner-area.page-service {
-  background: url("../images/bg/bg-2.jpg") no-repeat;
-  background-size: cover;
-}
 
 #service-head {
   padding-bottom: 100px;
@@ -812,11 +923,6 @@ SERVICE PAGE
   margin-top: -15px;
 }
 
-.service-style-two {
-  background: url("../images/bg/bg-2.jpg") no-repeat;
-  background-size: cover;
-  position: relative;
-}
 
 .service-style-two:before {
   position: absolute;
@@ -848,12 +954,6 @@ SERVICE PAGE
 /*--------------------------
  FOOTER
 ----------------------*/
-#footer {
-  padding-bottom: 60px;
-  position: relative;
-  background: url("../images/bg/2.png");
-  border-top: 1px solid #eee;
-}
 
 .footer-widget ul li {
   padding: 5px 0px;
@@ -948,6 +1048,75 @@ SERVICE PAGE
   .navbar-expand-lg.trans-navigation .navbar-nav .nav-link {
     margin-bottom: 10px;
   }
+  .loginFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: #1d201f;
+    border-radius: 25px;
+  }
+  .registerFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 80%;
+    overflow: overlay;
+    zoom: .9;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+  }
+  .passwordResetForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  .passwordResetSuccessForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  .passwordResetEntryForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    zoom: .7;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  .centerForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: 1.5;
+  }
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
@@ -1015,6 +1184,90 @@ SERVICE PAGE
   /*---------------
      NAVIGATION
     ----------------*/
+    .loginFormBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: fit-content;
+      height: fit-content;
+      zoom: .9;
+      background-color: #1d201f;
+      border-radius: 25px;
+    }
+    .registerFormBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      height: 80%;
+      overflow: overlay;
+      zoom: .9;
+      background-color: #1d201f;
+      border-radius: 25px;
+      color: #fff;
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+      scrollbar-width: none;
+    }
+    .passwordResetForm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: fit-content;
+      height: fit-content;
+      background-color: #1d201f;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+    }
+    .passwordResetSuccessForm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: fit-content;
+      height: fit-content;
+      background-color: #1d201f;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+    }
+  
+    .passwordResetEntryForm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: fit-content;
+      height: fit-content;
+      zoom: .7;
+      background-color: #1d201f;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+    }
+
+    .hackerDashboardBorder {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: fit-content;
+      height: fit-content;
+      background-color: #c5c5c5;
+      border-radius: 25px;
+      color: #fff;
+      padding: 2%;
+     } 
+     .centerForm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      zoom: .9;
+     }
   .navbar-toggler {
     background: #fff;
     border-radius: 0px;
@@ -1126,6 +1379,92 @@ SERVICE PAGE
   .navbar-expand-lg.trans-navigation .navbar-nav .nav-link {
     margin-bottom: 10px;
   }
+  .loginFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: #1d201f;
+    border-radius: 25px;
+  }
+  .registerFormBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 80%;
+    overflow: overlay;
+    zoom: .9;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+  }
+  .passwordResetForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    zoom: .9;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  .passwordResetSuccessForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+    
+  .passwordResetEntryForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    zoom: .8;
+    background-color: #1d201f;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }   
+    
+  .hackerDashboardBorder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: #c5c5c5;
+    border-radius: 25px;
+    color: #fff;
+    padding: 2%;
+  }
+  
+  .centerForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: .85;
+  }
+
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
