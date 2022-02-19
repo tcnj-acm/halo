@@ -1,5 +1,11 @@
+import os
+import json
+
+
 from django.contrib.auth.models import User, Group
 from default.models import CustomUser
+from organizer.models import OrganizerInfo, WebsiteSettings, FeaturePermission, OrganizerPermission
+from hacker.models import HackerInfo
 from default.helper import add_group
 
 def create_groups():
