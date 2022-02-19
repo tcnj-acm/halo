@@ -2,7 +2,7 @@
 from django.core.mail import send_mail
 from aslan.settings.base import EMAIL_OUTGOING
 
-TEAM_NAME="HackTCNJ"
+TEAM_NAME="Team HackTCNJ"
 FROM_EMAIL= EMAIL_OUTGOING
 
 def test_mail():
@@ -82,3 +82,6 @@ def new_waitlister_added(email, name):
         Best,
         {}
     '''.format(name, TEAM_NAME)
+
+    send_mail(subject=subject, from_email=from_email,
+              recipient_list=to_email, message=body, fail_silently=False)

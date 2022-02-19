@@ -19,15 +19,17 @@ def landing(request):
 
 def waitlist(request):
 
-
     if request.method == "POST":
         waitlist_create_form = WaitingListCreationForm(request.POST)
         if waitlist_create_form.is_valid():
             waitlist = waitlist_create_form.save()
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
-            new_waitlister_added(new_name, new_name)
-            messages.success(request, "Thank You for joining the wait list, You will recive an email with more information soon!")
+            print("returned from form: {} and {}. types are".format(new_email, new_name))
+            print(type(new_email))
+            print(type(new_name))
+            new_waitlister_added(new_email, new_name)
+            messages.success(request, "Thanks for joining the waiting list! You will recieve an email with more information soon!")
             return redirect('waitlist')
     else:
         waitlist_create_form = WaitingListCreationForm()
