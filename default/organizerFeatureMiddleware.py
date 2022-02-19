@@ -22,15 +22,12 @@ class OrganizerFeatureMiddleware():
         
         path = request.path_info
         url_name = resolve(path).url_name
-        # print("\n\n")
-        # print(url_name)
         permisson = FeaturePermission.objects.filter(url_name=url_name)
+        
         if not permisson.exists():
             return None
-        # print(permisson)
-        # print("\n\n")
-        org = OrganizerInfo.objects.get(user = request.user)
-        if permisson.first().organizer_permission.filter(organizer=org).exists():
+        
+        if permisson.first().organizer_permission.filter(user=request.user).exists():
             pass
         else:
             return redirect('organizer-dash')
