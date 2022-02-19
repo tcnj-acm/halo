@@ -5,7 +5,7 @@ import dj_database_url
 import os 
 
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
-DEBUG = True
+DEBUG = False
 
 
 # DATABASES = {
