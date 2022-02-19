@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from default.models import CustomUser
 from default.helper import add_group
 
 def create_groups():
