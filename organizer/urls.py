@@ -12,6 +12,8 @@ urlpatterns = [
      path('check-in/<str:first_name_hash>/<str:last_name_hash>/<int:pk>',
           views.qr_checkin, name='qr-checkin'),
      path('waitlist', views.display_waitlist, name='waiting-list'),
+     path('waitlist/edit', views.edit_waitlist, name='edit-waiting-list'),
+     path('waitlist/delete/<int:pk>', views.delete_waitlist_participant, name='delete-waiting-list'),
      path('settings/', views.settings, name='website-settings'),
      path('stats/', views.stats_page, name='statistics'),
      path('organizers/edit/<int:pk>', views.organizer_setting, name='edit-organizer')

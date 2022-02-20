@@ -26,7 +26,7 @@
                     <tr>
                         <td><a class="text-decoration-none text-black" href="{% url 'edit-organizer' o.user.id %}">{{o.user.first_name}} {{o.user.last_name}}</a> </td>
                         <td>{{o.user.email}}</td>
-                        <td><a class="btn-caution" href="{% url 'delete-organizer' o.id %}">Delete</a><td>
+                        <td><a class="btn btn-warning" href="{% url 'delete-organizer' o.id %}">Delete</a><td>
                     </tr>
                 {% endfor %}
             </tbody>
