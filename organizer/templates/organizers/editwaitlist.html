@@ -1,0 +1,49 @@
+{% extends 'organizers/base.html' %}
+{% block content %}
+<div class="container w-50 mt-5">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card ">
+                <div class="card-header text-center">
+                  Total Waitlist Count
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{waitlist_count}}</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <div class="card ">
+                <div class="card-header text-center">
+                    Waitlist and Unregistered Count
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{non_registered_count}}</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Remove</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                {% for wl in waiting_list %}
+                <tr>
+                    <td>{{wl.full_name}}</td>
+                    <td>{{wl.email}}</td>
+                    <td><a class="btn btn-warning" href="{% url 'delete-waiting-list' wl.id %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+
+{% endblock %}

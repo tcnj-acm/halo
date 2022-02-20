@@ -105,7 +105,6 @@ def delete_organizer(request, id):
     selected_organizer.delete()
     selected_user.delete()
 
-    context = {}
     return redirect('all-organizers')
 
 
@@ -215,3 +214,23 @@ def display_waitlist(request):
                 'non_registered_count':non_registered_count
     }
     return render(request, 'organizers/waitlistdisplay.html',context)
+
+def edit_waitlist(request):
+    waiting_list = WaitingList.objects.all()
+    waitlist_count = waiting_list.count()
+    waiting_list_emails = waiting_list.values_list('email')
+    registered_hackers_emails = HackerInfo.objects.values_list('user__email')
+    non_registered_count = waiting_list_emails.difference(registered_hackers_emails).count()
+    
+    
+    context = { 'waitlist_count':waitlist_count,
+                'waiting_list':waiting_list, 
+                'non_registered_count':non_registered_count
+    }
+    return render(request, 'organizers/editwaitlist.html',context)
+
+def delete_waitlist_participant(request, pk):
+    participant = WaitingList.objects.get(id = pk)
+    participant.delete()
+
+    return redirect('edit-waiting-list')
