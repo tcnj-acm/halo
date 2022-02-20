@@ -4,9 +4,10 @@ import django_heroku
 import dj_database_url
 import os 
 
+load_dotenv()
+
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = False
-
 
 # DATABASES = {
 #     'default': {
@@ -34,19 +35,35 @@ DATABASES['default'].update(db_from_env)
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.getenv('EM_HOST')
-EMAIL_PORT = os.getenv('EM_PORT')
-EMAIL_HOST_USER = os.getenv('EM_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EM_HOST_PASSWORD')
-EMAIL_USE_TLS=os.getenv('EM_USE_TLS')
+EMAIL_HOST = str(os.getenv('EM_HOST'))
+EMAIL_PORT = 587
+EMAIL_HOST_USER = str(os.getenv('EM_HOST_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EM_HOST_PASSWORD'))
+EMAIL_USE_TLS=True
 
 # AWS S3
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_FILE_OVERWRITE = os.getenv('AWS_S3_FILE_OVERWRITE')
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+MEDIA_URL = '/images/'
+
+STATICFILES_DIRS = [
+    BASE_DIR/'static'
+]
+
+MEDIA_ROOT = BASE_DIR/'static/images'
+
+
+AWS_ACCESS_KEY_ID = str(os.getenv('AWS_ACCESS_KEY_ID'))
+AWS_SECRET_ACCESS_KEY = str(os.getenv('AWS_SECRET_ACCESS_KEY'))
+AWS_STORAGE_BUCKET_NAME = str(os.getenv('AWS_STORAGE_BUCKET_NAME'))
+AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-django_heroku.settings(locals(), test_runner=False)
+# django_heroku.settings(locals(), test_runner=False)

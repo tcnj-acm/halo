@@ -18,7 +18,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com", "hacktcnj.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com", ".hacktcnj.com"]
 
 EMAIL_OUTGOING='contact@hacktcnj.com'
 
@@ -135,18 +135,3 @@ WAITLIST_EXEMPT_URLS = {
     r'reset',
 }
 
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-
-MEDIA_URL = '/images/'
-
-STATICFILES_DIRS = [
-    BASE_DIR/'static'
-]
-
-MEDIA_ROOT = BASE_DIR/'static/images'

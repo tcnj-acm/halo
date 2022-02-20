@@ -5,7 +5,6 @@
     <img src="" alt="Logo" width="80" height="80">
   </a>
 
--dev-
   <h3 align="center">Aslan</h3>
 
   <p align="center">
