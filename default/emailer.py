@@ -1,7 +1,7 @@
 # This file sends emails from the default app
 from django.core.mail import send_mail
 from aslan.settings.base import EMAIL_OUTGOING
-
+import re
 TEAM_NAME="Team HackTCNJ"
 FROM_EMAIL= EMAIL_OUTGOING
 
@@ -51,7 +51,7 @@ def hacker_checkin_success(hacker):
               recipient_list=to_email, message=body, fail_silently=False)
 
 
-def new_organizer_added(organizer):
+def new_organizer_added(link, organizer):
     subject = "{}, you have been added to HackTCNJ as an Organizer".format(
         organizer.first_name)
     from_email=FROM_EMAIL
@@ -63,13 +63,12 @@ def new_organizer_added(organizer):
         Please reset your password {}
    
         -{}
-    '''.format(organizer.first_name, "add link here", TEAM_NAME)
+    '''.format(organizer.first_name, link, TEAM_NAME)
 
 
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
-    print("END OF EMAIL FUNCTION")
 def new_waitlister_added(email, name):
     subject = "Success! You've been added to the HackTCNJ Waiting List!"
     from_email=FROM_EMAIL

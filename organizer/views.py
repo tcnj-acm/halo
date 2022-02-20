@@ -144,7 +144,8 @@ def add_organizer(request):
             new_organizer = OrganizerInfo.objects.create(user=new_user)
             new_organizer.save()
 
-            new_organizer_added(new_user)
+            reset_link = request.get_host() + "/reset-password"
+            new_organizer_added(reset_link, new_user)
 
             return redirect('all-organizers')
     context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form}
