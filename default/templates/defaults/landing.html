@@ -58,7 +58,7 @@
 
 
  <!--MAIN BANNER AREA STARt -->
-<div id = "home" class="banner-area banner-1">
+<div id = "home" class="banner-area banner-1" style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
     <div class="overlay gr-overlay"></div>
     <div class="d-table">
         <div class="d-table-cell">
@@ -73,11 +73,8 @@
                             <!--<a href="#" class="btn btn-white btn-circled">lets start</a>-->                            
                             
                             <div class="button-box" >
-                            <a href="{% url 'registration' %}" class="btn" style="background-color: #fcef41a4; color: #fff">Register Today!</a>
-                            
-                            <a href="{% url 'login' %}" class="btn" style="background-color: #383593ea; color: #fff">Login</a>
-
-                            <a href="{% url 'reset_password' %}" class="btn" style="background-color: rgba(88, 88, 88, 0.863); color: #fff">Forgot Password</a>
+                              <a href="{% url 'login' %}" class="btn" style="background-color: #383593ea; color: #fff">Login</a>  
+                              <a href="{% url 'registration' %}" class="btn" style="background-color: #fcef41a4; color: #fff">Register Today!</a>
                             </div>
                             
                         </div>
