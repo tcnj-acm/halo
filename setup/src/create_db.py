@@ -302,9 +302,9 @@ def create_feature_permissions():
     permissions_list.append(FeaturePermission.objects.create(
         url_name='display-hackers', permission_name='h-hackers'))
     permissions_list.append(
-        FeaturePermission.objects.create(url_name='qr_checkin', permission_name='h-QR Checkin'))
+        FeaturePermission.objects.create(url_name='qr-checkin', permission_name='h-QR Checkin'))
     permissions_list.append(FeaturePermission.objects.create(
-        url_name='manual_checkin', permission_name='h-Checkin'))
+        url_name='manual-checkin', permission_name='h-Checkin'))
     permissions_list.append(FeaturePermission.objects.create(
         url_name='waiting-list', permission_name='w-Waiting List'))
     permissions_list.append(FeaturePermission.objects.create(
@@ -313,6 +313,10 @@ def create_feature_permissions():
         url_name='statistics', permission_name='s-Stats'))
 
 def add_organizers_to_features():
+    user = CustomUser.objects.get(email='admin@aslan.com')
+    head_org = OrganizerPermission.objects.create(user=user)
+    head_org.permission.add(permissions_list[0], permissions_list[1], permissions_list[2], 
+                            permissions_list[3], permissions_list[4], permissions_list[5])
     for i in range(TOTAL_ORGANIZERS):
         user = CustomUser.objects.get(email=email_organizers[i])
  

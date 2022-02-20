@@ -1,12 +1,12 @@
 {% extends 'organizers/base.html' %}
-
+{% load organizer_tags %}
 {% block content %}
-    <div class="row mt-5 text-center justify-content-center">
+    <div class="row mt-5 text-center justify-content-center g-3">
     {% if head_org %}
     
     <!-- second card, should be next to each other tho -->
         <div class="col-lg-6 col-md-12">
-            <div class="card p-5" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
+            <div class="card p-5 h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
                 <a href="{% url 'all-organizers' %}" class="text-decoration-none text-black">
                 <div class="card-body text-center">
                     <h5 class="card-title">Organizers</h5>
@@ -15,19 +15,8 @@
                 </a>
             </div>
         </div>
-        
-        <div class="col-lg-6 col-md-12 ">
-            <a href="{% url 'statistics' %}" class="text-decoration-none text-black">
-                <div class="card p-5" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Stat Sheet</h5>
-                        <p class="card-text">View All Hackathon Data</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-lg-6 col-md-12 mt-5">
-            <div class="card p-5" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
+        <div class="col-lg-6 col-md-12">
+            <div class="card p-5 h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
                 <a href="admin" class="text-decoration-none text-black">
                 <div class="card-body text-center">
                     <h5 class="card-title">Django Admin Panel</h5>
@@ -36,20 +25,26 @@
             </div>
             </a>
         </div>
+        
+        {% endif %}
+    </div>
+    
+    <div class="row mt-5 mb-5 text-center justify-content-center g-3">
+        {% for permission in permissions %}
+        <div class="col-lg-6 col-md-12 ">
+            <a href="{% url permission.0 %}" class="text-decoration-none text-black">
+                <div class="card p-5" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{permission.1}}</h5>
+                        <p class="card-text">{{mapping|get_description:permission.0}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
     </div>
 
-    {% endif %}
-    {% if can_see_stats %}
-    <div class="col-lg-4 col-md-12">
-        <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
-            <div class="card-body text-center">
-                <h5 class="card-title">Stat Sheet</h5>
-                <p class="card-text">All the Hackathon Data</p>
-                <a href="{% url 'statistics' %}" class="btn btn-outline-primary">Stats</a>
-            </div>
-        </div>
-    </div>
-    {% endif %}
+
 </div>
 
 {% endblock %}

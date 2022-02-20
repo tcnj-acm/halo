@@ -30,12 +30,13 @@ class CustomMMCF(forms.ModelMultipleChoiceField):
 class OrganizerPermissionControlForm(forms.ModelForm):
     class Meta:
         model = OrganizerPermission
-        fields = ['user', 'permission']
+        fields = ['permission']
 
     permission = CustomMMCF(
         queryset=FeaturePermission.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
+
 
 
 
