@@ -112,18 +112,27 @@ def delete_organizer(request, id):
 # head organizer can add another organizer to the system
 def add_organizer(request):
     create_organizer_form = OrganizerCreationForm()
+    create_organizer_permission_form = OrganizerPermissionControlForm()
     if request.method == 'POST':
         new_organizer = OrganizerCreationForm(request.POST)
-        if new_organizer.is_valid():
+        organizer_permission = OrganizerPermissionControlForm(request.POST)
+        if new_organizer.is_valid() and organizer_permission.is_valid():
             first_name = new_organizer.cleaned_data['first_name']
             last_name = new_organizer.cleaned_data['last_name']
             email = new_organizer.cleaned_data['email']
             passwrd = 'hacker123!'
-            new_user = CustomUser.objects.create(
-                first_name=first_name, last_name=last_name, email=email)
+            new_user = CustomUser.objects.create(first_name=first_name, last_name=last_name, email=email)
             new_user.set_password(passwrd)
+            
+            
             add_group(new_user, 'organizer')
             new_user.save()
+
+            org_perm_obj = organizer_permission.save(commit=False)
+            org_perm_obj.user = new_user
+            print(request.POST)
+            org_perm_obj.save()
+            organizer_permission.save_m2m()
 
             new_organizer = OrganizerInfo.objects.create(user=new_user)
             new_organizer.save()
@@ -131,20 +140,20 @@ def add_organizer(request):
             new_organizer_added(new_user)
 
             return redirect('all-organizers')
-    context = {'create_organizer_form': create_organizer_form}
+    context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form}
     return render(request, 'organizers/addorganizer.html', context)
 
 def organizer_setting(request, pk):
 
     user = CustomUser.objects.get(id = pk)
     org_perm = OrganizerPermission.objects.get(user = user)
+    form = OrganizerPermissionControlForm(instance=org_perm)
     
     if request.method == 'POST':
         form = OrganizerPermissionControlForm(request.POST, instance=org_perm)
-        form.save()
-        return redirect('all-organizers')
-    else:
-        form = OrganizerPermissionControlForm(instance=org_perm)
+        if form.is_valid():
+            form.save()
+            return redirect('all-organizers')
 
     context={'form':form, 'user':user}
     return render(request, 'organizers/editorganizer.html', context)
