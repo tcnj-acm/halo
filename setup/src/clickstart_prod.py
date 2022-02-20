@@ -15,14 +15,6 @@ def create_groups():
     Group.objects.create(name="checked-in")
 
 
-def add_admin_group():
-    admin_user = CustomUser.objects.get(email='vempata1@tcnj.edu')
-    add_group(admin_user, 'head-organizer')
-
-def add_website_setting():
-    WebsiteSettings.objects.create(waiting_list_status=False)
-
-
 permissions_list = []
 
 
@@ -39,6 +31,18 @@ def create_feature_permissions():
         url_name='edit-waiting-list', permission_name='w-Edit Waiting List'))
     permissions_list.append(FeaturePermission.objects.create(
         url_name='statistics', permission_name='s-Stats'))
+
+def add_admin_group():
+    admin_user = CustomUser.objects.get(email='vempata1@tcnj.edu')
+    add_group(admin_user, 'head-organizer')
+    head_org = OrganizerPermission.objects.create(user=admin_user)
+    head_org.permission.add(permissions_list[0], permissions_list[1], permissions_list[2], 
+                            permissions_list[3], permissions_list[4], permissions_list[5])
+
+def add_website_setting():
+    WebsiteSettings.objects.create(waiting_list_status=False)
+
+
 
 create_groups()
 add_admin_group()
