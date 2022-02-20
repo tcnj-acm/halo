@@ -10,6 +10,8 @@ from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, Websi
 from default.models import CustomUser, WaitingList
 from default.helper import add_group, remove_group
 from django.db.models import Q
+from django.db.models import Value as V
+from django.db.models.functions import Concat  
 from .helper import get_permissions
 from default.emailer import new_organizer_added
 
@@ -215,11 +217,17 @@ def display_waitlist(request):
     registered_hackers_emails = HackerInfo.objects.values_list('user__email')
     non_registered_count = waiting_list_emails.difference(registered_hackers_emails).count()
     
+    waiting_list_values = waiting_list.annotate(status=V('non-reg')).values_list('email', 'full_name','status')
+    registered_hackers_values = HackerInfo.objects.annotate(full_name=Concat('user__first_name',V(' ') ,'user__last_name'), status=V('reg')).values_list('user__email', 'full_name','status')
+    waiting_list_intersect_registered = waiting_list_values.intersection(registered_hackers_values)
+    waiting_list_minus_registered = waiting_list_values.difference(registered_hackers_values)
+
+    all_waiting_list = waiting_list_intersect_registered.union(waiting_list_minus_registered).order_by('email')
     
     context = { 'waitlist_count':waitlist_count,
-                'waiting_list':waiting_list, 
                 'non_registered_count':non_registered_count,
-                'permissions':get_permissions(request.user)
+                'permissions':get_permissions(request.user),
+                'all_waiting_list':all_waiting_list,
     }
     return render(request, 'organizers/waitlistdisplay.html',context)
 

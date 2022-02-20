@@ -32,10 +32,10 @@
               </tr>
             </thead>
             <tbody>
-                {% for wl in waiting_list %}
-                <tr>
-                    <td>{{wl.full_name}}</td>
-                    <td>{{wl.email}}</td>
+                {% for wl in all_waiting_list %}
+                <tr {% if wl.2 == "reg" %} class="table-success" {% else %} class="table-danger" {% endif %} >
+                    <td>{{wl.1}}</td>
+                    <td>{{wl.0}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
