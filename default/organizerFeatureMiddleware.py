@@ -3,7 +3,8 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.urls import reverse, resolve
 from .helper import decide_redirect, decide_type
-from organizer.models import OrganizerInfo, WebsiteSettings, FeaturePermission
+from pprint import pprint
+from organizer.models import OrganizerInfo, WebsiteSettings, FeaturePermission, OrganizerPermission
 
 
 class OrganizerFeatureMiddleware():
@@ -19,7 +20,7 @@ class OrganizerFeatureMiddleware():
         assert hasattr(request, 'user')
         if decide_type(request.user) != 'organizer':
             return None
-        
+
         path = request.path_info
         url_name = resolve(path).url_name
         permisson = FeaturePermission.objects.filter(url_name=url_name)
@@ -31,3 +32,4 @@ class OrganizerFeatureMiddleware():
             pass
         else:
             return redirect('organizer-dash')
+

@@ -10,19 +10,19 @@ from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, Websi
 from default.models import CustomUser, WaitingList
 from default.helper import add_group, remove_group
 from django.db.models import Q
-
+from .helper import get_permissions
 from default.emailer import new_organizer_added
 
 
 # Create your views here.
 
 
-def dash(request):
 
-    can_see_stats = OrganizerPermission.objects.filter(user = request.user, permission=FeaturePermission.objects.get(
-        url_name='statistics')).exists()
+
+def dash(request):
     head_org = request.user.groups.filter(name='head-organizer').exists()
-    context = {'head_org': head_org, 'can_see_stats': can_see_stats}
+
+    context = {'head_org': head_org, 'permissions':get_permissions(request.user)}
     return render(request, 'organizers/dashboard.html', context)
 
 
@@ -45,8 +45,10 @@ def display_hackers(request):
         nonchecked_in_hackers = HackerInfo.objects.exclude(
             user__groups__name='checked-in')
 
-    context = {'checked_in_hackers': checked_in_hackers,
-               'nonchecked_in_hackers': nonchecked_in_hackers}
+    context = { 'checked_in_hackers': checked_in_hackers,
+                'nonchecked_in_hackers': nonchecked_in_hackers,
+                'permissions':get_permissions(request.user)
+               }
     return render(request, 'organizers/hackersdisplay.html', context)
 
 # This is a view that shows people that are not checked in to the event
@@ -69,7 +71,9 @@ def manual_checkin(request):
         user__groups__name='checked-in')
 
     context = {'uncheckedin_hackers': uncheckedin_hackers,
-               'just_registered': just_registered}
+               'just_registered': just_registered,
+                'permissions':get_permissions(request.user)
+               }
     return render(request, 'organizers/manualcheckin.html', context)
 
 
@@ -93,7 +97,9 @@ def display_organizers(request):
 
     all_organizers = OrganizerInfo.objects.all().exclude(
         user__email=request.user.email)
-    context = {'all_organizers': all_organizers}
+    context = {'all_organizers': all_organizers,
+                'permissions':get_permissions(request.user)
+                }
     return render(request, 'organizers/organizersdisplay.html', context)
 
 
@@ -154,7 +160,7 @@ def organizer_setting(request, pk):
             form.save()
             return redirect('all-organizers')
 
-    context={'form':form, 'user':user}
+    context={'form':form, 'user':user,  'permissions':get_permissions(request.user)}
     return render(request, 'organizers/editorganizer.html', context)
 
     
@@ -180,7 +186,7 @@ def settings(request):
                 current_setting.save()
         messages.info(request, message)
     
-    context = {'head_org':head_org, 'current_setting':current_setting}
+    context = {'head_org':head_org, 'current_setting':current_setting, 'permissions':get_permissions(request.user)}
     return render(request, 'organizers/websitesettings.html', context)
 
 
@@ -196,7 +202,8 @@ def stats_page(request):
                 'hacker_education':hacker_education,
                 'waitlist_count':waitlist_count,
                 'register_count':register_count,
-                'checked_in_count':checked_in_count
+                'checked_in_count':checked_in_count,
+                'permissions':get_permissions(request.user)
     }
     return render(request, 'organizers/statspage.html', context)
 
@@ -211,7 +218,8 @@ def display_waitlist(request):
     
     context = { 'waitlist_count':waitlist_count,
                 'waiting_list':waiting_list, 
-                'non_registered_count':non_registered_count
+                'non_registered_count':non_registered_count,
+                'permissions':get_permissions(request.user)
     }
     return render(request, 'organizers/waitlistdisplay.html',context)
 
@@ -225,7 +233,8 @@ def edit_waitlist(request):
     
     context = { 'waitlist_count':waitlist_count,
                 'waiting_list':waiting_list, 
-                'non_registered_count':non_registered_count
+                'non_registered_count':non_registered_count,
+                'permissions':get_permissions(request.user)
     }
     return render(request, 'organizers/editwaitlist.html',context)
 
