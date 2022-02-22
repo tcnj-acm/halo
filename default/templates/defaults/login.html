@@ -19,13 +19,15 @@
 				<form method="POST" action=""> {% csrf_token %}
 					<div class="form-row m-1">
 						<div class="form-group col-12">
-							<input type="text" class="form-control" name="username" placeholder="Username">
+							<input type="text" class="form-control" name="email" placeholder="email">
 						</div>
 					</div>
 					<div class="form-row m-1">
 						<div class="form-group col-12">
 							<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 						</div>
+					</div>
+					<div class="row m-1 justify-content-center">
 						<div class="col-12 m-1">
 							{% for message in messages %}
 								<div class="alert alert-danger alert-dismissible col-md-3 col-lg-12" role="alert">
