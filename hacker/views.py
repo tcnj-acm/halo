@@ -11,6 +11,6 @@ def dash(request):
     first_name_hash = hashlib.sha256(hacker.user.first_name.encode()).hexdigest()
     last_name_hash = hashlib.sha256(hacker.user.last_name.encode()).hexdigest()
 
-    check_in_url = "localhost:8000/check-in/{}/{}/{}".format(first_name_hash,last_name_hash,hacker.user.id)
+    check_in_url = "{}/{}/{}/{}".format(request.get_host(), first_name_hash,last_name_hash,hacker.user.id)
     context = {'check_in_url':check_in_url, 'hacker':hacker}
     return render(request, 'hackers/dashboard.html', context)
