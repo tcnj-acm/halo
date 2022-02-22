@@ -24,15 +24,10 @@
         <div class="main" style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
             <div class="cover black" data-color="black"></div>
 
-            <!--    Change the image source '/images/default.jpg' with your favourite image.     -->
-
-            <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
-
             <div class="container">
                 <h1 class="logo cursive">
                     HackTCNJ 2022
                 </h1>
-                <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
 
                 <div class="content">
                     <h4 class="motto">April 9th - 10th, 2022</h4>
@@ -54,9 +49,7 @@
                                 {% endfor %} {% endfor %} {% for message in messages %}
                                 <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                                     <strong>{{message}}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                                 {% endfor %}
                             </div>
