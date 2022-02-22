@@ -25,9 +25,6 @@ def waitlist(request):
             waitlist = waitlist_create_form.save()
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
-            print("returned from form: {} and {}. types are".format(new_email, new_name))
-            print(type(new_email))
-            print(type(new_name))
             new_waitlister_added(new_email, new_name)
             messages.success(request, "Thanks for joining the waiting list! You will recieve an email with more information soon!")
             return redirect('waitlist')
