@@ -11,7 +11,11 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'email', 'address','shirt_size','food_preference')
+        fields = (  'first_name', 'last_name', 'email', 'address',
+                    'shirt_size','food_preference', 'gender', 
+                    'date_of_birth', 'school_name','level_of_study',
+                    'major', 'resume', 
+        )
 
         widgets = {
             'first_name' : forms.TextInput(attrs = {'placeholder':'First Name'}),
@@ -19,7 +23,13 @@ class CustomUserCreationForm(forms.ModelForm):
             'email' : forms.TextInput(attrs = {'placeholder':'Email Address'}),
             'address' : forms.TextInput(attrs = {'placeholder':'Address'}),
             'shirt_size' : forms.Select(attrs = {}),
-            'food_preference' : forms.Select(attrs = {})
+            'food_preference' : forms.Select(attrs = {}),
+            'gender' : forms.Select(attrs = {}),
+            'school_name' : forms.TextInput(attrs = {'placeholder':'School Name'}),
+            'major' : forms.Select(attrs = {}),
+            # 'Date' : forms.SelectDate(attrs = {}),
+            'level_of_study' : forms.Select(attrs = {}),
+            'resume' : forms.FileInput(attrs = {})
         }
 
     def clean_password2(self):
@@ -40,11 +50,9 @@ class HackerCreationForm(forms.ModelForm):
 
     class Meta:
         model = HackerInfo
-        fields = ('education','major')
+        fields = ()
 
         widgets = {
-            'major' : forms.Select(attrs = {}),
-            'education' : forms.Select(attrs = {}),
         }
 
 class CustomUserChangeForm(forms.ModelForm):

@@ -9,11 +9,10 @@ from .models import HackerInfo
 class CustomHackerChangeForm(CustomUserChangeForm):
     class Meta:
         model = HackerInfo
-        fields = ('education','major')
+        fields = ()
 
         widgets = {
-            'major' : forms.TextInput(attrs = { 'placeholder':'Place Holder'}),
-            'education' : forms.Select(attrs = {}),
+
         }
 
  

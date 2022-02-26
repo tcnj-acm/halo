@@ -195,8 +195,8 @@ def settings(request):
 
 def stats_page(request):
     hacker_food = HackerInfo.objects.values_list('user__food_preference').annotate(fc=Count('user__food_preference')).order_by('-fc')
-    hacker_major = HackerInfo.objects.values_list('major').annotate(fc=Count('major')).order_by('-fc')[:5]
-    hacker_education = HackerInfo.objects.values_list('education').annotate(fc=Count('education')).order_by('-fc')
+    hacker_major = HackerInfo.objects.values_list('user__major').annotate(fc=Count('major')).order_by('-fc')[:5]
+    hacker_education = HackerInfo.objects.values_list('user__level_of_study').annotate(fc=Count('user__level_of_study')).order_by('-fc')
     waitlist_count = WaitingList.objects.all().count()
     register_count = HackerInfo.objects.all().count()
     checked_in_count = HackerInfo.objects.filter(user__groups__name='checked-in').count()

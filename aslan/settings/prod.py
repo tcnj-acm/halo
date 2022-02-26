@@ -51,7 +51,7 @@ EMAIL_USE_TLS=True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/'
 
 STATICFILES_DIRS = [
     BASE_DIR/'static'

@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 import os
 import json
-
+import datetime
 
 from django.contrib.auth.models import User, Group
 from default.models import CustomUser
@@ -243,46 +243,35 @@ def create_super_user():
 
 def create_users():
 
+    bday = datetime.date(2000,10,21)
     for i in range(TOTAL_ORGANIZERS):
         new_user = CustomUser.objects.create(
-            email=email_organizers[i], first_name=first_name_organizers[i], last_name=last_name_organizers[i], address=address_organizers[i])
-        new_user.set_password(os.getenv('ORGANIZER_PASSWORD'))
-        new_user.save()
-
-    for i in range(TOTAL_VOLUNTEERS):
-        new_user = CustomUser.objects.create(
-            email=email_volunteers[i], first_name=first_name_volunteers[
-                i], last_name=last_name_volunteers[i], address=address_volunteers[i]
+            email=email_organizers[i], first_name=first_name_organizers[i], 
+            last_name=last_name_organizers[i], address=address_organizers[i], major="Computer Science", resume="/test_resume.txt", date_of_birth=bday
         )
         new_user.set_password(os.getenv('ORGANIZER_PASSWORD'))
         new_user.save()
+        OrganizerInfo.objects.create(user=new_user)
+        add_group(new_user, 'organizer')
+
+    for i in range(TOTAL_VOLUNTEERS):
+        new_user = CustomUser.objects.create(email=email_volunteers[i], 
+        first_name=first_name_volunteers[i], last_name=last_name_volunteers[i], 
+        address=address_volunteers[i], major="Computer Science", resume="/test_resume.txt", date_of_birth=bday
+        )
+
+        new_user.set_password(os.getenv('ORGANIZER_PASSWORD'))
+        new_user.save()
+        OrganizerInfo.objects.create(user=new_user)
+        add_group(new_user, 'organizer')
+        
     for i in range(TOTAL_HACKERS):
         new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i],
-                                             address=address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i])
+                                            address=address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i], resume="/test_resume.txt", date_of_birth=bday
+                                            )
         new_user.set_password(os.getenv('HACKER_PASSWORD'))
         new_user.save()
-
-
-def create_organizers():
-
-    for i in range(TOTAL_ORGANIZERS):
-        new_user = CustomUser.objects.get(email=email_organizers[i])
-        new_org = OrganizerInfo.objects.create(user=new_user)
-        add_group(new_user, 'organizer')
-
-
-def create_volunteers():
-    for i in range(TOTAL_VOLUNTEERS):
-        new_user = CustomUser.objects.get(email=email_volunteers[i])
-        new_org = OrganizerInfo.objects.create(user=new_user)
-        add_group(new_user, 'organizer')
-
-
-def create_hackers():
-    for i in range(TOTAL_HACKERS):
-        new_user = CustomUser.objects.get(email=email_hackers[i])
-        new_hacker = HackerInfo.objects.create(
-            user=new_user, major=majors[i], education=education_hackers[i])
+        HackerInfo.objects.create(user=new_user)
         add_group(new_user, 'hacker')
 
 
@@ -342,9 +331,6 @@ def add_organizers_to_features():
 create_groups()
 create_super_user()
 create_users()
-create_organizers()
-create_volunteers()
-create_hackers()
 
 # admin startup code
 '''
