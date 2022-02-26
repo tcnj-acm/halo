@@ -1,25 +1,44 @@
-{% extends 'defaults/base.html' %}
+{% extends 'defaults/form_base.html' %}
 
-{% load static %}
+{% block form %}
+    <h1 class="text-center pb-4" style="color: rgba(0,0,0,1);"> Log In</h1>
 
-{% block content %}
-  <head>
-    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
-  </head>
-  <a class="navbar-brand" href="{% url 'landing' %}">
-    <!-- <img src="images/logo.png" alt="" class="img-fluid b-logo"> -->
-    <h4 style = "color: white; margin-top: 10%;">HackTCNJ</h4>
- </a>
-  <body class="overlay gr-overlay">
-    <div class="loginFormBorder" style="zoom:1.5">
-      <form class="centerForm" style="margin-bottom: 2%" method="POST"> {% csrf_token %}
-        <h4 class="centerHeaderText"> Sign in</h4>
-        <input type="text" name="email" placeholder="Email" style="border-radius: 10px">
-        <br>
-        <input type="password" name="password" placeholder="Password" style="border-radius: 10px">
-        <br>
-        <button class="btn" style="width:100%; border-radius: 10px; background-color: #fcef41a4; color: #fff" type="submit">Submit</button>
-      </form>
+    <form method="POST" action=""> {% csrf_token %}
+        <div class="form-row m-1">
+            <div class="form-group col-12">
+                <input type="text" class="form-control" name="email" placeholder="email">
+            </div>
+        </div>
+        <div class="form-row m-1">
+            <div class="form-group col-12">
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+        </div>
+        <div class="row m-1 justify-content-center">
+            <div class="col-12 m-1">
+                {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible col-md-3 col-lg-12" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-row text-center">
+            <div class="form-group col-12">
+                <button class="btn btn-warning" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <a class="btn btn-outline-primary btn-sm text-center" href="{% url 'reset_password' %}">Forgot Password?</a>
+        </div>
     </div>
-  </body>
-{% endblock %}
+    <div class="row justify-content-center mt-2" >
+        <div class="col-auto">
+            <a class="btn btn-outline-warning btn-sm text-center" href="{% url 'registration' %}">New User?</a>
+        </div>
+    </div>
+{% endblock form %}

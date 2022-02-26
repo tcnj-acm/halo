@@ -72,12 +72,11 @@ def login_page(request):
         user = authenticate(request, email=email, password=passwrd)
 
         if user is not None:
-            print(user)
             login(request, user)
 
             return redirect(decide_redirect(user)) #TODO
         else:
-            HttpResponse("Username or Password Incorrect")
+            messages.error(request, "Username or Password Incorrect")
 
     context = {}
     return render(request, 'defaults/login.html', context)
