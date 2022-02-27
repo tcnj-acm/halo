@@ -18,7 +18,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email', max_length=60, unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    address = models.CharField(max_length=200, null=False, blank=False)
+    address = models.CharField(max_length=200, null=False, blank=True)
     food_preference = models.CharField(default="None", max_length=20, blank=False, null=False, choices=food_choices)
     shirt_size = models.CharField(default="Unisex (M)", max_length=20, blank=False, null=False, choices=size_choices)
     gender = models.CharField(default="Prefer not to say", max_length=20, blank=False,null=False, choices=gender_choices)
@@ -26,7 +26,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     school_name = models.CharField(default="",max_length=75, null=False, blank=False)
     level_of_study = models.CharField(default="University (Undergrad)", max_length=60, null=False, blank=False, choices=los_choices)
     major = models.CharField(default="other", max_length=60, blank=False,choices=major_hackers)
-    resume = models.FileField(upload_to="resumes/")
+    resume = models.FileField(upload_to="resumes/", null=True, blank=True)
     
     objects = CustomUserManager()
 
