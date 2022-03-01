@@ -48,7 +48,10 @@ def registration(request):
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():
             pword = create_user_form.cleaned_data['password1']
-            user = create_user_form.save()
+            email = create_user_form.cleaned_data['email'].lower()
+            user = create_user_form.save(commit=False)
+            user.email = email
+            user.save()
 
             hacker = create_hacker_form.save(commit=False)
             hacker.user = user
@@ -72,7 +75,7 @@ def registration(request):
 
 def login_page(request):
     if request.method == "POST":
-        email = request.POST.get('email')
+        email = request.POST.get('email').lower()
         passwrd = request.POST.get('password')
 
         user = authenticate(request, email=email, password=passwrd)
