@@ -1,16 +1,21 @@
 from email import message
+import email
 import re
 from django.http.response import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import PasswordResetCompleteView
+from django.contrib.auth.forms import PasswordResetForm
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
 from hacker.models import HackerInfo
 from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
 from .emailer import *
-from .models import WaitingList
+from .models import WaitingList, CustomUser
 
 
 def landing(request):
@@ -81,6 +86,15 @@ def login_page(request):
     context = {}
     return render(request, 'defaults/login.html', context)
 
+
+def password_reset_request(request):
+    if request.method == "POST":
+        password_reset_form = PasswordResetForm(request.POST)
+        if password_reset_form.is_valid():
+            user_email = password_reset_form.cleaned_data['email']
+            user_obj_valid = CustomUser.objects.filter(email=user_email).exists()
+            if user_obj_valid:
+                user_obj = CustomUser.objects.get(email=user_email)
 
 def logout_user(request):
     logout(request)
