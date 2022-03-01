@@ -1,5 +1,6 @@
 # This file sends emails from the default app
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from aslan.settings.base import EMAIL_OUTGOING
 import re
 TEAM_NAME="Team HackTCNJ"
@@ -16,6 +17,24 @@ def test_mail():
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
+
+def password_reset_instructions(domain, user, uid, token):
+    subject = "HackTCNJ Reset Password Link"
+    from_email=FROM_EMAIL
+    to_email=[user.email]
+    email_variables = {
+        "domain":domain,
+        "uid": uid,  
+        "user": user,
+        "token": token,
+        "team_name":TEAM_NAME,
+    }
+
+
+    body = render_to_string('defaults/resetpassword.txt', email_variables)
+
+    send_mail(subject=subject, from_email=from_email, 
+                recipient_list=to_email, message=body,fail_silently=False)
 
 def password_reset_success(user):
     subject = "You've successfully reset your password!"

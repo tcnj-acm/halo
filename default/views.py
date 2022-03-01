@@ -1,5 +1,6 @@
 from email import message
 import email
+from multiprocessing import context
 import re
 from django.http.response import HttpResponse
 from django.contrib import messages
@@ -57,7 +58,7 @@ def registration(request):
             user = authenticate(request, username=user.email, password=pword)
             if user is not None:
                 login(request, user)
-                return redirect('hacker-dash') #TODO
+                return redirect('hacker-dash') 
         else:
             print('fail')
     else:
@@ -79,7 +80,7 @@ def login_page(request):
         if user is not None:
             login(request, user)
 
-            return redirect(decide_redirect(user)) #TODO
+            return redirect(decide_redirect(user))
         else:
             messages.error(request, "Username or Password Incorrect")
 
@@ -91,11 +92,23 @@ def password_reset_request(request):
     if request.method == "POST":
         password_reset_form = PasswordResetForm(request.POST)
         if password_reset_form.is_valid():
-            user_email = password_reset_form.cleaned_data['email']
+            user_email = password_reset_form.cleaned_data['email'].lower()
             user_obj_valid = CustomUser.objects.filter(email=user_email).exists()
             if user_obj_valid:
                 user_obj = CustomUser.objects.get(email=user_email)
+                uid = urlsafe_base64_encode(force_bytes(user_obj.pk))
+                token = default_token_generator.make_token(user_obj)
+                password_reset_instructions(request.get_host(), user_obj, uid, token)
+                return redirect('password_reset_done')
+            else:
+                messages.error(request, "Email Could Not Be Found")
+    password_reset_form = PasswordResetForm()
+
+    context = {'password_reset_form':password_reset_form}
+    return render(request, 'defaults/password_reset.html', context)
+
+
 
 def logout_user(request):
     logout(request)
-    return redirect('landing') #TODO
+    return redirect('landing') 
