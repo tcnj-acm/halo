@@ -28,8 +28,6 @@ los_choices = [
     ("University (Master's/Doctoral)", "University (Master's/Doctoral)"),
     ("Vocational/Code School", "Vocational/Code School"),
     ("Not currently a student", "Not currently a student"),
-    ("TCNJ Alum", "TCNJ Alum"),
-    ("TCNJ Professor", "TCNJ Professor")
 ]
 
 major_hackers = [
@@ -44,8 +42,11 @@ major_hackers = [
     ('Computer Science', 'Computer Science'),
     ('Construction Management', 'Construction Management'),
     ('Cybersecurity', 'Cybersecurity'),
+    ('Data Science', 'Data Science'),
+    ('Data Engineering', 'Data Engineering'),
     ('Economics', 'Economics'),
     ('Education', 'Education'),
+    ('Electrical Engineering', 'Electrical Engineering'),
     ('Electronics Engineering', 'Electronics Engineering'),
     ('English', 'English'), 
     ('Finance', 'Finance'),
@@ -58,12 +59,18 @@ major_hackers = [
     ('Management', 'Management'),
     ('Management Information Systems', 'Management Information Systems'), 
     ('Marketing', 'Marketing'), 
+    ('Machine Learning', 'Machine Learning'),
+    ('Mathematics', 'Mathematics'),
     ('Mechanical Engineering', 'Mechanical Engineering'), 
+    ('Musical Education', 'Musical Education'),
     ('Nuclear Engineering', 'Nuclear Engineering'),
     ('Nursing', 'Nursing'), 
     ('Petroleum Engineering', 'Petroleum Engineering'), 
+    ('Philosophy', 'Philosophy'),
     ('Physics', 'Physics'), 
     ('Political Science', 'Political Science'), 
     ('Public Administration', 'Public Administration'), 
-    ('Software Engineering', 'Software Engineering')
+    ('Software Engineering', 'Software Engineering'),
+    ('Statistics', 'Statistics'),
+    ('Special Education - iSTEM', 'Special Education - iSTEM'),
 ]

@@ -20,11 +20,11 @@ permissions_list = []
 
 def create_feature_permissions():
     permissions_list.append(FeaturePermission.objects.create(
-        url_name='display-hackers', permission_name='h-hackers'))
+        url_name='display-hackers', permission_name='h-Hackers'))
     permissions_list.append(
-        FeaturePermission.objects.create(url_name='qr_checkin', permission_name='h-QR Checkin'))
+        FeaturePermission.objects.create(url_name='qr-checkin', permission_name='h-QR Checkin'))
     permissions_list.append(FeaturePermission.objects.create(
-        url_name='manual_checkin', permission_name='h-Checkin'))
+        url_name='manual-checkin', permission_name='h-Checkin'))
     permissions_list.append(FeaturePermission.objects.create(
         url_name='waiting-list', permission_name='w-Waiting List'))
     permissions_list.append(FeaturePermission.objects.create(
