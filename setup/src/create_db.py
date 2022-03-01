@@ -300,7 +300,7 @@ permissions_list = []
 
 def create_feature_permissions():
     permissions_list.append(FeaturePermission.objects.create(
-        url_name='display-hackers', permission_name='h-hackers'))
+        url_name='display-hackers', permission_name='h-Hackers'))
     permissions_list.append(
         FeaturePermission.objects.create(url_name='qr-checkin', permission_name='h-QR Checkin'))
     permissions_list.append(FeaturePermission.objects.create(
