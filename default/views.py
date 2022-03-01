@@ -1,16 +1,22 @@
 from email import message
+import email
+from multiprocessing import context
 import re
 from django.http.response import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import PasswordResetCompleteView
+from django.contrib.auth.forms import PasswordResetForm
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
 from hacker.models import HackerInfo
 from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
 from .emailer import *
-from .models import WaitingList
+from .models import WaitingList, CustomUser
 
 
 def landing(request):
@@ -42,7 +48,10 @@ def registration(request):
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():
             pword = create_user_form.cleaned_data['password1']
-            user = create_user_form.save()
+            email = create_user_form.cleaned_data['email'].lower()
+            user = create_user_form.save(commit=False)
+            user.email = email
+            user.save()
 
             hacker = create_hacker_form.save(commit=False)
             hacker.user = user
@@ -52,7 +61,7 @@ def registration(request):
             user = authenticate(request, username=user.email, password=pword)
             if user is not None:
                 login(request, user)
-                return redirect('hacker-dash') #TODO
+                return redirect('hacker-dash') 
         else:
             print('fail')
     else:
@@ -66,7 +75,7 @@ def registration(request):
 
 def login_page(request):
     if request.method == "POST":
-        email = request.POST.get('email')
+        email = request.POST.get('email').lower()
         passwrd = request.POST.get('password')
 
         user = authenticate(request, email=email, password=passwrd)
@@ -74,7 +83,7 @@ def login_page(request):
         if user is not None:
             login(request, user)
 
-            return redirect(decide_redirect(user)) #TODO
+            return redirect(decide_redirect(user))
         else:
             messages.error(request, "Username or Password Incorrect")
 
@@ -82,6 +91,27 @@ def login_page(request):
     return render(request, 'defaults/login.html', context)
 
 
+def password_reset_request(request):
+    if request.method == "POST":
+        password_reset_form = PasswordResetForm(request.POST)
+        if password_reset_form.is_valid():
+            user_email = password_reset_form.cleaned_data['email'].lower()
+            user_obj_valid = CustomUser.objects.filter(email=user_email).exists()
+            if user_obj_valid:
+                user_obj = CustomUser.objects.get(email=user_email)
+                uid = urlsafe_base64_encode(force_bytes(user_obj.pk))
+                token = default_token_generator.make_token(user_obj)
+                password_reset_instructions(request.get_host(), user_obj, uid, token)
+                return redirect('password_reset_done')
+            else:
+                messages.error(request, "Email Could Not Be Found")
+    password_reset_form = PasswordResetForm()
+
+    context = {'password_reset_form':password_reset_form}
+    return render(request, 'defaults/password_reset.html', context)
+
+
+
 def logout_user(request):
     logout(request)
-    return redirect('landing') #TODO
+    return redirect('landing') 
