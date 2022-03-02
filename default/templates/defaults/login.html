@@ -1,7 +1,8 @@
 {% extends 'defaults/form_base.html' %}
+{% load static %}
 
 {% block form %}
-    <h1 class="text-center pb-4" style="color: rgba(0,0,0,1);"> Log In</h1>
+    <h1 class="text-center pb-4 text-white"> Log In</h1>
 
     <form method="POST" action=""> {% csrf_token %}
         <div class="form-row m-1">
