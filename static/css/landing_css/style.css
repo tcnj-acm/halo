@@ -1208,6 +1208,10 @@ HISTORY MISSION
   color: #fff;
 }
 
+.text-white {
+  color: #fff;
+}
+
 #service {
   margin-top: -100px;
   padding-bottom: 70px;
