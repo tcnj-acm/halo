@@ -3,224 +3,401 @@
 <html lang="zxx">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="TCNJ's 24-hour Hackathon">
-    <meta name="keywords" content="hackathon, TCNJ, 24-hour">
-    <meta name="author" content="acm@tcnj.edu">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="TCNJ's 24-hour Hackathon">
+  <meta name="keywords" content="hackathon, TCNJ, 24-hour">
+  <meta name="author" content="contact@hacktcnj.edu">
 
-   <title>HackTCNJ 2022 </title>
-    <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="{% static 'plugins/plugins/bootstrap/css/bootstrap.css' %}">
-    <!-- animate.css -->
-    <link rel="stylesheet" href="{% static 'plugins/plugins/animate-css/animate.css' %}">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/jpg" href="{% static 'hackathonicon.jpg' %}"/>
+  <title>HackTCNJ 2022 </title>
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{% static 'plugins/plugins/bootstrap/css/bootstrap.css' %}">
+  <!-- animate.css -->
+  <link rel="stylesheet" href="{% static 'plugins/plugins/animate-css/animate.css' %}">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/jpg" href="{% static 'hackathonicon.jpg' %}" />
 </head>
 
 
-<body data-spy="scroll" data-target=".fixed-top">
+<body data-spy="scroll" data-target=".fixed-top" class="hide-scroll">
 
-
-
-<nav class="navbar navbar-expand-lg fixed-top trans-navigation">
+  <nav class="navbar navbar-expand-lg fixed-top trans-navigation">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'landing' %}">
-           <!-- <img src="images/logo.png" alt="" class="img-fluid b-logo"> -->
-           <h4 style = "color: white">HackTCNJ</h4>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon">
-                <i class="fa fa-bars"></i>
-            </span>
-          </button>
+      <a class="navbar-brand nav-link smoth-scroll" href="#home">
+        <!-- <img src="images/logo.png" alt="" class="img-fluid b-logo"> -->
+        <h4 style="color: white">HackTCNJ</h4>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <i class="fa fa-bars"></i>
+        </span>
+      </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-            <ul class="navbar-nav ">
-                <li class="nav-item">
-                    <a class="nav-link active smoth-scroll" href="#home">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link smoth-scroll" href="#service">FAQ</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link smoth-scroll" href="#sponsors">Sponsors</a>
-                </li>
-            </ul>
-        </div>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a class="nav-link active smoth-scroll" href="#home">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link smoth-scroll" href="#schedule">Schedule</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link smoth-scroll" href="#prizes">Prizes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link smoth-scroll" href="#service">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link smoth-scroll" href="#sponsors">Sponsors</a>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
-<!--MAIN HEADER AREA END -->
+  </nav>
+  <!--MAIN HEADER AREA END -->
 
 
- <!--MAIN BANNER AREA STARt -->
-<div id = "home" class="banner-area banner-1" style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
+  <!--MAIN BANNER AREA STARt -->
+  <div id="home" class="banner-area banner-1"
+    style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
     <div class="overlay gr-overlay"></div>
     <div class="d-table">
-        <div class="d-table-cell">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
-                        <div class="banner-content content-padding">
-                            <h5 class="subtitle">HackTCNJ 2022</h5>
-                            <h1 class="banner-title">TCNJ's 24-hour hackathon</h1>
-                            <p>The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games! Afterwards, walk away with new experiences and friendships :)</p>
-
-                            <!--<a href="#" class="btn btn-white btn-circled">lets start</a>-->                            
-                            
-                            <div class="button-box" >
-                              <a href="{% url 'login' %}" class="btn" style="background-color: #383593ea; color: #fff">Login</a>  
-                              <a href="{% url 'registration' %}" class="btn" style="background-color: #fcef41a4; color: #fff">Register Today!</a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--MAIN HEADER AREA END -->
-
-<!--  SERVICE PARTNER START  -->
-<section id="service-head" class=" bg-feature">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 m-auto">
-                <div class="section-heading text-white">
-                    <h4 class="section-title">FAQ</h4>
-                    <p>Here are some responses to common questions that we received from past participants!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--  SERVICE PARTNER END  -->
-
-<!--  SERVICE AREA START  -->
-    <section id="service">
+      <div class="d-table-cell">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-icon">
-                            <!--<img src="images/icon/007-digital-marketing-3.png" alt="service-icon" class="img-fluid">-->
-                            <h1 style = "color:white">1</h4>
-                        </div>
-                        <div class="service-inner">
-                            <h4>What is a hackathon?</h4>
-                            <p>A technology-focused event where teams create new projects in 24 hours. You can build anything you want, whether that be a mobile app, a website, or even a robot!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="service-box ">
-                        <div class="service-img-icon">
-                            <!--<img src="images/icon/008-digital-marketing-2.png" alt="service-icon" class="img-fluid">-->
-                            <h1 style = "color:white">2</h4>
-                        </div>
-                        <div class="service-inner">
-                            <h4>Do I need to know how to code?</h4>
-                            <p>Students of all skill levels are encouraged to attend, even if you’ve never programmed before. HackTCNJ is beginner friendly and we will host various workshops throughout the weekend that can help you get started.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-icon">
-                            <!--<img src="images/icon/003-task.png" alt="service-icon" class="img-fluid">-->
-                            <h1 style = "color:white">3</h4>
-                        </div>
-                        <div class="service-inner">
-                            <h4>Who can attend?</h4>
-                            <p>The first step to attend would be to register. Undergraduate students are encouraged to register but we would also love for high schoolers to join us! If you are under 18 and plan to attend, your parent or guardian must sign a waiver (which will be available soon).</p>
-                        </div>
-                    </div>
+          <div class="row">
+            <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
+              <div class="banner-content content-padding">
+                <h5 class="subtitle">HackTCNJ 2022</h5>
+                <h1 class="banner-title">TCNJ's 24-hour hackathon</h1>
+                <p>The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first
+                  hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games!
+                  Afterwards, walk away with new experiences and friendships :)</p>
+
+                <div class="button-box">
+                  <a href="{% url 'registration' %}" class="btn landing-register col-md-6">Register Today!</a>
+                  <a href="{% url 'login' %}" class="btn landing-login col-md-6">Login</a>
                 </div>
 
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-icon">
-                            <!--<img src="images/icon/010-digital-marketing.png" alt="service-icon" class="img-fluid">-->
-                            <h1 style = "color:white">4</h4>
-                        </div>
-                        <div class="service-inner">
-                            <h4>How many people can be on a team?</h4>
-                            <p>Max number of people per team is 4 people.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-icon">
-                            <!--<img src="images/icon/006-analytics.png" alt="service-icon" class="img-fluid">-->
-                            <h1 style = "color:white">5</h4>
-                        </div>
-                        <div class="service-inner">
-                            <h4>Can I come without a team?</h4>
-                            <p>Yes please come even if you cannot form a team prior to the hackathon. We will have Slack communication channel open for people to find team members. We will also have a team formation event Saturday morning when the event begins!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-icon">
-                            <!--<img src="images/icon/004-hiring.png" alt="service-icon" class="img-fluid">-->
-                            <h1 style = "color:white">6</h4>
-                        </div>
-                        <div class="service-inner">
-                            <h4>What do I bring?</h4>
-                            <p>You need a valid ID card for admission. Bring a laptop, charger, and a change of clothes. If you are staying overnight, please bring a sleeping bag and any toiletries you may need. Everything else will be provided!</p>
-                        </div>
-                    </div>
-                </div>
+
+              </div>
             </div>
+          </div>
         </div>
-    </section>
-    <!--  SERVICE AREA END  -->
-
-
-<!--  PARTNER START  -->
-<section id="sponsors">
-<section  class="section-padding ">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                <img src="{% static 'images/images/sponsors/sponsorstickermule.png' %}" alt="partner" class="img-fluid">
-            </div>
-            <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid">
-            </div>
-            <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                 <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
-            </div>
-            <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-                <img src="{% static 'images/images/sponsors/sponsorTRHC.png' %}" alt="partner" class="img-fluid">
-            </div>
-        </div>
+      </div>
     </div>
-</section>
-</section>
-<!--  PARTNER END  -->
+  </div>
+  <!--MAIN HEADER AREA END -->
 
-<!--  COUNTER AREA END  -->
+  <!-- SCHEDULING SECTION -->
+  <section id="schedule" class=" bg-feature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 mb-3 mt-3">
+          <h2 class="text-uppercase text-letter-spacing-xs my-0 text-center mb-3 mt-3 text-white">
+            Schedule
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container py-7" id="schedule">
+    <!-- Days -->
+    <!-- to display which one is active, add show as a class -->
+    <div class="row w-100 d-flex justify-content-center" style="font-size: 20px">
+      <div class="col-md-5 col-sm-12 mb-3 mt-3" id="Saturday, April 9th">
+        <h4 class="mt-0 mb-3 text-dark op-8 font-weight-bold">
+          Saturday, April 9th
+        </h4>
+        <ul class="list-timeline list-timeline-primary">
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">09:00 -
+                10:00</span> - Registration</p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column" data-toggle="collapse"
+            data-target="#day-1-item-2">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"> 10:00 - 12:00 - Person</p>
+            <p class="my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2"> Talk: Subject
+              / <span class="text-primary">Room 19</span> </p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">12:00 -
+                13:00</span> - Lunch Break</p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column" data-toggle="collapse"
+            data-target="#day-1-item-4">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">13:00 -
+                15:00</span> - Person</p>
+            <p class="my-0 collapse flex-fw text-uppercase text-xs text-dark op-8" id="day-1-item-4"> Talk: Subject /
+              <span class="text-primary">Room 31</span> </p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">15:00 -
+                16:00</span> - Coffee Break</p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column" data-toggle="collapse"
+            data-target="#day-1-item-6">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">16:00 -
+                18:00</span> - Person</p>
+            <p class="my-0 collapse flex-fw text-uppercase text-xs text-dark op-8" id="day-1-item-6"> Talk: Subject /
+              <span class="text-primary">Room 31</span> </p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">18:00 -
+                23:00</span> - Grindtime</p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5 col-sm-12 mb-3 mt-3" id="Sunday, April 10th">
+        <h4 class="mt-0 mb-3 text-dark op-8 font-weight-bold">
+          Sunday, April 10th
+        </h4>
+        <ul class="list-timeline list-timeline-primary">
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">09:00 -
+                10:00</span> - Registration</p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column" data-toggle="collapse"
+            data-target="#day-2-item-2">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">10:00 -
+                12:00</span> - Person</p>
+            <p class="my-0 collapse flex-fw text-uppercase text-xs text-dark op-8" id="day-2-item-2"> Talk: Subject /
+              <span class="text-primary">Room 19 </span> </p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">12:00 -
+                13:00</span> - Lunch Break</p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column" data-toggle="collapse"
+            data-target="#day-2-item-4">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">13:00 -
+                15:00</span> - Person</p>
+            <p class="my-0 collapse flex-fw text-uppercase text-xs text-dark op-8" id="day-2-item-4"> Talk: Subject /
+              <span class="text-primary">Room 19</span> </p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">15:00 -
+                16:00</span> - Coffee Break</p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column" data-toggle="collapse"
+            data-target="#day-2-item-6">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">16:00 -
+                18:00</span> - Person</p>
+            <p class="my-0 collapse flex-fw text-uppercase text-xs text-dark op-8" id="day-2-item-6"> Talk: Subject /
+              <span class="text-primary">Room 31</span> </p>
+          </li>
+          <li class="list-timeline-item p-0 pb-3 d-flex flex-wrap flex-column">
+            <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8">18:00 -
+                23:00</span> - Wrap-Up</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-    <!-- Essential Scripts -->
-    
-    <!-- Main jQuery -->
-    <script src="{% static 'plugins/plugins/jquery/jquery.min.js' %}"></script>
-    <!-- Bootstrap 4.3.1 -->
-    <script src="{% static 'plugins/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
-    <!-- Woow animtaion -->
-    <script src="{% static 'plugins/plugins/counterup/wow.min.js' %}"></script>
-     <!-- Counterup -->
-    <script src="{% static 'plugins/plugins/counterup/jquery.counterup.min.js' %}"></script>
-    <!-- Dynamic  Header -->
-    <script src="{% static 'js/landing_js/custom.js' %}" ></script>
+  <!-- PRIZES SECTION -->
+  <section id="prizes" class=" bg-feature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 mb-3 mt-3">
+          <h2 class="text-uppercase text-letter-spacing-xs my-0 text-center mb-3 mt-3 text-white">
+            Prizes!
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container mb-5 mt-5">
+    <div class="pricing card-deck flex-column flex-md-row mb-3">
+      <div class="card card-pricing text-center px-3 mb-4">
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 1</span>
+        <div class="bg-transparent card-header pt-4 border-0">
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
+        </div>
+        <div class="card-body pt-0">
+          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
+        </div>
+      </div>
+      <div class="card card-pricing popular shadow text-center px-3 mb-4">
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 2</span>
+        <div class="bg-transparent card-header pt-4 border-0">
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
+        </div>
+        <div class="card-body pt-0">
+          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
+        </div>
+      </div>
+      <div class="card card-pricing text-center px-3 mb-4">
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 3</span>
+        <div class="bg-transparent card-header pt-4 border-0">
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
+        </div>
+        <div class="card-body pt-0">
+          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
+        </div>
+      </div>
+      <div class="card card-pricing text-center px-3 mb-4">
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 4</span>
+        <div class="bg-transparent card-header pt-4 border-0">
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
+        </div>
+        <div class="card-body pt-0">
+          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  </body>
-  </html>
+
+  <!--  FAQ SECTION  -->
+  <section id="service-head" class=" bg-feature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 m-auto">
+          <div class="section-heading text-white">
+            <h4 class="section-title">FAQ</h4>
+            <p>Here are some responses to common questions that we received from past participants!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="service">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 col-md-6">
+          <div class="service-box">
+            <div class="service-img-icon">
+              <!--<img src="images/icon/007-digital-marketing-3.png" alt="service-icon" class="img-fluid">-->
+              <h1 style="color:white">1</h4>
+            </div>
+            <div class="service-inner">
+              <h4>What is a hackathon?</h4>
+              <p>A technology-focused event where teams create new projects in 24 hours. You can build anything you
+                want, whether that be a mobile app, a website, or even a robot!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-md-6">
+          <div class="service-box ">
+            <div class="service-img-icon">
+              <!--<img src="images/icon/008-digital-marketing-2.png" alt="service-icon" class="img-fluid">-->
+              <h1 style="color:white">2</h4>
+            </div>
+            <div class="service-inner">
+              <h4>Do I need to know how to code?</h4>
+              <p>Students of all skill levels are encouraged to attend, even if you’ve never programmed before. HackTCNJ
+                is beginner friendly and we will host various workshops throughout the weekend that can help you get
+                started.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-md-6">
+          <div class="service-box">
+            <div class="service-img-icon">
+              <!--<img src="images/icon/003-task.png" alt="service-icon" class="img-fluid">-->
+              <h1 style="color:white">3</h4>
+            </div>
+            <div class="service-inner">
+              <h4>Who can attend?</h4>
+              <p>The first step to attend would be to register. Undergraduate students are encouraged to register but we
+                would also love for high schoolers to join us! If you are under 18 and plan to attend, your parent or
+                guardian must sign a waiver (which will be available soon).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6 col-md-6">
+          <div class="service-box">
+            <div class="service-img-icon">
+              <!--<img src="images/icon/010-digital-marketing.png" alt="service-icon" class="img-fluid">-->
+              <h1 style="color:white">4</h4>
+            </div>
+            <div class="service-inner">
+              <h4>How many people can be on a team?</h4>
+              <p>Max number of people per team is 4 people.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-md-6">
+          <div class="service-box">
+            <div class="service-img-icon">
+              <!--<img src="images/icon/006-analytics.png" alt="service-icon" class="img-fluid">-->
+              <h1 style="color:white">5</h4>
+            </div>
+            <div class="service-inner">
+              <h4>Can I come without a team?</h4>
+              <p>Yes please come even if you cannot form a team prior to the hackathon. We will have Slack communication
+                channel open for people to find team members. We will also have a team formation event Saturday morning
+                when the event begins!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-md-6">
+          <div class="service-box">
+            <div class="service-img-icon">
+              <!--<img src="images/icon/004-hiring.png" alt="service-icon" class="img-fluid">-->
+              <h1 style="color:white">6</h4>
+            </div>
+            <div class="service-inner">
+              <h4>What do I bring?</h4>
+              <p>You need a valid ID card for admission. Bring a laptop, charger, and a change of clothes. If you are
+                staying overnight, please bring a sleeping bag and any toiletries you may need. Everything else will be
+                provided!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--  SPONSORS SECTION  -->
+  <section id="sponsors" class=" bg-feature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 mb-3 mt-3">
+          <h1 class="section-heading section-title text-white">Thank you to our lovely sponsors!</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-padding ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
+          <img src="{% static 'images/images/sponsors/sponsorstickermule.png' %}" alt="partner" class="img-fluid">
+        </div>
+        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
+          <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid">
+        </div>
+        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
+          <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
+        </div>
+        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
+          <img src="{% static 'images/images/sponsors/sponsorTRHC.png' %}" alt="partner" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Essential Scripts -->
+
+  <!-- Main jQuery -->
+  <script src="{% static 'plugins/plugins/jquery/jquery.min.js' %}"></script>
+  <!-- Bootstrap 4.3.1 -->
+  <script src="{% static 'plugins/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- Woow animtaion -->
+  <script src="{% static 'plugins/plugins/counterup/wow.min.js' %}"></script>
+  <!-- Counterup -->
+  <script src="{% static 'plugins/plugins/counterup/jquery.counterup.min.js' %}"></script>
+  <!-- Dynamic  Header -->
+  <script src="{% static 'js/landing_js/custom.js' %}"></script>
+
+</body>
+
+</html>
