@@ -9,94 +9,209 @@
 
 {% block form %}
 <form style="height: 85%" method ="POST"> {% csrf_token %}
-  <br>
-  {{create_user_form.first_name.label_tag}}
-  {{create_user_form.first_name}}
-  <br>
+  <div class="form-whole">
 
-  {{create_user_form.last_name.label_tag}}
-  {{create_user_form.last_name}}
-  <br>
 
-  {{create_user_form.email.label_tag}}
-  {{create_user_form.email}}
-
-  <br>
-    
-  <div class="form-group">
-    <input type="text" class="form-control" id="inputAddress" name="address1" placeholder="Address 1">
-  </div>
-  <div class="form-group">
-      <input type="text" class="form-control" id="inputAddress2" name="address2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <input type="text" class="form-control" id="inputCity" name="city" placeholder="City">
-      </div>
-      <div class="form-group col-md-6">
-          <input type="text" class="form-control" id="inputCity" name="state" placeholder="State">
-      </div>
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="inputZip" name="zip" placeholder="Zip Code">
-      </div>
-      <div class="form-group col-md-6">
-          <input type="text" class="form-control" id="inputCountry" name="country" placeholder="Country">
-      </div>
-  </div>
-      
-  <br>
-  {{create_user_form.shirt_size.label_tag}}
-  {{create_user_form.shirt_size}}
-  <br>
-
-  {{create_user_form.food_preference.label_tag}}
-  {{create_user_form.food_preference}}
-  <br>
-
-  {{create_user_form.gender.label_tag}}
-  {{create_user_form.gender}}
-  <br>
-
-  {{create_user_form.school_name.label_tag}}
-  {{create_user_form.school_name}}
-  <br>
-
-  {{create_user_form.major.label_tag}}
-  {{create_user_form.major}}
-  <br>
-
-  {{create_user_form.level_of_study.label_tag}}
-  {{create_user_form.level_of_study}}
-  <br>
-
-  {{create_user_form.resume.label_tag}}
-  {{create_user_form.resume}}
-
-  <br>
-  <div class="row form-group">
-    <label for="date" class="col-md-1 col-form-label">Date</label>
-    <div class="col-md-4 ">
-        <div class="input-group date" id="datepicker">
-              {{create_user_form.date_of_birth}}
-              <span class="input-group-append">
-                <span class="input-group-text bg-white d-block">
-                    <i class="fa fa-calendar"></i>
-                </span>
-              </span>
+    <!-- 1 : General Information -->
+    <div class="form-page d-none">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>General Information</h3>
         </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6 col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.first_name}}
+            <label class="text-muted" for="id_first_name">First Name</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.last_name}}
+            <label class="text-muted" for="id_last_name">Last Name</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 g-3">
+        <div class="col-md-6 col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.email}}
+            <label class="text-muted" for="id_email">Email address</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.gender}}
+            <label class="text-muted" for="id_gender">Gender</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 g-3">
+        <div class="col-md-4 col-sm-12 ">
+          <div class="input-group date" id="datepicker">
+              <div class="row w-100 g-0">
+                <div class="col-9">
+                  <div class="form-floating">
+                    {{create_user_form.date_of_birth}}
+                    <label class="text-muted" for="id_date_of_birth">Birth Date</label>
+                  </div>
+                </div>
+                <div class="col-3 text-center align-self-center ">
+                  <span class="input-group-append ">
+                    <span class="input-group-text d-block">
+                      <i class="fa fa-calendar"></i>
+                    </span>
+                  </span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.shirt_size}}
+            <label class="text-muted" for="id_shirt_size">Shirt Size</label>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.food_preference}}
+            <label class="text-muted" for="id_food_preference">Food Preference</label>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!--  -->
+
+
+    <div class="form-page d-none" >
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Address</h3>
+        </div>
+      </div>
+      <div class="row g-2">
+        <div class="col-md-6 col-sm-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="inputAddress" name="address1" placeholder="Address 1">
+            <label class="text-muted" for="inputAddress">Addres Line 1</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="inputAddress2" name="address2" placeholder="Apartment, studio, or floor">
+            <label class="text-muted" for="inputAddress">Addres Line 2</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 g-2">
+        <div class="col-md-3 col-sm-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="inputCity" name="city" placeholder="City">
+            <label class="text-muted" for="inputCity">City</label>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="inputState" name="state" placeholder="State">
+            <label class="text-muted" for="inputState">State</label>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="inputZip" name="zip" placeholder="Zip Code">
+            <label class="text-muted" for="inputZip">Zip Code</label>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="inputCountry" name="country" placeholder="Country">
+            <label class="text-muted" for="inputCountry">Country</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="form-page d-none">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Study Information</h3>
+        </div>
+      </div>
+      <div class="row mt-3 g-3">
+        <div class="col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.level_of_study}}
+            <label class="text-muted" for="id_level_of_study">Level of Study</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 g-3">
+        <div class="col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.major}}
+            <label class="text-muted" for="id_major">Major/Field of Interest</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 g-3">
+        <div class="col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.school_name}}
+            <label class="text-muted" for="id_school_name">School Name or N/A</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 g-3">
+        <div class="col-sm-12">
+          {{create_user_form.resume}}
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="form-page">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Password</h3>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.password1}}
+            <label class="text-muted" for="id_password1">Password</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-12">
+          <div class="form-floating">
+            {{create_user_form.password2}}
+            <label class="text-muted" for="id_password2">Password Confirmation</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
   </div>
 
-  <br>
-  {{create_user_form.password1.label_tag}}
-  {{create_user_form.password1}}
-  <br>
-  {{create_user_form.password2.label_tag}}
-  {{create_user_form.password2}}
-  <br>
   {{create_hacker_form}}
-
-<input type="submit" style="width:100%; background-color: #fcef41a4; color: #fff" value="Register">
+  <div class="next-button mt-3 text-center">
+      <button class="btn btn-info">Next</button>
+  </div>
+  <div class="final-page d-none">
+    <input type="submit" class="btn btn-primary" value="Register">
+  </div>
 </form>
 
 {% endblock form %}

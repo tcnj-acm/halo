@@ -6,8 +6,8 @@ from .models import CustomUser, WaitingList
 from hacker.models import HackerInfo
 
 class CustomUserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': "Password"}))
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'placeholder': "Password Confirmation"}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     class Meta:
         model = CustomUser
@@ -18,18 +18,17 @@ class CustomUserCreationForm(forms.ModelForm):
         )
 
         widgets = {
-            'first_name' : forms.TextInput(attrs = {'placeholder':'First Name'}),
-            'last_name' : forms.TextInput(attrs = {'placeholder':'Last Name'}),
-            'email' : forms.TextInput(attrs = {'placeholder':'Email Address'}),
-            'address' : forms.TextInput(attrs = {'placeholder':'Address'}),
-            'shirt_size' : forms.Select(attrs = {}),
-            'food_preference' : forms.Select(attrs = {}),
-            'gender' : forms.Select(attrs = {}),
-            'school_name' : forms.TextInput(attrs = {'placeholder':'School Name'}),
-            'major' : forms.Select(attrs = {}),
-            # 'date_of_birth' : forms.SelectDateWidget(attrs = {}),
-            'level_of_study' : forms.Select(attrs = {}),
-            'resume' : forms.FileInput(attrs = {})
+            'first_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'last_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'email' : forms.TextInput(attrs = {'class':'form-control'}),
+            'shirt_size' : forms.Select(attrs = {'class':'form-select'}),
+            'food_preference' : forms.Select(attrs = {'class':'form-select'}),
+            'gender' : forms.Select(attrs = {'class':'form-select'}),
+            'school_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'major' : forms.Select(attrs = {'class':'form-select'}),
+            'date_of_birth' : forms.TextInput(attrs = {'class':'form-control'}),
+            'level_of_study' : forms.Select(attrs = {'class':'form-select'}),
+            'resume' : forms.FileInput(attrs = {'class':'form-control form-control-lg'}),
         }
 
     def clean_password2(self):
