@@ -688,7 +688,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     background-color: rgba(0,0,0,.6);
 }
 .cover.blue{
-    background-color: rgba(5, 31, 60, 0.6);
+    background-color: rgba(5, 31, 60, 0.75);
 }
 .cover.green{
     background-color: rgba(3, 28, 7, 0.6);
