@@ -133,10 +133,6 @@ h5.subtitle {
   margin-bottom: 30px;
 }
 
-.w-18 {
-  width: 18%;
-}
-
 .cmr-20 {
   margin-right: 20% !important;
 }
@@ -151,8 +147,8 @@ h5.subtitle {
   font-size: 1.70em;
 }
 
-.no-outline {
-  outline: none !important;
+.no-outline:focus {
+  outline: 5px auto #fff !important;
 }
 
 .section-padding {
