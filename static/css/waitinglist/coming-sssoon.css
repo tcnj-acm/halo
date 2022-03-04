@@ -907,3 +907,10 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     }
 
 }
+
+@media (min-width: 992px) {
+  .cjustify-center {
+    flex: 0 0 auto !important;
+    width: fit-content !important;
+  }
+}
