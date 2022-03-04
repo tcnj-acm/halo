@@ -133,6 +133,18 @@ h5.subtitle {
   margin-bottom: 30px;
 }
 
+.w-18 {
+  width: 18%;
+}
+
+.cmr-20 {
+  margin-right: 20% !important;
+}
+
+.cmr-10 {
+  margin-right: 10% !important;
+}
+
 .section-padding {
   padding: 90px 0px;
 }
