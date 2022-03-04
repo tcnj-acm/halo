@@ -37,12 +37,27 @@ def waitlist(request):
 
 def registration(request):
     if request.method == 'POST':
+        print(request.POST)
         create_user_form = CustomUserCreationForm(request.POST)
         create_hacker_form = HackerCreationForm(request.POST)
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():
             pword = create_user_form.cleaned_data['password1']
             user = create_user_form.save()
+            address1 = request.POST.get('address1')
+            address2 = request.POST.get('address2')
+            city = request.POST.get('city')
+            state = request.POST.get('state')
+            zip = request.POST.get('zip')
+            country = request.POST.get('country')
+
+            if address2 == "":
+                address = address1 + ", " + city + ", " + state + ", " + zip + ", " + country
+            else:
+                address = address1 + ", " + address2 + ", " + city + ", " + state + ", " + zip + ", " + country
+
+            user.address = address
+            user.save()
 
             hacker = create_hacker_form.save(commit=False)
             hacker.user = user
@@ -52,7 +67,7 @@ def registration(request):
             user = authenticate(request, username=user.email, password=pword)
             if user is not None:
                 login(request, user)
-                return redirect('hacker-dash') #TODO
+                return redirect('hacker-dash')
         else:
             print('fail')
     else:
@@ -66,6 +81,7 @@ def registration(request):
 
 def login_page(request):
     if request.method == "POST":
+        print(request.POST)
         email = request.POST.get('email')
         passwrd = request.POST.get('password')
 

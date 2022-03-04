@@ -11,7 +11,7 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = (  'first_name', 'last_name', 'email', 'address',
+        fields = (  'first_name', 'last_name', 'email',
                     'shirt_size','food_preference', 'gender', 
                     'date_of_birth', 'school_name','level_of_study',
                     'major', 'resume', 
@@ -27,7 +27,7 @@ class CustomUserCreationForm(forms.ModelForm):
             'gender' : forms.Select(attrs = {}),
             'school_name' : forms.TextInput(attrs = {'placeholder':'School Name'}),
             'major' : forms.Select(attrs = {}),
-            # 'Date' : forms.SelectDate(attrs = {}),
+            # 'date_of_birth' : forms.SelectDateWidget(attrs = {}),
             'level_of_study' : forms.Select(attrs = {}),
             'resume' : forms.FileInput(attrs = {})
         }
