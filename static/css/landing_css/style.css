@@ -133,6 +133,24 @@ h5.subtitle {
   margin-bottom: 30px;
 }
 
+.cmr-20 {
+  margin-right: 20% !important;
+}
+
+.cmr-10 {
+  margin-right: 10% !important;
+}
+
+/*  If you want to add outline back, change font-size to 1.5 and remove the !important from no-outline */
+.mobile-menu-icon {
+  color: #fff;
+  font-size: 1.70em;
+}
+
+.no-outline:focus {
+  outline: 5px auto #fff !important;
+}
+
 .section-padding {
   padding: 90px 0px;
 }
@@ -1419,7 +1437,6 @@ SERVICE PAGE
      NAVIGATION
     ----------------*/
   .navbar-toggler {
-    background: #fff;
     border-radius: 0px;
   }
   .navbar-toggler-icon {
@@ -1665,7 +1682,6 @@ SERVICE PAGE
       zoom: .9;
      }
   .navbar-toggler {
-    background: #fff;
     border-radius: 0px;
   }
   .navbar-toggler-icon {
@@ -1761,7 +1777,6 @@ SERVICE PAGE
      NAVIGATION
     ----------------*/
   .navbar-toggler {
-    background: #fff;
     border-radius: 0px;
   }
   .navbar-toggler-icon {

@@ -688,7 +688,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     background-color: rgba(0,0,0,.6);
 }
 .cover.blue{
-    background-color: rgba(5, 31, 60, 0.6);
+    background-color: rgba(5, 31, 60, 0.7);
 }
 .cover.green{
     background-color: rgba(3, 28, 7, 0.6);
@@ -737,7 +737,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     z-index: 3;
 }
 .main .logo.cursive{
-    font-family: 'Pacifico', cursive;
+    font-family: 'Bebas Neue', cursive;
     font-size: 5rem;
     
 }
@@ -906,4 +906,15 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
         margin-bottom: 50px;
     }
 
+}
+
+@media (min-width: 992px) {
+  .cjustify-center {
+    flex: 0 0 auto !important;
+    width: fit-content !important;
+  }
+}
+
+.c-float-left {
+  float: left !important;
 }
