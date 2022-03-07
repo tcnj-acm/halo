@@ -20,11 +20,11 @@ class CustomUserCreationForm(forms.ModelForm):
         widgets = {
             'first_name' : forms.TextInput(attrs = {'class':'form-control'}),
             'last_name' : forms.TextInput(attrs = {'class':'form-control'}),
-            'email' : forms.TextInput(attrs = {'class':'form-control'}),
+            'email' : forms.TextInput(attrs = {'class':'form-control', 'type':'email'}),
             'shirt_size' : forms.Select(attrs = {'class':'form-select'}),
             'food_preference' : forms.Select(attrs = {'class':'form-select'}),
             'gender' : forms.Select(attrs = {'class':'form-select'}),
-            'school_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'school_name' : forms.TextInput(attrs = {'class':'form-control', 'list':'SchoolOptions'}),
             'major' : forms.Select(attrs = {'class':'form-select'}),
             'date_of_birth' : forms.TextInput(attrs = {'class':'form-control'}),
             'level_of_study' : forms.Select(attrs = {'class':'form-select'}),
