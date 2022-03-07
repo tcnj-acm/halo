@@ -18,11 +18,18 @@
         <!--     Fonts     -->
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet" />
         <link href="http://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet" type="text/css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
     </head>
 
     <body>
-        <div class="main" style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
-            <div class="cover black" data-color="black"></div>
+      <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000" href="https://mlh.io/seasons/2022/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2022-season&utm_content=gray" target="_blank">
+        <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2022/mlh-trust-badge-2022-gray.svg" alt="Major League Hacking 2022 Hackathon Season" style="width:100%"></a>
+        <div class="main" style="background-image: url(/static/css/waitinglist/tacofall2.jpg);">
+            <div class="cover blue" data-color="blue"></div>
 
             <div class="container">
                 <h1 class="logo cursive">
@@ -33,7 +40,7 @@
                     <h4 class="motto">April 9th - 10th, 2022</h4>
                     <div class="subscribe">
                         <h5 class="info-text">
-                            Join the Hype List. Become the <a class="text-danger text-decoration-none" target="_blank" rel="noopener noreferrer" href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?utm_campaign=desktop-post-launch-v3&utm_content=hacktcnj-2022-tshirtfundraiser&utm_medium=social&utm_source=c">Hypebeast</a>👀
+                            Join the Hype List. Click here to become the <a class="text-bold text-info" target="_blank" rel="noopener noreferrer" href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?utm_campaign=desktop-post-launch-v3&utm_content=hacktcnj-2022-tshirtfundraiser&utm_medium=social&utm_source=c">Hypebeast</a>👀
                         </h5>
                         
                         <div class="row justify-content-center mt-1">
@@ -47,7 +54,7 @@
                                     {% endfor %} 
                                 {% endfor %} 
                                 {% for message in messages %}
-                                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                                <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
                                     <strong>{{message}}</strong>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
@@ -55,14 +62,14 @@
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-4 align-self-center text-center">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-4 align-self-center text-center cjustify-center">
                                 <form class="form" method="POST">
                                     {% csrf_token %}
                                     <div class="form-group mt-1">
                                         {{ waitlist_form.full_name }}
                                         <br/>
                                         {{ waitlist_form.email }}
-                                        <input type="submit" class="btn btn-danger btn-fill mt-3" />
+                                        <input type="submit" class="btn btn-info btn-fill mt-3" />
                                     </div>
                                 </form>
                             </div>
@@ -90,7 +97,9 @@
                 </div>
             </div>
             <div class="footer">
-                <div class="container">Made with <i class="fa fa-heart heart"></i> by the
+                <div class="container">
+                  <a class="c-float-left" href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank"> MLH Code of Conduct </a>
+                  Made with <i class="fa fa-heart heart text-info"></i> by the
                     <a id="Architects" class="text-decoration-none" type="button" data-bs-container="body"  data-bs-toggle="tooltip" data-bs-trigger="hover focus" data-bs-placement="top" data-bs-html="true" title="<em>Kevin Williams</em> | <em>Abhi Vempati</em>  <em>Sterly Deracy</em> | <em>Jan Tameta</em>">
                         Architects
                     </a>
