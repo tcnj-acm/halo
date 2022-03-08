@@ -82,6 +82,14 @@
 				</div>
 			</div>
 			<div class="row mt-3">
+				<div class="col text-center">
+					<div class="form-floating">
+						<textarea class="form-control" placeholder="Any additional comments i.e. alergies ect." id="floatingTextarea"></textarea>
+						<label for="floatingTextarea">Any additional comments i.e. alergies ect.</label>
+					  </div>
+				</div>
+			</div>
+			<div class="row mt-3">
 				<div class="col text-end">
 					<button class="btn btn-outline-info" type="button" data-next-button>Next &gt;</button>
 				</div>
@@ -2410,14 +2418,14 @@
 		
 		{{create_hacker_form}}
 		
-		<div class="form-page d-none">
+		<div class="form-page d-none" id="formSubmission">
 			<div class="row">
 				<div class="col-12 text-center">
 					<h3>Agreements</h3>
 				</div>
 			</div>
 			<div class="form-check mt-3">
-				<input class="form-check-input" type="checkbox" required value="" id="codeOfConduct">
+				<input class="form-check-input" type="checkbox" onclick="formSubmission()" required value="" id="codeOfConduct">
 				<label class="form-check-label" for="codeOfConduct">
 					<p class="">
 						I have read and agree to the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of Conduct</a>.
@@ -2425,7 +2433,7 @@
 				</label>
 			</div>
 			<div class="form-check mt-3">
-				<input class="form-check-input" type="checkbox"  required  value="" id="termsConditionsPrivacy">
+				<input class="form-check-input" type="checkbox" onclick="formSubmission()"  required  value="" id="termsConditionsPrivacy">
 				<label class="form-check-label" for="termsConditionsPrivacy">
 					<p class="">
 						I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and  MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/blob/master/prize-terms-and-conditions/contest-terms.md"> MLH Contest Terms and Conditions</a> and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.
@@ -2433,9 +2441,15 @@
 				</label>
 			</div>
 			<div class="form-check mt-3">
-				<input class="form-check-input" type="checkbox"  required  value="" id="emails">
+				<input class="form-check-input" type="checkbox" onclick="formSubmission()"  required  value="" id="emails">
 				<label class="form-check-label" for="emails">
 					I authorize MLH to send me pre- and post-event informational emails, which contain free credit and opportunities from their partners.
+				</label>
+			</div>
+			<div class="form-check mt-3 d-none" id="date-check">
+				<input class="form-check-input" type="checkbox" onclick="formSubmission()" value="" id="date">
+				<label class="form-check-label" for="date">
+					I understand that my age (being younger than 18) requires me to bring this form signed by my primary care taker(s)
 				</label>
 			</div>
 			<div class="row mt-3">
@@ -2443,7 +2457,7 @@
 					<button class="btn btn-outline-info" type="button" data-previous-button> &lt; Last</button>
 				</div>
 				<div class="col text-end">
-					<input type="submit" class="btn btn-primary" value="Register">
+					<input type="submit" class="btn btn-primary" id="submissionButton" value="Register" disabled>
 				</div>
 			</div>
 		</div>

@@ -33,6 +33,38 @@ function showCurrentPage(){
 }    
 
 function youngDate(){
-    const date = document.getElementById("id_date_of_birth").value
+    const birthDate = new Date(document.getElementById("id_date_of_birth").value)
+    const today = new Date('4/9/2022')
 
+    var age = today.getFullYear() - birthDate.getFullYear()
+    const month = today.getMonth() - birthDate.getMonth()
+    const day = today.getDate() - birthDate.getDate()
+    if((month < 0 || (month === 0 && day < 0))){
+        age--;
+    }
+    if(age < 18){
+        dateSection = document.getElementById("date-check")
+        dateSection.classList.remove("d-none")
+    }else{
+        dateSection = document.getElementById("date-check")
+        dateSection.classList.add("d-none")
+    }
+}
+
+function formSubmission(){
+    const formSubmission = document.getElementById("formSubmission")
+    var selects = [...formSubmission.querySelectorAll('input')]
+    selects.pop()
+    if(document.getElementById("date-check").classList.contains("d-none")){
+        selects.pop()
+    }
+
+    allValid = selects.every(input => input.checked)
+
+    const submissionButton = document.getElementById("submissionButton")
+    if(allValid){
+        submissionButton.removeAttribute("disabled")
+    }else{
+        submissionButton.setAttribute("disabled", "")
+    }
 }

@@ -26,7 +26,7 @@ class CustomUserCreationForm(forms.ModelForm):
             'gender' : forms.Select(attrs = {'class':'form-select'}),
             'school_name' : forms.TextInput(attrs = {'class':'form-control', 'list':'SchoolOptions'}),
             'major' : forms.Select(attrs = {'class':'form-select'}),
-            'date_of_birth' : forms.TextInput(attrs = {'class':'form-control'}),
+            'date_of_birth' : forms.TextInput(attrs = {'class':'form-control', 'onblur':'youngDate()'}),
             'level_of_study' : forms.Select(attrs = {'class':'form-select'}),
             'resume' : forms.FileInput(attrs = {'class':'form-control form-control-lg'}),
         }
