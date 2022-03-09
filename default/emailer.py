@@ -100,7 +100,7 @@ def new_waitlister_added(email, name):
         This will be our first in-person Hackathon since the pandemic! We're raising money to help support the event, and to help spread our new designs for this year's logo! We are selling unique, limited time merchandise!
         The shirts will be delivered before the hackathon so you can rep a unique, awesome shirt! To join the awesome list, purchase a shirt or sweater from our customink fundraiser here:
 
-        https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?utm_campaign=desktop-post-launch-v3&utm_content=hacktcnj-2022-tshirtfundraiser&utm_medium=social&utm_source=copy-link 
+       https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?utm_campaign=desktop-post-launch-v3&utm_content=hacktcnj-2022-tshirtfundraiser&utm_medium=social&utm_source=c
 
         Best,
         {}

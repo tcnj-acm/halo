@@ -137,7 +137,6 @@ def add_organizer(request):
 
             org_perm_obj = organizer_permission.save(commit=False)
             org_perm_obj.user = new_user
-            print(request.POST)
             org_perm_obj.save()
             organizer_permission.save_m2m()
 

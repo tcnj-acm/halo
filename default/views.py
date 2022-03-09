@@ -32,7 +32,7 @@ def waitlist(request):
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
             new_waitlister_added(new_email, new_name)
-            messages.success(request, "Thanks for joining the waiting list! You will recieve an email with more information soon!")
+            messages.success(request, "Thanks for joining the waiting list, you will receive an email with more information soon! Don't forget to check out the Fundraiser!")
             return redirect('waitlist')
     else:
         waitlist_create_form = WaitingListCreationForm()
