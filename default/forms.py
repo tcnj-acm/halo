@@ -13,8 +13,8 @@ class CustomUserCreationForm(forms.ModelForm):
         model = CustomUser
         fields = (  'first_name', 'last_name', 'email',
                     'shirt_size','food_preference', 'gender', 
-                    'date_of_birth', 'school_name','level_of_study',
-                    'major', 'resume', 
+                    'age', 'school_name','level_of_study',
+                    'major', 'resume','registration_comment' 
         )
 
         widgets = {
@@ -26,9 +26,10 @@ class CustomUserCreationForm(forms.ModelForm):
             'gender' : forms.Select(attrs = {'class':'form-select'}),
             'school_name' : forms.TextInput(attrs = {'class':'form-control', 'list':'SchoolOptions'}),
             'major' : forms.Select(attrs = {'class':'form-select'}),
-            'date_of_birth' : forms.TextInput(attrs = {'class':'form-control', 'onblur':'youngDate()'}),
+            'age' : forms.NumberInput(attrs = {'class':'form-control'}),
             'level_of_study' : forms.Select(attrs = {'class':'form-select'}),
             'resume' : forms.FileInput(attrs = {'class':'form-control form-control-lg'}),
+            'registration_comment' : forms.Textarea(attrs = {'class':'form-control'})
         }
 
     def clean_password2(self):

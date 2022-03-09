@@ -54,8 +54,9 @@
 						<div class="row w-100 g-0">
 							<div class="col-9">
 								<div class="form-floating">
-									{{create_user_form.date_of_birth}}
+									<input type="text" class="form-control" onblur="youngDate()" id="id_date_of_birth"> 
 									<label class="text-muted" for="id_date_of_birth">Birth Date <span class="text-danger text-bold">*</span></label>
+									{{create_user_form.age.as_hidden}}
 								</div>
 							</div>
 							<div class="col-3 text-center align-self-center ">
@@ -84,8 +85,8 @@
 			<div class="row mt-3">
 				<div class="col text-center">
 					<div class="form-floating">
-						<textarea class="form-control" placeholder="Any additional comments i.e. alergies ect." id="floatingTextarea"></textarea>
-						<label for="floatingTextarea">Any additional comments i.e. alergies ect.</label>
+						{{create_user_form.registration_comment}}
+						<label for="id_registration_comment">Any additional comments i.e. alergies ect.</label>
 					  </div>
 				</div>
 			</div>
@@ -2393,7 +2394,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.password1}}
-						<label class="text-muted" for="id_password1">Password</label>
+						<label class="text-muted" for="id_password1">Password <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -2401,7 +2402,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.password2}}
-						<label class="text-muted" for="id_password2">Password Confirmation</label>
+						<label class="text-muted" for="id_password2">Password Confirmation <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>

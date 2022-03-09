@@ -1,5 +1,7 @@
+from atexit import register
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,  PermissionsMixin
+from django.core.validators import MaxValueValidator
 from .managers import CustomUserManager
 from .choices import *
 # Create your models here.
@@ -22,11 +24,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     food_preference = models.CharField(default="None", max_length=20, blank=False, null=False, choices=food_choices)
     shirt_size = models.CharField(default="Unisex (M)", max_length=20, blank=False, null=False, choices=size_choices)
     gender = models.CharField(default="Prefer not to say", max_length=20, blank=False,null=False, choices=gender_choices)
-    date_of_birth = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=False)
+    age = models.PositiveIntegerField(null=True, blank=True, validators=[MaxValueValidator(125)])
     school_name = models.CharField(default="",max_length=75, null=False, blank=False)
     level_of_study = models.CharField(default="University (Undergrad)", max_length=60, null=False, blank=False, choices=los_choices)
     major = models.CharField(default="other", max_length=60, blank=False,choices=major_hackers)
     resume = models.FileField(upload_to="resumes/", null=True, blank=True)
+    registration_comment = models.TextField(null=True, blank=True)
     
     objects = CustomUserManager()
 

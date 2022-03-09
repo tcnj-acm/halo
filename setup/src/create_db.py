@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 import os
 import json
 import datetime
+import random
 
 from django.contrib.auth.models import User, Group
 from default.models import CustomUser
@@ -243,11 +244,10 @@ def create_super_user():
 
 def create_users():
 
-    bday = datetime.date(2000,10,21)
     for i in range(TOTAL_ORGANIZERS):
         new_user = CustomUser.objects.create(
             email=email_organizers[i], first_name=first_name_organizers[i], 
-            last_name=last_name_organizers[i], address=address_organizers[i], major="Computer Science", resume="/test_resume.txt", date_of_birth=bday
+            last_name=last_name_organizers[i], address=address_organizers[i], major="Computer Science", resume="/test_resume.txt", age=random.randint(14,22)
         )
         new_user.set_password(os.getenv('ORGANIZER_PASSWORD'))
         new_user.save()
@@ -257,7 +257,7 @@ def create_users():
     for i in range(TOTAL_VOLUNTEERS):
         new_user = CustomUser.objects.create(email=email_volunteers[i], 
         first_name=first_name_volunteers[i], last_name=last_name_volunteers[i], 
-        address=address_volunteers[i], major="Computer Science", resume="/test_resume.txt", date_of_birth=bday
+        address=address_volunteers[i], major="Computer Science", resume="/test_resume.txt", age=random.randint(14,22)
         )
 
         new_user.set_password(os.getenv('ORGANIZER_PASSWORD'))
@@ -267,7 +267,7 @@ def create_users():
         
     for i in range(TOTAL_HACKERS):
         new_user = CustomUser.objects.create(email=email_hackers[i], first_name=first_name_hackers[i], last_name=last_name_hackers[i],
-                                            address=address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i], resume="/test_resume.txt", date_of_birth=bday
+                                            address=address_hackers[i], food_preference=food_choices_hackers[i], shirt_size=shirt_sizes_hackers[i], resume="/test_resume.txt", age=random.randint(14,22)
                                             )
         new_user.set_password(os.getenv('HACKER_PASSWORD'))
         new_user.save()

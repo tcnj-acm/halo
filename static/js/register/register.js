@@ -49,6 +49,7 @@ function youngDate(){
         dateSection = document.getElementById("date-check")
         dateSection.classList.add("d-none")
     }
+    document.getElementById("id_age").value = age
 }
 
 function formSubmission(){
