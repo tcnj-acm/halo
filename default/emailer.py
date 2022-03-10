@@ -88,7 +88,7 @@ def new_organizer_added(link, organizer):
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
-def new_waitlister_added(email, name):
+def new_waitlister_added(email, name, link):
     subject = "HackTCNJ Waiting List Success! Secure Some Cool Swag!"
     from_email=FROM_EMAIL
     to_email = [email]
@@ -100,11 +100,11 @@ def new_waitlister_added(email, name):
         This will be our first in-person Hackathon since the pandemic! We're raising money to help support the event, and to help spread our new designs for this year's logo! We are selling unique, limited time merchandise!
         The shirts will be delivered before the hackathon so you can rep a unique, awesome shirt! To join the awesome list, purchase a shirt or sweater from our customink fundraiser here:
 
-       https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?utm_campaign=desktop-post-launch-v3&utm_content=hacktcnj-2022-tshirtfundraiser&utm_medium=social&utm_source=c
+        {}
 
         Best,
         {}
-    '''.format(name, TEAM_NAME)
+    '''.format(name, link, TEAM_NAME)
 
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
