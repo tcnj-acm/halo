@@ -127,11 +127,13 @@ LOGIN_EXEMPT_URLS = {
     r'login',
     r'register',
     r'reset',
+    r'fundraiser',
 }
 
 WAITLIST_EXEMPT_URLS = {
     r'coming-soon',
     r'login',
     r'reset',
+    r'fundraiser',
 }
 
