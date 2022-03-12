@@ -1,34 +1,63 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
 const wholeForm = document.querySelector(".form-whole")
 const formPages = [...wholeForm.querySelectorAll(".form-page")]
-let currentPage = formPages.findIndex(page =>{
+let pageInfo = {
+    currentPage: 0,
+    pageValidationStatus: true,
+    individualValidation: new Map([
+        [0, true],
+        [1, false],
+        [2, true],
+        [3, true]
+    ])
+};
+pageInfo.currentPage = formPages.findIndex(page =>{
     return !page.classList.contains("d-none")
 }) 
 
-if(currentPage < 0){
-    currentPage = 0
+if(pageInfo.currentPage < 0){
+    pageInfo.currentPage = 0
     showCurrentPage()
 }
 
 wholeForm.addEventListener("click", event =>{
     let increment
-    let allValid = true
+    pageInfo.pageValidationStatus = true
     if(event.target.matches("[data-next-button]")){
         increment = 1
-        const inputFeilds = [...formPages[currentPage].querySelectorAll("input")]
-        allValid = inputFeilds.every(input => input.reportValidity())
+        const inputFeilds = [...formPages[pageInfo.currentPage].querySelectorAll("input")]
+        pageInfo.pageValidationStatus = inputFeilds.every(input => input.reportValidity())
+        
     }else if (event.target.matches("[data-previous-button]")){
         increment = -1
     } if (increment == null) return
 
-    if(allValid){
-        currentPage += increment
+    if(pageInfo.pageValidationStatus){
+        pageInfo.currentPage += increment
         showCurrentPage()
     }
 })
 
+
 function showCurrentPage(){
     formPages.forEach((page, index) => {
-        page.classList.toggle("d-none", index != currentPage)
+        page.classList.toggle("d-none", index != pageInfo.currentPage)
     })
 }    
 
@@ -60,12 +89,69 @@ function formSubmission(){
         selects.pop()
     }
 
-    allValid = selects.every(input => input.checked)
+    let allChecked = selects.every(input => input.checked)
 
     const submissionButton = document.getElementById("submissionButton")
-    if(allValid){
-        submissionButton.removeAttribute("disabled")
+    if(allChecked){
+        submissionButton.removeAttribute("disabled", "btn-")
     }else{
         submissionButton.setAttribute("disabled", "")
     }
 }
+
+async function emailValidation(){
+    validation = postData("/get/json/email/verification", {"myData":"kevin@acm.edu"})
+    
+    await validation.then(function(result){
+        let x = result
+        pageInfo.individualValidation.set(pageInfo.currentPage, x.valid)
+    })
+    
+}
+
+async function passwordValidation(){
+    validation = postData("/get/json/password/verification", {"p1":"someKindaDrug", "p2":"cantExplain"})
+    await validation.then(function(result){
+        let x = result
+        pageInfo.individualValidation.set(pageInfo.currentPage, x.valid)
+    })
+}
+
+
+
+async function postData(url = '', data = {}) {
+    var x = await fetch(url, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": csrftoken,
+        },
+        body: JSON.stringify({
+           data
+        })
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        return data
+    }).catch(function (err) {
+        console.log(err);
+    })
+    return (x)
+}
+
+
+// function otherValidators(){
+//     switch (pageInfo.currentPage) {
+//         case 0:
+//             break;
+//         case 1:
+//             break;
+//         case 2:
+//             break;
+//         case 3:
+//             break;
+//         case 4:
+//             break;
+//         default:
+//             break;
+//     }
+// }

@@ -20,7 +20,7 @@ class CustomUserCreationForm(forms.ModelForm):
         widgets = {
             'first_name' : forms.TextInput(attrs = {'class':'form-control'}),
             'last_name' : forms.TextInput(attrs = {'class':'form-control'}),
-            'email' : forms.TextInput(attrs = {'class':'form-control', 'type':'email'}),
+            'email' : forms.TextInput(attrs = {'class':'form-control', 'type':'email', 'onblur':'emailValidation()'}),
             'shirt_size' : forms.Select(attrs = {'class':'form-select'}),
             'food_preference' : forms.Select(attrs = {'class':'form-select'}),
             'gender' : forms.Select(attrs = {'class':'form-select'}),

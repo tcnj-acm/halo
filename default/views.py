@@ -1,7 +1,9 @@
 from email import message
 import re
 from django.http.response import HttpResponse
+from django.http import JsonResponse
 from django.contrib import messages
+import json
 from django.shortcuts import redirect, render
 from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -37,7 +39,7 @@ def waitlist(request):
 
 def registration(request):
     if request.method == 'POST':
-        print(request.POST)
+        # print(request.POST)
         create_user_form = CustomUserCreationForm(request.POST)
         create_hacker_form = HackerCreationForm(request.POST)
         
@@ -78,6 +80,32 @@ def registration(request):
     context = {'create_hacker_form': create_hacker_form, 'create_user_form': create_user_form}
     return render(request, 'defaults/register.html', context)
 
+
+def check_email(request):
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        received_json = json.loads(body_unicode)
+        print(received_json.get("myData"))
+        
+        data = {
+            "valid":False
+        }
+        return JsonResponse(data)
+
+    return JsonResponse({"valid":False}, status = 200)
+
+def check_password(request):
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        received_json = json.loads(body_unicode)
+        print(received_json.get("p1"))
+        print(received_json.get("p2"))
+
+        data = {
+            "valid":True
+        }  
+        return JsonResponse(data)
+    return JsonResponse({"valid":False}, status = 200)
 
 def login_page(request):
     if request.method == "POST":
