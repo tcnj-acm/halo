@@ -34,14 +34,23 @@
 					</div>
 				</div>
 			</div>
-			<div class="row mt-3 g-3">
+			<div class="row mt-3 g-3 align-items-end">
+				<!-- <div class="row" id="email-error">
+					<div class="col-12">
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<p>This Email is Already Registered</p>
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					</div>
+				</div> -->
 				<div class="col-md-6 col-sm-12">
+					<label class="text-danger d-none" id="email_error_label">This Email is Already Registered</label>
 					<div class="form-floating">
 						{{create_user_form.email}}
 						<label class="text-muted" for="id_email">Email address <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-12">
+				<div class="col-md-6 col-sm-12 h-100">
 					<div class="form-floating">
 						{{create_user_form.gender}}
 						<label class="text-muted" for="id_gender">Gender <span class="text-danger text-bold">*</span></label>

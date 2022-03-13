@@ -22,9 +22,15 @@ let pageInfo = {
     pageValidationStatus: true,
     individualValidation: new Map([
         [0, true],
-        [1, false],
+        [1, true],
         [2, true],
         [3, true]
+    ]),
+    errors: new Map([
+        [0, ""],
+        [1, ""],
+        [2, ""],
+        [3, ""]
     ])
 };
 pageInfo.currentPage = formPages.findIndex(page =>{
@@ -100,13 +106,27 @@ function formSubmission(){
 }
 
 async function emailValidation(){
-    validation = postData("/get/json/email/verification", {"myData":"kevin@acm.edu"})
+    emailInput = document.getElementById("id_email")
+    if(!emailInput.reportValidity()){
+        emailInput.focus();
+        return
+    }
+
+    validation = postData("/get/json/email/verification", {"email":emailInput.value})
     
     await validation.then(function(result){
         let x = result
         pageInfo.individualValidation.set(pageInfo.currentPage, x.valid)
+        pageInfo.errors.set(pageInfo.currentPage,x.message)
     })
-    
+    email_error = document.getElementById("email_error_label")
+    if(pageInfo.individualValidation.get(pageInfo.currentPage)){ 
+        email_error.classList.add("d-none")
+        return 
+    }else{
+        email_error.classList.remove("d-none")
+        emailInput.focus();
+    }
 }
 
 async function passwordValidation(){
@@ -119,7 +139,7 @@ async function passwordValidation(){
 
 
 
-async function postData(url = '', data = {}) {
+async function postData(url, data) {
     var x = await fetch(url, {
         method: "POST",
         headers: {

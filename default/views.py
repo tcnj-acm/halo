@@ -12,7 +12,7 @@ from hacker.models import HackerInfo
 from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
 from .emailer import *
-from .models import WaitingList
+from .models import WaitingList, CustomUser
 
 
 def landing(request):
@@ -81,31 +81,6 @@ def registration(request):
     return render(request, 'defaults/register.html', context)
 
 
-def check_email(request):
-    if request.method == "POST":
-        body_unicode = request.body.decode('utf-8')
-        received_json = json.loads(body_unicode)
-        print(received_json.get("myData"))
-        
-        data = {
-            "valid":False
-        }
-        return JsonResponse(data)
-
-    return JsonResponse({"valid":False}, status = 200)
-
-def check_password(request):
-    if request.method == "POST":
-        body_unicode = request.body.decode('utf-8')
-        received_json = json.loads(body_unicode)
-        print(received_json.get("p1"))
-        print(received_json.get("p2"))
-
-        data = {
-            "valid":True
-        }  
-        return JsonResponse(data)
-    return JsonResponse({"valid":False}, status = 200)
 
 def login_page(request):
     if request.method == "POST":
@@ -129,3 +104,41 @@ def login_page(request):
 def logout_user(request):
     logout(request)
     return redirect('landing') #TODO
+
+
+def check_email(request):
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        received_json = json.loads(body_unicode)
+        print(received_json)
+        data = received_json.get("data")
+        print(data)
+        email_value = data.get("email").lower()
+        print(email_value)
+        message = ""
+        validity = True
+        cu = CustomUser.objects.filter(email=email_value)
+        print(cu)
+        if(CustomUser.objects.filter(email=email_value).exists()):
+            message = "This Email is Already Registered"
+            validity = False
+        data = {
+            "valid":validity,
+            "message":message
+        }
+        return JsonResponse(data)
+
+    return JsonResponse({"valid":False}, status = 200)
+
+def check_password(request):
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        received_json = json.loads(body_unicode)
+        print(received_json.get("p1"))
+        print(received_json.get("p2"))
+
+        data = {
+            "valid":True
+        }  
+        return JsonResponse(data)
+    return JsonResponse({"valid":False}, status = 200)
