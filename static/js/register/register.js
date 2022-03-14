@@ -18,29 +18,33 @@ const csrftoken = getCookie('csrftoken');
 const wholeForm = document.querySelector(".form-whole")
 const formPages = [...wholeForm.querySelectorAll(".form-page")]
 let pageInfo = {
-    currentPage: 0,
+    currentPage: -1,
     pageValidationStatus: true,
     individualValidation: new Map([
         [0, true],
         [1, true],
         [2, true],
-        [3, true]
+        [3, true],
+        [4, true]
     ]),
     errors: new Map([
-        [0, ""],
-        [1, ""],
-        [2, ""],
-        [3, ""]
+        [0, []],
+        [1, []],
+        [2, []],
+        [3, []]
     ])
 };
+if(pageInfo.currentPage < 0){
+    pageInfo.currentPage = 0;
+    showCurrentPage();
+}
 pageInfo.currentPage = formPages.findIndex(page =>{
     return !page.classList.contains("d-none")
 }) 
 
-if(pageInfo.currentPage < 0){
-    pageInfo.currentPage = 0
-    showCurrentPage()
-}
+document.addEventListener('DOMContentLoaded',function() {
+    document.querySelector("#id_password2").oninput=checkPassword2;
+},false);
 
 wholeForm.addEventListener("click", event =>{
     let increment
@@ -54,7 +58,7 @@ wholeForm.addEventListener("click", event =>{
         increment = -1
     } if (increment == null) return
 
-    if(pageInfo.pageValidationStatus){
+    if(pageInfo.pageValidationStatus && pageInfo.individualValidation.get(pageInfo.currentPage)){
         pageInfo.currentPage += increment
         showCurrentPage()
     }
@@ -99,18 +103,28 @@ function formSubmission(){
 
     const submissionButton = document.getElementById("submissionButton")
     if(allChecked){
-        submissionButton.removeAttribute("disabled", "btn-")
+        submissionButton.removeAttribute("disabled")
+        submissionButton.classList.remove("btn-secondary")
+        submissionButton.classList.add("btn-primary")
     }else{
         submissionButton.setAttribute("disabled", "")
+        submissionButton.classList.remove("btn-primary")
+        submissionButton.classList.add("btn-secondary")
     }
 }
 
 async function emailValidation(){
     emailInput = document.getElementById("id_email")
+    email = emailInput.value
+    
+    
     if(!emailInput.reportValidity()){
         emailInput.focus();
         return
     }
+    
+
+    
 
     validation = postData("/get/json/email/verification", {"email":emailInput.value})
     
@@ -119,25 +133,76 @@ async function emailValidation(){
         pageInfo.individualValidation.set(pageInfo.currentPage, x.valid)
         pageInfo.errors.set(pageInfo.currentPage,x.message)
     })
-    email_error = document.getElementById("email_error_label")
+    emailError = document.getElementById("email_error_label")
     if(pageInfo.individualValidation.get(pageInfo.currentPage)){ 
-        email_error.classList.add("d-none")
+        emailError.classList.add("d-none")
+        emailInput.classList.remove("is-invalid")
         return 
     }else{
-        email_error.classList.remove("d-none")
+        emailInput.classList.add("is-invalid")
+        emailError.classList.remove("d-none")
         emailInput.focus();
     }
 }
 
 async function passwordValidation(){
-    validation = postData("/get/json/password/verification", {"p1":"someKindaDrug", "p2":"cantExplain"})
+    passwordInput = document.getElementById("id_password1")
+    validation = postData("/get/json/password/verification", {"p1":passwordInput.value})
     await validation.then(function(result){
         let x = result
         pageInfo.individualValidation.set(pageInfo.currentPage, x.valid)
+        pageInfo.errors.set(pageInfo.currentPage, x.errors)
     })
+    passwordErrorContainer = document.getElementById("password-container")
+    passwordErrorList = document.getElementById("password-list")
+    if(pageInfo.individualValidation.get(pageInfo.currentPage)){ 
+        passwordInput.classList.remove("is-invalid")
+        passwordErrorContainer.classList.add("d-none")
+        removeAllChildNodes(passwordErrorList);
+        return
+    }else{
+        passwordInput.focus();
+        removeAllChildNodes(passwordErrorList);
+        pageInfo.errors.get(pageInfo.currentPage).forEach((error) => {
+            let li = document.createElement("li");
+            li.setAttribute('class', 'list-group-item list-group-item-danger')
+            li.innerHTML = error;
+            passwordErrorList.appendChild(li);
+        })
+        passwordErrorContainer.classList.remove("d-none")
+        passwordInput.classList.add("is-invalid")
+        return
+    }
 }
 
+function checkPassword2(event) {
+    password = document.getElementById("id_password1").value
+    passwordCheckErrorContainer = document.getElementById("password2_error_label")
 
+    if(event.target.value != password){
+        event.target.classList.add("is-invalid")
+        passwordCheckErrorContainer.classList.remove("d-none")
+    }else{
+        event.target.classList.remove("is-invalid")
+        passwordCheckErrorContainer.classList.add("d-none")
+    }
+}
+
+function password2Validation(){
+    password = document.getElementById("id_password1").value
+    password2 = document.getElementById("id_password2")
+    if(password2.value != password){
+        pageInfo.individualValidation.set(pageInfo.currentPage, false);
+    }else{
+        pageInfo.individualValidation.set(pageInfo.currentPage, true);
+    }
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
 async function postData(url, data) {
     var x = await fetch(url, {
@@ -157,21 +222,3 @@ async function postData(url, data) {
     })
     return (x)
 }
-
-
-// function otherValidators(){
-//     switch (pageInfo.currentPage) {
-//         case 0:
-//             break;
-//         case 1:
-//             break;
-//         case 2:
-//             break;
-//         case 3:
-//             break;
-//         case 4:
-//             break;
-//         default:
-//             break;
-//     }
-// }

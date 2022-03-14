@@ -6,8 +6,8 @@ from .models import CustomUser, WaitingList
 from hacker.models import HackerInfo
 
 class CustomUserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control', 'onblur':'passwordValidation()'}))
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control',  'onblur':'password2Validation()'}))
 
     class Meta:
         model = CustomUser
@@ -20,7 +20,7 @@ class CustomUserCreationForm(forms.ModelForm):
         widgets = {
             'first_name' : forms.TextInput(attrs = {'class':'form-control'}),
             'last_name' : forms.TextInput(attrs = {'class':'form-control'}),
-            'email' : forms.TextInput(attrs = {'class':'form-control', 'type':'email', 'onblur':'emailValidation()'}),
+            'email' : forms.TextInput(attrs = {'class':'form-control', 'type':'email', 'onblur':'emailValidation()', "pattern":"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$", "title":"username@domain.tld" }),
             'shirt_size' : forms.Select(attrs = {'class':'form-select'}),
             'food_preference' : forms.Select(attrs = {'class':'form-select'}),
             'gender' : forms.Select(attrs = {'class':'form-select'}),
@@ -28,7 +28,7 @@ class CustomUserCreationForm(forms.ModelForm):
             'major' : forms.Select(attrs = {'class':'form-select'}),
             'age' : forms.NumberInput(attrs = {'class':'form-control'}),
             'level_of_study' : forms.Select(attrs = {'class':'form-select'}),
-            'resume' : forms.FileInput(attrs = {'class':'form-control form-control-lg'}),
+            'resume' : forms.FileInput(attrs = {'class':'form-control form-control-lg',"accept":".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"}),
             'registration_comment' : forms.Textarea(attrs = {'class':'form-control'})
         }
 

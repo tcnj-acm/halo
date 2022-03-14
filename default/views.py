@@ -1,5 +1,6 @@
 from email import message
 import re
+from xml.dom import ValidationErr
 from django.http.response import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
@@ -8,6 +9,8 @@ from django.shortcuts import redirect, render
 from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordResetCompleteView
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from hacker.models import HackerInfo
 from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
@@ -110,15 +113,10 @@ def check_email(request):
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         received_json = json.loads(body_unicode)
-        print(received_json)
         data = received_json.get("data")
-        print(data)
         email_value = data.get("email").lower()
-        print(email_value)
         message = ""
         validity = True
-        cu = CustomUser.objects.filter(email=email_value)
-        print(cu)
         if(CustomUser.objects.filter(email=email_value).exists()):
             message = "This Email is Already Registered"
             validity = False
@@ -134,11 +132,23 @@ def check_password(request):
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         received_json = json.loads(body_unicode)
-        print(received_json.get("p1"))
-        print(received_json.get("p2"))
+        data = received_json.get("data")
+        password_value = data.get("p1")
+        print(password_value)
+        try:
+            validate_password(password_value)
+        except ValidationError as e:
+            print(e)
+            data = {
+                "valid":False,
+                "errors":list(e)
+            }
+            return JsonResponse(data)
+
 
         data = {
-            "valid":True
+            "valid":True,
+            "errors":""
         }  
         return JsonResponse(data)
     return JsonResponse({"valid":False}, status = 200)

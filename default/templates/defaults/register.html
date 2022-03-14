@@ -35,14 +35,6 @@
 				</div>
 			</div>
 			<div class="row mt-3 g-3 align-items-end">
-				<!-- <div class="row" id="email-error">
-					<div class="col-12">
-						<div class="alert alert-danger alert-dismissible" role="alert">
-							<p>This Email is Already Registered</p>
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-						</div>
-					</div>
-				</div> -->
 				<div class="col-md-6 col-sm-12">
 					<label class="text-danger d-none" id="email_error_label">This Email is Already Registered</label>
 					<div class="form-floating">
@@ -2377,7 +2369,7 @@
 			</div>
 			<div class="row mt-3 g-3">
 				<div class="col-sm-12">
-					<label class="text-muted" for="id_resume">Resume <span class="text-danger text-bold">*</span></label>
+					<label class="text-muted" for="id_resume">Resume <span class="fw-lighter text-bold">(pdf/docx)</span><span class="text-danger text-bold">*</span></label>
 					{{create_user_form.resume}}
 				</div>
 			</div>
@@ -2407,8 +2399,16 @@
 					</div>
 				</div>
 			</div>
+			<div class="row g-3 d-none" id="password-container">
+				<div class="alert alert-danger alert-dismissible col-12" role="alert">
+						<ul class="list-group list-group-flush" id="password-list">
+						
+						</ul>
+				</div>
+			</div>
 			<div class="row mt-3">
 				<div class="col-sm-12">
+					<label class="text-danger d-none" id="password2_error_label">Passwords Must Match</label>
 					<div class="form-floating">
 						{{create_user_form.password2}}
 						<label class="text-muted" for="id_password2">Password Confirmation <span class="text-danger text-bold">*</span></label>
@@ -2467,7 +2467,7 @@
 					<button class="btn btn-outline-info" type="button" data-previous-button> &lt; Last</button>
 				</div>
 				<div class="col text-end">
-					<input type="submit" class="btn btn-primary" id="submissionButton" value="Register" disabled>
+					<input type="submit" class="btn btn-secondary" id="submissionButton" value="Register" disabled>
 				</div>
 			</div>
 		</div>
@@ -2484,7 +2484,8 @@
 
 <script type="text/javascript">
 	$(function () {
-		$('#datepicker').datepicker();
+		$('#datepicker').datepicker("setDate", new Date("1/1/2003"));
 	});
 </script>
+
 {% endblock %}
