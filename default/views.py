@@ -42,7 +42,7 @@ def waitlist(request):
 
 def registration(request):
     if request.method == 'POST':
-        create_user_form = CustomUserCreationForm(request.POST)
+        create_user_form = CustomUserCreationForm(request.POST, request.FILES)
         create_hacker_form = HackerCreationForm(request.POST)
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():

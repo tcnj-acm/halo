@@ -10,7 +10,7 @@
 {% endblock head %}
 
 {% block form %}
-<form style="height: 85%" method="POST"> {% csrf_token %}
+<form style="height: 85%" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 	<div class="form-whole">
 
 		<!-- 0 : General Information -->
