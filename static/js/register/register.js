@@ -23,7 +23,7 @@ let pageInfo = {
     individualValidation: new Map([
         [0, true],
         [1, true],
-        [2, true],
+        [2, false],
         [3, true],
         [4, true]
     ]),
@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded',function() {
     document.querySelector("#id_password2").oninput=checkPassword2;
 },false);
 
+document.addEventListener('DOMContentLoaded', function(){
+    document.querySelector("#id_resume").onchange=checkResume;
+},false);
+
 wholeForm.addEventListener("click", event =>{
     let increment
     pageInfo.pageValidationStatus = true
@@ -58,9 +62,13 @@ wholeForm.addEventListener("click", event =>{
         increment = -1
     } if (increment == null) return
 
+    generalErrorText = document.getElementById("error-reminder-container");
     if(pageInfo.pageValidationStatus && pageInfo.individualValidation.get(pageInfo.currentPage)){
-        pageInfo.currentPage += increment
-        showCurrentPage()
+        generalErrorText.classList.add("d-none")
+        pageInfo.currentPage += increment;
+        showCurrentPage();
+    }else{
+        generalErrorText.classList.remove("d-none")
     }
 })
 
@@ -122,9 +130,6 @@ async function emailValidation(){
         emailInput.focus();
         return
     }
-    
-
-    
 
     validation = postData("/get/json/email/verification", {"email":emailInput.value})
     
@@ -201,6 +206,31 @@ function password2Validation(){
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
+    }
+}
+
+const fileTypes = [
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/msword",
+    "application/pdf"
+]
+
+function checkResume(event){
+    let file = event.target.files[0]
+    resumeError = document.getElementById("resume_error")
+    
+    if(file === undefined){
+        pageInfo.individualValidation.set(pageInfo.currentPage, false);
+        event.target.classList.add("is-invalid")
+        resumeError.classList.remove("d-none")
+    }else if(fileTypes.includes(file.type)){
+        pageInfo.individualValidation.set(pageInfo.currentPage, true);
+        resumeError.classList.add("d-none")
+        event.target.classList.remove("is-invalid")
+    }else{
+        pageInfo.individualValidation.set(pageInfo.currentPage, false);
+        event.target.classList.add("is-invalid")
+        resumeError.classList.remove("d-none")
     }
 }
 

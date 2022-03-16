@@ -1,7 +1,7 @@
 from atexit import register
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,  PermissionsMixin
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, FileExtensionValidator
 from .managers import CustomUserManager
 from .choices import *
 # Create your models here.
@@ -28,7 +28,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     school_name = models.CharField(default="",max_length=75, null=False, blank=False)
     level_of_study = models.CharField(default="University (Undergrad)", max_length=60, null=False, blank=False, choices=los_choices)
     major = models.CharField(default="other", max_length=60, blank=False,choices=major_hackers)
-    resume = models.FileField(upload_to="resumes/", null=True, blank=True)
+    resume = models.FileField(upload_to="resumes/", null=True, blank=True, validators=[FileExtensionValidator( ['pdf', 'docx', 'doc'] ) ])
     registration_comment = models.TextField(null=True, blank=True)
     
     objects = CustomUserManager()

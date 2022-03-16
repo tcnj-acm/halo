@@ -42,7 +42,6 @@ def waitlist(request):
 
 def registration(request):
     if request.method == 'POST':
-        # print(request.POST)
         create_user_form = CustomUserCreationForm(request.POST)
         create_hacker_form = HackerCreationForm(request.POST)
         
@@ -87,7 +86,6 @@ def registration(request):
 
 def login_page(request):
     if request.method == "POST":
-        print(request.POST)
         email = request.POST.get('email')
         passwrd = request.POST.get('password')
 
@@ -134,11 +132,9 @@ def check_password(request):
         received_json = json.loads(body_unicode)
         data = received_json.get("data")
         password_value = data.get("p1")
-        print(password_value)
         try:
             validate_password(password_value)
         except ValidationError as e:
-            print(e)
             data = {
                 "valid":False,
                 "errors":list(e)

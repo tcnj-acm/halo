@@ -13,7 +13,7 @@
 <form style="height: 85%" method="POST"> {% csrf_token %}
 	<div class="form-whole">
 
-		<!-- 1 : General Information -->
+		<!-- 0 : General Information -->
 		<div class="form-page">
 			<div class="row">
 				<div class="col-12 text-center">
@@ -24,13 +24,13 @@
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.first_name}}
-						<label class="text-muted" for="id_first_name">First Name <span class="text-danger text-bold">*</span> </label>
+						<label class="text-muted" for="id_first_name"> <span class="fw-lighter">First Name</span> <span class="text-danger text-bold">*</span> </label>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.last_name}}
-						<label class="text-muted" for="id_last_name">Last Name <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_last_name"><span class="fw-lighter">Last Name</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -39,13 +39,13 @@
 					<label class="text-danger d-none" id="email_error_label">This Email is Already Registered</label>
 					<div class="form-floating">
 						{{create_user_form.email}}
-						<label class="text-muted" for="id_email">Email address <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_email"><span class="fw-lighter">Email address</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12 h-100">
 					<div class="form-floating">
 						{{create_user_form.gender}}
-						<label class="text-muted" for="id_gender">Gender <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_gender"><span class="fw-lighter">Gender</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 							<div class="col-9">
 								<div class="form-floating">
 									<input type="text" class="form-control" onblur="youngDate()" id="id_date_of_birth"> 
-									<label class="text-muted" for="id_date_of_birth">Birth Date <span class="text-danger text-bold">*</span></label>
+									<label class="text-muted" for="id_date_of_birth"><span class="fw-lighter">Birth Date</span> <span class="text-danger text-bold">*</span></label>
 									{{create_user_form.age.as_hidden}}
 								</div>
 							</div>
@@ -73,13 +73,13 @@
 				<div class="col-md-4 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.shirt_size}}
-						<label class="text-muted" for="id_shirt_size">Shirt Size <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_shirt_size"><span class="fw-lighter">Shirt Size</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.food_preference}}
-						<label class="text-muted" for="id_food_preference">Food Preference <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_food_preference"><span class="fw-lighter">Food Preference</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 				<div class="col text-center">
 					<div class="form-floating">
 						{{create_user_form.registration_comment}}
-						<label for="id_registration_comment">Any additional comments i.e. alergies ect.</label>
+						<label for="id_registration_comment"><span class="fw-lighter">Any additional comments i.e. alergies ect.</span></label>
 					  </div>
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 		</div>
 
 
-		<!-- 2 : Address -->
+		<!-- 1 : Address -->
 		<div class="form-page d-none">
 			<div class="row">
 				<div class="col-12 text-center">
@@ -111,13 +111,13 @@
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputAddress" name="address1" required placeholder="Address 1">
-						<label class="text-muted" for="inputAddress">Addres Line 1 <span class="text-danger">*</span> </label>
+						<label class="text-muted" for="inputAddress"><span class="fw-lighter">Addres Line 1</span> <span class="text-danger">*</span> </label>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputAddress2" name="address2" placeholder="Apartment, studio, or floor">
-						<label class="text-muted" for="inputAddress">Addres Line 2</label>
+						<label class="text-muted" for="inputAddress"><span class="fw-lighter">Addres Line 2</span></label>
 					</div>
 				</div>
 			</div>
@@ -125,25 +125,25 @@
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputCity" name="city" required placeholder="City">
-						<label class="text-muted" for="inputCity">City <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputCity"><span class="fw-lighter">City</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputState" name="state" required placeholder="State">
-						<label class="text-muted" for="inputState">State <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputState"><span class="fw-lighter">State</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputZip" name="zip" required placeholder="Zip Code">
-						<label class="text-muted" for="inputZip">Zip Code <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputZip"><span class="fw-lighter">Zip Code</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputCountry" name="country" required placeholder="Country">
-						<label class="text-muted" for="inputCountry">Country <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputCountry"><span class="fw-lighter">Country</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -169,7 +169,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.level_of_study}}
-						<label class="text-muted" for="id_level_of_study">Level of Study <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_level_of_study"><span class="fw-lighter">Level of Study</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -177,7 +177,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.major}}
-						<label class="text-muted" for="id_major">Major/Field of Interest <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_major"><span class="fw-lighter">Major/Field of Interest</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -185,7 +185,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.school_name}}
-						<label class="text-muted" for="id_school_name">School Name or N/A <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_school_name"><span class="fw-lighter">School Name or N/A</span> <span class="text-danger text-bold">*</span></label>
 						<datalist id="SchoolOptions">
 							<option value="21st Century Cyber Charter School">
 							<option value="Aalto University">
@@ -2368,8 +2368,9 @@
 				</div>
 			</div>
 			<div class="row mt-3 g-3">
+				<label class="text-danger d-none" id="resume_error">Resume Must Be <strong>pdf/docx</strong></label>
 				<div class="col-sm-12">
-					<label class="text-muted" for="id_resume">Resume <span class="fw-lighter text-bold">(pdf/docx)</span><span class="text-danger text-bold">*</span></label>
+					<label class="text-muted" for="id_resume"><span class="fw-lighter">Resume</span> <span class="fw-lighter text-bold">(pdf/docx)</span><span class="text-danger text-bold">*</span></label>
 					{{create_user_form.resume}}
 				</div>
 			</div>
@@ -2384,18 +2385,18 @@
 		</div>
 
 
-		<!-- 2 : Password -->
+		<!-- 3 : Password -->
 		<div class="form-page d-none w-100">
 			<div class="row">
 				<div class="col-12 text-center">
 					<h3>Password</h3>
 				</div>
 			</div>
-			<div class="row g-3">
+			<div class="row g-3 mt-1">
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.password1}}
-						<label class="text-muted" for="id_password1">Password <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_password1"><span class="fw-lighter">Password</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -2411,7 +2412,7 @@
 					<label class="text-danger d-none" id="password2_error_label">Passwords Must Match</label>
 					<div class="form-floating">
 						{{create_user_form.password2}}
-						<label class="text-muted" for="id_password2">Password Confirmation <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_password2"><span class="fw-lighter">Password Confirmation</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -2427,7 +2428,7 @@
 
 		
 		{{create_hacker_form}}
-		
+		<!-- 4 : Agreements -->
 		<div class="form-page d-none" id="formSubmission">
 			<div class="row">
 				<div class="col-12 text-center">
@@ -2469,6 +2470,11 @@
 				<div class="col text-end">
 					<input type="submit" class="btn btn-secondary" id="submissionButton" value="Register" disabled>
 				</div>
+			</div>
+		</div>
+		<div class="row d-none" id="error-reminder-container">
+			<div class="col text-center">
+				<p class="text-danger ">Please Make Sure All * Feilds Are Filled In</p>
 			</div>
 		</div>
 	</div>
