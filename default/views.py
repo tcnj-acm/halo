@@ -79,7 +79,8 @@ def registration(request):
                 login(request, user)
                 return redirect('hacker-dash')
         else:
-            print('fail')
+            # print('fail')
+            pass
     else:
         create_user_form = CustomUserCreationForm()
         create_hacker_form = HackerCreationForm()
