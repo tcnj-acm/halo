@@ -68,6 +68,12 @@ def registration(request):
             hacker.save()
             add_group(user, 'hacker')
 
+            # Email confirmation
+            registration_confirmation(user)
+            
+            if user.age < 18:
+                minor_waiver_form_submission(user)
+
             user = authenticate(request, username=user.email, password=pword)
             if user is not None:
                 login(request, user)
