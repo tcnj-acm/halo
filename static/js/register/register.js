@@ -34,138 +34,138 @@ let pageInfo = {
         [3, []]
     ])
 };
-if(pageInfo.currentPage < 0){
+if (pageInfo.currentPage < 0) {
     pageInfo.currentPage = 0;
     showCurrentPage();
 }
-pageInfo.currentPage = formPages.findIndex(page =>{
+pageInfo.currentPage = formPages.findIndex(page => {
     return !page.classList.contains("d-none")
-}) 
+})
 
-document.addEventListener('DOMContentLoaded',function() {
-    document.querySelector("#id_password2").oninput=checkPassword2;
-},false);
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector("#id_password2").oninput = checkPassword2;
+}, false);
 
-document.addEventListener('DOMContentLoaded', function(){
-    document.querySelector("#id_resume").onchange=checkResume;
-},false);
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector("#id_resume").onchange = checkResume;
+}, false);
 
-wholeForm.addEventListener("click", event =>{
+wholeForm.addEventListener("click", event => {
     let increment
     pageInfo.pageValidationStatus = true
-    if(event.target.matches("[data-next-button]")){
+    if (event.target.matches("[data-next-button]")) {
         increment = 1
-        const inputFeilds = [...formPages[pageInfo.currentPage].querySelectorAll("input")]
-        pageInfo.pageValidationStatus = inputFeilds.every(input => input.reportValidity())
-        
-    }else if (event.target.matches("[data-previous-button]")){
+        const inputFields = [...formPages[pageInfo.currentPage].querySelectorAll("input")]
+        pageInfo.pageValidationStatus = inputFields.every(input => input.reportValidity())
+
+    } else if (event.target.matches("[data-previous-button]")) {
         increment = -1
     } if (increment == null) return
 
     generalErrorText = document.getElementById("error-reminder-container");
-    if(pageInfo.pageValidationStatus && pageInfo.individualValidation.get(pageInfo.currentPage)){
+    if (pageInfo.pageValidationStatus && pageInfo.individualValidation.get(pageInfo.currentPage)) {
         generalErrorText.classList.add("d-none")
         pageInfo.currentPage += increment;
         showCurrentPage();
-    }else{
+    } else {
         generalErrorText.classList.remove("d-none")
     }
 })
 
 
-function showCurrentPage(){
+function showCurrentPage() {
     formPages.forEach((page, index) => {
         page.classList.toggle("d-none", index != pageInfo.currentPage)
     })
-}    
+}
 
-function youngDate(){
+function youngDate() {
     const birthDate = new Date(document.getElementById("id_date_of_birth").value)
     const today = new Date('4/9/2022')
 
     var age = today.getFullYear() - birthDate.getFullYear()
     const month = today.getMonth() - birthDate.getMonth()
     const day = today.getDate() - birthDate.getDate()
-    if((month < 0 || (month === 0 && day < 0))){
+    if ((month < 0 || (month === 0 && day < 0))) {
         age--;
     }
-    if(age < 18){
+    if (age < 18) {
         dateSection = document.getElementById("date-check")
         dateSection.classList.remove("d-none")
-    }else{
+    } else {
         dateSection = document.getElementById("date-check")
         dateSection.classList.add("d-none")
     }
     document.getElementById("id_age").value = age
 }
 
-function formSubmission(){
+function formSubmission() {
     const formSubmission = document.getElementById("formSubmission")
     var selects = [...formSubmission.querySelectorAll('input')]
     selects.pop()
-    if(document.getElementById("date-check").classList.contains("d-none")){
+    if (document.getElementById("date-check").classList.contains("d-none")) {
         selects.pop()
     }
 
     let allChecked = selects.every(input => input.checked)
 
     const submissionButton = document.getElementById("submissionButton")
-    if(allChecked){
+    if (allChecked) {
         submissionButton.removeAttribute("disabled")
         submissionButton.classList.remove("btn-secondary")
         submissionButton.classList.add("btn-primary")
-    }else{
+    } else {
         submissionButton.setAttribute("disabled", "")
         submissionButton.classList.remove("btn-primary")
         submissionButton.classList.add("btn-secondary")
     }
 }
 
-async function emailValidation(){
+async function emailValidation() {
     emailInput = document.getElementById("id_email")
     email = emailInput.value
-    
-    
-    if(!emailInput.reportValidity()){
+
+
+    if (!emailInput.reportValidity()) {
         emailInput.focus();
         return
     }
 
-    validation = postData("/get/json/email/verification", {"email":emailInput.value})
-    
-    await validation.then(function(result){
+    validation = postData("/get/json/email/verification", { "email": emailInput.value })
+
+    await validation.then(function (result) {
         let x = result
         pageInfo.individualValidation.set(pageInfo.currentPage, x.valid)
-        pageInfo.errors.set(pageInfo.currentPage,x.message)
+        pageInfo.errors.set(pageInfo.currentPage, x.message)
     })
     emailError = document.getElementById("email_error_label")
-    if(pageInfo.individualValidation.get(pageInfo.currentPage)){ 
+    if (pageInfo.individualValidation.get(pageInfo.currentPage)) {
         emailError.classList.add("d-none")
         emailInput.classList.remove("is-invalid")
-        return 
-    }else{
+        return
+    } else {
         emailInput.classList.add("is-invalid")
         emailError.classList.remove("d-none")
         emailInput.focus();
     }
 }
 
-async function passwordValidation(){
+async function passwordValidation() {
     passwordInput = document.getElementById("id_password1")
-    validation = postData("/get/json/password/verification", {"p1":passwordInput.value})
-    await validation.then(function(result){
+    validation = postData("/get/json/password/verification", { "p1": passwordInput.value })
+    await validation.then(function (result) {
         let x = result
         pageInfo.individualValidation.set(pageInfo.currentPage, x.valid)
         pageInfo.errors.set(pageInfo.currentPage, x.errors)
     })
     passwordErrorContainer = document.getElementById("password-container")
     passwordErrorList = document.getElementById("password-list")
-    if(pageInfo.individualValidation.get(pageInfo.currentPage)){ 
+    if (pageInfo.individualValidation.get(pageInfo.currentPage)) {
         passwordInput.classList.remove("is-invalid")
         passwordErrorContainer.classList.add("d-none")
         removeAllChildNodes(passwordErrorList);
         return
-    }else{
+    } else {
         passwordInput.focus();
         removeAllChildNodes(passwordErrorList);
         pageInfo.errors.get(pageInfo.currentPage).forEach((error) => {
@@ -184,21 +184,21 @@ function checkPassword2(event) {
     password = document.getElementById("id_password1").value
     passwordCheckErrorContainer = document.getElementById("password2_error_label")
 
-    if(event.target.value != password){
+    if (event.target.value != password) {
         event.target.classList.add("is-invalid")
         passwordCheckErrorContainer.classList.remove("d-none")
-    }else{
+    } else {
         event.target.classList.remove("is-invalid")
         passwordCheckErrorContainer.classList.add("d-none")
     }
 }
 
-function password2Validation(){
+function password2Validation() {
     password = document.getElementById("id_password1").value
     password2 = document.getElementById("id_password2")
-    if(password2.value != password){
+    if (password2.value != password) {
         pageInfo.individualValidation.set(pageInfo.currentPage, false);
-    }else{
+    } else {
         pageInfo.individualValidation.set(pageInfo.currentPage, true);
     }
 }
@@ -215,19 +215,19 @@ const fileTypes = [
     "application/pdf"
 ]
 
-function checkResume(event){
+function checkResume(event) {
     let file = event.target.files[0]
     resumeError = document.getElementById("resume_error")
-    
-    if(file === undefined){
+
+    if (file === undefined) {
         pageInfo.individualValidation.set(pageInfo.currentPage, false);
         event.target.classList.add("is-invalid")
         resumeError.classList.remove("d-none")
-    }else if(fileTypes.includes(file.type)){
+    } else if (fileTypes.includes(file.type)) {
         pageInfo.individualValidation.set(pageInfo.currentPage, true);
         resumeError.classList.add("d-none")
         event.target.classList.remove("is-invalid")
-    }else{
+    } else {
         pageInfo.individualValidation.set(pageInfo.currentPage, false);
         event.target.classList.add("is-invalid")
         resumeError.classList.remove("d-none")
@@ -241,7 +241,7 @@ async function postData(url, data) {
             "X-CSRFToken": csrftoken,
         },
         body: JSON.stringify({
-           data
+            data
         })
     }).then(function (response) {
         return response.json();
