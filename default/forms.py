@@ -6,30 +6,30 @@ from .models import CustomUser, WaitingList
 from hacker.models import HackerInfo
 
 class CustomUserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': "Password"}))
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'placeholder': "Password Confirmation"}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control', 'onblur':'passwordValidation()'}))
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control',  'onblur':'password2Validation()'}))
 
     class Meta:
         model = CustomUser
-        fields = (  'first_name', 'last_name', 'email', 'address',
+        fields = (  'first_name', 'last_name', 'email',
                     'shirt_size','food_preference', 'gender', 
-                    'date_of_birth', 'school_name','level_of_study',
-                    'major', 'resume', 
+                    'age', 'school_name','level_of_study',
+                    'major', 'resume','registration_comment' 
         )
 
         widgets = {
-            'first_name' : forms.TextInput(attrs = {'placeholder':'First Name'}),
-            'last_name' : forms.TextInput(attrs = {'placeholder':'Last Name'}),
-            'email' : forms.TextInput(attrs = {'placeholder':'Email Address'}),
-            'address' : forms.TextInput(attrs = {'placeholder':'Address'}),
-            'shirt_size' : forms.Select(attrs = {}),
-            'food_preference' : forms.Select(attrs = {}),
-            'gender' : forms.Select(attrs = {}),
-            'school_name' : forms.TextInput(attrs = {'placeholder':'School Name'}),
-            'major' : forms.Select(attrs = {}),
-            # 'Date' : forms.SelectDate(attrs = {}),
-            'level_of_study' : forms.Select(attrs = {}),
-            'resume' : forms.FileInput(attrs = {})
+            'first_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'last_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'email' : forms.TextInput(attrs = {'class':'form-control', 'type':'email', 'onblur':'emailValidation()', "pattern":"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$", "title":"username@domain.tld" }),
+            'shirt_size' : forms.Select(attrs = {'class':'form-select'}),
+            'food_preference' : forms.Select(attrs = {'class':'form-select'}),
+            'gender' : forms.Select(attrs = {'class':'form-select'}),
+            'school_name' : forms.TextInput(attrs = {'class':'form-control', 'list':'SchoolOptions'}),
+            'major' : forms.Select(attrs = {'class':'form-select'}),
+            'age' : forms.NumberInput(attrs = {'class':'form-control'}),
+            'level_of_study' : forms.Select(attrs = {'class':'form-select'}),
+            'resume' : forms.FileInput(attrs = {'class':'form-control form-control-lg',"accept":".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"}),
+            'registration_comment' : forms.Textarea(attrs = {'class':'form-control'})
         }
 
     def clean_password2(self):

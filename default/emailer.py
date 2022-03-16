@@ -31,6 +31,44 @@ def password_reset_success(user):
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
+def registration_confirmation(hacker):
+    subject = "{}, you've successfully registered for HackTCNJ (YAY!)".format(hacker.first_name)
+    from_email=FROM_EMAIL
+    to_email=[hacker.email]
+    body = '''
+        Hey {},
+
+        We've received your hacker application for HackTCNJ! We can't wait to you see you at TCNJ on April 9th, 2022. 
+        You'll receive emails from us regarding check-in information and some logistics. 
+
+        See you there! 
+        {}
+    '''.format(hacker.first_name, TEAM_NAME)
+
+    send_mail(subject=subject, from_email=from_email,
+              recipient_list=to_email, message=body, fail_silently=False)
+
+
+def minor_waiver_form_submission(hacker):
+    subject = "{}, you've successfully registered for HackTCNJ (YAY!)".format(hacker.first_name)
+    from_email=FROM_EMAIL
+    to_email=[hacker.email]
+    body = '''
+        Hey {},
+
+        Thanks again for registering for the HackTCNJ. We require all minors (under 18), to bring a signed waiver form by your primary care taker.
+        You will not be able to check in to the event without it. 
+
+        Here is the link to the form: {}
+        Thanks for working with us! 
+
+        Best, 
+
+        {}
+    '''.format(hacker.first_name,"LINK", TEAM_NAME)
+
+    send_mail(subject=subject, from_email=from_email,
+              recipient_list=to_email, message=body, fail_silently=False)
 
 def hacker_checkin_success(hacker):
     subject = "{}, you have checked in at HackTCNJ!".format(hacker.first_name)
