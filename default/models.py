@@ -1,30 +1,15 @@
+from atexit import register
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,  PermissionsMixin
+from django.core.validators import MaxValueValidator, FileExtensionValidator
 from .managers import CustomUserManager
+from .choices import *
 # Create your models here.
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
 
-    food_choices = [
-        ("None", "None"),
-        ("Vegetarian", "Vegetarian"),
-        ("Vegan", "Vegan"),
-        ("Gluten-Free", "Gluten-Free")
-    ]
 
-    size_choices = [
-        ("Unisex (XS)", "Unisex (XS)"),
-        ("Unisex (S)", "Unisex (S)"),
-        ("Unisex (M)", "Unisex (M)"),
-        ("Unisex (L)", "Unisex (L)"),
-        ("Unisex (2XL)", "Unisex (2XL)"),
-        ("Unisex (3XL)", "Unisex (3XL)")
-    ]
-
-    email = models.EmailField(verbose_name='email', max_length=60, unique=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
@@ -32,9 +17,19 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    address = models.CharField(max_length=60, null=False, blank=False)
+    email = models.EmailField(verbose_name='email', max_length=60, unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    address = models.CharField(max_length=200, null=False, blank=True)
     food_preference = models.CharField(default="None", max_length=20, blank=False, null=False, choices=food_choices)
     shirt_size = models.CharField(default="Unisex (M)", max_length=20, blank=False, null=False, choices=size_choices)
+    gender = models.CharField(default="Prefer not to say", max_length=20, blank=False,null=False, choices=gender_choices)
+    age = models.PositiveIntegerField(null=True, blank=True, validators=[MaxValueValidator(125)])
+    school_name = models.CharField(default="",max_length=75, null=False, blank=False)
+    level_of_study = models.CharField(default="University (Undergrad)", max_length=60, null=False, blank=False, choices=los_choices)
+    major = models.CharField(default="other", max_length=60, blank=False,choices=major_hackers)
+    resume = models.FileField(upload_to="resumes/", null=True, blank=True, validators=[FileExtensionValidator( ['pdf', 'docx', 'doc'] ) ])
+    registration_comment = models.TextField(null=True, blank=True)
     
     objects = CustomUserManager()
 
