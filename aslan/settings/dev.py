@@ -23,7 +23,7 @@ EM_HOST_PASSWORD = None
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/'
+MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR/'static'
