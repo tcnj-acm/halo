@@ -1,5 +1,6 @@
 # This file sends emails from the default app
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from aslan.settings.base import EMAIL_OUTGOING
 import re
 TEAM_NAME="Team HackTCNJ"
@@ -16,6 +17,24 @@ def test_mail():
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
+
+def password_reset_instructions(domain, user, uid, token):
+    subject = "HackTCNJ Reset Password Link"
+    from_email=FROM_EMAIL
+    to_email=[user.email]
+    email_variables = {
+        "domain":domain,
+        "uid": uid,  
+        "user": user,
+        "token": token,
+        "team_name":TEAM_NAME,
+    }
+
+
+    body = render_to_string('defaults/resetpassword.txt', email_variables)
+
+    send_mail(subject=subject, from_email=from_email, 
+                recipient_list=to_email, message=body,fail_silently=False)
 
 def password_reset_success(user):
     subject = "You've successfully reset your password!"
@@ -107,8 +126,8 @@ def new_organizer_added(link, organizer):
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
-def new_waitlister_added(email, name):
-    subject = "Success! You've been added to the HackTCNJ Waiting List!"
+def new_waitlister_added(email, name, link):
+    subject = "HackTCNJ Waiting List Success! Secure Some Cool Swag!"
     from_email=FROM_EMAIL
     to_email = [email]
     body = '''
@@ -116,9 +135,14 @@ def new_waitlister_added(email, name):
         We are totally pumped! HackTCNJ is coming soon! We can't wait for you to join us in celebrating another awesome year of hacking at The College of New Jersey!
         Once registration opens, we'll send you an email so you can sign up!
 
+        This will be our first in-person Hackathon since the pandemic! We're raising money to help support the event, and to help spread our new designs for this year's logo! We are selling unique, limited time merchandise!
+        The shirts will be delivered before the hackathon so you can rep a unique, awesome shirt! To join the awesome list, purchase a shirt or sweater from our customink fundraiser here:
+
+        {}
+
         Best,
         {}
-    '''.format(name, TEAM_NAME)
+    '''.format(name, link, TEAM_NAME)
 
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)

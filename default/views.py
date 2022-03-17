@@ -1,4 +1,6 @@
 from email import message
+import email
+from multiprocessing import context
 import re
 from xml.dom import ValidationErr
 from django.http.response import HttpResponse
@@ -8,9 +10,17 @@ import json
 from django.shortcuts import redirect, render
 from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
 from django.contrib.auth import authenticate, login, logout
+
 from django.contrib.auth.views import PasswordResetCompleteView
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+
+from django.contrib.auth.forms import PasswordResetForm
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+
 from hacker.models import HackerInfo
 from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect
@@ -23,15 +33,15 @@ def landing(request):
     return render(request, 'defaults/landing.html', context)
 
 def waitlist(request):
-
+    fundraiser_link = request.get_host() + "/fundraiser"
     if request.method == "POST":
         waitlist_create_form = WaitingListCreationForm(request.POST)
         if waitlist_create_form.is_valid():
             waitlist = waitlist_create_form.save()
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
-            new_waitlister_added(new_email, new_name)
-            messages.success(request, "Thanks for joining the waiting list! You will recieve an email with more information soon!")
+            new_waitlister_added(new_email, new_name, fundraiser_link)
+            messages.success(request, "Thanks for joining the waiting list, you will receive an email with more information soon! Don't forget to check out the Fundraiser!")
             return redirect('waitlist')
     else:
         waitlist_create_form = WaitingListCreationForm()
@@ -47,6 +57,7 @@ def registration(request):
         
         if create_hacker_form.is_valid() and create_user_form.is_valid():
             pword = create_user_form.cleaned_data['password1']
+
             user = create_user_form.save()
             address1 = request.POST.get('address1')
             address2 = request.POST.get('address2')
@@ -61,6 +72,11 @@ def registration(request):
                 address = address1 + ", " + address2 + ", " + city + ", " + state + ", " + zip + ", " + country
 
             user.address = address
+
+            email = create_user_form.cleaned_data['email'].lower()
+            user = create_user_form.save(commit=False)
+            user.email = email
+
             user.save()
 
             hacker = create_hacker_form.save(commit=False)
@@ -93,7 +109,7 @@ def registration(request):
 
 def login_page(request):
     if request.method == "POST":
-        email = request.POST.get('email')
+        email = request.POST.get('email').lower()
         passwrd = request.POST.get('password')
 
         user = authenticate(request, email=email, password=passwrd)
@@ -101,7 +117,7 @@ def login_page(request):
         if user is not None:
             login(request, user)
 
-            return redirect(decide_redirect(user)) #TODO
+            return redirect(decide_redirect(user))
         else:
             messages.error(request, "Username or Password Incorrect")
 
@@ -109,8 +125,30 @@ def login_page(request):
     return render(request, 'defaults/login.html', context)
 
 
+def password_reset_request(request):
+    if request.method == "POST":
+        password_reset_form = PasswordResetForm(request.POST)
+        if password_reset_form.is_valid():
+            user_email = password_reset_form.cleaned_data['email'].lower()
+            user_obj_valid = CustomUser.objects.filter(email=user_email).exists()
+            if user_obj_valid:
+                user_obj = CustomUser.objects.get(email=user_email)
+                uid = urlsafe_base64_encode(force_bytes(user_obj.pk))
+                token = default_token_generator.make_token(user_obj)
+                password_reset_instructions(request.get_host(), user_obj, uid, token)
+                return redirect('password_reset_done')
+            else:
+                messages.error(request, "Email Could Not Be Found")
+    password_reset_form = PasswordResetForm()
+
+    context = {'password_reset_form':password_reset_form}
+    return render(request, 'defaults/password_reset.html', context)
+
+
+
 def logout_user(request):
     logout(request)
+
     return redirect('landing') #TODO
 
 
@@ -155,3 +193,12 @@ def check_password(request):
         }  
         return JsonResponse(data)
     return JsonResponse({"valid":False}, status = 200)
+
+    return redirect('landing')
+
+
+def fundraiser_link(request):
+
+    context = {}
+    return render(request, 'defaults/fundraiser.html', context)
+

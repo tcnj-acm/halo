@@ -11,10 +11,11 @@
         
     {% endblock head %}
 </head>
-<body style="height: 100vh;">
+<body style="height: 100vh; background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url({% static '/css/waitinglist/tacofall2.jpg' %}); background-repeat: no-repeat; background-size: cover ">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-		<div class="p-5 rounded-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-      		<div class="container-fluid py-5" >
+
+		<div class="p-5 rounded-3 bg-dark text-white" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <div class="container-fluid py-5">
 
 				{% block form %}
 

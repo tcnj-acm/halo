@@ -20,4 +20,6 @@ urlpatterns = [
          name='password_reset_complete'),
      path('get/json/email/verification', views.check_email, name="check_email"),
      path('get/json/password/verification', views.check_password, name="check_password")
+     
+     path('fundraiser', views.fundraiser_link, name='fundraiser'),
 ]
