@@ -19,7 +19,7 @@ urlpatterns = [
      path('reset-password-success', auther.PasswordResetCompleteView.as_view(template_name="defaults/password_reset_success.html"),
          name='password_reset_complete'),
      path('get/json/email/verification', views.check_email, name="check_email"),
-     path('get/json/password/verification', views.check_password, name="check_password")
+     path('get/json/password/verification', views.check_password, name="check_password"),
      
      path('fundraiser', views.fundraiser_link, name='fundraiser'),
 ]
