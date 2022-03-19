@@ -4,10 +4,15 @@
 {% block content %}
 <div class="container justify-content-center align-items-center text-center">
 
-
+    {% for message in messages %}
+        <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
 <div class="card text-white bg-dark w-75 mt-5 mb-5 ">
     <div class="card-header">
-        Edit Your Profile
+        <h2>Edit Your Profile</h2>
     </div>
     <div class="card-body">
         <form method="post" > {% csrf_token %}

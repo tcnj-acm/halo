@@ -206,14 +206,14 @@ def profile_page(request, pk):
     user = None
     try:
         user = CustomUser.objects.get(id = pk)
-        print(user)
-        print(request.user)
+        # print(user)
+        # print(request.user)
     except:
         return redirect(decide_redirect(request.user))
 
 
     if user != request.user:
-        print("redirecting")
+        # print("redirecting")
         return redirect(decide_redirect(request.user))
 
     is_hacker = True if decide_type(user) == "hacker" else False
@@ -221,9 +221,9 @@ def profile_page(request, pk):
     if request.method == "POST":
         user_change_form = CustomUserChangeForm(request.POST, instance=user)
         if user_change_form.is_valid():
-            print("valid")
+            # print("valid")
             user_change_form.save()
-
+            messages.success(request, "Profile updated!")
     user_change_form = CustomUserChangeForm(instance=user)
     
 
