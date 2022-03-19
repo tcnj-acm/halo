@@ -56,20 +56,12 @@ wholeForm.addEventListener("click", event => {
     pageInfo.pageValidationStatus = true
     if (event.target.matches("[data-next-button]")) {
         increment = 1
-        //UNCOMMENT ---------------------------------------------------------
-        // const inputFields = [...formPages[pageInfo.currentPage].querySelectorAll("input")]
-        // pageInfo.pageValidationStatus = inputFields.every(input => input.reportValidity())
-        //------------------------------------------------------------------
+        const inputFields = [...formPages[pageInfo.currentPage].querySelectorAll("input")]
+        pageInfo.pageValidationStatus = inputFields.every(input => input.reportValidity())
     } else if (event.target.matches("[data-previous-button]")) {
         increment = -1
     } if (increment == null) return
 
-
-    //DELETE ------------------------------------
-    pageInfo.currentPage += increment;
-    showCurrentPage();
-    return;
-    // --------------------------------------------
 
     generalErrorText = document.getElementById("error-reminder-container");
     if (pageInfo.pageValidationStatus && pageInfo.individualValidation.get(pageInfo.currentPage)) {
