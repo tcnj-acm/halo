@@ -160,6 +160,15 @@ h5.subtitle {
   width: 70%;
   margin: 0 auto 60px;
 }
+.section-heading-1 {
+  text-align: center;
+  width: 70%;
+  margin: 0 auto 10px;
+}
+.section-heading-1 p{
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 .section-title {
   font-size: 32px;
@@ -181,6 +190,10 @@ h5.subtitle {
   background: #635CDB;
   height: 1px;
   margin: 10px auto;
+}
+
+.text-c-red{
+  color: rgb(128, 0, 0);
 }
 
 /*---------- BUTTONS ----------*/
@@ -295,6 +308,14 @@ h5.subtitle {
   background-color: #000;
 }
 
+.bg-purple{
+  background-color: rgb(118, 52, 165);
+}
+
+.bg-navy{
+  background-color: navy;
+}
+
 .bg-dark {
   background-color: rgba(0, 0, 0, 0.96);
 }
@@ -357,60 +378,6 @@ h5.subtitle {
 }
 
 
-.passwordResetForm {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  height: fit-content;
-  background-color: #1d201f;
-  border-radius: 25px;
-  color: #fff;
-  padding: 2%;
-}
-
-.passwordResetSuccessForm {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  height: fit-content;
-  background-color: #1d201f;
-  border-radius: 25px;
-  color: #fff;
-  padding: 2%;
-}
-
-.passwordResetEntryForm {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  height: fit-content;
-  background-color: #1d201f;
-  border-radius: 25px;
-  color: #fff;
-  padding: 2%;
-}
-  
-.hackerDashboardBorder {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  height: fit-content;
-  background-color: #c5c5c5;
-  border-radius: 25px;
-  color: #fff;
-  padding: 2%;
-}
-
-
-
 .organizerForm {
   position: fixed;
   top: 50%;
@@ -428,20 +395,6 @@ h5.subtitle {
 .centerHeaderText {
   text-align: center;
   color: #fff;
-}
-
-.passwordResetSuccessBtn {
-  font: 600 10.5px/1;
-  display:block !important;
-  margin: 0 auto;
-  padding: 15px 45px 15px 45px;
-  text-transform: uppercase;
-  border: 2px solid transparent;
-  transition: all .2s;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 1px;
 }
 
 .d-table {
@@ -1223,8 +1176,35 @@ HISTORY MISSION
 
 .card-pricing.popular {
   z-index: 1;
-  border: 3px solid #007bff;
+  border: 3px solid #000000;
 }
+.card-pricing.red {
+  z-index: 1;
+  border: 3px solid #dc3545;
+}
+.card-pricing.yellow {
+  z-index: 1;
+  border: 3px solid #ffc107;
+}
+.card-pricing.blue {
+  z-index: 1;
+  border: 3px solid #17a2b8;
+}
+.card-pricing.black {
+  z-index: 1;
+  border: 3px solid #343a40;
+}
+.card-pricing.purple {
+  z-index: 1;
+  border: 3px solid rgb(118, 52, 165);
+}
+.card-pricing.navy {
+  z-index: 1;
+  border: 3px solid navy;
+}
+
+
+
 .card-pricing .list-unstyled li {
   padding: .5rem 0;
   color: #6c757d;
@@ -1234,6 +1214,15 @@ HISTORY MISSION
 /*--------------------------
   SERVICE (FAQ) AREA SECTION
 ----------------------*/
+
+#merch {
+  padding-bottom: 10px;
+  padding-top: 40px;
+}
+
+#merch .section-title {
+  color: #fff;
+}
 
 #service-head {
   padding-bottom: 100px;

@@ -16,8 +16,8 @@ if hasattr(settings, 'WAITLIST_EXEMPT_URLS'):
 The exempt URLS for each type. This will allow them to 
 bypass in certain specific scenarios.
 """
-ALL_EXEMPT_URLS = {  # URLS that anyone should be able to access outside of their views
-
+all_exempt_urls = {  # URLS that anyone should be able to access outside of their views
+    r'profile',
 }
 
 hacker_exempt_URLS = {  # Any urls outside of hacker.views that they can access
@@ -62,10 +62,10 @@ head_organizer_not_mods = {
 
 HACKER_EXEMPT_URLS = [re.compile(url) for url in hacker_exempt_URLS]
 ORGANIZER_EXEMPT_URLS = [re.compile(url) for url in organizer_exempt_URLS]
-NOT_ORGANIZER_EXEMPT_URLS = [re.compile(url)
-                             for url in not_organizer_exempt_URLS]
-HEAD_ORGANIZER_EXEMPT_URLS = [re.compile(
-    url) for url in head_organizer_exempt_URLS]
+NOT_ORGANIZER_EXEMPT_URLS = [re.compile(url)for url in not_organizer_exempt_URLS]
+HEAD_ORGANIZER_EXEMPT_URLS = [re.compile(url) for url in head_organizer_exempt_URLS]
+ALL_EXEMPT_URLS = [re.compile(url) for url in all_exempt_urls]
+
 # SPONSOR_EXEMPT_URLS = [re.compile(url) for url in sponsor_exempt_URLS]
 
 

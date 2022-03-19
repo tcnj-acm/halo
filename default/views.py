@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 import json
 from django.shortcuts import redirect, render
-from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm
+from .forms import CustomUserCreationForm, HackerCreationForm, WaitingListCreationForm, CustomUserChangeForm
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.views import PasswordResetCompleteView
@@ -23,7 +23,7 @@ from django.utils.encoding import force_bytes
 
 from hacker.models import HackerInfo
 from organizer.models import OrganizerInfo
-from .helper import add_group, decide_redirect
+from .helper import add_group, decide_redirect, decide_type
 from .emailer import *
 from .models import WaitingList, CustomUser
 
@@ -202,3 +202,33 @@ def fundraiser_link(request):
     context = {}
     return render(request, 'defaults/fundraiser.html', context)
 
+def profile_page(request, pk):
+    user = None
+    try:
+        user = CustomUser.objects.get(id = pk)
+        print(user)
+        print(request.user)
+    except:
+        return redirect(decide_redirect(request.user))
+
+
+    if user != request.user:
+        print("redirecting")
+        return redirect(decide_redirect(request.user))
+
+    is_hacker = True if decide_type(user) == "hacker" else False
+
+    if request.method == "POST":
+        user_change_form = CustomUserChangeForm(request.POST, instance=user)
+        if user_change_form.is_valid():
+            print("valid")
+            user_change_form.save()
+
+    user_change_form = CustomUserChangeForm(instance=user)
+    
+
+    context = {"user_change_form":user_change_form}
+    if is_hacker:
+        return render(request, 'defaults/profileH.html', context)
+    return render(request, 'defaults/profileO.html', context)
+        

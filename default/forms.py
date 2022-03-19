@@ -56,10 +56,27 @@ class HackerCreationForm(forms.ModelForm):
         }
 
 class CustomUserChangeForm(forms.ModelForm):
-    password = ReadOnlyPasswordHashField()
     class Meta:
         model = CustomUser
-        fields = ('email', 'first_name', 'last_name', 'password', 'address', 'shirt_size', 'food_preference', 'is_active', 'is_admin', 'is_superuser')
+        fields = ('first_name', 'last_name', 'email',
+                    'shirt_size','food_preference', 'gender', 
+                    'age', 'school_name','level_of_study',
+                    'major','registration_comment', 'address')
+
+        widgets = {
+            'first_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'last_name' : forms.TextInput(attrs = {'class':'form-control'}),
+            'email' : forms.TextInput(attrs = {'class':'form-control', 'type':'email', "pattern":"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$", "title":"username@domain.tld" }),
+            'shirt_size' : forms.Select(attrs = {'class':'form-select'}),
+            'food_preference' : forms.Select(attrs = {'class':'form-select'}),
+            'gender' : forms.Select(attrs = {'class':'form-select'}),
+            'address' : forms.TextInput(attrs = {'class':'form-control'}),
+            'school_name' : forms.TextInput(attrs = {'class':'form-control', 'list':'SchoolOptions'}),
+            'major' : forms.Select(attrs = {'class':'form-select'}),
+            'age' : forms.NumberInput(attrs = {'class':'form-control'}),
+            'level_of_study' : forms.Select(attrs = {'class':'form-select'}),
+            'registration_comment' : forms.Textarea(attrs = {'class':'form-control'})
+        }
 
 
 class WaitingListCreationForm(forms.ModelForm):
