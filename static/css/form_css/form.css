@@ -1,0 +1,40 @@
+.w-control {
+    max-width: 90%;
+    display: flex;
+}
+
+@media (min-width: 999px) and (max-width: 3000px) {
+    .w-control{
+        max-width: 60%;
+        display: flex;
+    }
+}
+
+@media (min-width: 760px) and (max-width: 999px) {
+    .w-control{
+        max-width: 80%;
+        display: flex;
+    }
+}
+
+@media (min-width: 530px) and (max-width: 759px) {
+    .w-control{
+        max-width: 85%;
+        display: block;
+    }
+}
+
+
+@media (min-width: 359px) and (max-width: 376px) {
+    .w-control{
+        max-width: 85%;
+        display: block;
+    }
+}
+
+@media (max-width: 290px) {
+    .w-control{
+        max-width: 100%;
+        display: block;
+    }
+}

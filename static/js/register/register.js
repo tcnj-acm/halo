@@ -4,7 +4,6 @@ function getCookie(name) {
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
@@ -51,16 +50,18 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 wholeForm.addEventListener("click", event => {
+
+
     let increment
     pageInfo.pageValidationStatus = true
     if (event.target.matches("[data-next-button]")) {
         increment = 1
         const inputFields = [...formPages[pageInfo.currentPage].querySelectorAll("input")]
         pageInfo.pageValidationStatus = inputFields.every(input => input.reportValidity())
-
     } else if (event.target.matches("[data-previous-button]")) {
         increment = -1
     } if (increment == null) return
+
 
     generalErrorText = document.getElementById("error-reminder-container");
     if (pageInfo.pageValidationStatus && pageInfo.individualValidation.get(pageInfo.currentPage)) {
@@ -77,6 +78,11 @@ function showCurrentPage() {
     formPages.forEach((page, index) => {
         page.classList.toggle("d-none", index != pageInfo.currentPage)
     })
+    if(pageInfo.currentPage == 4){
+        onPage(["40%", "60%"]);
+    }else{
+        returnOrigin();
+    }
 }
 
 function youngDate() {

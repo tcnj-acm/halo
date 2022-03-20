@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav" >
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'hacker-dash' %}">Dash</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' request.user.id%}">Profile</a>
+          </li>            
+      </ul>
+  </div>
+  <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+          <span class="text-right">Hello, {{request.user.first_name}} {{request.user.last_name}}</span>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+  </div>
+
+
+  
+</nav>

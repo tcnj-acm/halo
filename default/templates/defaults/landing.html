@@ -29,29 +29,33 @@
 
   <nav class="navbar navbar-expand-lg fixed-top trans-navigation">
     <div class="container">
-      <a class="navbar-brand nav-link smoth-scroll" href="#home">
-        <h4 style="color: white">HackTCNJ</h4>
-      </a>
-      <button class="navbar-toggler cmr-20 mobile-menu-icon no-outline" type="button" data-toggle="collapse"
-        data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-          <i class="fa fa-bars"></i>
-        </span>
-      </button>
+        <a class="navbar-brand nav-link smoth-scroll" href="#home">
+          <h4 style="color: white">HackTCNJ</h4>
+        </a>
+        <button class="navbar-toggler cmr-20 mobile-menu-icon no-outline" type="button" data-toggle="collapse"
+          data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">
+            <i class="fa fa-bars"></i>
+          </span>
+        </button>
+      </div>
 
       <div class="collapse navbar-collapse justify-content-end cmr-10" id="mainNav">
         <ul class="navbar-nav ">
           <li class="nav-item">
             <a class="nav-link active smoth-scroll" href="#home">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#schedule">Schedule</a>
           </li>
           <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#prizes">Prizes</a>
+          </li> {% endcomment %}
+          <li class="nav-item">
+            <a class="nav-link smoth-scroll" href="#merch">Fundraiser</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link smoth-scroll" href="#service">FAQ</a>
+            <a class="nav-link smoth-scroll" href="#service-head">FAQ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#sponsors">Sponsors</a>
@@ -72,7 +76,7 @@
 
   <!--MAIN BANNER AREA STARt -->
   <div id="home" class="banner-area banner-1"
-    style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
+    style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %}); min-height: 100vh;">
     <div class="overlay gr-overlay"></div>
     <div class="d-table">
       <div class="d-table-cell">
@@ -81,7 +85,7 @@
             <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
               <div class="banner-content content-padding">
                 <!--<h5 class="subtitle">HackTCNJ 2022</h5>-->
-                <img class="w-25 my-3" src="{% static 'hacktcnjtransparentlogo.jpeg' %}" />
+                <img class="w-40 my-3" src="{% static 'hacktcnjtransparentlogo.jpeg' %}" />
                 <h1 class="banner-title">TCNJ's 24-hour hackathon</h1>
                 <p>The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first
                   hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games!
@@ -102,8 +106,8 @@
   </div>
   <!--MAIN HEADER AREA END -->
 
-  <!-- SCHEDULING SECTION -->
-  <section id="schedule" class=" bg-feature">
+  {% comment %} SCHEDULING SECTION
+<section id="schedule" class=" bg-feature">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-sm-12 mb-3 mt-3">
@@ -114,7 +118,7 @@
       </div>
     </div>
   </section>
-  <div class="container py-7" id="schedule">
+ <div class="container py-7" id="schedule">
     <!-- Days -->
     <!-- to display which one is active, add show as a class -->
     <div class="row w-100 d-flex justify-content-center" style="font-size: 20px">
@@ -264,11 +268,87 @@
         </div>
       </div>
     </div>
+  </div> {% endcomment %}
+
+  <section id="merch" class=" bg-feature" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <div class="section-heading-1 text-white">
+            <h2 class="section-title">Exclusive Merch Fundraiser!</h2>
+            <p>We have shirts and hoodies in an assortment of colors for a great low price!</p>
+            <p>All proceeds got to funding the event! Just click and buy!</p>
+            <h4 class="section-title mt-1">Just Days <span class="" id="countdown" style="color: rgb(175, 0, 0)">  </span> Left!! </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container mb-5 mt-5">
+    <div class="pricing card-deck flex-column flex-md-row mb-3">
+
+      <div class="row">
+
+        <div class="card card-pricing red shadow text-center px-3 mb-4">
+          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-danger text-white shadow-sm">Red</span>
+          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=1&zoom=false">
+            <img src="{% static 'images/images/fundraiser/red-shirt' %}" class="card-img" alt="">
+          </a>
+        </div>
+        
+        
+        <div class="card card-pricing yellow shadow text-center px-3 mb-4">
+          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-warning text-white shadow-sm">Yellow</span>
+          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=2&zoom=false">
+            <img src="{% static 'images/images/fundraiser/yellow-shirt' %}" class="card-img" alt="">
+          </a>
+        </div>
+        
+        
+        <div class="card card-pricing blue shadow text-center px-3 mb-4">
+          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white shadow-sm">Blue</span>
+          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=3&zoom=false">
+            <img src="{% static 'images/images/fundraiser/blue-shirt' %}" class="card-img" alt="">
+          </a>
+        </div>
+      </div>
+      
+      <div class="row">
+
+        <div class="card card-pricing black shadow text-center px-3 mb-4">
+          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-dark text-white shadow-sm">Black</span>
+          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=4&zoom=false">
+            <img src="{% static 'images/images/fundraiser/black-hoodie' %}" class="card-img" alt="">
+          </a>
+        </div>
+        
+        
+        <div class="card card-pricing purple shadow text-center px-3 mb-4">
+          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-purple text-white shadow-sm">Purple</span>
+          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=5&zoom=false">
+            <img src="{% static 'images/images/fundraiser/purple-hoodie' %}" class="card-img" alt="">
+          </a>
+        </div>
+        
+        
+        <div class="card card-pricing navy shadow text-center px-3 mb-4">
+          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-navy text-white shadow-sm">Navy</span>
+          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=6&zoom=false">
+            <img src="{% static 'images/images/fundraiser/navy-hoodie' %}" class="card-img" alt="">
+          </a>
+        </div>
+      </div>
+      
+      
+
+     
+
+
+    </div>
   </div>
 
-
   <!--  FAQ SECTION  -->
-  <section id="service-head" class=" bg-feature">
+  <section id="service-head" class=" bg-feature" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-sm-12 m-auto">
@@ -381,21 +461,21 @@
       </div>
     </div>
   </section>
-  <section class="section-padding ">
+  <section class="section-padding " style="min-height: 80vh;">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
+        {% comment %} <div class="col-lg-3 col-sm-6 col-md-3 text-center">
           <img src="{% static 'images/images/sponsors/sponsorstickermule.png' %}" alt="partner" class="img-fluid">
-        </div>
+        </div> {% endcomment %}
         <div class="col-lg-3 col-sm-6 col-md-3 text-center">
           <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid">
         </div>
         <div class="col-lg-3 col-sm-6 col-md-3 text-center">
           <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
         </div>
-        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
+        {% comment %} <div class="col-lg-3 col-sm-6 col-md-3 text-center">
           <img src="{% static 'images/images/sponsors/sponsorTRHC.png' %}" alt="partner" class="img-fluid">
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
   </section>

@@ -3,8 +3,7 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="{% static 'js/register/register.js' %}" defer></script>
 {% endblock head %}
@@ -24,13 +23,13 @@
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.first_name}}
-						<label class="text-muted" for="id_first_name"> <span class="fw-lighter">First Name</span> <span class="text-danger text-bold">*</span> </label>
+						<label class="text-muted" for="id_first_name"> <span class="fw-normal text-dark">First Name</span> <span class="text-danger text-bold">*</span> </label>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.last_name}}
-						<label class="text-muted" for="id_last_name"><span class="fw-lighter">Last Name</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_last_name"><span class="fw-normal text-dark">Last Name</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -39,13 +38,13 @@
 					<label class="text-danger d-none" id="email_error_label">This Email is Already Registered</label>
 					<div class="form-floating">
 						{{create_user_form.email}}
-						<label class="text-muted" for="id_email"><span class="fw-lighter">Email address</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_email"><span class="fw-normal text-dark">Email address</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12 h-100">
 					<div class="form-floating">
 						{{create_user_form.gender}}
-						<label class="text-muted" for="id_gender"><span class="fw-lighter">Gender</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_gender"><span class="fw-normal text-dark">Gender</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -56,7 +55,7 @@
 							<div class="col-9">
 								<div class="form-floating">
 									<input type="text" class="form-control" onblur="youngDate()" id="id_date_of_birth"> 
-									<label class="text-muted" for="id_date_of_birth"><span class="fw-lighter">Birth Date</span> <span class="text-danger text-bold">*</span></label>
+									<label class="text-muted" for="id_date_of_birth"><span class="fw-normal text-dark">Birth Date</span> <span class="text-danger text-bold">*</span></label>
 									{{create_user_form.age.as_hidden}}
 								</div>
 							</div>
@@ -73,13 +72,13 @@
 				<div class="col-md-4 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.shirt_size}}
-						<label class="text-muted" for="id_shirt_size"><span class="fw-lighter">Shirt Size</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_shirt_size"><span class="fw-normal text-dark">Shirt Size</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.food_preference}}
-						<label class="text-muted" for="id_food_preference"><span class="fw-lighter">Food Preference</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_food_preference"><span class="fw-normal text-dark">Food Preference</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -87,13 +86,16 @@
 				<div class="col text-center">
 					<div class="form-floating">
 						{{create_user_form.registration_comment}}
-						<label class="text-muted" for="id_registration_comment"><span class="fw-lighter">Any additional comments i.e. alergies ect.</span></label>
+						<label class="text-muted" for="id_registration_comment"><span class="fw-normal text-dark">Any additional comments i.e. alergies etc.</span></label>
 					  </div>
 				</div>
 			</div>
 			<div class="row mt-3">
+				<div class="col text-start">
+					<a href="{% url 'login' %}" class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-chevron-left"></i> Sign In</a>
+				</div>
 				<div class="col text-end">
-					<button class="btn btn-outline-info" type="button" data-next-button>Next &gt;</button>
+					<button class="btn btn-outline-info" type="button" data-next-button>Next <i class="fa-solid fa-chevron-right"></i></button>
 				</div>
 			</div>
 
@@ -111,13 +113,13 @@
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputAddress" name="address1" required placeholder="Address 1">
-						<label class="text-muted" for="inputAddress"><span class="fw-lighter">Address Line 1</span> <span class="text-danger">*</span> </label>
+						<label class="text-muted" for="inputAddress"><span class="fw-normal text-dark">Address Line 1</span> <span class="text-danger">*</span> </label>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputAddress2" name="address2" placeholder="Apartment, studio, or floor">
-						<label class="text-muted" for="inputAddress"><span class="fw-lighter">Address Line 2</span></label>
+						<label class="text-muted" for="inputAddress"><span class="fw-normal text-dark">Address Line 2</span></label>
 					</div>
 				</div>
 			</div>
@@ -125,34 +127,34 @@
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputCity" name="city" required placeholder="City">
-						<label class="text-muted" for="inputCity"><span class="fw-lighter">City</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputCity"><span class="fw-normal text-dark">City</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputState" name="state" required placeholder="State">
-						<label class="text-muted" for="inputState"><span class="fw-lighter">State</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputState"><span class="fw-normal text-dark">State</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputZip" name="zip" required placeholder="Zip Code">
-						<label class="text-muted" for="inputZip"><span class="fw-lighter">Zip Code</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputZip"><span class="fw-normal text-dark">Zip Code</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="inputCountry" name="country" required placeholder="Country">
-						<label class="text-muted" for="inputCountry"><span class="fw-lighter">Country</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="inputCountry"><span class="fw-normal text-dark">Country</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
 			<div class="row mt-3">
 				<div class="col text-start">
-					<button class="btn btn-outline-info" type="button" data-previous-button> &lt; Last</button>
+					<button class="btn btn-outline-info" type="button" data-previous-button> <i class="fa-solid fa-chevron-left"></i> Last</button>
 				</div>
 				<div class="col text-end">
-					<button class="btn btn-outline-info" type="button" data-next-button>Next &gt;</button>
+					<button class="btn btn-outline-info" type="button" data-next-button>Next <i class="fa-solid fa-chevron-right"></i></button>
 				</div>
 			</div>
 		</div>
@@ -169,7 +171,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.level_of_study}}
-						<label class="text-muted" for="id_level_of_study"><span class="fw-lighter">Level of Study</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_level_of_study"><span class="fw-normal text-dark">Level of Study</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -177,7 +179,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.major}}
-						<label class="text-muted" for="id_major"><span class="fw-lighter">Major/Field of Interest</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_major"><span class="fw-normal text-dark">Major/Field of Interest</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -185,7 +187,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.school_name}}
-						<label class="text-muted" for="id_school_name"><span class="fw-lighter">School Name or N/A</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_school_name"><span class="fw-normal text-dark">School Name or N/A</span> <span class="text-danger text-bold">*</span></label>
 						<datalist id="SchoolOptions">
 							<option value="21st Century Cyber Charter School">
 							<option value="Aalto University">
@@ -2370,16 +2372,16 @@
 			<div class="row mt-3 g-3">
 				<label class="text-danger d-none" id="resume_error">Resume Must Be <strong>pdf/docx</strong></label>
 				<div class="col-sm-12">
-					<label class="text-muted" for="id_resume"><span class="fw-lighter">Resume</span> <span class="fw-lighter text-bold">(pdf/docx)</span><span class="text-danger text-bold">*</span></label>
+					<label class="text-muted" for="id_resume"><span class="fw-normal">Resume</span> <span class="fw-normal text-bold">(pdf/docx)</span><span class="text-danger text-bold">*</span></label>
 					{{create_user_form.resume}}
 				</div>
 			</div>
 			<div class="row mt-3">
 				<div class="col text-start">
-					<button class="btn btn-outline-info" type="button" data-previous-button> &lt; Last</button>
+					<button class="btn btn-outline-info" type="button" data-previous-button> <i class="fa-solid fa-chevron-left"></i> Last</button>
 				</div>
 				<div class="col text-end">
-					<button class="btn btn-outline-info" type="button" data-next-button>Next &gt;</button>
+					<button class="btn btn-outline-info" type="button" data-next-button>Next <i class="fa-solid fa-chevron-right"></i></button>
 				</div>
 			</div>
 		</div>
@@ -2396,7 +2398,7 @@
 				<div class="col-sm-12">
 					<div class="form-floating">
 						{{create_user_form.password1}}
-						<label class="text-muted" for="id_password1"><span class="fw-lighter">Password</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_password1"><span class="fw-normal text-dark">Password</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -2412,16 +2414,17 @@
 					<label class="text-danger d-none" id="password2_error_label">Passwords Must Match</label>
 					<div class="form-floating">
 						{{create_user_form.password2}}
-						<label class="text-muted" for="id_password2"><span class="fw-lighter">Password Confirmation</span> <span class="text-danger text-bold">*</span></label>
+						<label class="text-muted" for="id_password2"><span class="fw-normal text-dark">Password Confirmation</span> <span class="text-danger text-bold">*</span></label>
 					</div>
 				</div>
 			</div>
+
 			<div class="row mt-3">
 				<div class="col text-start">
-					<button class="btn btn-outline-info" type="button" data-previous-button> &lt; Last</button>
+					<button class="btn btn-outline-info" type="button" data-previous-button> <i class="fa-solid fa-chevron-left"></i> Last</button>
 				</div>
 				<div class="col text-end">
-					<button class="btn btn-outline-info" type="button" data-next-button>Next &gt;</button>
+					<button class="btn btn-outline-info" type="button" data-next-button>Next <i class="fa-solid fa-chevron-right"></i></button>
 				</div>
 			</div>
 		</div>
@@ -2435,37 +2438,49 @@
 					<h3>Agreements</h3>
 				</div>
 			</div>
-			<div class="form-check mt-3">
-				<input class="form-check-input" type="checkbox" onclick="formSubmission()" required value="" id="codeOfConduct">
-				<label class="form-check-label" for="codeOfConduct">
-					<p class="">
-						I have read and agree to the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code of Conduct</a>.
-					</p>
-				</label>
+			<div class="row">
+				<div class="col">
+					<div class="form-check mt-3">
+						<input class="form-check-input" type="checkbox" onclick="formSubmission()" required value="" id="codeOfConduct">
+						<label class="form-check-label" for="codeOfConduct">
+							I have read and agree to the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank" rel="noopener noreferrer">MLH Code of Conduct</a>.
+						</label>
+					</div>
+				</div>
 			</div>
-			<div class="form-check mt-3">
-				<input class="form-check-input" type="checkbox" onclick="formSubmission()"  required  value="" id="termsConditionsPrivacy">
-				<label class="form-check-label" for="termsConditionsPrivacy">
-					<p class="">
-						I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and  MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/blob/master/prize-terms-and-conditions/contest-terms.md"> MLH Contest Terms and Conditions</a> and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.
-					</p>
-				</label>
+			<div class="row">
+				<div class="col">
+					<div class="form-check mt-3">
+						<input class="form-check-input" type="checkbox" onclick="formSubmission()"  required  value="" id="termsConditionsPrivacy">
+						<label class="form-check-label" for="termsConditionsPrivacy">
+							I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and  MLH administration in-line with the <a href="https://mlh.io/privacy" target="_blank" rel="noopener noreferrer">MLH Privacy Policy</a>. I further agree to the<a href="https://github.com/MLH/mlh-policies/blob/master/prize-terms-and-conditions/contest-terms.md" target="_blank" rel="noopener noreferrer"> MLH Contest Terms and Conditions</a>.
+						</label>
+					</div>
+				</div>
 			</div>
-			<div class="form-check mt-3">
-				<input class="form-check-input" type="checkbox" onclick="formSubmission()"  required  value="" id="emails">
-				<label class="form-check-label" for="emails">
-					I authorize MLH to send me pre- and post-event informational emails, which contain free credit and opportunities from their partners.
-				</label>
+			<div class="row">
+				<div class="col">
+					<div class="form-check mt-3">
+						<input class="form-check-input" type="checkbox" onclick="formSubmission()"  required  value="" id="emails">
+						<label class="form-check-label" for="emails">
+							I authorize MLH to send me pre- and post-event informational emails, which contain free credit and opportunities from their partners.
+						</label>
+					</div>
+				</div>
 			</div>
-			<div class="form-check mt-3 d-none" id="date-check">
-				<input class="form-check-input" type="checkbox" onclick="formSubmission()" value="" id="date">
-				<label class="form-check-label" for="date">
-					I understand that my age (being younger than 18) requires me to bring this form signed by my primary care taker(s) and my entry will be denied without it.
-				</label>
+			<div class="row">
+				<div class="col">
+					<div class="form-check mt-3 d-none" id="date-check">
+						<input class="form-check-input" type="checkbox" onclick="formSubmission()" value="" id="date">
+						<label class="form-check-label" for="date">
+							I understand that my age (being younger than 18) requires me to bring a minor waiver form signed by my primary care taker(s) and my entry will be denied without it. (You will receive it via email).
+						</label>
+					</div>
+				</div>
 			</div>
 			<div class="row mt-3">
 				<div class="col text-start">
-					<button class="btn btn-outline-info" type="button" data-previous-button> &lt; Last</button>
+					<button class="btn btn-outline-info" type="button" data-previous-button> <i class="fa-solid fa-chevron-left"></i> Last</button>
 				</div>
 				<div class="col text-end">
 					<input type="submit" class="btn btn-secondary" id="submissionButton" value="Register" disabled>

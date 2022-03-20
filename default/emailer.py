@@ -78,7 +78,7 @@ def minor_waiver_form_submission(hacker):
         Thanks again for registering for the HackTCNJ. We require all minors (under 18), to bring a signed waiver form by your primary care taker.
         You will not be able to check in to the event without it. 
 
-        Here is the link to the form: {}
+        You'll receive an email with a link to the form soon. 
         Thanks for working with us! 
 
         Best, 
