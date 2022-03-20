@@ -11,6 +11,7 @@ size_choices = [
     ("Unisex (S)", "Unisex (S)"),
     ("Unisex (M)", "Unisex (M)"),
     ("Unisex (L)", "Unisex (L)"),
+    ("Unisex (XL)","Unisex (XL)"),
     ("Unisex (2XL)", "Unisex (2XL)"),
     ("Unisex (3XL)", "Unisex (3XL)")
 ]
