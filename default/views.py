@@ -224,6 +224,7 @@ def profile_page(request, pk):
             # print("valid")
             user_change_form.save()
             messages.success(request, "Profile updated!")
+            return redirect('profile', pk=user.id)
     user_change_form = CustomUserChangeForm(instance=user)
     
 
