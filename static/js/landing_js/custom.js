@@ -1,8 +1,8 @@
-    new WOW().init();
+new WOW().init();
 
 (function ($) {
 
-   'use strict';
+    'use strict';
 
     /*
      * ----------------------------------------------------------------------------------------
@@ -30,16 +30,16 @@
     });
 
     $('.carousel').carousel({
-      interval: 8000
+        interval: 8000
     });
-    
+
     /* Closes the Responsive Menu on Menu Item Click*/
     $('.navbar-collapse .navbar-nav a').on('click', function () {
         $('.navbar-toggler:visible').click();
     });
     /*END MENU JS*/
 
-    
+
     /* ----------------------------------------------------------- */
     /*  Fixed header
     /* ----------------------------------------------------------- */
@@ -68,7 +68,7 @@
 
 })(window.jQuery);
 const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-const firstDate = new Date("3/22/2022");
+const firstDate = new Date("3/23/2022");
 const secondDate = new Date();
 
 const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
