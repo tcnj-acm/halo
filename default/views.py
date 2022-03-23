@@ -85,8 +85,7 @@ def registration(request):
             add_group(user, 'hacker')
 
             # Email confirmation
-            fundraiser_link = request.get_host() + "/fundraiser"
-            registration_confirmation(user, fundraiser_link)
+            registration_confirmation(user)
             
             if user.age < 18:
                 minor_waiver_form_submission(user)

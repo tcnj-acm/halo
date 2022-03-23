@@ -50,7 +50,7 @@ def password_reset_success(user):
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
-def registration_confirmation(hacker, link):
+def registration_confirmation(hacker):
     subject = "{}, you've successfully registered for HackTCNJ (YAY!)".format(hacker.first_name)
     from_email=FROM_EMAIL
     to_email=[hacker.email]
@@ -60,11 +60,10 @@ def registration_confirmation(hacker, link):
         We've received your hacker application for HackTCNJ! We can't wait to see you at TCNJ on April 9th, 2022. 
         You'll receive emails from us regarding check-in information and some logistics. 
 
-        In the meantime, get yourself some awesome exclusive fundraiser merch that will support our event! {}
 
         See you there! 
         {}
-    '''.format(hacker.first_name, link,TEAM_NAME)
+    '''.format(hacker.first_name,TEAM_NAME)
 
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
