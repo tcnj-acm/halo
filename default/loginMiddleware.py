@@ -95,7 +95,7 @@ class loginMiddleware():
         elif site_mode:
             return redirect('waitlist')
         else:
-            return redirect('login')
+            return redirect('landing')
 
 
 class accountsMiddleware():
