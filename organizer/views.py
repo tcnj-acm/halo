@@ -196,9 +196,10 @@ def settings(request):
 
 
 def stats_page(request):
-    hacker_food = HackerInfo.objects.values_list('user__food_preference').annotate(fc=Count('user__food_preference')).order_by('-fc')
-    hacker_major = HackerInfo.objects.values_list('user__major').annotate(fc=Count('user__major')).order_by('-fc')[:5]
-    hacker_education = HackerInfo.objects.values_list('user__level_of_study').annotate(fc=Count('user__level_of_study')).order_by('-fc')
+    hacker_food = CustomUser.objects.values_list('food_preference').annotate(fc=Count('food_preference')).order_by('-fc')
+    hacker_major = CustomUser.objects.values_list('major').annotate(fc=Count('major')).order_by('-fc')[:5]
+    hacker_education = CustomUser.objects.values_list('level_of_study').annotate(fc=Count('level_of_study')).order_by('-fc')
+    hacker_shirts = CustomUser.objects.values_list('shirt_size').annotate(fc=Count('shirt_size'))
     waitlist_count = WaitingList.objects.all().count()
     register_count = HackerInfo.objects.all().count()
     checked_in_count = HackerInfo.objects.filter(user__groups__name='checked-in').count()
@@ -208,6 +209,7 @@ def stats_page(request):
                 'waitlist_count':waitlist_count,
                 'register_count':register_count,
                 'checked_in_count':checked_in_count,
+                'hacker_shirts':hacker_shirts,
                 'permissions':get_permissions(request.user)
     }
     return render(request, 'organizers/statspage.html', context)
