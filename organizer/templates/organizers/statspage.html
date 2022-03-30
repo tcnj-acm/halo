@@ -1,6 +1,6 @@
 {% extends 'organizers/base.html' %}
 {% block content %}
-<div class="container text-center">
+<div class="container text-center mb-5">
 
     <h1>Statistics Page</h1>
     <div class="row row-cols-md-3 row-cols-sm-1 g-3">
@@ -110,6 +110,32 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="col ">
+            <div class="card h-100">
+                <div class="card-header text-center">
+                    Shirt Size Counts
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Shirt Size</th>
+                                <th scope="col">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shirt_stat in hacker_shirts %}
+                            <tr>
+                                <td>{{shirt_stat.0}}</td>
+                                <td>{{shirt_stat.1}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
                 </div>
             </div>
         </div>
