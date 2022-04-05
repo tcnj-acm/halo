@@ -8,11 +8,20 @@
   </head>
   <body>
 
-  <h1 class="text-center mt-3"> Welcome! Thank you for registering for this year's HackTCNJ.</h1>
-  
-  <br>
-  <h4 class="text-center">Use this QR code to check in to event</h2>
-    <center>{% qr_from_text check_in_url size="T" dark_color="darkblue" image_format="png"%}</center>
-
+    <h1 class="text-center mt-3"> Welcome! Thank you for registering for this year's HackTCNJ.</h1>
+    
+    <br>
+    <h4 class="text-center">Check into this event using the QR code and join our Discord!</h2>
+      <div class="row">
+        <div class="col-6 w-100"> 
+          {% qr_from_text check_in_url size="T" dark_color="darkblue" image_format="png"%} 
+        </div>
+        <div class="col-6">
+          <iframe src="https://discord.com/widget?id=802214973211934720&theme=dark" width="350" height="500" 
+          allowtransparency="true" frameborder="0" 
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+          </iframe>
+        </div>
+      </div>
   </body>
 {% endblock %}
