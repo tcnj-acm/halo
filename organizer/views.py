@@ -53,6 +53,14 @@ def display_hackers(request):
                }
     return render(request, 'organizers/hackersdisplay.html', context)
 
+def under18_hackers(request):
+    url_parameter = request.GET.get("q")
+
+    young_hackers = HackerInfo.objects.filter(user__age__lt=18)
+    
+    context = {'young_hackers':young_hackers}
+    return render(request, 'organizers/minorhackers.html', context)
+
 # This is a view that shows people that are not checked in to the event
 def manual_checkin(request):
 
