@@ -129,6 +129,7 @@ LOGIN_EXEMPT_URLS = {
     r'reset',
     r'get',
     r'fundraiser',
+    r'waiver',
 
 }
 
