@@ -1,6 +1,7 @@
 from email import message
 from django.contrib import messages
 from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm
+from django.http import HttpResponse
 from django.db.models.query_utils import check_rel_lookup_compatibility, select_related_descend
 from django.db.models import Count
 from django.contrib.auth.models import Group
@@ -15,6 +16,7 @@ from django.db.models.functions import Concat
 from .helper import get_permissions
 from default.emailer import new_organizer_added
 
+from .utils import download_csv
 
 # Create your views here.
 
@@ -60,6 +62,19 @@ def under18_hackers(request):
     
     context = {'young_hackers':young_hackers}
     return render(request, 'organizers/minorhackers.html', context)
+
+
+def export_hacker_csv(request):
+  # Create the HttpResponse object with the appropriate CSV header.
+#   id;password;date_joined;last_login;is_admin;is_active;is_staff;is_superuser;food_preference;resume;registration_comment;groups;user_permissions
+# email;first_name;last_name;address;;shirt_size;gender;age;school_name;level_of_study;major
+#   query = CustomUser.objects.defer('id', 'password', 'date_joined', 'last_login', 'is_admin', 'is_active','is_staff', 'is_superuser', 'food_preference','resume', 'groups', 'user_permissions', 'registration_comment').only('email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major')
+  
+#   id;password;date_joined;last_login;is_admin;is_active;is_staff;is_superuser;email;first_name;last_name;address;food_preference;shirt_size;gender;age;school_name;level_of_study;major;resume;registration_comment;groups;user_permissions
+#   query = CustomUser.objects.only('email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major')
+  data = download_csv(request, CustomUser.objects.only('email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major'))
+  response = HttpResponse(data, content_type='text/csv')
+  return response
 
 # This is a view that shows people that are not checked in to the event
 def manual_checkin(request):
