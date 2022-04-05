@@ -69,8 +69,8 @@ def registration_confirmation(hacker):
               recipient_list=to_email, message=body, fail_silently=False)
 
 
-def minor_waiver_form_submission(hacker):
-    subject = "{}, you've successfully registered for HackTCNJ (YAY!)".format(hacker.first_name)
+def minor_waiver_form_submission(hacker, link):
+    subject = "{}, HackTCNJ Minor Waiver Form".format(hacker.first_name)
     from_email=FROM_EMAIL
     to_email=[hacker.email]
     body = '''
@@ -79,13 +79,13 @@ def minor_waiver_form_submission(hacker):
         Thanks again for registering for the HackTCNJ. We require all minors (under 18), to bring a signed waiver form by your primary care taker.
         You will not be able to check in to the event without it. 
 
-        You'll receive an email with a link to the form soon. 
+        Link to form: {}
         Thanks for working with us! 
 
         Best, 
 
         {}
-    '''.format(hacker.first_name,"LINK", TEAM_NAME)
+    '''.format(hacker.first_name, link, TEAM_NAME)
 
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)

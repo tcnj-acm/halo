@@ -21,5 +21,6 @@ urlpatterns = [
      path('get/json/password/verification', views.check_password, name="check_password"),
      
      path('fundraiser', views.fundraiser_link, name='fundraiser'),
+     path('waiver', views.minor_waiver_form, name='minor_waiver'),
      path('profile/<int:pk>', views.profile_page, name='profile'),
 ]

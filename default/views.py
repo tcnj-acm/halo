@@ -88,7 +88,8 @@ def registration(request):
             registration_confirmation(user)
             
             if user.age < 18:
-                minor_waiver_form_submission(user)
+                link = request.get_host() + "/waiver"
+                minor_waiver_form_submission(user, link)
 
             user = authenticate(request, username=user.email, password=pword)
             if user is not None:
@@ -201,6 +202,11 @@ def fundraiser_link(request):
 
     context = {}
     return render(request, 'defaults/fundraiser.html', context)
+
+def minor_waiver_form(request):
+
+    context = {}
+    return render(request, 'defaults/minor_waiver.html',context)
 
 def profile_page(request, pk):
     user = None
