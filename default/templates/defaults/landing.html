@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{% static 'plugins/plugins/fontawesome/css/all.css' %}">
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
-
+  
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/jpg" href="{% static 'hackathonicon.jpg' %}" />
 </head>
@@ -47,10 +47,10 @@
           </li>
           {% comment %} <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#schedule">Schedule</a>
-          </li>
+          </li>{% endcomment %}
           <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#prizes">Prizes</a>
-          </li> {% endcomment %}
+          </li> 
           {% comment %} <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#merch">Fundraiser</a>
           </li> {% endcomment %}
@@ -217,7 +217,7 @@
       </div>
     </div>
   </div>
-
+{% endcomment %}
   <!-- PRIZES SECTION -->
   <section id="prizes" class=" bg-feature">
     <div class="container">
@@ -233,43 +233,37 @@
   <div class="container mb-5 mt-5">
     <div class="pricing card-deck flex-column flex-md-row mb-3">
       <div class="card card-pricing popular shadow text-center px-3 mb-4">
-        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 1</span>
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Best Overall Hack</span>
         <div class="bg-transparent card-header pt-4 border-0">
-          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> Nintendo Switch Lite </h1>
         </div>
         <div class="card-body pt-0">
-          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
+          <img class="w-50 my-3" src="{% static 'images/images/prizes/nintendoswitch.jfif' %}" />
+          <p> This category is open to all hackers! Build a really cool project and get a dope game console that you can play on the go!</p>
         </div>
       </div>
       <div class="card card-pricing popular shadow text-center px-3 mb-4">
-        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 2</span>
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Best High School Hack</span>
         <div class="bg-transparent card-header pt-4 border-0">
-          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> Polaroid Now+ Bundle </h1>
         </div>
         <div class="card-body pt-0">
-          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
+          <img class="w-50 my-3" src="{% static 'images/images/prizes/polaroid.jfif' %}" />
+          <p> Open to all High Schoolers. Win yourself a fancy camera! Comes with film; ready to snap a winning group picture on the spot!</p>
         </div>
       </div>
       <div class="card card-pricing popular shadow text-center px-3 mb-4">
-        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 3</span>
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Best Command Line Hack</span>
         <div class="bg-transparent card-header pt-4 border-0">
-          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> JBL Bluetooth Speaker</h1>
         </div>
         <div class="card-body pt-0">
-          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
-        </div>
-      </div>
-      <div class="card card-pricing popular shadow text-center px-3 mb-4">
-        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Cat 4</span>
-        <div class="bg-transparent card-header pt-4 border-0">
-          <h1 class="h1 font-weight-normal text-black text-center mb-0"> IPSUM </h1>
-        </div>
-        <div class="card-body pt-0">
-          <p> LOREM IPSUM DEODAWKLFJAWKLFJLWKAJ </p>
+          <img class="w-50 my-3" src="{% static 'images/images/prizes/jlbclip3.jpg' %}" />
+          <p> No UI expirience? We got you! Simply show off your programming skills by building a command line application that runs in the terminal.<p>
         </div>
       </div>
     </div>
-  </div> {% endcomment %}
+  </div>
 
   {% comment %} <section id="merch" class=" bg-feature" >
     <div class="container">
@@ -481,7 +475,7 @@
   </section>
 
   <!-- Essential Scripts -->
-
+  
   <!-- Main jQuery -->
   <script src="{% static 'plugins/plugins/jquery/jquery.min.js' %}"></script>
   <!-- Bootstrap 4.3.1 -->
@@ -492,6 +486,8 @@
   <script src="{% static 'plugins/plugins/counterup/jquery.counterup.min.js' %}"></script>
   <!-- Dynamic  Header -->
   <script src="{% static 'js/landing_js/custom.js' %}"></script>
+  <!-- Prize Section -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 
