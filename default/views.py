@@ -86,6 +86,7 @@ def registration(request):
 
             # Email confirmation
             registration_confirmation(user)
+            add_user_to_mailing_list(user.first_name, user.last_name, user.email)
             
             if user.age < 18:
                 link = request.get_host() + "/waiver"
