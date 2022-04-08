@@ -11,6 +11,8 @@ if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
 if hasattr(settings, 'WAITLIST_EXEMPT_URLS'):
     WL_EXEMPT_URLS = [re.compile(url) for url in settings.WAITLIST_EXEMPT_URLS]
 
+if hasattr(settings, 'MAIN_EXEMPT_URLS'):
+    M_EXEMPT_URLS = [re.compile(url) for url in settings.MAIN_EXEMPT_URLS]
 
 """
 The exempt URLS for each type. This will allow them to 
@@ -89,6 +91,9 @@ class loginMiddleware():
         url_is_exempt = any(url.match(path) for url in site_mode_exmpt_URLs)
         url_is_still_exempt = any(url.match(path) for url in EXEMPT_URLS)
 
+        if any(url.match(path) for url in M_EXEMPT_URLS):
+            return None
+        
         if request.user.is_authenticated and url_is_still_exempt:
             return redirect(decide_redirect(request.user))
         elif request.user.is_authenticated or url_is_exempt:
@@ -139,7 +144,6 @@ class accountsMiddleware():
                 return redirect('organizer-dash')
         else:  # head organizer
             if any(mod == module_name for mod in head_organizer_not_mods):
-                # print("foundone")
                 return redirect('organizer-dash')
             else:
                 pass
