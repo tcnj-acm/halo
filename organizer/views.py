@@ -14,7 +14,7 @@ from django.db.models import Q
 from django.db.models import Value as V
 from django.db.models.functions import Concat  
 from .helper import get_permissions
-from default.emailer import new_organizer_added
+from default.emailer import new_organizer_added, add_user_to_mailing_list
 
 from .utils import download_csv
 
@@ -171,6 +171,7 @@ def add_organizer(request):
 
             reset_link = request.get_host() + "/reset-password"
             new_organizer_added(reset_link, new_user)
+            add_user_to_mailing_list(new_user.first_name, new_user.last_name, new_user.email)
 
             return redirect('all-organizers')
     context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form}

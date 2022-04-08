@@ -18,6 +18,7 @@ bypass in certain specific scenarios.
 """
 all_exempt_urls = {  # URLS that anyone should be able to access outside of their views
     r'profile',
+    r'waiver',
 }
 
 hacker_exempt_URLS = {  # Any urls outside of hacker.views that they can access

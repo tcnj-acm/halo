@@ -2,6 +2,9 @@
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from aslan.settings.base import EMAIL_OUTGOING
+from sendgrid import SendGridAPIClient
+
+import os
 import re
 TEAM_NAME="Team HackTCNJ"
 FROM_EMAIL= EMAIL_OUTGOING
@@ -147,3 +150,25 @@ def new_waitlister_added(email, name, link):
 
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
+
+
+##### Sendgrid to add people to a mailing list
+def add_user_to_mailing_list(fname, lname, email):
+    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+
+    data = {
+        "contacts": [
+            {
+                "email": email,
+                "first_name":fname,
+                "last_name": lname,
+            }
+        ]
+    }
+
+    response = sg.client.marketing.contacts.put(request_body=data)
+    
+    # print("results")
+    # print(response.status_code)
+    # print(response.body)
+    # print(response.headers)
