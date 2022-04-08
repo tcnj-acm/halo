@@ -14,7 +14,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name','last_name', 'address', 'shirt_size', 'food_preference','gender', 
-                    'age', 'school_name','level_of_study','major', 'resume')}),
+                    'age', 'school_name','level_of_study','major', 'resume', 'registration_comment')}),
         ('Permissions', {'fields': ('is_staff', 'is_admin', 'is_superuser' ,'groups')}),
     )
     add_fieldsets = (

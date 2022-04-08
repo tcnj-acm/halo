@@ -37,11 +37,11 @@ def display_hackers(request):
     if url_parameter:
         checked_in_hackers = HackerInfo.objects.filter(user__groups__name='checked-in').filter(
             Q(user__first_name__icontains=url_parameter) | Q(user__last_name__icontains=url_parameter) |
-            Q(user__email__icontains=url_parameter)
+            Q(user__email__icontains=url_parameter) | Q(user__registration_comment__icontains=url_parameter)
         )
         nonchecked_in_hackers = HackerInfo.objects.exclude(user__groups__name='checked-in').filter(
             Q(user__first_name__icontains=url_parameter) | Q(user__last_name__icontains=url_parameter) |
-            Q(user__email__icontains=url_parameter)
+            Q(user__email__icontains=url_parameter) | Q(user__registration_comment__icontains=url_parameter)
         )
     else:
         checked_in_hackers = HackerInfo.objects.filter(
