@@ -132,6 +132,12 @@ LOGIN_EXEMPT_URLS = {
 
 }
 
+
+#Treat these with great care - Open to both authorized and unauthorized users
+MAIN_EXEMPT_URLS = {
+    r'waiver'
+}
+
 WAITLIST_EXEMPT_URLS = {
     r'coming-soon',
     r'login',
