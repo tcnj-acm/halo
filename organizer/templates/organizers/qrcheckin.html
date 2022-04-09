@@ -7,6 +7,14 @@
     <h3>{{hacker.address}}</h3>
     <h3>{{hacker.user.food_prefence}}</h3>
     <h3>{{hacker.user.shirt_size}}</h3>
+    <h3>{{hacker.user.gender}}</h3>
+    
+    {% if hacker.user.age < 18 %}
+      <h3 class="text-danger">{{hacker.user.age}}</h3>
+      {% else %}
+      <h3>{{hacker.user.age}}</h3>
+    {% endif %}
+      
 
     <form method="POST"> {% csrf_token %}
       <input type="hidden" value={{hacker.user.email}} name="email">
