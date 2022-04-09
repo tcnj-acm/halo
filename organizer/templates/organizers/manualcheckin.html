@@ -20,12 +20,12 @@
                 <h3 class="text-center" >Unchecked-in Hackers</h3>
             </div>
             <div class="col-5 align-self-center justify-content-end" >
-                <form class="row justify-content-end" action="{% url 'display-hackers' %}" method="GET">
+                <form class="row justify-content-end" action="{% url 'manual-checkin' %}" method="GET">
                     <div class="col">
                         <input id="user-input" name="q" class="form-control form-control-sm ml-3" type="text" placeholder="Search" aria-label="Search">
                     </div>
                     <div class="col">
-                        <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'display-hackers' %}">Reset Search</a>
+                        <a class="btn btn-outline-warning btn-sm" style="margin-left: 4px;" href="{% url 'manual-checkin' %}">Reset Search</a>
                     </div>
                 </form> 
             </div>
@@ -44,6 +44,8 @@
                         <th class="d-none" scope="col">Food Preference</th>
                         <th class="d-none" scope="col">Shirt Size</th>
                         <th class="d-none" scope="col">Education</th>
+                        <th class="d-none" scope="col">Gender</th>
+                        <th class="d-none" scope="col">Age</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -55,6 +57,8 @@
                             <td class="d-none" >{{h.user.food_preference}}</td>
                             <td class="d-none">{{h.user.shirt_size}}</td>
                             <td class="d-none" >{{h.user.level_of_study}}</td>
+                            <td class="d-none" >{{h.user.gender}}</td>
+                            <td class="d-none" >{{h.user.age}}</td>
                             <td class=""><a  class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
                         </tr>
                     {% endfor %}
@@ -83,6 +87,8 @@
 									<h5>Food Preference -	<span class="kcolor" id="Food"></span></h5>
 									<h5>Shirt Size - <span class="kcolor" id="Shirt"></span></h5>
 									<h5>Education - <span id="Education" class="kcolor"></span></h5>
+									<h5>Gender - <span id="Gender" class="kcolor"></span></h5>
+									<h5>Age - <span id="Age" class="kcolor"></span></h5>
 								</div>
 							</div>
 						</div>
@@ -111,11 +117,15 @@
         var f = info[5].textContent
         var s = info[7].textContent
         var edu = info[9].textContent
+        var g = info[11].textContent
+        var a = info[13].textContent
         document.getElementById("HackerName").innerHTML = (n)
         document.getElementById("Email").innerHTML = (e)
         document.getElementById("Shirt").innerHTML = (s)
         document.getElementById("Food").innerHTML = (f)
         document.getElementById("Education").innerHTML = (edu)
+        document.getElementById("Gender").innerHTML = (g)
+        ageSpan = document.getElementById("Age").innerHTML = (a)
         document.getElementById("check-in-email-field").setAttribute("value",e)
     })
 </script>
