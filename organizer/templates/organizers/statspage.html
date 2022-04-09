@@ -35,11 +35,117 @@
             </div>
         </div>
     </div>
-    <h3 class="mt-3">Hacker Information</h3>
+    <h3 class="mt-3">Checked-in Hacker Information</h3>
     <div class="row row-cols-md-2 row-cols-sm-1 g-3">
         <div class="col ">
             <div class="card h-100">
-                <div class="card-header text-center">
+                <div class="card-header text-center text-success">
+                    Education Level Counts
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Education Level</th>
+                                <th scope="col">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for education_stat in checked_hacker_education %}
+                            <tr>
+                                <td>{{education_stat.0}}</td>
+                                <td>{{education_stat.1}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header text-center text-success">
+                    Hacker Food Stats
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            {% for food_stat in checked_hacker_food %}
+                                <th>{{food_stat.0}}</th>
+                            {% endfor %}
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for food_stat in checked_hacker_food %}
+                                    <td scope="col">{{food_stat.1}}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header text-center text-success">
+                    Top 5 Majors
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Major</th>
+                                <th scope="col">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for major_stat in checked_hacker_major %}
+                            <tr>
+                                <td>{{major_stat.0}}</td>
+                                <td>{{major_stat.1}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col ">
+            <div class="card h-100">
+                <div class="card-header text-center text-success">
+                    Shirt Size Counts
+                </div>
+                <div class="card-body text-center">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Shirt Size</th>
+                                <th scope="col">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shirt_stat in checked_hacker_shirts %}
+                            <tr>
+                                <td>{{shirt_stat.0}}</td>
+                                <td>{{shirt_stat.1}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3 class="mt-3">Total Hacker Information</h3>
+    <div class="row row-cols-md-2 row-cols-sm-1 g-3">
+        <div class="col ">
+            <div class="card h-100">
+                <div class="card-header text-center text-danger">
                     Education Level Counts
                 </div>
                 <div class="card-body text-center">
@@ -65,7 +171,7 @@
         </div>
         <div class="col">
             <div class="card h-100">
-                <div class="card-header text-center">
+                <div class="card-header text-center text-danger">
                     Hacker Food Stats
                 </div>
                 <div class="card-body text-center">
@@ -90,7 +196,7 @@
         </div>
         <div class="col">
             <div class="card h-100">
-                <div class="card-header text-center">
+                <div class="card-header text-center text-danger">
                     Top 5 Majors
                 </div>
                 <div class="card-body text-center">
@@ -115,7 +221,7 @@
         </div>
         <div class="col ">
             <div class="card h-100">
-                <div class="card-header text-center">
+                <div class="card-header text-center text-danger">
                     Shirt Size Counts
                 </div>
                 <div class="card-body text-center">
