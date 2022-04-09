@@ -2,17 +2,17 @@
 {% block content %}
 
 <h1>Check-in<h1>
-    <h3>{{hacker.user.first_name}} {{hacker.user.last_name}}</h3>
-    <h3>{{hacker.user.email}}</h3>
-    <h3>{{hacker.address}}</h3>
-    <h3>{{hacker.user.food_prefence}}</h3>
-    <h3>{{hacker.user.shirt_size}}</h3>
-    <h3>{{hacker.user.gender}}</h3>
+    <h3>Name : {{hacker.user.first_name}} {{hacker.user.last_name}}</h3>
+    <h3>Email : {{hacker.user.email}}</h3>
+    <h3>Address: {{hacker.address}}</h3>
+    <h3>Food Preference : {{hacker.user.food_preference}}</h3>
+    <h3>Shirt Size : {{hacker.user.shirt_size}}</h3>
+    <h3>Gender: {{hacker.user.gender}}</h3>
     
     {% if hacker.user.age < 18 %}
-      <h3 class="text-danger">{{hacker.user.age}}</h3>
+      <h3 class="text-danger">Age : {{hacker.user.age}}</h3>
       {% else %}
-      <h3>{{hacker.user.age}}</h3>
+      <h3 class="text-success">Age : {{hacker.user.age}}</h3>
     {% endif %}
       
 
