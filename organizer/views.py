@@ -80,6 +80,15 @@ def export_hacker_csv(request):
 def manual_checkin(request):
 
     just_registered = None
+    nonchecked_in_hackers = None
+    url_parameter = request.GET.get("q")
+    if url_parameter:
+        nonchecked_in_hackers = HackerInfo.objects.exclude(user__groups__name='checked-in').filter(
+            Q(user__first_name__icontains=url_parameter) | Q(user__last_name__icontains=url_parameter) |
+            Q(user__email__icontains=url_parameter)
+        )
+    else:
+        nonchecked_in_hackers = HackerInfo.objects.exclude(user__groups__name='checked-in')
 
     if request.method == 'POST':
         if 'undo-check-in-form' in request.POST:
@@ -92,10 +101,8 @@ def manual_checkin(request):
             add_group(hack.user, "checked-in")
             just_registered = hack
 
-    uncheckedin_hackers = HackerInfo.objects.exclude(
-        user__groups__name='checked-in')
 
-    context = {'uncheckedin_hackers': uncheckedin_hackers,
+    context = {'uncheckedin_hackers': nonchecked_in_hackers,
                'just_registered': just_registered,
                 'permissions':get_permissions(request.user)
                }
