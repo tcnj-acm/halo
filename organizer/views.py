@@ -76,6 +76,11 @@ def export_hacker_csv(request):
   response = HttpResponse(data, content_type='text/csv')
   return response
 
+def export_checkedin_hackers_csv(request):
+    data = download_csv(request, CustomUser.objects.filter(groups__name='checked-in').only('email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major'))
+    response = HttpResponse(data, content_type='text/csv')
+    return response
+
 # This is a view that shows people that are not checked in to the event
 def manual_checkin(request):
 
