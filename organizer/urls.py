@@ -6,6 +6,7 @@ urlpatterns = [
      path('hackers', views.display_hackers, name='display-hackers'),
      path('minor-hackers', views.under18_hackers, name='under18-hackers'),
      path('download/', views.export_hacker_csv, name='export-hackers'),
+     path('download-checkedin/', views.export_checkedin_hackers_csv, name='export-checkedin-hackers'),
      path('organizers', views.display_organizers, name='all-organizers'),
      path('organizers/delete/<int:id>',
           views.delete_organizer, name='delete-organizer'),
