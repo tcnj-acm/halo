@@ -5,10 +5,12 @@
     <img src="" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Aslan</h3>
+  <h3 align="center">HALO</h3>
+  
+  <h4 align="center">Hackathons with Awesome Logistics Organization</h4>
 
   <p align="center">
-    Hackathon Resource Management System built on Django
+    A Hackathon Management System built on Django
     <br/>
     <br/>
     <a href="https://github.com/tcnj-acm/aslan">View Demo</a>
@@ -26,15 +28,15 @@
 ## About The Project
 
 
-Aslan is a web application that gives alleviates hackathon operations. From handling registration to hacker and organizer management, Aslan works as a resource management tool
+HALO is a web application that gives alleviates hackathon operations. From handling registration to hacker and organizer management, HALO works as a resource management tool
 
 1. Seamless Registration and Check-in module from the platform
 2. Hacker QR Code Checkin
 3. Waiting list functionalities for registration
-4. Exclusive Sponsor Booth Pages on your website
-5. Quick Deployment to Heroku
-6. Integrated Email Module with Sendgrid
-7. And more awesome stuff!
+4. Team Building functionality with hackers with invitation integration via email
+5. Exclusive Sponsor Booth Pages on your website
+6. Quick Deployment to Heroku
+7. Integrated Email Module with Sendgrid
 
 
 
@@ -62,12 +64,12 @@ TODO -- add heroku and postgres info here
 1. Clone the repo
 
    ```shell
-   git clone git@github.com:tcnj-acm/aslan.git
+   git clone git@github.com:tcnj-acm/halo.git
    ```
 
    
 
-   Note: If you don't have ssh keys setup to clone git repos, then replace the ssh link with `https://github.com/tcnj-acm/aslan.git`
+   Note: If you don't have ssh keys setup to clone git repos, then replace the ssh link with `https://github.com/tcnj-acm/.git`
 
 2. `cd` to repo
 
@@ -104,9 +106,10 @@ Distributed under the MIT License. See [LICENSE](https://github.com/tcnj-acm/asl
 
 [Kevin Williams](https://github.com/kvnwill) - *Co-founder; who the heck likes chocolate frosted flakes anyway??* 
 
-[Sterly Deracy](https://github.com/sderacy) - *Co-founder; maestro of finesse, hustler extraordinaire* 
 
 ## Acknowledgements
 
-We'd like to thank our contributors here
+We'd like to thank our contributors here:
+
+[Sterly Deracy](https://github.com/sderacy) - *maestro of finesse, hustler extraordinaire* 
 
