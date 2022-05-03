@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/tcnj-acm/aslan">
-    <img src="logo.png" alt="Logo" width="350" height="350">
+    <img src="logo.png" alt="Logo" width="500">
   </a>
 
   <h3 align="center">HALO</h3>
