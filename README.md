@@ -114,16 +114,15 @@ Please read our [Contributing](https://github.com/tcnj-acm/aslan/blob/main/.gith
 
 Distributed under the MIT License. See [LICENSE](https://github.com/tcnj-acm/aslan/blob/main/LICENSE.md) for more information.
 
-## Authors
+
+## Contributors
+
+We'd like to thank everyone who has contributed to the project:
 
 [Abhi Vempati](https://github.com/abhivemp) - *Co-founder; believes chocolate is the only superior ice cream flavor*
 
 [Kevin Williams](https://github.com/kvnwill) - *Co-founder; who the heck likes chocolate frosted flakes anyway??* 
 
+[Sterly Deracy](https://github.com/sderacy) - * Developer; maestro of finesse, hustler extraordinaire* 
 
-## Acknowledgements
-
-We'd like to thank our contributors here:
-
-[Sterly Deracy](https://github.com/sderacy) - *maestro of finesse, hustler extraordinaire* 
-
+[JM Tameta](https://github.com/JmTameta) - *Logo Designer*
