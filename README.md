@@ -28,23 +28,37 @@
 ## About The Project
 
 
-HALO is a web application that gives alleviates hackathon operations. From handling registration to hacker and organizer management, HALO works as a resource management tool
+HALO is a web application that gives alleviates hackathon operations. From handling registration to hacker and organizer management, HALO works as a resource management tool for all organizers. This is what it can do:
 
 1. Seamless Registration and Check-in module from the platform
-2. Hacker QR Code Checkin
-3. Waiting list functionalities for registration
-4. Team Building functionality with hackers with invitation integration via email
-5. Exclusive Sponsor Booth Pages on your website
+2. Check-in hackers via QR Code
+3. Website Waiting List mode
+4. Hacker team building functionality with invitation integration via email
+5. Exclusive sponsor booth pages on your website
 6. Quick Deployment to Heroku
 7. Integrated Email Module with Sendgrid
+8. Resume Drop storage with AWS S3
 
 
 
 ## Built With
 
-Insert a table of dependencies
+|  dependencies |
+| ------------ |
+| django  |
+| mysqlclient  |
+| python-dotenv  |
+| django-qr-code  |
+| django-storages  |
+| boto3  |
+| gunicorn  |
+| dj-database-url  |
+| whitenoise  |
+| psycopg2-binary  |
+| django-heroku  |
+| sendgrid  |
 
-Built with Django
+Python 3.9.10
 
 
 
@@ -88,7 +102,7 @@ TODO -- add heroku and postgres info here
 
 ## Usage
 
-We bulit this project because we wanted all hackathons to have a powerful application to that can tackle on the big things. 
+We bulit this project because we wanted all hackathons to have a powerful application to can tackle on the big things. 
 
 If you are organizing a hackathon and want a smooth process to manage your hackers and team, to operate registration and check-in, and to impress your sponsors with an exclusive website "booth" -- this project is for you!
 
