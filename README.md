@@ -70,7 +70,11 @@ Make sure you have `pipenv` installed. If not, run `pip install pipenv`
 
 ### Deployment Reqs
 
-TODO -- add heroku and postgres info here
+Heroku with Postgres used. Used Postgres add-on with heroku. Be sure to add all your envs to your secret variables on linkedin
+
+### Environmental Variables
+
+The project uses multiple .env variables and unfortunately couldn't be compiled to one file. Here are the files you will need for the following variables
 
 ### Installation
 
@@ -119,10 +123,10 @@ Distributed under the MIT License. See [LICENSE](https://github.com/tcnj-acm/asl
 
 We'd like to thank everyone who has contributed to the project:
 
-[Abhi Vempati](https://github.com/abhivemp) - *Co-founder; believes chocolate is the only superior ice cream flavor*
+[Abhi Vempati](https://github.com/abhivemp) - *Believes chocolate is the only superior ice cream flavor*
 
-[Kevin Williams](https://github.com/kvnwill) - *Co-founder; who the heck likes chocolate frosted flakes anyway??* 
+[Kevin Williams](https://github.com/kvnwill) - *Who the heck likes chocolate frosted flakes anyway??* 
 
-[Sterly Deracy](https://github.com/sderacy) - * Developer; maestro of finesse, hustler extraordinaire* 
+[Sterly Deracy](https://github.com/sderacy) - *Maestro of finesse, hustler extraordinaire* 
 
-[JM Tameta](https://github.com/JmTameta) - *Logo Designer*
+[JM Tameta](https://github.com/JmTameta) - *comment*
