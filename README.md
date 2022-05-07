@@ -74,7 +74,7 @@ Heroku with Postgres used. Used Postgres add-on with heroku. Be sure to add all 
 
 ### Environmental Variables
 
-The project uses multiple .env variables and unfortunately couldn't be compiled to one file. Here are the files you will need for the following variables
+The project uses multiple .env variables and unfortunately couldn't be compiled to one file. Please read the Environmental Variables doc to properly set this up. 
 
 ### Installation
 
@@ -103,6 +103,18 @@ The project uses multiple .env variables and unfortunately couldn't be compiled 
    ```shell
    pipenv shell
    ```
+
+5. Set up your environmental variables 
+6. `python manage.py makemigrations`
+7. `python manage.py runserver`
+
+## Setup Data
+
+We've compiled some setup data that you can use. 
+
+1. `cd setup/`
+2. `sh run_create_db.sh`
+
 
 ## Usage
 
