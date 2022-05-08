@@ -74,7 +74,7 @@ Heroku with Postgres used. Used Postgres add-on with heroku. Be sure to add all 
 
 ### Environmental Variables
 
-The project uses multiple .env variables and unfortunately couldn't be compiled to one file. Please read the Environmental Variables doc to properly set this up. 
+The project uses multiple .env variables and unfortunately couldn't be compiled to one file. Please read the Environmental Variables [doc](https://github.com/tcnj-acm/aslan/blob/main-dev/.github/ENVIRONMENTAL_VARIABLES.md) to properly set this up. 
 
 ### Installation
 
@@ -104,7 +104,7 @@ The project uses multiple .env variables and unfortunately couldn't be compiled 
    pipenv shell
    ```
 
-5. Set up your environmental variables 
+5. Set up your [environmental variables](https://github.com/tcnj-acm/aslan/blob/main-dev/.github/ENVIRONMENTAL_VARIABLES.md) 
 6. `python manage.py makemigrations`
 7. `python manage.py runserver`
 
