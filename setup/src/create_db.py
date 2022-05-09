@@ -76,7 +76,7 @@ email_volunteers = [
     'dom@aslan.com',
 ]
 address_volunteers = [
-    '234 Union St',
+    '23 inumaki St',
     '25 Warren Ave',
     '100 Campus Town',
 ]
@@ -134,7 +134,7 @@ address_hackers = [
     '33 Brooklyn Ln',
     '33 Brooklyn Ln',
     '60 Brooklyn Ln',
-    '4 Galston Dr',
+    '4 Galborti Dr',
     '30 Pennington Rd',
 
 ]
@@ -226,24 +226,12 @@ def create_groups():
 
 
 def create_super_user():
-    # print(os.getenv('HEAD_ORG_EMAIL'))
-    # print(os.getenv('HEAD_ORG_PASSWORD'))
-    # print(os.getenv('HEAD_ORG_FIRST_NAME'))
-    # print(os.getenv('HEAD_ORG_LAST_NAME'))
-
-    # print("The types")
-
-    # print(type(str(os.getenv('HEAD_ORG_EMAIL'))))
-    # print(type(str(os.getenv('HEAD_ORG_PASSWORD'))))
-    # print(type(str(os.getenv('HEAD_ORG_FIRST_NAME'))))
-    # print(type(str(os.getenv('HEAD_ORG_LAST_NAME'))))
     new_admin=CustomUser.objects.create_superuser(email=os.getenv('HEAD_ORG_EMAIL'), password=os.getenv('HEAD_ORG_PASSWORD'))
     new_admin.first_name=os.getenv('HEAD_ORG_FIRST_NAME')
     new_admin.last_name=os.getenv('HEAD_ORG_LAST_NAME')
 
 
 def create_users():
-
     for i in range(TOTAL_ORGANIZERS):
         new_user = CustomUser.objects.create(
             email=email_organizers[i], first_name=first_name_organizers[i], 
