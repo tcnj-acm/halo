@@ -118,7 +118,7 @@ We've compiled some setup data that you can use.
 
 ## Usage
 
-We bulit this project because we wanted all hackathons to have a powerful application to can tackle on the big things. 
+We built this project because we wanted all hackathons to have a powerful application that can tackle on the big things. 
 
 If you are organizing a hackathon and want a smooth process to manage your hackers and team, to operate registration and check-in, and to impress your sponsors with an exclusive website "booth" -- this project is for you!
 
