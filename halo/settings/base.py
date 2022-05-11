@@ -60,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = 'aslan.urls'
+ROOT_URLCONF = 'halo.urls'
 
 TEMPLATES = [
     {
@@ -80,7 +80,7 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = 'default.CustomUser'
 
-WSGI_APPLICATION = 'aslan.wsgi.application'
+WSGI_APPLICATION = 'halo.wsgi.application'
 
 
 # Password validation
