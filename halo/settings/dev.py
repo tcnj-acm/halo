@@ -1,4 +1,4 @@
-from aslan.settings.base import *
+from halo.settings.base import *
 from .base import *
 import os
 

@@ -1,7 +1,7 @@
 # This file sends emails from the default app
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from aslan.settings.base import EMAIL_OUTGOING
+from halo.settings.base import EMAIL_OUTGOING
 from sendgrid import SendGridAPIClient
 
 import os

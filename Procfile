@@ -1,1 +1,1 @@
-web: gunicorn aslan.wsgi
+web: gunicorn halo.wsgi
