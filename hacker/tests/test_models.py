@@ -15,3 +15,13 @@ class EventModelTest(TestCase):
         eventObj = Event.objects.get(title="Cup Stacking")
         self.assertEqual(str(event), str(eventObj))
 
+    def test_event_deletion(self):
+        self.create_event("Cup Stacking", "Come compete for cool prizes in the cupstacking event!", datetime.time(10,30,0), datetime.time(11,30,0), datetime.date(2021, 4, 9) )
+        eventObj = Event.objects.get(title="Cup Stacking")
+        eventObj.delete()
+        try:
+            deletedEvent = Event.objects.get(title="Cup Stacking") #calls an exception if not found
+        except:
+            deletedEvent = None
+
+        self.assertEqual(deletedEvent, None)
