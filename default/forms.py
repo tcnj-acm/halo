@@ -1,9 +1,11 @@
+from multiprocessing import Event
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
-from .models import CustomUser, WaitingList
+from .models import CustomUser, WaitingList, Event
 from hacker.models import HackerInfo
+import datetime
 
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control', 'onblur':'passwordValidation()'}))
@@ -97,4 +99,32 @@ class WaitingListCreationForm(forms.ModelForm):
         
         return email
 
-       
+class EventCreationForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ( "title", "description", "start_time", "end_time", "date")
+
+    def clean_date(self):
+        date = self.cleaned_data['date']
+        start = self.cleaned_data['start_time']
+        end = self.cleaned_data['end_time']
+
+        HackTCNJ_saturday = datetime.date(2021, 4, 9)
+        HackTCNJ_sunday = datetime.date(2021, 4, 10)
+
+        HackTCNJ_start_time = datetime.time(10,0,0)
+        HackTCNJ_end_time = datetime.time(16,0,0)
+            
+
+        if date == HackTCNJ_saturday:
+            if start <  HackTCNJ_start_time:
+                self.add_error('start_time', "Start time must be after event hackathon has started")
+        elif date == HackTCNJ_sunday:
+            if end > HackTCNJ_end_time:
+                self.add_error('end_time', "End time must be before ending of hackathon")
+        else:
+            self.add_error('date', "Date must be on Saturday or Sunday")
+
+        return date
+    
+        

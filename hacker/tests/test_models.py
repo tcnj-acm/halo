@@ -25,3 +25,4 @@ class EventModelTest(TestCase):
             deletedEvent = None
 
         self.assertEqual(deletedEvent, None)
+
