@@ -1,4 +1,5 @@
 from email import message
+from multiprocessing import Event
 from django.contrib import messages
 from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm
 from django.http import HttpResponse
@@ -8,14 +9,14 @@ from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from hacker.models import HackerInfo
 from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, WebsiteSettings
-from default.models import CustomUser, WaitingList
+from default.models import CustomUser, WaitingList, Event
 from default.helper import add_group, remove_group
 from django.db.models import Q
 from django.db.models import Value as V
 from django.db.models.functions import Concat  
 from .helper import get_permissions
 from default.emailer import new_organizer_added, add_user_to_mailing_list
-
+from default.forms import EventCreationForm
 from .utils import download_csv
 
 # Create your views here.
@@ -302,3 +303,17 @@ def delete_waitlist_participant(request, pk):
     participant.delete()
 
     return redirect('edit-waiting-list')
+
+def events(request):
+    if request.method == 'POST':
+        form = EventCreationForm(request.POST)
+        if form.is_valid():
+            event = form.save()
+    else:
+        form = EventCreationForm()
+
+
+    all_events = Event.objects.all()
+    context = {'events':all_events, 'form':form}
+    return render(request, 'organizers/events.html', context)
+    

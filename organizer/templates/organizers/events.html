@@ -1,0 +1,38 @@
+{% extends 'organizers/base.html' %}
+{% block content %}
+
+<br>
+
+
+<div class="container w-75 mt-3">
+    <form action="" method="POST"> {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Event</button>
+    </form>
+</div>
+<h1>Your Events</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Day</th>
+			<th scope="col">Starts</th>
+			<th scope="col">Ends</th>
+	  </tr>
+	</thead>
+	<tbody>
+		{% for e in events %}
+		<tr>
+			<th scope="row">{{ e.title }}</th>
+			<td>{{ e.date }}</td>
+			<td>{{ e.start_time }}</td>
+			<td>{{ e.end_time }}</td>
+
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+<hr>
+{% endblock %}

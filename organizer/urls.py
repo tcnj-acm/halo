@@ -19,6 +19,6 @@ urlpatterns = [
      path('waitlist/delete/<int:pk>', views.delete_waitlist_participant, name='delete-waiting-list'),
      path('settings/', views.settings, name='website-settings'),
      path('stats/', views.stats_page, name='statistics'),
-     path('organizers/edit/<int:pk>', views.organizer_setting, name='edit-organizer')
-
+     path('organizers/edit/<int:pk>', views.organizer_setting, name='edit-organizer'),
+     path('events/', views.events, name='manage-events')
 ]

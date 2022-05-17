@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 
 import datetime
 
+#Test the Event creation form using a parametized test
 class TestEventForm(TestCase):
     def setUp(self):
         self.fixture_data = (

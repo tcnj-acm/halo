@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 import datetime
 
+#Test the model creation and deletion
 class EventModelTest(TestCase):
     
     def create_event(self, title, description, start, end, date):
