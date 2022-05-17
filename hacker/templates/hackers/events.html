@@ -1,0 +1,52 @@
+{% extends 'hackers/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h1>Your Events</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Day</th>
+			<th scope="col">Starts</th>
+			<th scope="col">Ends</th>
+	  </tr>
+	</thead>
+	<tbody>
+		{% for e in non_rsvp_events %}
+		<tr>
+			<th scope="row">{{ e.title }}</th>
+			<td>{{ e.date }}</td>
+			<td>{{ e.start_time }}</td>
+			<td>{{ e.end_time }}</td>
+			<td><a href="{% url 'hacker-unrsvp' e.id %}" class="btn btn-danger">UN-Reserve</a></td>
+
+		</tr>
+		{% endfor %}
+	</tbody>
+  </table>
+<h1>Other Available Events</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Day</th>
+			<th scope="col">Starts</th>
+			<th scope="col">Ends</th>
+	  </tr>
+	</thead>
+	<tbody>
+		{% for e in rsvp_events %}
+		<tr>
+			<th scope="row">{{ e.title }}</th>
+			<td>{{ e.date }}</td>
+			<td>{{ e.start_time }}</td>
+			<td>{{ e.end_time }}</td>
+			<td><a href="{% url 'hacker-rsvp' e.id %}" class="btn btn-info">RSVP</a></td>
+
+		</tr>
+		{% endfor %}
+	</tbody>
+  </table>
+{% endblock %}
