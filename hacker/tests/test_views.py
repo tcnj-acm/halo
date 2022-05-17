@@ -1,5 +1,3 @@
-import email
-from urllib import response
 from django.test import TestCase
 from hacker.models import HackerInfo
 from default.models import Event, CustomUser
@@ -35,7 +33,7 @@ class TestEventViews(TestCase):
         print(response)
         self.assertTrue('rsvp_events' and 'non_rsvp_events' in response.context)
 
-        self.assertEquals(len(response.context['rsvp_events']), 3)
+        self.assertEquals(len(response.context['rsvp_events']), 3) 
         self.assertEquals(len(response.context['non_rsvp_events']), 0)
 
         
@@ -45,6 +43,40 @@ class TestEventViews(TestCase):
 
         response = self.client.get(reverse("hacker-rsvp", kwargs={'event_id':self.testEvent2.pk,}))
 
+        response = self.client.get(reverse('hacker-events'))
+
+
+        self.assertTrue('rsvp_events' and 'non_rsvp_events' in response.context)
+        self.assertEquals(len(response.context['rsvp_events']), 2)
+        self.assertEquals(len(response.context['non_rsvp_events']), 1)
+
+        response = self.client.get(reverse("hacker-rsvp", kwargs={'event_id':self.testEvent1.pk,}))
+        response = self.client.get(reverse('hacker-events'))
+
+        self.assertTrue('rsvp_events' and 'non_rsvp_events' in response.context)
+        self.assertEquals(len(response.context['rsvp_events']), 1)
+        self.assertEquals(len(response.context['non_rsvp_events']), 2)
+
+    def test_events_release_rsvp_view(self):
+        login = self.client.login(email="kevin@halo.com", password="r4nd0m_p455w0rd*")
+
+        response = self.client.get(reverse("hacker-rsvp", kwargs={'event_id':self.testEvent3.pk,}))
+        response = self.client.get(reverse("hacker-rsvp", kwargs={'event_id':self.testEvent2.pk,}))
+        response = self.client.get(reverse("hacker-rsvp", kwargs={'event_id':self.testEvent1.pk,}))
+        response = self.client.get(reverse('hacker-events'))
+
+        self.assertTrue('rsvp_events' and 'non_rsvp_events' in response.context)
+        self.assertEquals(len(response.context['rsvp_events']), 0)
+        self.assertEquals(len(response.context['non_rsvp_events']), 3)
+
+        response = self.client.get(reverse("hacker-unrsvp", kwargs={'event_id':self.testEvent3.pk,}))
+        response = self.client.get(reverse('hacker-events'))
+
+        self.assertTrue('rsvp_events' and 'non_rsvp_events' in response.context)
+        self.assertEquals(len(response.context['rsvp_events']), 1)
+        self.assertEquals(len(response.context['non_rsvp_events']), 2)
+
+        response = self.client.get(reverse("hacker-unrsvp", kwargs={'event_id':self.testEvent2.pk,}))
         response = self.client.get(reverse('hacker-events'))
 
         self.assertTrue('rsvp_events' and 'non_rsvp_events' in response.context)
