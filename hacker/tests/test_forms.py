@@ -1,4 +1,4 @@
-from xml.dom import ValidationErr
+
 from django.test import TestCase
 from hacker.models import HackerInfo
 from default.models import Event
