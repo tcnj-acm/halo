@@ -26,18 +26,26 @@ def create_feature_permissions():
     permissions_list.append(FeaturePermission.objects.create(url_name='edit-waiting-list', permission_name='w-Edit Waiting List'))
     permissions_list.append(FeaturePermission.objects.create(url_name='statistics', permission_name='s-Stats'))
 
-def add_admin_group():
-    admin_user = CustomUser.objects.get(email='vempata1@tcnj.edu')
+def add_admin_group(email_input):
+    admin_user = CustomUser.objects.get(email=email_input.strip())
+    print(admin_user)
     add_group(admin_user, 'head-organizer')
+    print("added to group")
     head_org = OrganizerPermission.objects.create(user=admin_user)
     head_org.permission.add(permissions_list[0], permissions_list[1], permissions_list[2], permissions_list[3], permissions_list[4], permissions_list[5])
-
+    print("end of function")
 def add_website_setting():
     WebsiteSettings.objects.create(waiting_list_status=False)
 
+def main():
+        
+    print("Running create_groups")
+    create_groups()
+    print("Finished creating groups. Creating permissions")
+    create_feature_permissions()
+    print("Finished creating groups. Adding admin to group with permissions")
+    add_admin_group(email_input = "deracys1@tcnj.edu")
+    print("Finished adding admin to group. Adding the website settings")
+    add_website_setting()
 
-
-create_groups()
-create_feature_permissions()
-add_admin_group()
-add_website_setting()
+main()
