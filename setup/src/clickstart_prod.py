@@ -39,7 +39,7 @@ def add_website_setting():
 
 def main():
         
-    email_input = "Enter the email you used for creating the superuser: "
+    email_input = input("Enter the email you used for creating the superuser: ")
     print("Running create_groups")
     create_groups()
     print("Finished creating groups. Creating permissions")
