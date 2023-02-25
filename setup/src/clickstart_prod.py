@@ -39,13 +39,12 @@ def add_website_setting():
 
 def main():
         
-    email_input = input("Enter the email you used for creating the superuser: ")
     print("Running create_groups")
     create_groups()
     print("Finished creating groups. Creating permissions")
     create_feature_permissions()
     print("Finished creating groups. Adding admin to group with permissions")
-    add_admin_group(email_input)
+    add_admin_group(email_input = "deracys1@tcnj.edu")
     print("Finished adding admin to group. Adding the website settings")
     add_website_setting()
 
