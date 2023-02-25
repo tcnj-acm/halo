@@ -24,10 +24,10 @@ SECURE_SSL_REDIRECT = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': str(os.getenv('DB_HOST')),
-        'USER': str(os.getenv('DB_USER')),
-        'PASSWORD': str(os.getenv('DB_PASSWORD')),
-        'HOST': str(os.getenv('DB_HOST')),
+        'NAME': 'db name',
+        'USER': 'dbuser',
+        'PASSWORD': 'dbpass',
+        'HOST': 'dbhost',
         'PORT': '5432',
     }
 }
