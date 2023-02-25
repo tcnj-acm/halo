@@ -2,7 +2,7 @@ from halo.settings.base import *
 from .base import *
 import django_heroku
 import dj_database_url
-import os 
+import os
 
 load_dotenv()
 
@@ -41,7 +41,7 @@ EMAIL_HOST = str(os.getenv('EM_HOST'))
 EMAIL_PORT = 587
 EMAIL_HOST_USER = str(os.getenv('EM_HOST_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EM_HOST_PASSWORD'))
-EMAIL_USE_TLS=True
+EMAIL_USE_TLS = True
 
 # AWS S3
 

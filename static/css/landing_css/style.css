@@ -12,6 +12,7 @@ Version      : 1.0
 * ----------------------------------------------------------------------------------------
 */
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700|Rubik:400,600,700");
+
 body {
   font-size: 16px;
   font-weight: 400;
@@ -41,12 +42,18 @@ body {
   padding: 0;
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   margin-bottom: 0px;
@@ -160,12 +167,14 @@ h5.subtitle {
   width: 70%;
   margin: 0 auto 60px;
 }
+
 .section-heading-1 {
   text-align: center;
   width: 70%;
   margin: 0 auto 10px;
 }
-.section-heading-1 p{
+
+.section-heading-1 p {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -192,7 +201,7 @@ h5.subtitle {
   margin: 10px auto;
 }
 
-.text-c-red{
+.text-c-red {
   color: rgb(128, 0, 0);
 }
 
@@ -308,11 +317,11 @@ h5.subtitle {
   background-color: #000;
 }
 
-.bg-purple{
+.bg-purple {
   background-color: rgb(118, 52, 165);
 }
 
-.bg-navy{
+.bg-navy {
   background-color: navy;
 }
 
@@ -369,7 +378,8 @@ h5.subtitle {
   background-color: #1d201f;
   border-radius: 25px;
   color: #fff;
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
   scrollbar-width: none;
 }
 
@@ -436,8 +446,10 @@ h5.subtitle {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scroll {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
@@ -578,7 +590,7 @@ h5.subtitle {
 
 .dropdown-menu.show {
   -webkit-animation: .2s forwards b;
-          animation: .2s forwards b;
+  animation: .2s forwards b;
 }
 
 @-webkit-keyframes b {
@@ -610,7 +622,7 @@ h5.subtitle {
 }
 
 @media (min-width: 1200px) {
-  .dropdown-item + .dropdown-item {
+  .dropdown-item+.dropdown-item {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 }
@@ -1178,26 +1190,32 @@ HISTORY MISSION
   z-index: 1;
   border: 3px solid #000000;
 }
+
 .card-pricing.red {
   z-index: 1;
   border: 3px solid #dc3545;
 }
+
 .card-pricing.yellow {
   z-index: 1;
   border: 3px solid #ffc107;
 }
+
 .card-pricing.blue {
   z-index: 1;
   border: 3px solid #17a2b8;
 }
+
 .card-pricing.black {
   z-index: 1;
   border: 3px solid #343a40;
 }
+
 .card-pricing.purple {
   z-index: 1;
   border: 3px solid rgb(118, 52, 165);
 }
+
 .card-pricing.navy {
   z-index: 1;
   border: 3px solid navy;
@@ -1209,6 +1227,7 @@ HISTORY MISSION
   z-index: 1;
   border: 3px solid #007bff;
 }
+
 .card-pricing .list-unstyled li {
   padding: .5rem 0;
   color: #6c757d;
@@ -1425,23 +1444,27 @@ SERVICE PAGE
 /*Medium devices (tablets, 768px and up)*/
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
+
   /*---------------
      NAVIGATION
     ----------------*/
   .navbar-toggler {
     border-radius: 0px;
   }
+
   .navbar-toggler-icon {
     height: auto;
     padding: 0px 0px;
   }
+
   .trans-navigation {
     background: #232323;
   }
+
   .navbar-expand-lg.trans-navigation .navbar-nav .nav-link {
     margin-bottom: 10px;
   }
-  
+
   .centerForm {
     position: fixed;
     top: 50%;
@@ -1449,18 +1472,21 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     zoom: 1.5;
   }
+
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
   .section-heading {
     width: 100%;
   }
+
   /*----------------
      INTRO
     ----------------*/
   #intro {
     padding-bottom: 90px;
   }
+
   /*----------------
      ABOUT
     ----------------*/
@@ -1469,17 +1495,21 @@ SERVICE PAGE
     width: 100%;
     margin-bottom: 10px;
   }
+
   .about-bg-img {
     width: 35%;
     height: 100%;
     max-height: 600px;
   }
+
   .about-content {
     margin-top: 60px;
   }
+
   #about {
     padding-bottom: 40px;
   }
+
   /*--------------
      COUNTER
     ----------------*/
@@ -1487,6 +1517,7 @@ SERVICE PAGE
     margin-bottom: 30px;
     text-align: center;
   }
+
   /*--------------
      BLOG
     ----------------*/
@@ -1494,15 +1525,19 @@ SERVICE PAGE
     padding: 0px;
     margin-top: 10px;
   }
+
   .blog-tex h5 {
     font-size: 15px;
   }
+
   .blog-text p {
     font-size: 14px;
   }
+
   .pricing-block {
     margin-bottom: 30px;
   }
+
   /*--------------
      FOOTER
     ----------------*/
@@ -1512,66 +1547,76 @@ SERVICE PAGE
 }
 
 .landing-login {
-  background-color: #383593ea !important; 
+  background-color: #383593ea !important;
   color: #fff !important;
   opacity: .88 !important;
 }
 
 .landing-register {
-  background-color: #fcef41a4 !important; 
+  background-color: #fcef41a4 !important;
   color: #fff !important;
   opacity: .88 !important;
 }
 
 /*Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) and (max-width: 767.98px) {
+
   /*---------------
      NAVIGATION
     ----------------*/
-    .banner-area .content-padding {
-      padding: 20% 0px 15%;
-    }
+  .banner-area .content-padding {
+    padding: 20% 0px 15%;
+  }
 
   .navbar-toggler {
     border-radius: 0px;
   }
+
   .navbar-toggler-icon {
     height: auto;
     padding: 0px 0px;
   }
+
   .trans-navigation {
     background: #232323;
   }
+
   .navbar-expand-lg.trans-navigation .navbar-nav .nav-link {
     margin-bottom: 5px;
   }
+
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
   .section-heading {
     width: 100%;
   }
+
   /*----------------
      INTRO
     ----------------*/
   #intro {
     padding-bottom: 90px;
   }
+
   /*----------------
      ABOUT
     ----------------*/
   .about-content {
     margin-top: 60px;
   }
+
   #about {
     padding-bottom: 40px;
   }
+
   /*-------------------
      TESTIMONIAL
     -------------------*/
   .testimonial-content {
     padding: 10px;
   }
+
   /*--------------
      COUNTER
     ----------------*/
@@ -1579,44 +1624,54 @@ SERVICE PAGE
     margin-bottom: 30px;
     text-align: center;
   }
+
   /*--------------
      BLOG
     ----------------*/
   .blog-block {
     margin-bottom: 30px;
   }
+
   .blog-text {
     padding: 0px;
     margin-top: 10px;
   }
+
   .blog-block:hover {
     box-shadow: none;
   }
+
   .blog-text h5 {
     font-size: 16px;
   }
+
   .blog-text p {
     font-size: 14px;
   }
+
   .intro-box {
     margin-top: 0px;
     margin-bottom: 40px;
   }
+
   /*--------------
      CLIENT
     --------------*/
   .client-img {
     text-align: center;
   }
+
   /*--------------
      FOOTER
     ----------------*/
   .footer-widget {
     margin-bottom: 30px;
   }
+
   .pricing-block {
     margin-bottom: 30px;
   }
+
   .img-block img {
     width: 130px;
   }
@@ -1624,27 +1679,32 @@ SERVICE PAGE
 
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
+
   /*---------------
      NAVIGATION
     ----------------*/
   .navbar-toggler {
     border-radius: 0px;
   }
+
   .navbar-toggler-icon {
     height: auto;
     padding: 0px 0px;
   }
+
   .trans-navigation {
     background: #232323;
     padding: 0px 15px;
   }
+
   .navbar-expand-lg.trans-navigation .navbar-nav .nav-link {
     margin-bottom: 10px;
   }
+
   .banner-area .content-padding {
     padding: 20% 0px 15%;
   }
-    
+
   .hackerDashboardBorder {
     position: fixed;
     top: 50%;
@@ -1657,7 +1717,7 @@ SERVICE PAGE
     color: #fff;
     padding: 2%;
   }
-  
+
   .centerForm {
     position: fixed;
     top: 50%;
@@ -1669,39 +1729,48 @@ SERVICE PAGE
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
-  #intro .section-heading, .section-heading {
+  #intro .section-heading,
+  .section-heading {
     width: 100%;
   }
+
   #intro .section-heading p {
     font-size: 16px;
     line-height: 28px;
   }
+
   .section-title {
     font-size: 26px;
     line-height: 36px;
   }
+
   h1 {
     font-size: 32px;
     line-height: 36px;
   }
+
   /*--------------------
      BANNER
     -----------------*/
-    .banner-area .content-padding {
-      padding: 10% 0px 15%;
-    }
+  .banner-area .content-padding {
+    padding: 10% 0px 15%;
+  }
+
   .banner-content .banner-title {
     line-height: 37px;
   }
+
   .banner-content p {
     font-size: 16px;
   }
+
   /*----------------
      INTRO
     ----------------*/
   #intro {
     padding-bottom: 90px;
   }
+
   /*----------------
      ABOUT
     ----------------*/
@@ -1710,29 +1779,36 @@ SERVICE PAGE
     width: 100%;
     margin-bottom: 10px;
   }
+
   .about-bg-img {
     width: 35%;
     height: 100%;
     max-height: 600px;
   }
+
   .about-content {
     margin-top: 60px;
   }
+
   #about {
     padding-bottom: 40px;
   }
+
   .img-block img {
     width: 130px;
   }
+
   .service-block {
     margin-bottom: 20px;
   }
+
   /*-------------------
      TESTIMONIAL
     -------------------*/
   .testimonial-content {
     padding: 10px;
   }
+
   /*--------------
      COUNTER
     ----------------*/
@@ -1740,47 +1816,56 @@ SERVICE PAGE
     margin-bottom: 30px;
     text-align: center;
   }
+
   /*--------------
      BLOG
     ----------------*/
   .blog-block {
     margin-bottom: 30px;
   }
+
   .blog-text {
     padding: 10px;
     margin-top: 10px;
     text-align: center;
   }
+
   .blog-tex h5 {
     font-size: 15px;
   }
+
   .blog-text p {
     font-size: 14px;
   }
+
   /*--------------
      CLIENT
     --------------*/
   .client-img {
     text-align: center;
   }
+
   /*--------------
      FOOTER
     ----------------*/
   .footer-widget {
     margin-bottom: 30px;
   }
+
   .pricing-block {
     margin-bottom: 30px;
   }
 }
-@media (max-width: 374px){
+
+@media (max-width: 374px) {
   .navbar-toggler {
 
     border-radius: 0px !important;
     position: absolute !important;
     top: 7% !important;
     right: 2% !important;
-  
+
   }
 }
+
 /*# sourceMappingURL=maps/style.css.map */
