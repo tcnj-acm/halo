@@ -10,7 +10,7 @@
   <meta name="keywords" content="hackathon, TCNJ, 24-hour">
   <meta name="author" content="contact@hacktcnj.edu">
 
-  <title>HackTCNJ 2022 </title>
+  <title>HackTCNJ 2023 </title>
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="{% static 'plugins/plugins/bootstrap/css/bootstrap.css' %}">
   <!-- animate.css -->
@@ -63,12 +63,7 @@
         </ul>
       </div>
 
-      <a id="mlh-trust-badge"
-        style="display:block;max-width:100px;min-width:60px;position:absolute;right:2%;top:0;width:10%;z-index:10000"
-        href="https://mlh.io/seasons/2022/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2022-season&utm_content=white"
-        target="_blank"><img
-          src="https://s3.amazonaws.com/logged-assets/trust-badge/2022/mlh-trust-badge-2022-white.svg"
-          alt="Major League Hacking 2022 Hackathon Season" style="width:100%"></a>
+      <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:1%;top:0;width:10%;z-index:10000" href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-white.svg" alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
     </div>
   </nav>
   <!--MAIN HEADER AREA END -->
@@ -87,7 +82,7 @@
                 <!--<h5 class="subtitle">HackTCNJ 2022</h5>-->
                 <img class="w-40 my-3" src="{% static 'hacktcnjtransparentlogo.jpeg' %}" />
                 <h1 class="banner-title">TCNJ's 24-hour hackathon</h1>
-                <h3 class="banner-title">April 9th, 12pm to April 10th, 3pm</h3>
+                <h3 class="banner-title">April 15th, 12pm to April 16th, 3pm</h3>
                 <p>The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first
                   hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games!
                   Afterwards, walk away with new experiences and friendships :)</p>
@@ -455,53 +450,39 @@
       </div>
     </div>
   </section>
-  <section class="section-padding " style="min-height: 80vh;">
+  <section id="clients" class="section-bg">
+
     <div class="container">
-      <div class="row">
-        {% comment %} <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-          <img src="{% static 'images/images/sponsors/sponsorstickermule.png' %}" alt="partner" class="img-fluid">
-        </div> {% endcomment %}
-        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-          <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid">
+
+      <div class="row no-gutters clients-wrap clearfix wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <div class="client-logo">
+            <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid" style="height: 200px; width: 200px">
+          </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-          <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
+        
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <div class="client-logo">
+            <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
+          </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-          <img src="{% static 'images/images/sponsors/sponsorGoogleCloud.png' %}" alt="partner" class="img-fluid">
+      
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <div class="client-logo">
+            <img src="{% static 'images/images/sponsors/sponsorGoogleCloud.png' %}" alt="partner" class="img-fluid">
+          </div>
         </div>
+        
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <div class="client-logo">
+            <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1559460358/client-4.png" class="img-fluid" alt="">
+          </div>
+        </div>
+
       </div>
+
     </div>
-  </section>
-
-<!-- 
-  What I was starting to work on for the sponsors
-
-  <section class="section-padding " style="min-height: 80vh;">
-    <div class="container">
-      <div class="row">
-        {% comment %} <div class="col-lg-3 col-sm-6 col-md-3 text-center">
-          <img src="{% static 'images/images/sponsors/sponsorstickermule.png' %}" alt="partner" class="img-fluid">
-        </div> {% endcomment %}
-        <div class="col-3 mb-5">
-          <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3 mb-5">
-          <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3 mb-5">
-          <img src="{% static 'images/images/sponsors/sponsorGoogleCloud.png' %}" alt="partner" class="img-fluid">
-        </div>
-      </div>
-      </div>
-    </div>
-  </section>
-
--->
 
   <!-- Essential Scripts -->
   
