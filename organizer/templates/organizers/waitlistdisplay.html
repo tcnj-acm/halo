@@ -1,12 +1,15 @@
 {% extends 'organizers/base.html' %}
 {% block content %}
 <div class="container w-50 mt-5">
-    <div class="row mt-5">
-        <div class="col-md-6 col-sm-12 mt-3">
-            <div class="card ">
-                <div class="card-header text-center">
-                  Total Waitlist Count
-                </div>
+  <div class="container  mt-5">
+    <a href="{% url 'export-waiting-list' %}" class='btn btn-secondary'>Export Waiting List</a>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-6 col-sm-12 mt-3">
+      <div class="card ">
+        <div class="card-header text-center">
+          Total Waitlist Count
+        </div>
                 <div class="card-body text-center">
                   <h5 class="card-title">{{waitlist_count}}</h5>
                 </div>
@@ -22,7 +25,7 @@
                 </div>
               </div>
         </div>
-    </div>
+      </div>
     <div class="row mt-5">
         <table class="table">
             <thead>
