@@ -64,6 +64,13 @@ def under18_hackers(request):
     return render(request, 'organizers/minorhackers.html', context)
 
 
+def export_waiting_list(request):
+  # Create the HttpResponse object with the appropriate CSV header.
+  waiting_list = WaitingList.objects.only('email', 'full_name')
+  data = download_csv(request, waiting_list)
+  response = HttpResponse(data, content_type='text/csv')
+  return response
+
 def export_hacker_csv(request):
   # Create the HttpResponse object with the appropriate CSV header.
 #   id;password;date_joined;last_login;is_admin;is_active;is_staff;is_superuser;food_preference;resume;registration_comment;groups;user_permissions

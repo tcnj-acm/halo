@@ -33,15 +33,15 @@ def landing(request):
     return render(request, 'defaults/landing.html', context)
 
 def waitlist(request):
-    fundraiser_link = request.get_host() + "/fundraiser"
+    # fundraiser_link = request.get_host() + "/fundraiser"
     if request.method == "POST":
         waitlist_create_form = WaitingListCreationForm(request.POST)
         if waitlist_create_form.is_valid():
             waitlist = waitlist_create_form.save()
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
-            new_waitlister_added(new_email, new_name, fundraiser_link)
-            messages.success(request, "Thanks for joining the waiting list, you will receive an email with more information soon! Don't forget to check out the Fundraiser!")
+            new_waitlister_added(new_email, new_name)
+            messages.success(request, "Thanks for joining the waiting list, you will receive an email with more information soon!")
             return redirect('waitlist')
     else:
         waitlist_create_form = WaitingListCreationForm()
