@@ -131,7 +131,7 @@ def new_organizer_added(link, organizer):
               recipient_list=to_email, message=body, fail_silently=False)
 
 def new_waitlister_added(email, name):
-    subject = "HackTCNJ Waiting List Success! Secure Some Cool Swag!"
+    subject = "HackTCNJ Waiting List Success! Registration Opens Soon!"
     from_email=FROM_EMAIL
     to_email = [email]
     body = '''
