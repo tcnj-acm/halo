@@ -78,9 +78,9 @@ function showCurrentPage() {
     formPages.forEach((page, index) => {
         page.classList.toggle("d-none", index != pageInfo.currentPage)
     })
-    if(pageInfo.currentPage == 4){
+    if (pageInfo.currentPage == 4) {
         onPage(["40%", "60%"]);
-    }else{
+    } else {
         returnOrigin();
     }
 }
@@ -107,8 +107,7 @@ function youngDate() {
 
 function formSubmission() {
     const formSubmission = document.getElementById("formSubmission")
-    var selects = [...formSubmission.querySelectorAll('input')]
-    selects.pop()
+    var selects = [...formSubmission.querySelectorAll('.req-input')]
     if (document.getElementById("date-check").classList.contains("d-none")) {
         selects.pop()
     }
