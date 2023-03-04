@@ -21,19 +21,19 @@ class CustomUserCreationForm(forms.ModelForm):
                   )
 
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control', 'type': 'email', 'onblur': 'emailValidation()', "pattern": "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$", "title": "username@domain.tld"}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Jane'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Doe'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Jdoe123@gmail.com', 'type': 'email', 'onblur': 'emailValidation()', "pattern": "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$", "title": "username@domain.tld"}),
             'shirt_size': forms.Select(attrs={'class': 'form-select'}),
             'food_preference': forms.Select(attrs={'class': 'form-select'}),
             'gender': forms.Select(attrs={'class': 'form-select'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control', 'type': "tel"}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'type': "tel", 'placeholder': '7861234567'}),
             'school_name': forms.TextInput(attrs={'class': 'form-control', 'list': 'SchoolOptions'}),
             'major': forms.Select(attrs={'class': 'form-select'}),
             'age': forms.NumberInput(attrs={'class': 'form-control'}),
             'level_of_study': forms.Select(attrs={'class': 'form-select'}),
             'resume': forms.FileInput(attrs={'class': 'form-control form-control-lg', "accept": ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"}),
-            'registration_comment': forms.Textarea(attrs={'class': 'form-control'})
+            'registration_comment': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Tell us anything you think we\'d need to know!'})
         }
 
     def clean_password2(self):
@@ -70,19 +70,19 @@ class CustomUserChangeForm(forms.ModelForm):
                   'major', 'registration_comment', 'address')
 
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control', 'type': 'email', "pattern": "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$", "title": "username@domain.tld"}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Jane'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Doe'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'type': 'email', 'placeholder': 'Jdoe123@gmail.com', "pattern": "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$", "title": "username@domain.tld"}),
             'shirt_size': forms.Select(attrs={'class': 'form-select'}),
             'food_preference': forms.Select(attrs={'class': 'form-select'}),
             'gender': forms.Select(attrs={'class': 'form-select'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control', 'type': "tel"}),
-            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'type': "tel", 'placeholder': '7861234567'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '9000 Pennington Road'}),
             'school_name': forms.TextInput(attrs={'class': 'form-control', 'list': 'SchoolOptions'}),
             'major': forms.Select(attrs={'class': 'form-select'}),
             'age': forms.NumberInput(attrs={'class': 'form-control'}),
             'level_of_study': forms.Select(attrs={'class': 'form-select'}),
-            'registration_comment': forms.Textarea(attrs={'class': 'form-control'})
+            'registration_comment': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Tell us anything you think we\'d need to know!'})
         }
 
 
