@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
   
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/jpg" href="{% static 'hackathonicon.jpg' %}" />
+  <link rel="shortcut icon" type="image/png" href="{% static 'hackathonicon.PNG' %}"/>
 </head>
 
 
@@ -371,7 +371,10 @@
             </div>
             <div class="service-inner">
               <h4>How many people can be on a team?</h4>
-              <p>Max number of people per team is 4 people.</p>
+              <p>Max number of people per team is 4 people. There is such a thing as too many cooks in the kitchen!
+                Now this doesn't mean that you HAVE to create a team of 4, but that is the cap we're setting it at for this
+                event.
+              </p>
             </div>
           </div>
         </div>
@@ -422,29 +425,29 @@
 
     <div class="container">
 
-      <div class="row no-gutters clients-wrap clearfix wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid" style="height: 200px; width: 200px">
-          </div>
-        </div>
+      <div class="row gx-2 gy-2 clients-wrap clearfix wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
         
-        <div class="col-lg-3 col-md-4 col-xs-6">
+        <div class="col-lg-6 col-md-4 col-xs-6">
           <div class="client-logo">
             <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
           </div>
         </div>
       
-        <div class="col-lg-3 col-md-4 col-xs-6">
+        <div class="col-lg-6 col-md-4 col-xs-6 mt-4 ">
           <div class="client-logo">
             <img src="{% static 'images/images/sponsors/sponsorGoogleCloud.png' %}" alt="partner" class="img-fluid">
           </div>
         </div>
         
-        <div class="col-lg-3 col-md-4 col-xs-6">
+        <div class="col-lg-6 col-md-4 col-xs-6 mt-4">
           <div class="client-logo">
-            <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1559460358/client-4.png" class="img-fluid" alt="">
+            <img src="{% static 'images/images/sponsors/sponsorleangap.png' %}" alt="partner" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-4 col-xs-6 mt-4">
+          <div class="client-logo">
+            <img src="{% static 'images/images/sponsors/sponsorlinode.png' %}" alt="partner" class="img-fluid">
           </div>
         </div>
 

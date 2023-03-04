@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 wholeForm.addEventListener("click", event => {
 
 
-    let increment
+    let increment = 0
     pageInfo.pageValidationStatus = true
     if (event.target.matches("[data-next-button]")) {
         increment = 1
