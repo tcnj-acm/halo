@@ -322,7 +322,7 @@ h5.subtitle {
 }
 
 .bg-navy {
-  background-color: navy;
+  background-color: #1b2230;
 }
 
 .bg-dark {
@@ -343,6 +343,10 @@ h5.subtitle {
 
 .bg-white {
   background-color: #fff;
+}
+
+.countdown-color {
+  color: rgb(226, 17, 17);
 }
 
 .button-box {
@@ -630,6 +634,13 @@ h5.subtitle {
 /*------------------------------------
  BANNER AREA
 ----------------------------------*/
+.hack-banner {
+  width: 50%;
+  margin-top: 2rem;
+  transform: rotate(8deg);
+  margin-bottom: -2rem;
+}
+
 .banner-area .content-padding {
   padding: 10% 0px 15%;
 }
