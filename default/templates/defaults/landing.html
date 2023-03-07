@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
   
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/jpg" href="{% static 'hackathonicon.jpg' %}" />
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
 </head>
 
 
@@ -51,9 +51,9 @@
           <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#prizes">Prizes</a>
           </li> 
-          {% comment %} <li class="nav-item">
-            <a class="nav-link smoth-scroll" href="#merch">Fundraiser</a>
-          </li> {% endcomment %}
+          <li class="nav-item">
+            <a class="nav-link smoth-scroll" href="#merch">Merch</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link smoth-scroll" href="#service-head">FAQ</a>
           </li>
@@ -80,7 +80,7 @@
             <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
               <div class="banner-content content-padding">
                 <!--<h5 class="subtitle">HackTCNJ 2022</h5>-->
-                <img class="w-40 my-3" src="{% static 'hacktcnjtransparentlogo.jpeg' %}" />
+                <img class="hack-banner" src="{% static 'hackathonlogo.png' %}" />
                 <h1 class="banner-title">TCNJ's 24-hour hackathon</h1>
                 <h3 class="banner-title">April 15th, 12pm to April 16th, 3pm</h3>
                 <p>The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first
@@ -238,37 +238,35 @@
         </div>
       </div>
       <div class="card card-pricing popular shadow text-center px-3 mb-4">
-        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Best High School Hack</span>
+        <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Best Web Design Hack</span>
         <div class="bg-transparent card-header pt-4 border-0">
-          <h1 class="h1 font-weight-normal text-black text-center mb-0"> Polaroid Now+ Bundle </h1>
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> Airpods </h1>
         </div>
         <div class="card-body pt-0">
-          <img class="w-50 my-3" src="{% static 'images/images/prizes/polaroid.jfif' %}" />
-          <p> Open to all High Schoolers. Win yourself a fancy camera! Comes with film; ready to snap a winning group picture on the spot!</p>
+          <img class="w-50 my-3" src="{% static 'images/images/prizes/airpods.png' %}" />
+          <p> In many cases, the visual appeal is just as important to the success of an application as its functionality. Build a nice looking project and</p>
         </div>
       </div>
       <div class="card card-pricing popular shadow text-center px-3 mb-4">
         <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Best Command Line Hack</span>
         <div class="bg-transparent card-header pt-4 border-0">
-          <h1 class="h1 font-weight-normal text-black text-center mb-0"> JBL Bluetooth Speaker</h1>
+          <h1 class="h1 font-weight-normal text-black text-center mb-0"> $25 Amazon Gift Cards </h1>
         </div>
         <div class="card-body pt-0">
-          <img class="w-50 my-3" src="{% static 'images/images/prizes/jlbclip3.jpg' %}" />
+          <img class="w-50 my-3" src="{% static 'images/images/prizes/amazongiftcard.jpg' %}" />
           <p> No UI experience? We got you! Simply show off your programming skills by building a command line application that runs in the terminal.<p>
         </div>
       </div>
     </div>
   </div>
 
-  {% comment %} <section id="merch" class=" bg-feature" >
+  <section id="merch" class=" bg-feature" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-sm-12">
           <div class="section-heading-1 text-white">
-            <h2 class="section-title">Exclusive Merch Fundraiser!</h2>
-            <p>We have shirts and hoodies in an assortment of colors for a great low price!</p>
-            <p>All proceeds got to funding the event! Just click and buy!</p>
-            <h4 class="section-title mt-1">Just Days <span class="" id="countdown" style="color: rgb(175, 0, 0)">  </span> Left!! </h4>
+            <h2 class="section-title">Exclusive Merch Fundraiser! Just <span id="countdown" style="color: rgb(226, 17, 17);">  </span> Days Left!!</h2>
+            <h5 class="text-white mb-3">All proceeds got to funding the event! Just click on the shirts you want to buy!</h5>
           </div>
         </div>
       </div>
@@ -279,63 +277,31 @@
 
       <div class="row">
 
-        <div class="card card-pricing red shadow text-center px-3 mb-4">
-          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-danger text-white shadow-sm">Red</span>
-          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=1&zoom=false">
-            <img src="{% static 'images/images/fundraiser/red-shirt' %}" class="card-img" alt="">
-          </a>
-        </div>
-        
-        
-        <div class="card card-pricing yellow shadow text-center px-3 mb-4">
-          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-warning text-white shadow-sm">Yellow</span>
-          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=2&zoom=false">
-            <img src="{% static 'images/images/fundraiser/yellow-shirt' %}" class="card-img" alt="">
-          </a>
-        </div>
-        
-        
-        <div class="card card-pricing blue shadow text-center px-3 mb-4">
-          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white shadow-sm">Blue</span>
-          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=3&zoom=false">
-            <img src="{% static 'images/images/fundraiser/blue-shirt' %}" class="card-img" alt="">
-          </a>
-        </div>
-      </div>
-      
-      <div class="row">
-
         <div class="card card-pricing black shadow text-center px-3 mb-4">
           <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-dark text-white shadow-sm">Black</span>
-          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=4&zoom=false">
-            <img src="{% static 'images/images/fundraiser/black-hoodie' %}" class="card-img" alt="">
-          </a>
-        </div>
-        
-        
-        <div class="card card-pricing purple shadow text-center px-3 mb-4">
-          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-purple text-white shadow-sm">Purple</span>
-          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=5&zoom=false">
-            <img src="{% static 'images/images/fundraiser/purple-hoodie' %}" class="card-img" alt="">
+          <a href="https://tinyurl.com/2p8pssp4" target="_blank">
+            <img src="{% static 'images/images/fundraiser/blackfundraisershirt.jpg' %}" class="card-img" alt="">
           </a>
         </div>
         
         
         <div class="card card-pricing navy shadow text-center px-3 mb-4">
           <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-navy text-white shadow-sm">Navy</span>
-          <a href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser?side=front&type=6&zoom=false">
-            <img src="{% static 'images/images/fundraiser/navy-hoodie' %}" class="card-img" alt="">
+          <a href="https://tinyurl.com/44shvkwz" target="_blank">
+            <img src="{% static 'images/images/fundraiser/navybluefundraisershirt.jpg' %}" class="card-img" alt="">
+          </a>
+        </div>
+        
+        
+        <div class="card card-pricing black shadow text-center px-3 mb-4">
+          <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-secondary text-white shadow-sm">Gray</span>
+          <a href="https://tinyurl.com/3et9x2hb" target="_blank">
+            <img src="{% static 'images/images/fundraiser/grayfundraisershirt.jpg' %}" class="card-img" alt="">
           </a>
         </div>
       </div>
-      
-      
-
-     
-
-
     </div>
-  </div> {% endcomment %}
+  </div>
 
   <!--  FAQ SECTION  -->
   <section id="service-head" class=" bg-feature" >
@@ -403,7 +369,10 @@
             </div>
             <div class="service-inner">
               <h4>How many people can be on a team?</h4>
-              <p>Max number of people per team is 4 people.</p>
+              <p>There is such a thing as too many cooks in the kitchen! Including yourself, teams can be a max of 4.
+                Now this doesn't mean that you HAVE to create a team of 4, but that is the cap we're setting it at for this
+                event.
+              </p>
             </div>
           </div>
         </div>
@@ -454,29 +423,29 @@
 
     <div class="container">
 
-      <div class="row no-gutters clients-wrap clearfix wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo">
-            <img src="{% static 'images/images/sponsors/sponsorjetbrains.png' %}" alt="partner" class="img-fluid" style="height: 200px; width: 200px">
-          </div>
-        </div>
+      <div class="row gx-2 gy-2 clients-wrap clearfix wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
         
-        <div class="col-lg-3 col-md-4 col-xs-6">
+        <div class="col-lg-6 col-md-4 col-xs-6">
           <div class="client-logo">
             <img src="{% static 'images/images/sponsors/sponsorSFB.png' %}" alt="partner" class="img-fluid">
           </div>
         </div>
       
-        <div class="col-lg-3 col-md-4 col-xs-6">
+        <div class="col-lg-6 col-md-4 col-xs-6 mt-4 ">
           <div class="client-logo">
             <img src="{% static 'images/images/sponsors/sponsorGoogleCloud.png' %}" alt="partner" class="img-fluid">
           </div>
         </div>
         
-        <div class="col-lg-3 col-md-4 col-xs-6">
+        <div class="col-lg-6 col-md-4 col-xs-6 mt-4">
           <div class="client-logo">
-            <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1559460358/client-4.png" class="img-fluid" alt="">
+            <img src="{% static 'images/images/sponsors/sponsorleangap.png' %}" alt="partner" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-4 col-xs-6 mt-4">
+          <div class="client-logo">
+            <img src="{% static 'images/images/sponsors/sponsorlinode.png' %}" alt="partner" class="img-fluid">
           </div>
         </div>
 

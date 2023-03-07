@@ -20,7 +20,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com", ".hacktcnj.com"]
 
-EMAIL_OUTGOING='contact@hacktcnj.com'
+EMAIL_OUTGOING = 'contact@hacktcnj.com'
 
 # Application definition
 
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'sponsor',
     'teams',
     'storages',
-
+    'phone_field'
 
 ]
 
@@ -133,7 +133,7 @@ LOGIN_EXEMPT_URLS = {
 }
 
 
-#Treat these with great care - Open to both authorized and unauthorized users
+# Treat these with great care - Open to both authorized and unauthorized users
 MAIN_EXEMPT_URLS = {
     r'waiver'
 }
@@ -144,4 +144,3 @@ WAITLIST_EXEMPT_URLS = {
     r'reset',
     r'fundraiser',
 }
-

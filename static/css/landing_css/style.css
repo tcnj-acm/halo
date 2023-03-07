@@ -322,7 +322,7 @@ h5.subtitle {
 }
 
 .bg-navy {
-  background-color: navy;
+  background-color: #1b2230;
 }
 
 .bg-dark {
@@ -343,6 +343,10 @@ h5.subtitle {
 
 .bg-white {
   background-color: #fff;
+}
+
+.countdown-color {
+  color: rgb(226, 17, 17);
 }
 
 .button-box {
@@ -630,6 +634,13 @@ h5.subtitle {
 /*------------------------------------
  BANNER AREA
 ----------------------------------*/
+.hack-banner {
+  width: 50%;
+  margin-top: 2rem;
+  transform: rotate(8deg);
+  margin-bottom: -2rem;
+}
+
 .banner-area .content-padding {
   padding: 10% 0px 15%;
 }
@@ -1191,27 +1202,12 @@ HISTORY MISSION
   border: 3px solid #000000;
 }
 
-.card-pricing.red {
-  z-index: 1;
-  border: 3px solid #dc3545;
-}
-
-.card-pricing.yellow {
-  z-index: 1;
-  border: 3px solid #ffc107;
-}
-
-.card-pricing.blue {
-  z-index: 1;
-  border: 3px solid #17a2b8;
-}
-
 .card-pricing.black {
   z-index: 1;
   border: 3px solid #343a40;
 }
 
-.card-pricing.purple {
+.card-pricing.gray {
   z-index: 1;
   border: 3px solid rgb(118, 52, 165);
 }
@@ -1282,7 +1278,13 @@ HISTORY MISSION
   color: #fff;
 }
 
+.service-img-icon h1 {
+  position: relative;
+  top: 7%;
+}
+
 .service-box {
+  min-height: 500px;
   margin-bottom: 40px;
   background: #fff;
   text-align: center;

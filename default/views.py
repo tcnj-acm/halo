@@ -32,6 +32,7 @@ def landing(request):
     context = {}
     return render(request, 'defaults/landing.html', context)
 
+
 def waitlist(request):
     # fundraiser_link = request.get_host() + "/fundraiser"
     if request.method == "POST":
@@ -41,20 +42,21 @@ def waitlist(request):
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
             new_waitlister_added(new_email, new_name)
-            messages.success(request, "Thanks for joining the waiting list, you will receive an email with more information soon!")
+            messages.success(
+                request, "Thanks for joining the waiting list, you will receive an email with more information soon!")
             return redirect('waitlist')
     else:
         waitlist_create_form = WaitingListCreationForm()
-    
-    
-    context = {'waitlist_form':waitlist_create_form}
+
+    context = {'waitlist_form': waitlist_create_form}
     return render(request, 'defaults/coming-soon.html', context)
+
 
 def registration(request):
     if request.method == 'POST':
         create_user_form = CustomUserCreationForm(request.POST, request.FILES)
         create_hacker_form = HackerCreationForm(request.POST)
-        
+
         if create_hacker_form.is_valid() and create_user_form.is_valid():
             pword = create_user_form.cleaned_data['password1']
 
@@ -66,10 +68,14 @@ def registration(request):
             zip = request.POST.get('zip')
             country = request.POST.get('country')
 
+            phone = request.POST.get('phone')
+            user.phone = phone
+
             if address2 == "":
                 address = address1 + ", " + city + ", " + state + ", " + zip + ", " + country
             else:
-                address = address1 + ", " + address2 + ", " + city + ", " + state + ", " + zip + ", " + country
+                address = address1 + ", " + address2 + ", " + \
+                    city + ", " + state + ", " + zip + ", " + country
 
             user.address = address
 
@@ -86,8 +92,9 @@ def registration(request):
 
             # Email confirmation
             registration_confirmation(user)
-            add_user_to_mailing_list(user.first_name, user.last_name, user.email)
-            
+            add_user_to_mailing_list(
+                user.first_name, user.last_name, user.email)
+
             if user.age < 18:
                 link = request.get_host() + "/waiver"
                 minor_waiver_form_submission(user, link)
@@ -103,10 +110,9 @@ def registration(request):
         create_user_form = CustomUserCreationForm()
         create_hacker_form = HackerCreationForm()
 
-
-    context = {'create_hacker_form': create_hacker_form, 'create_user_form': create_user_form}
+    context = {'create_hacker_form': create_hacker_form,
+               'create_user_form': create_user_form}
     return render(request, 'defaults/register.html', context)
-
 
 
 def login_page(request):
@@ -132,26 +138,27 @@ def password_reset_request(request):
         password_reset_form = PasswordResetForm(request.POST)
         if password_reset_form.is_valid():
             user_email = password_reset_form.cleaned_data['email'].lower()
-            user_obj_valid = CustomUser.objects.filter(email=user_email).exists()
+            user_obj_valid = CustomUser.objects.filter(
+                email=user_email).exists()
             if user_obj_valid:
                 user_obj = CustomUser.objects.get(email=user_email)
                 uid = urlsafe_base64_encode(force_bytes(user_obj.pk))
                 token = default_token_generator.make_token(user_obj)
-                password_reset_instructions(request.get_host(), user_obj, uid, token)
+                password_reset_instructions(
+                    request.get_host(), user_obj, uid, token)
                 return redirect('password_reset_done')
             else:
                 messages.error(request, "Email Could Not Be Found")
     password_reset_form = PasswordResetForm()
 
-    context = {'password_reset_form':password_reset_form}
+    context = {'password_reset_form': password_reset_form}
     return render(request, 'defaults/password_reset.html', context)
-
 
 
 def logout_user(request):
     logout(request)
 
-    return redirect('landing') #TODO
+    return redirect('landing')  # TODO
 
 
 def check_email(request):
@@ -162,16 +169,17 @@ def check_email(request):
         email_value = data.get("email").lower()
         message = ""
         validity = True
-        if(CustomUser.objects.filter(email=email_value).exists()):
+        if (CustomUser.objects.filter(email=email_value).exists()):
             message = "This Email is Already Registered"
             validity = False
         data = {
-            "valid":validity,
-            "message":message
+            "valid": validity,
+            "message": message
         }
         return JsonResponse(data)
 
-    return JsonResponse({"valid":False}, status = 200)
+    return JsonResponse({"valid": False}, status=200)
+
 
 def check_password(request):
     if request.method == "POST":
@@ -183,18 +191,17 @@ def check_password(request):
             validate_password(password_value)
         except ValidationError as e:
             data = {
-                "valid":False,
-                "errors":list(e)
+                "valid": False,
+                "errors": list(e)
             }
             return JsonResponse(data)
 
-
         data = {
-            "valid":True,
-            "errors":""
-        }  
+            "valid": True,
+            "errors": ""
+        }
         return JsonResponse(data)
-    return JsonResponse({"valid":False}, status = 200)
+    return JsonResponse({"valid": False}, status=200)
 
     return redirect('landing')
 
@@ -204,20 +211,21 @@ def fundraiser_link(request):
     context = {}
     return render(request, 'defaults/fundraiser.html', context)
 
+
 def minor_waiver_form(request):
 
     context = {}
-    return render(request, 'defaults/minor_waiver.html',context)
+    return render(request, 'defaults/minor_waiver.html', context)
+
 
 def profile_page(request, pk):
     user = None
     try:
-        user = CustomUser.objects.get(id = pk)
+        user = CustomUser.objects.get(id=pk)
         # print(user)
         # print(request.user)
     except:
         return redirect(decide_redirect(request.user))
-
 
     if user != request.user:
         # print("redirecting")
@@ -233,10 +241,8 @@ def profile_page(request, pk):
             messages.success(request, "Profile updated!")
             return redirect('profile', pk=user.id)
     user_change_form = CustomUserChangeForm(instance=user)
-    
 
-    context = {"user_change_form":user_change_form}
+    context = {"user_change_form": user_change_form}
     if is_hacker:
         return render(request, 'defaults/profileH.html', context)
     return render(request, 'defaults/profileO.html', context)
-        
