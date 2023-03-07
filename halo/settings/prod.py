@@ -24,10 +24,10 @@ SECURE_SSL_REDIRECT = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd3b0slavj4upkt',
-        'USER': 'vthmwywqjgmplp',
-        'PASSWORD': '2517004ee9119540159517430cdaef811bf508cba351c49c91c14cc27a484d1d',
-        'HOST': 'ec2-54-204-56-171.compute-1.amazonaws.com',
+        'NAME': 'db name',
+        'USER': 'dbuser',
+        'PASSWORD': 'dbpass',
+        'HOST': 'dbhost',
         'PORT': '5432',
     }
 }
