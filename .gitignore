@@ -141,3 +141,7 @@ cython_debug/
 
 # VsCode Extensions
 .vscode/
+
+# Pipfile
+Pipfile
+Pipfile.lock
