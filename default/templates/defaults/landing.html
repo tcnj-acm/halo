@@ -16,7 +16,8 @@
   <!-- animate.css -->
   <link rel="stylesheet" href="{% static 'plugins/plugins/animate-css/animate.css' %}">
   <!-- Icofont Css-->
-  <link rel="stylesheet" href="{% static 'plugins/plugins/fontawesome/css/all.css' %}">
+  {% comment %} <link rel="stylesheet" href="{% static 'plugins/plugins/fontawesome/css/all.css' %}"> {% endcomment %}
+  <script src="https://kit.fontawesome.com/61b96161ad.js" crossorigin="anonymous"></script>
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{% static 'css/landing_css/style.css' %}">
   
@@ -35,7 +36,7 @@
         <button class="navbar-toggler cmr-20 mobile-menu-icon no-outline" type="button" data-toggle="collapse"
           data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon">
-            <i class="fas fa-bars"></i>
+            <i class="fa-solid fa-bars"></i>
           </span>
         </button>
       </div>
@@ -476,6 +477,9 @@
   <script src="{% static 'js/landing_js/custom.js' %}"></script>
   <!-- Prize Section -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="https://kit.fontawesome.com/2b86215731.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
 
 </body>
 
