@@ -60,7 +60,7 @@ def registration_confirmation(hacker):
     body = '''
         Hey {},
 
-        We've received your hacker application for HackTCNJ! We can't wait to see you at TCNJ on April 9th, 2022. 
+        We've received your hacker application for HackTCNJ! We can't wait to see you at TCNJ on April 15th, 2023. 
         You'll receive emails from us regarding check-in information and some logistics. 
 
 

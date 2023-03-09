@@ -1,8 +1,6 @@
 from email import message
 import email
 from multiprocessing import context
-import re
-from xml.dom import ValidationErr
 from django.http.response import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
