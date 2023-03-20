@@ -57,7 +57,6 @@
 								<div class="form-floating">
 									<input type="text" class="form-control" onblur="youngDate()" id="id_date_of_birth"> 
 									<label class="text-muted" for="id_date_of_birth"><span class="fw-normal text-dark">Birth Date</span> <span class="text-danger text-bold">*</span></label>
-									{{create_user_form.age.as_hidden}}
 								</div>
 							</div>
 							<div class="col-3 text-center align-self-center ">
@@ -2438,7 +2437,7 @@
 			</div>
 		</div>
 
-		
+		{{create_user_form.age.as_hidden}}
 		{{create_hacker_form}}
 		<!-- 4 : Agreements -->
 		<div class="form-page d-none" id="formSubmission">
@@ -2517,7 +2516,7 @@
 
 <script type="text/javascript">
 	$(function () {
-		$('#datepicker').datepicker("setDate", new Date("1/1/2003"));
+		$('#datepicker').datepicker("setDate", new Date("1/1/2005"));
 	});
 </script>
 

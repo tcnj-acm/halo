@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector("#id_resume").onchange = checkResume;
 }, false);
 
+window.addEventListener("load", function () {
+    setTimeout(function () {
+        youngDate()
+    }, 500);
+});
+
 wholeForm.addEventListener("click", event => {
 
 
@@ -87,7 +93,7 @@ function showCurrentPage() {
 
 function youngDate() {
     const birthDate = new Date(document.getElementById("id_date_of_birth").value)
-    const today = new Date('4/9/2022')
+    const today = new Date('4/15/2023')
 
     var age = today.getFullYear() - birthDate.getFullYear()
     const month = today.getMonth() - birthDate.getMonth()
