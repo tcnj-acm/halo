@@ -68,7 +68,7 @@ new WOW().init();
 
 })(window.jQuery);
 const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-const firstDate = new Date("3/28/2023");
+const firstDate = new Date("3/26/2023");
 const secondDate = new Date();
 
 const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
