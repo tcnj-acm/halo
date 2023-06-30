@@ -92,15 +92,7 @@ function showCurrentPage() {
 }
 
 function youngDate() {
-    const birthDate = new Date(document.getElementById("id_date_of_birth").value)
-    const today = new Date('4/15/2023')
-
-    var age = today.getFullYear() - birthDate.getFullYear()
-    const month = today.getMonth() - birthDate.getMonth()
-    const day = today.getDate() - birthDate.getDate()
-    if ((month < 0 || (month === 0 && day < 0))) {
-        age--;
-    }
+    const age = document.getElementById("id_age").value;
     if (age < 18) {
         dateSection = document.getElementById("date-check")
         dateSection.classList.remove("d-none")
@@ -108,7 +100,6 @@ function youngDate() {
         dateSection = document.getElementById("date-check")
         dateSection.classList.add("d-none")
     }
-    document.getElementById("id_age").value = age
 }
 
 function formSubmission() {
