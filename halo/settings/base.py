@@ -18,7 +18,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com", ".hacktcnj.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com", ".hacktcnj.com", "10.0.0.20"]
 
 EMAIL_OUTGOING = 'contact@hacktcnj.com'
 

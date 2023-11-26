@@ -142,3 +142,5 @@ We'd like to thank everyone who has contributed to the project:
 [Sterly Deracy](https://github.com/sderacy) - *Maestro of finesse, hustler extraordinaire* 
 
 [JM Tameta](https://github.com/JmTameta) - *unofficial bachelors in the arts*
+
+[Simon Blamo](https://github.com/JmTameta) - *I go by Sam sometimes*
