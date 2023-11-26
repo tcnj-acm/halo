@@ -29,13 +29,13 @@
 <body data-spy="scroll" data-target=".fixed-top" class="hide-scroll">
 
   <nav class="navbar navbar-expand-lg fixed-top trans-navigation">
-    <div class="container">
+    <div class="container-fluid">
         <div>
-          <a class="navbar-brand nav-link smoth-scroll" href="#home" style="margin-right: 5px;">
+          <a class="navbar-brand nav-link smoth-scroll" href="#home" style="margin-right: 0px;">
             <h4 class="text-white">HackTCNJ</h4>
           </a>
           <a target="_blank" href="https://www.instagram.com/hacktcnj/">
-            <i class="fa-brands fa-instagram" style="font-size: 24px; color: white;"></i>
+            <i class="fa-brands fa-instagram" style="font-size: 24px; color: white; font-weight: 550; margin-left: -10px;"></i>
           </a>
         </div>
         <!-- make cmr-20 when we get MLH banner back -->
@@ -96,7 +96,7 @@
                 <p class="h4">The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games! Afterwards, walk away with new experiences and friendships :)</p>
 
                 <div class="button-box">
-                  <a href="{% url 'registration' %}" class="btn landing-register col-md-6">Join our mailing list!</a>
+                  <button class="btn landing-register col-md-6">Join our mailing list!</button>
                   {% comment %}<a href="{% url 'registration' %}" class="btn landing-register col-md-6">Register Today!</a> {% endcomment %}
                   {% comment %} <a href="{% url 'login' %}" class="btn landing-login col-md-6">Login</a> {% endcomment %}
                 </div>
