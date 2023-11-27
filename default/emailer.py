@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from halo.settings.base import EMAIL_OUTGOING
 from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 import os
 import re
@@ -127,8 +128,7 @@ def new_organizer_added(link, organizer):
     '''.format(organizer.first_name, link, TEAM_NAME)
 
 
-    send_mail(subject=subject, from_email=from_email,
-              recipient_list=to_email, message=body, fail_silently=False)
+    send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)
 
 def new_waitlister_added(email, name):
     subject = "HackTCNJ Waiting List Success! Registration Opens Soon!"
@@ -144,14 +144,16 @@ def new_waitlister_added(email, name):
         {}
     '''.format(name, TEAM_NAME)
 
-    send_mail(subject=subject, from_email=from_email,
-              recipient_list=to_email, message=body, fail_silently=False)
+    send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)
+    
+    
+
 
 
 ##### Sendgrid to add people to master a mailing list
 def add_user_to_mailing_list(fname, lname, email):
     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-
+    print()
     data = {
         "contacts": [
             {

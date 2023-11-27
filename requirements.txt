@@ -3,15 +3,15 @@ boto3==1.21.35
 botocore==1.24.35
 dj-database-url==0.5.0
 Django==4.0.3
-django-heroku==0.3.1
+django-on-heroku==1.1.2
 django-phone-field==1.8.1
 django-qr-code==3.0.0
 django-storages==1.12.3
 fontawesome==5.10.1.post1
 gunicorn==20.1.0
 jmespath==1.0.0
-mysqlclient==2.1.0
-psycopg2==2.9.3
+mysqlclient==2.2.0
+psycopg2==2.9.9
 psycopg2-binary==2.9.3
 python-dateutil==2.8.2
 python-dotenv==0.20.0
@@ -19,6 +19,7 @@ python-http-client==3.3.7
 s3transfer==0.5.2
 segno==1.4.1
 sendgrid==6.9.7
+django-sendgrid-v5==1.2.3
 six==1.16.0
 sqlparse==0.4.2
 starkbank-ecdsa==2.0.3

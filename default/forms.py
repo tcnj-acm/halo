@@ -103,3 +103,5 @@ class WaitingListCreationForm(forms.ModelForm):
             self.add_error('email', "This Email is already on the waitlist!")
 
         return email
+    
+

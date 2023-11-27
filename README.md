@@ -143,4 +143,4 @@ We'd like to thank everyone who has contributed to the project:
 
 [JM Tameta](https://github.com/JmTameta) - *unofficial bachelors in the arts*
 
-[Simon Blamo](https://github.com/JmTameta) - *I go by Sam sometimes*
+[Simon Blamo](https://github.com/Simon-Blamo) - *I go by Sam sometimes*

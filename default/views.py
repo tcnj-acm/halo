@@ -27,7 +27,26 @@ from .models import WaitingList, CustomUser
 
 
 def landing(request):
-    context = {}
+    if request.method == "POST":
+        waitlist_create_form = WaitingListCreationForm(request.POST)
+        if waitlist_create_form.is_valid():
+            waitlist = waitlist_create_form.save()
+            new_email = waitlist_create_form.cleaned_data['email']
+            new_name = waitlist_create_form.cleaned_data['full_name']
+            new_waitlister_added(new_email, new_name)
+            fname = new_name.split(' ')[0]
+            
+            if len(new_name.split(' ')) == 1:
+                lname = ''
+            else:
+                lname = new_name.split(' ')[1]
+            add_user_to_mailing_list(fname, lname, new_email)
+            messages.success(
+                request, "Thanks for joining the waiting list, you will receive an email with more information soon!")
+            return redirect('landing')
+    else:
+        waitlist_create_form = WaitingListCreationForm()
+    context = {'waitlist_form': waitlist_create_form}
     return render(request, 'defaults/landing.html', context)
 
 

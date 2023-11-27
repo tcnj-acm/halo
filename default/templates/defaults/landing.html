@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="zxx" style="scroll-behavior: smooth;">
 
 <head>
   <!-- Required meta tags -->
@@ -13,6 +13,8 @@
   <title>HackTCNJ 2024</title>
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="{% static 'plugins/plugins/bootstrap/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/form_css/form.css' %}">
+    <script src="{% static 'js/form/form.js' %}" defer></script>
   <!-- animate.css -->
   <link rel="stylesheet" href="{% static 'plugins/plugins/animate-css/animate.css' %}">
   <!-- Icofont Css-->
@@ -90,16 +92,42 @@
             <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
               <div class="banner-content content-padding">
                 <!--<h5 class="subtitle">HackTCNJ 2022</h5>-->
-                <img class="hack-banner" src="{% static 'hackathonlogo2024.png' %}" />
+                <img id="hack-banner" class="hack-banner" src="{% static 'hackathonlogo2024.png' %}" />
                 <h1 class="banner-title">TCNJ's 24-hour hackathon</h1>
                 <h3 class="banner-title">February 17th, 12PM to February 18th, 3PM</h3>
-                <p class="h4">The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games! Afterwards, walk away with new experiences and friendships :)</p>
+                <p  class="h4">The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games! Afterwards, walk away with new experiences and friendships :)</p>
 
                 <div class="button-box">
-                  <button class="btn landing-register col-md-6">Join our mailing list!</button>
                   {% comment %}<a href="{% url 'registration' %}" class="btn landing-register col-md-6">Register Today!</a> {% endcomment %}
                   {% comment %} <a href="{% url 'login' %}" class="btn landing-login col-md-6">Login</a> {% endcomment %}
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="height: 100%; display: flex; justify-content: center; align-items: center; z-index: 12; display: hidden;">
+            <div class=" p-4 bg-dark text-white h-25" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px 10px; z-index: 10; width: 70%;">
+              <div class="container py-3">
+                <div class="row">
+                  <div class="col-12">
+                    <h2 class="text-white text-uppercase text-center mb-3">
+                      Join our mailing list!
+                    </h2>
+                  </div>
+                </div>
+                <form class="form" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group mt-1">
+                      <div class="mb-1 mx-auto" style="width: 90%;">
+                        {{ waitlist_form.full_name }}
+                      </div>
+                      <div class="mt-2 mx-auto" style="width: 90%;">
+                        {{ waitlist_form.email }}
+                      </div>
+                        <div class="row">
+                          <input type="submit" class="btn btn-info btn-fill mt-3 mx-auto" />
+                        </div>
+                    </div>
+                </form>
               </div>
             </div>
           </div>
@@ -122,7 +150,16 @@
     </div>
   </section>
   <div class="container my-5">
-    <h1  style="text-align: center; padding: 200px 0 200px 0;">Prize Details Coming Soon!<br/>Join our <span style="color: #635CDB;">mailing list</span> to stay informed!</h1>
+    <h1  style="text-align: center; padding: 200px 0 200px 0;">Prize details coming soon!<br/>Join our 
+      <a href="#hack-banner">
+        <span style="color: #635CDB;" 
+          onmouseover="this.style.color='#beb31ee2'" 
+          onMouseOut="this.style.color='#635CDB'">
+            Mailing List
+        </span>
+      </a>
+      to stay informed!
+    </h1>
   </div>
   {% comment %} <div class="container mb-5 mt-5">
     <div class="pricing card-deck flex-column flex-md-row mb-3">

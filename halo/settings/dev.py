@@ -11,11 +11,13 @@ DATABASES = {
 }
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EM_HOST = 'localhost'
-EM_PORT = 1025
-EM_HOST_USER = None
-EM_HOST_PASSWORD = None
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+EM_HOST = 'smtp.sendgrid.net'
+EM_PORT = 587
+EM_HOST_USER = 'apikey'
+EM_HOST_PASSWORD = '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'
+SENDGRID_API_KEY = os.environ["SENDGRID_API_KEY"]
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = str(os.getenv('EM_HOST'))
 # EMAIL_PORT = 587
