@@ -152,9 +152,12 @@ def new_waitlister_added(email, name):
 
 ##### Sendgrid to add people to master a mailing list
 def add_user_to_mailing_list(fname, lname, email):
-    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    sg = SendGridAPIClient(os.getenv('EM_HOST_PASSWORD'))
     print()
     data = {
+        "list_ids": [
+            "db0c9c0c-ce0b-49c5-b73b-d622ccc3098f"
+        ],
         "contacts": [
             {
                 "email": email,

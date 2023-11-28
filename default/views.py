@@ -24,6 +24,8 @@ from organizer.models import OrganizerInfo
 from .helper import add_group, decide_redirect, decide_type
 from .emailer import *
 from .models import WaitingList, CustomUser
+from sendgrid import SendGridAPIClient
+from halo.settings.dev import SENDGRID_API_KEY
 
 
 def landing(request):
@@ -45,6 +47,15 @@ def landing(request):
                 request, "Thanks for joining the waiting list, you will receive an email with more information soon!")
             return redirect('landing')
     else:
+        # sg = SendGridAPIClient(os.getenv('EM_HOST_PASSWORD'))
+        # params = {'page_size': 100}
+
+        # response = sg.client.marketing.lists.get(
+        #     query_params=params
+        # )
+        # print(response.status_code)
+        # print(response.body)
+        # print(response.headers)
         waitlist_create_form = WaitingListCreationForm()
     context = {'waitlist_form': waitlist_create_form}
     return render(request, 'defaults/landing.html', context)
