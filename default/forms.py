@@ -4,6 +4,9 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from .models import CustomUser, WaitingList
 from hacker.models import HackerInfo
+from sendgrid import SendGridAPIClient
+import os
+import json
 
 
 class CustomUserCreationForm(forms.ModelForm):
@@ -99,9 +102,21 @@ class WaitingListCreationForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
 
-        if WaitingList.objects.filter(email=email).exists():
-            self.add_error('email', "This Email is already on the waitlist!")
+        sg = SendGridAPIClient(os.getenv('EM_HOST_PASSWORD'))
+        queryString = "email LIKE '" + email +"%' AND CONTAINS(list_ids, 'db0c9c0c-ce0b-49c5-b73b-d622ccc3098f')"
 
+        data = {
+            "query": queryString
+        }
+        
+        response = sg.client.marketing.contacts.search.post(
+            request_body=data
+        )
+        #print(response.status_code)
+        dict = json.loads(response.body)
+        # print("Here is the count:", dict['contact_count'])
+        if dict['contact_count'] > 0:
+            self.add_error('email', "This Email is already on the Mailing List!")
         return email
     
 

@@ -147,6 +147,7 @@ def new_waitlister_added(email, name):
     send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)
     
     
+    
 
 
 
