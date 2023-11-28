@@ -11,26 +11,26 @@ DEBUG = False
 
 SECURE_SSL_REDIRECT = True
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': str(os.getenv('DB_NAME')),
-#         'USER': str(os.getenv('DB_USER')),
-#         'PASSWORD': str(os.getenv('DB_PASSWORD')),
-#         'HOST': str(os.getenv('DB_HOST')),
-#         'PORT': str(os.getenv('DB_PORT')),
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db name',
-        'USER': 'dbuser',
-        'PASSWORD': 'dbpass',
-        'HOST': 'dbhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': str(os.getenv('DB_NAME')),
+        'USER': str(os.getenv('DB_USER')),
+        'PASSWORD': str(os.getenv('DB_PASSWORD')),
+        'HOST': str(os.getenv('DB_HOST')),
+        'PORT': str(os.getenv('DB_PORT')),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'db name',
+#         'USER': 'dbuser',
+#         'PASSWORD': 'dbpass',
+#         'HOST': 'dbhost',
+#         'PORT': '5432',
+#     }
+# }
 
 db_from_env = dj_database_url.config(conn_max_age=1000)
 DATABASES['default'].update(db_from_env)
