@@ -112,9 +112,7 @@ class WaitingListCreationForm(forms.ModelForm):
         response = sg.client.marketing.contacts.search.post(
             request_body=data
         )
-        #print(response.status_code)
         dict = json.loads(response.body)
-        # print("Here is the count:", dict['contact_count'])
         if dict['contact_count'] > 0:
             self.add_error('email', "This Email is already on the Mailing List!")
         return email

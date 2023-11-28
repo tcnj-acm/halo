@@ -32,12 +32,11 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
+db_from_env = dj_database_url.config(conn_max_age=1000)
 DATABASES['default'].update(db_from_env)
 
 # Email
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = str(os.getenv('EM_HOST'))
 EMAIL_PORT = 587
 EMAIL_HOST_USER = str(os.getenv('EM_HOST_USER'))
