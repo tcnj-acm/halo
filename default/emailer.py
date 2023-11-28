@@ -136,12 +136,14 @@ def new_waitlister_added(email, name):
     to_email = [email]
     body = '''
     Hey {}, 
-        We are totally pumped! HackTCNJ is coming soon! We can't wait for you to join us in celebrating another awesome year of hacking at The College of New Jersey!
-        Once registration opens, we'll send you an email so you can sign up!
+    
+    We are totally pumped! HackTCNJ is coming soon! We can't wait for you to join us in celebrating another awesome year of hacking at The College of New Jersey!
+    
+    Once registration opens, we'll send you an email so you can sign up!
 
 
-        Best,
-        {}
+    Best,
+    {}
     '''.format(name, TEAM_NAME)
 
     send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)
