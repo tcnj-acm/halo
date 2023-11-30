@@ -32,8 +32,7 @@ DATABASES = {
 #     }
 # }
 
-# db_from_env = dj_database_url.config(conn_max_age=500)
-db_from_env = dj_database_url.config(conn_max_age=3000)
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 # Email
@@ -42,7 +41,7 @@ EMAIL_HOST = str(os.getenv('EM_HOST'))
 EMAIL_PORT = 587
 EMAIL_HOST_USER = str(os.getenv('EM_HOST_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EM_HOST_PASSWORD'))
-SENDGRID_API_KEY = os.getenv('EM_HOST_PASSWORD')
+SENDGRID_API_KEY = str(os.getenv('EM_HOST_PASSWORD'))
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 EMAIL_USE_TLS = True
 
