@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'sponsor',
     'teams',
     'storages',
-    'phone_field'
+    'phone_field',
+    'sendgrid'
 ]
 
 
