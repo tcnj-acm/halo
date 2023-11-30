@@ -131,15 +131,15 @@ def new_organizer_added(link, organizer):
     send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)
 
 def new_waitlister_added(email, name):
-    subject = "HackTCNJ Waiting List Success! Registration Opens Soon!"
+    subject = "HackTCNJ Mailing List Success! Registration Opens Soon!"
     from_email=FROM_EMAIL
     to_email = [email]
     body = '''
     Hey {}, 
     
-    We are totally pumped! HackTCNJ is coming soon! We can't wait for you to join us in celebrating another awesome year of hacking at The College of New Jersey!
+    \nWe are totally pumped! HackTCNJ is coming soon! We can't wait for you to join us in celebrating another awesome year of hacking at The College of New Jersey!
     
-    Once registration opens, we'll send you an email so you can sign up!
+    \nOnce registration opens, we'll send you an email so you can sign up!
 
 
     Best,
