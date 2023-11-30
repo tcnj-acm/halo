@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'teams',
     'storages',
     'phone_field'
-
 ]
 
 
