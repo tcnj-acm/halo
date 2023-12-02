@@ -11,7 +11,7 @@ DATABASES = {
 }
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 EM_HOST = 'smtp.sendgrid.net'
 EM_PORT = 587
 EM_HOST_USER = 'apikey'

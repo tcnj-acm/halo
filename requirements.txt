@@ -1,8 +1,8 @@
 asgiref==3.5.0
 boto3==1.21.35
 botocore==1.24.35
-dj-database-url==2.1.0
-Django==4.2.7
+dj-database-url==2.5.0
+Django==4.0.3
 django-heroku==0.3.1
 django-on-heroku==1.1.2
 django-phone-field==1.8.1
