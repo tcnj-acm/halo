@@ -31,7 +31,14 @@ DATABASES = {
 #     }
 # }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
+
+
+db_from_env = dj_database_url.config(
+    default='postgres://vthmwywqjgmplp:2517004ee9119540159517430cdaef811bf508cba351c49c91c14cc27a484d1d@ec2-54-204-56-171.compute-1.amazonaws.com:5432/d3b0slavj4upkt',
+    conn_max_age=500,
+    conn_health_checks=True)
 DATABASES['default'].update(db_from_env)
 
 # Email
