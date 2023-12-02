@@ -49,6 +49,7 @@ def landing(request):
         else:
             for errors in waitlist_create_form.errors.items():
                 messages.error(request, errors[1])
+            return redirect('landing')
     else:
         waitlist_create_form = WaitingListCreationForm()
     context = {'waitlist_form': waitlist_create_form}
