@@ -11,6 +11,7 @@ DATABASES = {
 }
 
 
+
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 EM_HOST = 'smtp.sendgrid.net'
 EM_PORT = 587
