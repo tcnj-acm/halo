@@ -32,7 +32,10 @@ def landing(request):
     if request.method == "POST":
         waitlist_create_form = WaitingListCreationForm(request.POST)
         if waitlist_create_form.is_valid():
-            waitlist = waitlist_create_form.save()
+            try:
+                waitlist_create_form.Meta.model.objects.get(email=waitlist_create_form.cleaned_data['email'])
+            except waitlist_create_form.Meta.model.DoesNotExist:
+                waitlist = waitlist_create_form.save()
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
             new_waitlister_added(new_email, new_name)
