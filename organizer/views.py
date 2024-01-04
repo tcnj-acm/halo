@@ -10,7 +10,6 @@ from hacker.models import HackerInfo
 from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, WebsiteSettings
 from default.models import CustomUser, WaitingList
 from default.helper import add_group, remove_group
-from django.db import connection
 from django.db.models import Q
 from django.db.models import Value as V
 from django.db.models.functions import Concat  
@@ -302,9 +301,6 @@ def display_table_reset_page(request):
         data = resetTablesControlForm(request.POST)
         if data.is_valid():
             if '1' in data.cleaned_data.get('Selections'):
-                table_name = 'default_customuser_groups'
-                with connection.cursor() as cursor:
-                    cursor.execute(f"DELETE FROM {table_name} WHERE group_id == 1 OR group_id == 4")
                 hackers = CustomUser.objects.filter(is_admin=False)
                 hackers.delete()
                 the_message = "The user base has been reset successfully!"
