@@ -1,3 +1,4 @@
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -13,6 +14,37 @@ function getCookie(name) {
     return cookieValue;
 }
 const csrftoken = getCookie('csrftoken');
+let captchaDone = false;
+
+function captchaIsComplete() {
+    captchaDone = true;
+    formSubmission();
+}
+
+function captchaHasFailed() {
+    captchaDone = false;
+    formSubmission();
+}
+
+function initRecaptcha(){
+    grecaptcha.render(
+        'myCaptcha',
+        {
+            sitekey: '6LegB0UpAAAAANCSmjMLwZjND2YV6c1oYOy4OV4Z',
+            callback: captchaIsComplete,
+            'expired-callback': captchaHasFailed,
+            'reset-callback': captchaHasFailed,
+        }
+    );
+}
+
+window.onload = function () {
+    var recaptchaScript = document.createElement('script');
+    recaptchaScript.src = 'https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit';
+    recaptchaScript.async = true;
+    recaptchaScript.defer = true;
+    document.body.appendChild(recaptchaScript);
+};
 
 const wholeForm = document.querySelector(".form-whole")
 const formPages = [...wholeForm.querySelectorAll(".form-page")]
@@ -119,9 +151,8 @@ function formSubmission() {
     }
 
     let allChecked = selects.every(input => input.checked)
-
     const submissionButton = document.getElementById("submissionButton")
-    if (allChecked) {
+    if (captchaDone && allChecked) {
         submissionButton.removeAttribute("disabled")
         submissionButton.classList.remove("btn-secondary")
         submissionButton.classList.add("btn-primary")

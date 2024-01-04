@@ -37,7 +37,7 @@
   <nav class="navbar navbar-expand-lg fixed-top trans-navigation">
     <div class="container-fluid">
         <div>
-          <a class="navbar-brand nav-link smoth-scroll" href="#home" style="margin-right: 0px;">
+          <a class="navbar-brand nav-link" href="#home" style="margin-right: 0px;">
             <h4 class="text-white">HackTCNJ</h4>
           </a>
           <a target="_blank" href="https://www.instagram.com/hacktcnj/">
@@ -104,46 +104,9 @@
                 <h3 class="banner-title">February 17th, 12PM to February 18th, 3PM</h3>
                 <p  class="h4">The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first hackathon! Come join us for a fun weekend filled with programming, free food, swag, and games! Afterwards, walk away with new experiences and friendships :)</p>
 
-                <div class="row" style="height: 100%; display: flex; justify-content: center; align-items: center; z-index: 12;">
-                  <div class=" p-4 bg-dark text-white h-25" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px 10px; z-index: 10; width: 70%;">
-                    <div class="container py-3">
-                      {% if messages %}
-                        <div class="row">
-                          {% for message in messages %}
-                            <div class="alert alert-info alert-dismissible fade show mx-auto" role="alert">
-                                <strong style="text-align: center; margin: 0;">{{message}}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                          {% endfor %}
-                        </div>
-                      {% endif %}
-                      <div class="row">
-                        <div class="col-12">
-                          <h2 id="mailingListHeader" class="text-white text-uppercase text-center mb-3">
-                            Join our mailing list!
-                          </h2>
-                        </div>
-                      </div>
-                      <form class="form" method="POST">
-                          {% csrf_token %}
-                          <div class="form-group mt-1">
-                            <div class="mb-1 mx-auto" style="width: 90%;">
-                              {{ waitlist_form.full_name }}
-                            </div>
-                            <div class="mt-2 mx-auto" style="width: 90%;">
-                              {{ waitlist_form.email }}
-                            </div>
-                              <div class="row">
-                                <input type="submit" class="btn btn-info btn-fill mt-3 mx-auto w-75" />
-                              </div>
-                          </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
                 <div class="button-box">
-                  {% comment %}<a href="{% url 'registration' %}" class="btn landing-register col-md-6">Register Today!</a> {% endcomment %}
-                  {% comment %} <a href="{% url 'login' %}" class="btn landing-login col-md-6">Login</a> {% endcomment %}
+                  <a href="{% url 'registration' %}" class="btn landing-register col-md-6">Register Today!</a>
+                  <a href="{% url 'login' %}" class="btn landing-login col-md-6">Login</a>
                 </div>
               </div>
             </div>

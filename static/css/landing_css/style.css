@@ -440,7 +440,7 @@ h5.subtitle {
 }
 
 .gr-overlay {
-  background: linear-gradient(135deg, #fcef41 0%, #292e2c 30%, #184C7A 100%);
+  background: linear-gradient(135deg, #F7B919 0%, #292e2c 30%, #184C7A 100%);
   opacity: .85;
 }
 
@@ -1556,13 +1556,13 @@ SERVICE PAGE
 }
 
 .landing-login {
-  background-color: #184C7A !important;
+  background-color: #157bd4 !important;
   color: #fff !important;
   opacity: .88 !important;
 }
 
 .landing-register {
-  background-color: #beb31ee2 !important;
+  background-color: #F7B919 !important;
   color: #fff !important;
   opacity: .88 !important;
 }

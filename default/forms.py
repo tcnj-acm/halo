@@ -8,7 +8,6 @@ from sendgrid import SendGridAPIClient
 import os
 import json
 
-
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'onblur': 'passwordValidation()'}))
@@ -52,7 +51,6 @@ class CustomUserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
 
 class HackerCreationForm(forms.ModelForm):
 
@@ -101,20 +99,10 @@ class WaitingListCreationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
-
-        sg = SendGridAPIClient(os.getenv('EM_HOST_PASSWORD'))
-        queryString = "email LIKE '" + email +"%' AND CONTAINS(list_ids, 'db0c9c0c-ce0b-49c5-b73b-d622ccc3098f')"
-
-        data = {
-            "query": queryString
-        }
-        
-        response = sg.client.marketing.contacts.search.post(
-            request_body=data
-        )
-        dict = json.loads(response.body)
-        if dict['contact_count'] > 0:
-            self.add_error('email', "This Email is already on the Mailing List!")
+        users = WaitingList.objects.all()
+        for user in users:
+            if email == user.email:
+                self.add_error('email', "This Email is already on the Mailing List!")
         return email
     
 

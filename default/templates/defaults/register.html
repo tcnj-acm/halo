@@ -12,7 +12,7 @@
 {% block form %}
 <form style="height: 85%" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 	<div class="form-whole">
-
+        
 		<!-- 0 : General Information -->
 		<div class="form-page">
 			<div class="row">
@@ -2487,6 +2487,9 @@
 				</div>
 			</div>
 			<div class="row mt-3">
+				<div class="g-recaptcha" data-sitekey="" id="myCaptcha"></div>
+			</div>
+			<div class="row mt-3">
 				<div class="col text-start">
 					<button class="btn btn-outline-info" type="button" data-previous-button> <i class="fa-solid fa-chevron-left"></i> Last</button>
 				</div>
@@ -2513,7 +2516,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
 <script type="text/javascript">
 	$(function () {
 		$('#datepicker').datepicker("setDate", new Date("1/1/2005"));

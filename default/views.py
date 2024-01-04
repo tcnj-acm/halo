@@ -29,35 +29,8 @@ from halo.settings.dev import SENDGRID_API_KEY
 
 
 def landing(request):
-    if request.method == "POST":
-        waitlist_create_form = WaitingListCreationForm(request.POST)
-        if waitlist_create_form.is_valid():
-            try:
-                waitlist_create_form.Meta.model.objects.get(email=waitlist_create_form.cleaned_data['email'])
-            except waitlist_create_form.Meta.model.DoesNotExist:
-                waitlist = waitlist_create_form.save()
-            new_email = waitlist_create_form.cleaned_data['email']
-            new_name = waitlist_create_form.cleaned_data['full_name']
-            new_waitlister_added(new_email, new_name)
-            fname = new_name.split(' ')[0]
-            
-            if len(new_name.split(' ')) == 1:
-                lname = ''
-            else:
-                lname = new_name.split(' ')[1]
-            add_user_to_mailing_list(fname, lname, new_email)
-            messages.success(
-                request, "Thanks for joining the waiting list, you will receive an email with more information soon!")
-            return redirect('landing')
-        else:
-            for errors in waitlist_create_form.errors.items():
-                messages.error(request, errors[1])
-            return redirect('landing')
-    else:
-        waitlist_create_form = WaitingListCreationForm()
-    context = {'waitlist_form': waitlist_create_form}
+    context = {}
     return render(request, 'defaults/landing.html', context)
-
 
 def waitlist(request):
     # fundraiser_link = request.get_host() + "/fundraiser"
@@ -68,15 +41,25 @@ def waitlist(request):
             new_email = waitlist_create_form.cleaned_data['email']
             new_name = waitlist_create_form.cleaned_data['full_name']
             new_waitlister_added(new_email, new_name)
+            fname = new_name.split(' ')[0]
+            
+            if len(new_name.split(' ')) == 1:
+                lname = ''
+            else:
+                lname = new_name.split(' ')[1]
+            add_user_to_waiting_mailing_list(fname, lname, new_email)
             messages.success(
                 request, "Thanks for joining the waiting list, you will receive an email with more information soon!")
+            return redirect('waitlist')
+        else:
+            for errors in waitlist_create_form.errors.items():
+                messages.error(request, errors[1])
             return redirect('waitlist')
     else:
         waitlist_create_form = WaitingListCreationForm()
 
     context = {'waitlist_form': waitlist_create_form}
     return render(request, 'defaults/coming-soon.html', context)
-
 
 def registration(request):
     if request.method == 'POST':
@@ -118,7 +101,7 @@ def registration(request):
 
             # Email confirmation
             registration_confirmation(user)
-            add_user_to_mailing_list(
+            add_user_to_registered_mailing_list(
                 user.first_name, user.last_name, user.email)
 
             if user.age < 18:
@@ -131,6 +114,7 @@ def registration(request):
                 return redirect('hacker-dash')
         else:
             # print('fail')
+            redirect('registration')
             pass
     else:
         create_user_form = CustomUserCreationForm()

@@ -9,7 +9,6 @@ from .choices import *
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-
     date_joined = models.DateTimeField(
         verbose_name='date joined', 
         auto_now_add=True

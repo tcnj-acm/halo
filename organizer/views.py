@@ -1,6 +1,6 @@
 from email import message
 from django.contrib import messages
-from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm
+from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm, resetTablesControlForm, EmailingForm
 from django.http import HttpResponse
 from django.db.models.query_utils import check_rel_lookup_compatibility, select_related_descend
 from django.db.models import Count
@@ -10,25 +10,21 @@ from hacker.models import HackerInfo
 from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, WebsiteSettings
 from default.models import CustomUser, WaitingList
 from default.helper import add_group, remove_group
+from django.db import connection
 from django.db.models import Q
 from django.db.models import Value as V
 from django.db.models.functions import Concat  
 from .helper import get_permissions
-from default.emailer import new_organizer_added, add_user_to_mailing_list
+from default.emailer import new_organizer_added, add_user_to_registered_mailing_list, initial_notification_message, reminder_notification_message, send_initial_notification, send_custom_notification
 
 from .utils import download_csv
 
 # Create your views here.
-
-
-
-
 def dash(request):
     head_org = request.user.groups.filter(name='head-organizer').exists()
 
     context = {'head_org': head_org, 'permissions':get_permissions(request.user)}
     return render(request, 'organizers/dashboard.html', context)
-
 
 # All organizers can see hackers (all or those checked in)
 def display_hackers(request):
@@ -62,7 +58,6 @@ def under18_hackers(request):
     
     context = {'young_hackers':young_hackers}
     return render(request, 'organizers/minorhackers.html', context)
-
 
 def export_waiting_list(request):
   # Create the HttpResponse object with the appropriate CSV header.
@@ -120,7 +115,6 @@ def manual_checkin(request):
                }
     return render(request, 'organizers/manualcheckin.html', context)
 
-
 # checkin view with qr code stuff
 def qr_checkin(request, pk, first_name_hash, last_name_hash):
 
@@ -135,7 +129,6 @@ def qr_checkin(request, pk, first_name_hash, last_name_hash):
     context = {'hacker': hacker}
     return render(request, 'organizers/qrcheckin.html', context)
 
-
 # head organizer only function: show other organizers on the system
 def display_organizers(request):
 
@@ -146,7 +139,6 @@ def display_organizers(request):
                 }
     return render(request, 'organizers/organizersdisplay.html', context)
 
-
 # Head organizer only function: remove someone from the system.
 def delete_organizer(request, id):
     selected_organizer = OrganizerInfo.objects.get(id=id)
@@ -156,7 +148,6 @@ def delete_organizer(request, id):
     selected_user.delete()
 
     return redirect('all-organizers')
-
 
 # head organizer can add another organizer to the system
 def add_organizer(request):
@@ -172,8 +163,6 @@ def add_organizer(request):
             passwrd = 'hacker123!'
             new_user = CustomUser.objects.create(first_name=first_name, last_name=last_name, email=email)
             new_user.set_password(passwrd)
-            
-            
             add_group(new_user, 'organizer')
             new_user.save()
 
@@ -190,7 +179,7 @@ def add_organizer(request):
 
             reset_link = request.get_host() + "/reset-password"
             new_organizer_added(reset_link, new_user)
-            add_user_to_mailing_list(new_user.first_name, new_user.last_name, new_user.email)
+            add_user_to_registered_mailing_list(new_user.first_name, new_user.last_name, new_user.email)
 
             return redirect('all-organizers')
     context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form}
@@ -210,8 +199,6 @@ def organizer_setting(request, pk):
 
     context={'form':form, 'user':user,  'permissions':get_permissions(request.user)}
     return render(request, 'organizers/editorganizer.html', context)
-
-    
 
 # head organizer settings page
 def settings(request):
@@ -237,8 +224,8 @@ def settings(request):
     context = {'head_org':head_org, 'current_setting':current_setting, 'permissions':get_permissions(request.user)}
     return render(request, 'organizers/websitesettings.html', context)
 
-
 def stats_page(request):
+    print("Entered!")
     hacker_food = CustomUser.objects.values_list('food_preference').annotate(fc=Count('food_preference')).order_by('-fc')
     hacker_major = CustomUser.objects.values_list('major').annotate(fc=Count('major')).order_by('-fc')[:5]
     hacker_education = CustomUser.objects.values_list('level_of_study').annotate(fc=Count('level_of_study')).order_by('-fc')
@@ -266,7 +253,6 @@ def stats_page(request):
                 'permissions':get_permissions(request.user)
     }
     return render(request, 'organizers/statspage.html', context)
-
 
 def display_waitlist(request):
     waiting_list = WaitingList.objects.all()
@@ -309,3 +295,58 @@ def delete_waitlist_participant(request, pk):
     participant.delete()
 
     return redirect('edit-waiting-list')
+
+def display_table_reset_page(request):
+    if request.method == 'POST':
+        the_message = ""
+        data = resetTablesControlForm(request.POST)
+        if data.is_valid():
+            if '1' in data.cleaned_data.get('Selections'):
+                table_name = 'default_customuser_groups'
+                with connection.cursor() as cursor:
+                    cursor.execute(f"DELETE FROM {table_name} WHERE group_id == 1 OR group_id == 4")
+                hackers = CustomUser.objects.filter(is_admin=False)
+                hackers.delete()
+                the_message = "The user base has been reset successfully!"
+            if '2' in data.cleaned_data.get('Selections'):
+                WaitingList.objects.all().delete()
+                the_message = "The waiting_list has been reset successfully!"
+            if len(data.cleaned_data.get('Selections')) == 2:
+                the_message = "Both the user base and the waiting_list have been reset successfully!"
+            messages.success(request, the_message)
+            return redirect('organizer-dash')
+        else:
+            messages.error(request, "Please confirm a selection!")
+            return redirect('confirmation')
+    else:
+        create_reset_form = resetTablesControlForm()
+        context = {
+            "reset_form": create_reset_form,
+        }
+        return render(request, 'organizers/reset.html', context)
+
+def display_message_page(request):
+    if request.method == 'POST':
+        data = EmailingForm(request.POST)
+        if data.is_valid():
+            print(data.cleaned_data.get('Notifications'))
+            if data.cleaned_data.get('Notifications') == '1':
+                send_initial_notification()
+            else:
+                if data.cleaned_data.get('Notifications') == '2':
+                    send_custom_notification(data.cleaned_data.get('Message2'))
+                else:
+                    send_custom_notification(data.cleaned_data.get('Message3'))
+            messages.success(request, "The emails have been successfully sent!")
+            return redirect('organizer-dash')
+        else:
+            messages.error(request, "Error occurred, please try again.")
+            return redirect('notify')
+    else:
+        create_email_form = EmailingForm()
+        context = {
+            "initMessage": initial_notification_message,
+            "reminderMessage": reminder_notification_message,
+            "email_form": create_email_form,
+        }
+        return render(request, 'organizers/notify.html', context)

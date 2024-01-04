@@ -49,6 +49,64 @@ class OrganizerPermissionControlForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple(attrs={})
     )
 
+resetOptions = (
+    ('1', "User Base"), 
+    ('2', 'Waiting List'),
+)
+class resetTablesControlForm(forms.Form):
+    Selections = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=resetOptions,
+        required=True
+    )
 
-
-
+templateOptions = (
+    ('1', 'Initial'),
+    ('2', 'Reminder'),
+    ('3', 'Custom'),
+)
+class EmailingForm(forms.Form):
+    Notifications = forms.ChoiceField(
+        label="Notifications", 
+        choices=templateOptions,
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+                "id": "Notifications", 
+            }
+        )
+    )
+    Message1 = forms.CharField(
+        label="Message:",
+        widget = forms.Textarea(
+            attrs={
+                "id": "textArea",
+                "rows": "22",
+                "class": "form-control",
+                "disabled": "disabled",
+            }
+        ),
+        required=False,
+    )
+    Message2 = forms.CharField(
+        label="Message:",
+        widget = forms.Textarea(
+            attrs={
+                "id": "customTextArea1",
+                "rows": "22",
+                "class": "form-control",
+            }
+        ),
+        required=False,
+    )
+    Message3 = forms.CharField(
+        label="Message:",
+        widget = forms.Textarea(
+            attrs={
+                "id": "customTextArea2",
+                "rows": "22",
+                "class": "form-control",
+            }
+        ),
+        required=False,
+    )
