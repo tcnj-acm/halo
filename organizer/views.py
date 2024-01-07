@@ -224,7 +224,6 @@ def settings(request):
     return render(request, 'organizers/websitesettings.html', context)
 
 def stats_page(request):
-    print("Entered!")
     hacker_food = CustomUser.objects.values_list('food_preference').annotate(fc=Count('food_preference')).order_by('-fc')
     hacker_major = CustomUser.objects.values_list('major').annotate(fc=Count('major')).order_by('-fc')[:5]
     hacker_education = CustomUser.objects.values_list('level_of_study').annotate(fc=Count('level_of_study')).order_by('-fc')
