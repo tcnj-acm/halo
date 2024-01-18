@@ -1224,7 +1224,7 @@ HISTORY MISSION
 
 .card-pricing.popular {
   z-index: 1;
-  border: 3px solid #007bff;
+  border: 3px solid #157bd4;
 }
 
 .card-pricing .list-unstyled li {
@@ -1447,7 +1447,6 @@ SERVICE PAGE
 /*Extra large devices (large desktops, 1200px and up)*/
 /*Large devices (desktops, 992px and up)*/
 /*Medium devices (tablets, 768px and up)*/
-/*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
 
   /*---------------
@@ -1477,6 +1476,13 @@ SERVICE PAGE
     transform: translate(-50%, -50%);
     zoom: 1.5;
   }
+
+  /*-------------------
+     PRIZES
+    -------------------*/
+    .dynamic-heading-size {
+      font-size: 30px;
+    }
 
   .hack-banner {
     margin-top: 4rem;
@@ -1638,6 +1644,7 @@ SERVICE PAGE
   .testimonial-content {
     padding: 10px;
   }
+
 
   /*--------------
      COUNTER
