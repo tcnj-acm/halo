@@ -125,7 +125,7 @@ function showCurrentPage() {
 
 function youngDate() {
     const birthDate = new Date(document.getElementById("id_date_of_birth").value)
-    const today = new Date('4/15/2023')
+    const today = new Date()
 
     var age = today.getFullYear() - birthDate.getFullYear()
     const month = today.getMonth() - birthDate.getMonth()
