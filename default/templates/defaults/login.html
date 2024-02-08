@@ -38,9 +38,11 @@
             <a class="btn btn-outline-primary btn-sm text-center" href="{% url 'reset_password' %}">Forgot Password?</a>
         </div>
     </div>
+    {% comment %}
     <div class="row justify-content-center mt-2" >
         <div class="col-auto">
             <a class="btn btn-outline-warning btn-sm text-center" href="{% url 'registration' %}">New User?</a>
         </div>
     </div>
+    {% endcomment %}
 {% endblock form %}

@@ -105,8 +105,10 @@
                 <p  class="h4">The College of New Jersey's annual 24-hour hackathon. All are welcome, especially if it is your first hackathon! Come join us for a fun weekend filled with programming, free food, free swag, and games! Afterwards, walk away with new experiences and friendships :)</p>
 
                 <div class="button-box">
+                  {% comment %}
                   <a href="{% url 'registration' %}" class="btn landing-register col-md-6">Register Today!</a>
-                  <a href="{% url 'login' %}" class="btn landing-login col-md-6">Login</a>
+                  {% endcomment %}
+                  <a href="{% url 'login' %}" class="btn landing-login col-md-6 py-4">Login</a>
                 </div>
               </div>
             </div>
