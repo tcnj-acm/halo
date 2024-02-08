@@ -1504,6 +1504,10 @@ SERVICE PAGE
     padding-bottom: 90px;
   }
 
+  .dynamic-heading-size-2 {
+    font-size: 20px;
+  }
+
   /*----------------
      ABOUT
     ----------------*/
@@ -1638,6 +1642,10 @@ SERVICE PAGE
 
   #about {
     padding-bottom: 40px;
+  }
+
+  .dynamic-heading-size-2 {
+    font-size: 20px;
   }
 
   /*-------------------
@@ -1818,6 +1826,11 @@ SERVICE PAGE
   /*----------------
      ABOUT
     ----------------*/
+
+    .dynamic-heading-size-2 {
+      font-size: 20px;
+    }
+
   .about-list li {
     float: none;
     width: 100%;
