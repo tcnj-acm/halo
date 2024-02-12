@@ -6,7 +6,7 @@ from default import views
 urlpatterns = [
     path('', views.landing, name='landing'),
     path('coming-soon', views.waitlist, name='waitlist'),
-    #path('register', views.registration, name='registration'),
+    path('register1855', views.registration, name='registration'),
     path('login', views.login_page, name='login'),
     path('logout/', views.logout_user, name='logout'),
     path('reset-password', views.password_reset_request, name="reset_password"),
