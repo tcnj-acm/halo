@@ -27,8 +27,8 @@ def download_csv(request, model, attributes_to_export, filter, filter_attr, filt
         tup = tempTup
         tup.append('True')
         tup.append('True')
-        decider = random.randint(0, 1)
-        if decider == 0:
+        decider = random.randint(0, 3)
+        if decider != 1:
             tup.append('False')
         else:
             tup.append('True')
