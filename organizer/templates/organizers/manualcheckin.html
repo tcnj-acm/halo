@@ -41,11 +41,11 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
-                        <th class="d-none" scope="col">Food Preference</th>
+                        <th class="" scope="col">Food Preference</th>
                         <th class="d-none" scope="col">Shirt Size</th>
                         <th class="d-none" scope="col">Education</th>
                         <th class="d-none" scope="col">Gender</th>
-                        <th class="d-none" scope="col">Age</th>
+                        <th class="" scope="col">Age</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -54,11 +54,11 @@
                         <tr id="hacker{{ forloop.counter }}">
                             <td>{{h.user.first_name}} {{h.user.last_name}}</td>
                             <td>{{h.user.email}}</td>
-                            <td class="d-none" >{{h.user.food_preference}}</td>
+                            <td class="" >{{h.user.food_preference}}</td>
                             <td class="d-none">{{h.user.shirt_size}}</td>
                             <td class="d-none" >{{h.user.level_of_study}}</td>
                             <td class="d-none" >{{h.user.gender}}</td>
-                            <td class="d-none" >{{h.user.age}}</td>
+                            <td class="" >{{h.user.age}}</td>
                             <td class=""><a  class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
                         </tr>
                     {% endfor %}
