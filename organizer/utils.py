@@ -10,7 +10,7 @@ def download_csv(request, model, attributes_to_export, filter, filter_attr, filt
 
     model = model.objects
     if filter == True:
-        model =  model.objects.filter(**{filter_attr :filter_value})
+        model =  model.filter(**{filter_attr :filter_value})
         
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="export.csv"'
