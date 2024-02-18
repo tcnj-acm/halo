@@ -38,16 +38,22 @@ def download_csv(request, model, attributes_to_export, filter, filter_attr, filt
     if checked_in == True:
         for i in range(len(data)) :
             tup = list(data[i])
+            print(tup)
             tempTup = []
-            for el in tup:
-                if ',' in str(el):
-                    el = el.replace(',', '')
-                tempTup.append(el)
+            for j in range(len(tup)):
+                if j == 3:
+                    tup[j] = str(tup[j]).split(',')[len(str(tup[j]).split(','))-1]
+                tempTup.append(tup[j])
             tup = tempTup
             tup.append('True')
             tup = tuple(tup)
             data[i] = tup
+            print(data[i])
+        field_names.remove('address')
+        field_names.insert(3, 'country')
         field_names.append("checked_in")
+        print(field_names)
+        
     # the csv writer
     writer = csv.writer(response, delimiter=";")
     # Write a first row with header information

@@ -78,7 +78,7 @@ def export_hacker_csv(request):
   return response
 
 def export_checkedin_hackers_csv(request):
-    data = download_csv(request, CustomUser, ['email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major'], True, 'groups__name', 'checked-in', False, True)
+    data = download_csv(request, CustomUser, ['first_name','last_name', 'age','email','school_name','phone','level_of_study', 'address'], True, 'groups__name', 'checked-in', False, True)
     response = HttpResponse(data, content_type='text/csv')
     return response
 
