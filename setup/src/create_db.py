@@ -219,10 +219,10 @@ shirt_sizes_hackers = [
 
 
 def create_groups():
-    Group.objects.create(name="hacker")
-    Group.objects.create(name="organizer")
-    Group.objects.create(name="head-organizer")
-    Group.objects.create(name="checked-in")
+    group_names = ["hacker", "organizer", "head-organizer", "checked-in"]
+    for name in group_names:
+        if not Group.objects.filter(name=name).exists():
+            Group.objects.create(name=name)
 
 
 def create_super_user():
