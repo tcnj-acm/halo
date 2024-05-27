@@ -290,7 +290,7 @@ def create_feature_permissions():
         url_name='statistics', permission_name='s-Stats'))
 
 def add_organizers_to_features():
-    user = CustomUser.objects.get(email='admin@aslan.com')
+    user = CustomUser.objects.get(email=os.getenv('HEAD_ORG_EMAIL'))
     head_org = OrganizerPermission.objects.create(user=user)
     head_org.permission.add(permissions_list[0], permissions_list[1], permissions_list[2], 
                             permissions_list[3], permissions_list[4], permissions_list[5])
