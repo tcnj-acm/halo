@@ -1,0 +1,62 @@
+{% extends 'organizers/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <head>
+    <style>
+      .organizerForm {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+        height: fit-content;
+        background-color: #343a40;
+        border-radius: 25px;
+        color: #fff;
+        padding: 2%;
+        text-align: center;
+      }
+
+      .centerHeaderText {
+        text-align: center;
+        color: #fff;
+      }
+
+      .btn:hover {
+         border-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      {% if messages %}
+        <div class="row mt-4 justify-content-center">
+          <div class="col-6">
+            {% for message in messages %}
+              <div class="alert alert-info alert-dismissible fade show mx-auto" role="alert">
+                  <strong style="text-align: center; margin: 0;">{{message}}</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+      <form class="organizerForm" method="POST" >
+        {% csrf_token %}
+        <h4 class="centerHeaderText" style="margin-bottom: 3%">Reset Table(s)</h4>
+        <div class="form-row text-start" >
+            <div class="col-md-12 mb-3">
+                {{reset_form.as_p}}
+            </div>
+        </div>
+        <div class="form-row justify-content-center" >
+            <div class="col-md-6 mb-3 text-center" >
+                <button class="btn btn-lg btn-outline-success" style="background-color: rgb(54, 94, 60); color: #fff;"  type="submit" value="save">Submit</button>
+            </div>                    
+        </div>
+      </form>
+    </div>
+  </body>
+{% endblock %}

@@ -32,7 +32,19 @@
   <body>
     <div>
       <form class="organizerForm" method="POST" >{% csrf_token %}
-        <h4 class="centerHeaderText" style="margin-bottom: 3%"> Add Organizer </h4>
+        {% if head_organizer_creation == True %}
+          <h4 class="centerHeaderText" style="margin-bottom: 3%"> Add Head Organizer </h4>
+        {% else %}
+          <h4 class="centerHeaderText" style="margin-bottom: 3%"> Add Organizer </h4>
+        {% endif %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show mx-auto" role="alert">
+                <strong style="text-align: center; margin: 0; list-style-type: none;">{{message}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
         <div class="form-row">
             <div class="col-md-12 mb-3 " >
                 {{create_organizer_form.first_name}}
@@ -50,11 +62,13 @@
                 {{create_organizer_form.email}}
             </div>
         </div>
+        {% if head_organizer_creation == False %}
         <div class="form-row text-start" >
             <div class="col-md-12 mb-3">
                 {{create_organizer_permission_form}}
             </div>
         </div>
+        {% endif %}
 
         <div class="form-row justify-content-center" >
             <div class="col-md-6 mb-3 text-center" >

@@ -3,12 +3,24 @@
 {% block content %}
     <div class="row mt-5 text-center justify-content-center g-3">
     {% if head_org %}
-        <div class="container w-75 mt-3">
+        <div class="container w-100 mt-3">
             <a href="{% url 'export-hackers' %}" class='btn btn-secondary'>Export Hackers</a>
             <a href="{% url 'export-checkedin-hackers' %}" class='btn btn-secondary'>Export Checked in Hackers</a>
         </div>
     <!-- second card, should be next to each other tho -->
-        <div class="col-lg-6 col-md-12">
+            {% if messages %}
+            <div class="row mt-4 justify-content-center">
+            <div class="col-6">
+                {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show mx-auto" role="alert">
+                    <strong style="text-align: center; margin: 0;">{{message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        {% endif %}
+        <div class="col-lg-3 col-md-12">
             <div class="card p-5 h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
                 <a href="{% url 'all-organizers' %}" class="text-decoration-none text-black">
                 <div class="card-body text-center">
@@ -18,7 +30,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-6 col-md-12">
+        <div class="col-lg-3 col-md-12">
             <div class="card p-5 h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
                 <a href="admin" class="text-decoration-none text-black">
                 <div class="card-body text-center">
@@ -28,7 +40,26 @@
             </div>
             </a>
         </div>
-        
+        <div class="col-lg-3 col-md-12">
+            <div class="card p-5 h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
+                <a href="{% url 'confirmation' %}" class="text-decoration-none text-black">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Reset Tables</h5>
+                        <p class="card-text">Only select this after you're done with this year's hackathon</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+            <div class="card p-5 h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
+                <a href="{% url 'notify' %}" class="text-decoration-none text-black">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Notify Waiting List</h5>
+                        <p class="card-text">Send an email to the waiting list</p>
+                    </div>
+                </a>
+            </div>
+        </div>
     {% endif %}
     </div>
     

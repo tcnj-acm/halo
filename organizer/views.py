@@ -1,6 +1,6 @@
 from email import message
 from django.contrib import messages
-from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm
+from organizer.forms import OrganizerCreationForm, OrganizerPermissionControlForm, ResetTablesControlForm, EmailingForm
 from django.http import HttpResponse
 from django.db.models.query_utils import check_rel_lookup_compatibility, select_related_descend
 from django.db.models import Count
@@ -14,7 +14,7 @@ from django.db.models import Q
 from django.db.models import Value as V
 from django.db.models.functions import Concat  
 from .helper import get_permissions
-from default.emailer import new_organizer_added, add_user_to_mailing_list
+from default.emailer import new_organizer_added, add_user_to_mailing_list, add_user_to_registered_mailing_list, initial_notification_message, reminder_notification_message, send_initial_notification, send_custom_notification
 
 from .utils import download_csv
 
@@ -180,7 +180,6 @@ def add_organizer(request):
             org_perm_obj = organizer_permission.save(commit=False)
             org_perm_obj.user = new_user
             
-            # print(request.POST)
             
             org_perm_obj.save()
             organizer_permission.save_m2m()
@@ -190,11 +189,52 @@ def add_organizer(request):
 
             reset_link = request.get_host() + "/reset-password"
             new_organizer_added(reset_link, new_user)
-            add_user_to_mailing_list(new_user.first_name, new_user.last_name, new_user.email)
+            add_user_to_registered_mailing_list(new_user.first_name, new_user.last_name, new_user.email)
 
             return redirect('all-organizers')
-    context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form}
+        else:
+            for errors in new_organizer.errors.items():
+                messages.error(request, errors[1])
+            return redirect('add-organizer')
+    context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form,
+    'head_organizer_creation': False}
     return render(request, 'organizers/addorganizer.html', context)
+
+def add_head_organizer(request):
+    create_organizer_form = OrganizerCreationForm()
+    create_organizer_permission_form = OrganizerPermissionControlForm()
+    if request.method == 'POST':
+        new_admin_data = OrganizerCreationForm(request.POST)
+        if new_admin_data.is_valid():
+            first_name = new_admin_data.cleaned_data['first_name']
+            last_name = new_admin_data.cleaned_data['last_name']
+            email = new_admin_data.cleaned_data['email']
+            passwrd = 'hacker123!'
+            new_admin = CustomUser.objects.create_superuser(email=email, password=passwrd)
+            new_admin.first_name = first_name
+            new_admin.last_name = last_name
+            
+            
+            add_group(new_admin, 'head-organizer')
+            new_admin.save()
+            
+            new_head_org = OrganizerPermission.objects.create(user=new_admin) 
+            
+            for permission in FeaturePermission.objects.all():
+                new_head_org.permission.add(permission)
+
+            reset_link = request.get_host() + "/reset-password"
+            new_organizer_added(reset_link, new_admin)
+            add_user_to_registered_mailing_list(new_admin.first_name, new_admin.last_name, new_admin.email)
+
+            return redirect('all-organizers')
+        else:
+            messages.error(request, new_admin.errors[1])
+            return redirect('add-organizer')
+    context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form,
+    'head_organizer_creation': True}
+    return render(request, 'organizers/addorganizer.html', context)
+
 
 def organizer_setting(request, pk):
 
@@ -309,3 +349,55 @@ def delete_waitlist_participant(request, pk):
     participant.delete()
 
     return redirect('edit-waiting-list')
+
+def display_table_reset_page(request):
+    if request.method == 'POST':
+        the_message = ""
+        data = ResetTablesControlForm(request.POST)
+        if data.is_valid():
+            if '1' in data.cleaned_data.get('Selections'):
+                hackers = CustomUser.objects.filter(is_admin=False)
+                hackers.delete()
+                the_message = "The user base has been reset successfully!"
+            if '2' in data.cleaned_data.get('Selections'):
+                WaitingList.objects.all().delete()
+                the_message = "The waiting_list has been reset successfully!"
+            if len(data.cleaned_data.get('Selections')) == 2:
+                the_message = "Both the user base and the waiting_list have been reset successfully!"
+            messages.success(request, the_message)
+            return redirect('organizer-dash')
+        else:
+            messages.error(request, "Please confirm a selection!")
+            return redirect('confirmation')
+    else:
+        create_reset_form = ResetTablesControlForm()
+        context = {
+            "reset_form": create_reset_form,
+        }
+        return render(request, 'organizers/reset.html', context)
+
+def display_message_page(request):
+    if request.method == 'POST':
+        data = EmailingForm(request.POST)
+        if data.is_valid():
+            print(data.cleaned_data.get('Notifications'))
+            if data.cleaned_data.get('Notifications') == '1':
+                send_initial_notification()
+            else:
+                if data.cleaned_data.get('Notifications') == '2':
+                    send_custom_notification(data.cleaned_data.get('Message2'))
+                else:
+                    send_custom_notification(data.cleaned_data.get('Message3'))
+            messages.success(request, "The emails have been successfully sent!")
+            return redirect('organizer-dash')
+        else:
+            messages.error(request, "Error occurred, please try again.")
+            return redirect('notify')
+    else:
+        create_email_form = EmailingForm()
+        context = {
+            "initMessage": initial_notification_message,
+            "reminderMessage": reminder_notification_message,
+            "email_form": create_email_form,
+        }
+        return render(request, 'organizers/notify.html', context)

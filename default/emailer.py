@@ -2,7 +2,9 @@
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from halo.settings.base import EMAIL_OUTGOING
+from .models import WaitingList
 from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 import os
 import re
@@ -71,7 +73,7 @@ def registration_confirmation(hacker):
     send_mail(subject=subject, from_email=from_email,
               recipient_list=to_email, message=body, fail_silently=False)
 
-
+# need to insert updated link within default/templatesz/defaults/minor_waiver.html
 def minor_waiver_form_submission(hacker, link):
     subject = "{}, HackTCNJ Minor Waiver Form".format(hacker.first_name)
     from_email=FROM_EMAIL
@@ -123,7 +125,7 @@ def new_organizer_added(link, organizer):
         Your login credentials are associated with this email. You already know the password ;) 
         Please reset your password {}
    
-        -{}
+    -{}
     '''.format(organizer.first_name, link, TEAM_NAME)
 
 
@@ -136,8 +138,9 @@ def new_waitlister_added(email, name):
     to_email = [email]
     body = '''
     Hey {}, 
-        We are totally pumped! HackTCNJ is coming soon! We can't wait for you to join us in celebrating another awesome year of hacking at The College of New Jersey!
-        Once registration opens, we'll send you an email so you can sign up!
+        \tWe are totally pumped! HackTCNJ is coming soon! We can't wait for you to join us in celebrating another awesome year of hacking at The College of New Jersey!
+        
+        \tOnce registration opens, we'll send you an email so you can sign up!
 
 
         Best,
@@ -150,9 +153,12 @@ def new_waitlister_added(email, name):
 
 ##### Sendgrid to add people to master a mailing list
 def add_user_to_mailing_list(fname, lname, email):
-    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    sg = SendGridAPIClient(os.getenv('EM_HOST_PASSWORD'))
 
     data = {
+        "list_ids": [
+            "bec44035-1e9b-41b3-95ec-bb8b75d8d76f" # hackTCNJ_2024-2025_List
+        ],
         "contacts": [
             {
                 "email": email,
@@ -164,7 +170,119 @@ def add_user_to_mailing_list(fname, lname, email):
 
     response = sg.client.marketing.contacts.put(request_body=data)
     
-    # print("results")
-    # print(response.status_code)
-    # print(response.body)
-    # print(response.headers)
+def add_user_to_registered_mailing_list(fname, lname, email):
+    sg = SendGridAPIClient(os.getenv('EM_HOST_PASSWORD'))
+    data = {
+        "list_ids": [
+            "90cb0081-b926-4767-8cb9-c17407b43024" # 2025_Registered_Users
+        ],
+        "contacts": [
+            {
+                "email": email,
+                "first_name":fname,
+                "last_name": lname,
+            }
+        ]
+    }
+
+    response = sg.client.marketing.contacts.put(request_body=data)
+
+start_time = "February 17 2024, 12PM" # update
+end_time = "February 18 2024, 3PM" # update
+location = "TCNJ"
+
+initial_notification_message = """
+We're excited to announce that registration for HackTCNJ is now open! We know you've been patiently waiting, and we appreciate your enthusiasm for our Hackathon. 
+
+Hackathon Details:
+    - Start Time: {}
+    - End Time: {}
+    - Location: {}
+
+How to Register:
+    1. Visit our Home Page and click the registration button: https://www.hacktcnj.com
+    2. Follow the instructions to complete your registration.
+
+Why should you attend HackTCNJ?:
+    - Innovative Projects: Collaborate with like-minded individuals and bring your ideas to life.
+    - Networking: Connect with industry professionals, mentors, and fellow participants.
+    - Prizes: Compete for exciting prizes and gain recognition for your skills.
+
+Don't forget to spread the word to your friends and teammates!
+
+If you have any questions or need assistance with the registration process, feel free to reply to this email or contact our support team at contact@hacktcnj.com !
+""".format(start_time, end_time, location)    
+
+def send_initial_notification():
+    users = WaitingList.objects.all()
+    for user in users:
+        subject = "Registration Open for HackTCNJ - Register Now!"
+        from_email = FROM_EMAIL
+        to_email = [user.email]
+        body = """
+        Hey {},
+
+        {}
+
+        Best,
+        {}
+        """.format(user.full_name, initial_notification_message, TEAM_NAME)
+        
+        send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)
+
+reminder_notification_message = """
+We hope this message finds you in good spirits for the HackTCNJ! 
+
+Hackathon Details:
+    - Date: {}
+    - Location: {}
+
+How to Register:
+    1. Visit our Home Page and click the registration button: https://www.hacktcnj.com
+    2. Follow the instructions to complete your registration.
+
+What to Expect:
+    - Inspirational Keynotes: Kick off the hackathon with insightful talks from industry leaders.
+    - Collaborative Atmosphere: Connect with fellow hackers and form teams to work on innovative projects.
+    - Mentorship: Experienced mentors will be available to guide you throughout the event.
+    - Prizes and Recognition: Compete for amazing prizes and showcase your skills to a wider audience.
+
+Final Checklist:
+    1. Confirm Your Registration: Double-check that you're officially registered for the event.
+    2. Prepare Your Tools: Ensure your laptop and necessary tools are ready for coding and creating.
+    3. Team Formation: If you haven't already, consider forming a team or finding potential collaborators.
+    4. Review the Schedule: Familiarize yourself with the event schedule to make the most of your experience.
+
+If you have any questions or need assistance with the registration process, feel free to reply to this email or contact our support team at contact@hacktcnj.com !
+""".format(start_time, end_time, location)
+        
+def send_reminder_notification():
+    users = WaitingList.objects.all()
+    for user in users:
+        subject = "Registration Open for HackTCNJ - Register Now!"
+        from_email = FROM_EMAIL
+        to_email = [user.email]
+        body = """
+        Hey {},
+
+        {}
+
+        Best,
+        {}
+        """.format(user.full_name, reminder_notification_message, TEAM_NAME)
+        send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)
+
+def send_custom_notification(message):
+    users = WaitingList.objects.all()
+    for user in users:
+        subject = "Reminder: HackTCNJ - Get Ready for the Hackathon Experience!"
+        from_email = FROM_EMAIL
+        to_email = [user.email]
+        body = """Hey {},
+
+    {}
+
+Best,
+{}
+        """.format(user.full_name, message, TEAM_NAME)
+        send_mail(subject=subject, from_email=from_email, recipient_list=to_email, message=body, fail_silently=False)

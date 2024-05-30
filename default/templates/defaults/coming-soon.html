@@ -32,15 +32,17 @@
 
             <div class="container">
                 <h1 class="logo cursive">
-                    HackTCNJ 2023
+                    HackTCNJ 2024
                 </h1>
-
-                <div class="content">
-                    <h4 class="motto">April 15th - 16th, 2023</h4>
-                    <div class="subscribe">
-                        {% comment %} <h5 class="info-text">
-                            Join the Hype List. Support our Fundraiser and get <a class="text-bold text-info" target="_blank" rel="noopener noreferrer" href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser">Exclusive Merch</a>👓
-                        </h5> {% endcomment %}
+                <h4 class="motto" style="z-index: 3; position: relative;">February 17th - February 18th, 2024</h4>
+                <div class="content row d-flex justify-content-center align-items-center">
+                    
+                    <div class="subscribe p-4 bg-dark" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px 10px; z-index: 10; width: 55%;">
+                        {% comment %} 
+                            <h5 class="info-text">
+                                Join the Hype List. Support our Fundraiser and get <a class="text-bold text-info" target="_blank" rel="noopener noreferrer" href="https://www.customink.com/fundraising/hacktcnj-2022-tshirtfundraiser">Exclusive Merch</a>👓
+                            </h5> 
+                        {% endcomment %}
                         <div class="row justify-content-center mt-1">
                             <div class="col-lg-6 col-md-7 col-sm-7 col-xs-5 align-self-center text-center">
                                 {% for field in waitlist_form %} 
@@ -60,10 +62,13 @@
                             </div>
                         </div>
                         <div class="row justify-content-center">
+                            <h2 id="mailingListHeader" class="text-white text-uppercase text-center mb-3">
+                                Join Our Waiting List!
+                              </h2>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-4 align-self-center text-center cjustify-center">
                                 <form class="form" method="POST">
                                     {% csrf_token %}
-                                    <div class="form-group mt-1">
+                                    <div class="form-group mt-1 text-white">
                                         {{ waitlist_form.full_name }}
                                         <br/>
                                         {{ waitlist_form.email }}
@@ -98,7 +103,7 @@
                 <div class="container">
                   <a class="c-float-left" href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank"> MLH Code of Conduct </a>
                   Made with <i class="fa fa-heart heart text-info"></i> by the
-                    <a id="Architects" class="text-decoration-none" type="button" data-bs-container="body"  data-bs-toggle="tooltip" data-bs-trigger="hover focus" data-bs-placement="top" data-bs-html="true" title="<em>Kevin Williams</em> | <em>Abhi Vempati</em>  <em>Sterly Deracy</em> | <em>Jan Tameta</em>">
+                    <a id="Architects" class="text-decoration-none" type="button" data-bs-container="body"  data-bs-toggle="tooltip" data-bs-trigger="hover focus" data-bs-placement="top" data-bs-html="true" title="<em>Kevin Williams</em> | <em>Abhi Vempati</em>  <em>Sterly Deracy</em> | <em>Jan Tameta</em> <em>Simon Blamo</em>">
                         Architects
                     </a>
                 </div>

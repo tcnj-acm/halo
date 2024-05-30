@@ -7,7 +7,6 @@ from .models import OrganizerInfo, WebsiteSettings, OrganizerPermission, Feature
 
 
 class OrganizerCreationForm(forms.Form):
-
     first_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(
         attrs={'placeholder': "First Name", 'class':'form-control text-center'}))
     last_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(
@@ -20,6 +19,7 @@ class OrganizerCreationForm(forms.Form):
         email = self.cleaned_data['email'].lower()
 
         if CustomUser.objects.filter(email=email).exists():
+            print("Yo Error")
             self.add_error('email',"This Email is already in the system!")
         
         return email
@@ -50,5 +50,64 @@ class OrganizerPermissionControlForm(forms.ModelForm):
     )
 
 
+resetOptions = (
+    ('1', "User Base"), 
+    ('2', 'Waiting List'),
+)
+class ResetTablesControlForm(forms.Form):
+    Selections = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=resetOptions,
+        required=True
+    )
 
-
+templateOptions = (
+    ('1', 'Initial'),
+    ('2', 'Reminder'),
+    ('3', 'Custom'),
+)
+class EmailingForm(forms.Form):
+    Notifications = forms.ChoiceField(
+        label="Notifications", 
+        choices=templateOptions,
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+                "id": "Notifications", 
+            }
+        )
+    )
+    Message1 = forms.CharField(
+        label="Message:",
+        widget = forms.Textarea(
+            attrs={
+                "id": "textArea",
+                "rows": "22",
+                "class": "form-control",
+                "disabled": "disabled",
+            }
+        ),
+        required=False,
+    )
+    Message2 = forms.CharField(
+        label="Message:",
+        widget = forms.Textarea(
+            attrs={
+                "id": "customTextArea1",
+                "rows": "22",
+                "class": "form-control",
+            }
+        ),
+        required=False,
+    )
+    Message3 = forms.CharField(
+        label="Message:",
+        widget = forms.Textarea(
+            attrs={
+                "id": "customTextArea2",
+                "rows": "22",
+                "class": "form-control",
+            }
+        ),
+        required=False,
+    )

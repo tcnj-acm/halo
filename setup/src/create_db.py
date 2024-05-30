@@ -229,6 +229,7 @@ def create_super_user():
     new_admin=CustomUser.objects.create_superuser(email=os.getenv('HEAD_ORG_EMAIL'), password=os.getenv('HEAD_ORG_PASSWORD'))
     new_admin.first_name=os.getenv('HEAD_ORG_FIRST_NAME')
     new_admin.last_name=os.getenv('HEAD_ORG_LAST_NAME')
+    new_admin.save()
 
 
 def create_users():
