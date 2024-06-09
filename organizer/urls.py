@@ -23,6 +23,7 @@ urlpatterns = [
      path('stats/', views.stats_page, name='statistics'),
      path('organizers/edit/<int:pk>', views.organizer_setting, name='edit-organizer'),
      path('tables-reset-confirmation', views.display_table_reset_page, name='confirmation'),
-     path('message-users', views.display_message_page, name='notify')
+     path('message-users', views.display_message_page, name='notify'),
+     path('lose-access', views.admin_access_removal, name='admin_removal')
 
 ]

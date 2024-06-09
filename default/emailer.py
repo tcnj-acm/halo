@@ -114,19 +114,20 @@ def hacker_checkin_success(hacker):
               recipient_list=to_email, message=body, fail_silently=False)
 
 
-def new_organizer_added(link, organizer):
-    subject = "{}, you have been added to HackTCNJ as an Organizer".format(
-        organizer.first_name)
+def new_organizer_added(link, organizer, forHeadOrganizer):
+    subject = "{}, you have been added to HackTCNJ as an Organizer".format(organizer.first_name)
     from_email=FROM_EMAIL
     to_email = [organizer.email]
-    body = '''
-    Hey {}, 
-        You've been added to the system as an organizer. You got some powers like checking in hackers.
-        Your login credentials are associated with this email. You already know the password ;) 
-        Please reset your password {}
-   
-    -{}
-    '''.format(organizer.first_name, link, TEAM_NAME)
+    headOrgStr = ''
+    
+    if forHeadOrganizer:
+        headOrgStr = 'Head '
+    body = '''Hey {}, 
+    You've been added to the system as a {}organizer. You got some powers like checking in hackers.
+    Your login credentials are associated with this email. You already know the password ;) 
+    Please reset your password {}   
+-{}
+    '''.format(organizer.first_name, headOrgStr, link, TEAM_NAME)
 
 
     send_mail(subject=subject, from_email=from_email,

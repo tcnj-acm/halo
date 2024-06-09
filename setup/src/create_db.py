@@ -61,7 +61,6 @@ first_name_volunteers = [
     'Sahi',
     'David',
     'Dom',
-
 ]
 
 last_name_volunteers = [

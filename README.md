@@ -91,8 +91,7 @@ The project uses multiple .env variables and unfortunately couldn't be compiled 
 
 2. `cd` to repo
 
-
-4. Create the `pipenv` environment
+3. Create the `pipenv` environment
 
    ```shell
    pipenv install
@@ -104,8 +103,9 @@ The project uses multiple .env variables and unfortunately couldn't be compiled 
    pipenv shell
    ```
 
-5. Set up your [environmental variables](https://github.com/tcnj-acm/aslan/blob/main-dev/.github/ENVIRONMENTAL_VARIABLES.md) 
-6. `python manage.py makemigrations`
+4. Set up your [environmental variables](https://github.com/tcnj-acm/aslan/blob/main-dev/.github/ENVIRONMENTAL_VARIABLES.md) 
+5. `python manage.py makemigrations`
+6. `python manage.py migrate`
 7. `python manage.py runserver`
 
 ## Setup Data
@@ -142,3 +142,5 @@ We'd like to thank everyone who has contributed to the project:
 [Sterly Deracy](https://github.com/sderacy) - *Maestro of finesse, hustler extraordinaire* 
 
 [JM Tameta](https://github.com/JmTameta) - *unofficial bachelors in the arts*
+
+[Simon Blamo](https://github.com/Simon-Blamo) - *I go by Sam sometimes*

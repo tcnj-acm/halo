@@ -43,7 +43,7 @@
           </div>
         </div>
       {% endif %}
-      <form class="organizerForm" method="POST" >
+      <form class="organizerForm" id="Reset-Tables-Form" method="POST" >
         {% csrf_token %}
         <h4 class="centerHeaderText" style="margin-bottom: 3%">Reset Table(s)</h4>
         <div class="form-row text-start" >
@@ -53,10 +53,58 @@
         </div>
         <div class="form-row justify-content-center" >
             <div class="col-md-6 mb-3 text-center" >
-                <button class="btn btn-lg btn-outline-success" style="background-color: rgb(54, 94, 60); color: #fff;"  type="submit" value="save">Submit</button>
+              <a class="btn btn-lg btn-outline-success disabled" id="confirmation-button" data-bs-toggle="modal" data-bs-target="#Confirmation" style="background-color: rgb(54, 94, 60); color: #fff;">Confirm</a>
             </div>                    
         </div>
       </form>
+      <div class="modal fade" id="Confirmation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmationLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content ">
+            <div class="modal-header text-center">
+              <h2>Action Confirmation Required</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <h3>You're attempting delete entries from the HackTCNJ PostgreSQL server. This action should only be done <strong>AFTER</strong> the current year's hackathon has passed!</h3>
+              <ul>
+                <li class="text-start"><h5> Selecting "User Base" will erase <strong>ALL</strong> users except for the head admin from the server.</h5></li>
+                <li class="text-start"><h5> Selecting "User Base" will erase <strong>ALL</strong> recorded waitlist sign-ups.</h5></li>
+              </ul>
+              
+              <h4>If these actions are done too early, it could negatively impact the hackathon!</h4>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-info" name="reset-form" tabindex="0" value="Add" id="confirmationButton" form="Reset-Tables-Form">Confirm!</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    {% block script %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        function checkCheckboxes() {
+          const checkboxes = document.querySelectorAll('input[name="Selections"]:checked');
+          const confirmationButton = document.getElementById('confirmation-button');
+          console.log(checkboxes)
+          if (checkboxes.length > 0) {
+            confirmationButton.classList.remove('disabled');
+          } else {
+            confirmationButton.classList.add('disabled');
+          }
+        }
+
+        checkCheckboxes();
+
+        const checkboxElements = document.querySelectorAll('input[name="Selections"]');
+            checkboxElements.forEach(function(checkbox) {
+                checkbox.addEventListener('change', checkCheckboxes);
+            });
+      });
+    </script>
+    {% endblock script %}
+
   </body>
 {% endblock %}

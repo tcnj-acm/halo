@@ -10,6 +10,7 @@ from hacker.models import HackerInfo
 from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, WebsiteSettings
 from default.models import CustomUser, WaitingList
 from default.helper import add_group, remove_group
+from default.views import logout_user
 from django.db.models import Q
 from django.db.models import Value as V
 from django.db.models.functions import Concat  
@@ -188,7 +189,7 @@ def add_organizer(request):
             new_organizer.save()
 
             reset_link = request.get_host() + "/reset-password"
-            new_organizer_added(reset_link, new_user)
+            new_organizer_added(reset_link, new_user, False)
             add_user_to_registered_mailing_list(new_user.first_name, new_user.last_name, new_user.email)
 
             return redirect('all-organizers')
@@ -224,7 +225,7 @@ def add_head_organizer(request):
                 new_head_org.permission.add(permission)
 
             reset_link = request.get_host() + "/reset-password"
-            new_organizer_added(reset_link, new_admin)
+            new_organizer_added(reset_link, new_admin, True)
             add_user_to_registered_mailing_list(new_admin.first_name, new_admin.last_name, new_admin.email)
 
             return redirect('all-organizers')
@@ -234,7 +235,6 @@ def add_head_organizer(request):
     context = {'create_organizer_form': create_organizer_form, 'create_organizer_permission_form':create_organizer_permission_form,
     'head_organizer_creation': True}
     return render(request, 'organizers/addorganizer.html', context)
-
 
 def organizer_setting(request, pk):
 
@@ -358,12 +358,12 @@ def display_table_reset_page(request):
             if '1' in data.cleaned_data.get('Selections'):
                 hackers = CustomUser.objects.filter(is_admin=False)
                 hackers.delete()
-                the_message = "The user base has been reset successfully!"
+                the_message = "The User Base has been reset successfully!"
             if '2' in data.cleaned_data.get('Selections'):
                 WaitingList.objects.all().delete()
-                the_message = "The waiting_list has been reset successfully!"
+                the_message = "The Waiting List has been reset successfully!"
             if len(data.cleaned_data.get('Selections')) == 2:
-                the_message = "Both the user base and the waiting_list have been reset successfully!"
+                the_message = "Both the User Base and the Waiting List have been reset successfully!"
             messages.success(request, the_message)
             return redirect('organizer-dash')
         else:
@@ -401,3 +401,15 @@ def display_message_page(request):
             "email_form": create_email_form,
         }
         return render(request, 'organizers/notify.html', context)
+
+def admin_access_removal(request):
+    head_org = request.user.groups.filter(name='head-organizer').exists()
+    head_organizer = request.user
+    print(len(CustomUser.groups.filter(name='head-organizer')))
+    context = {'head_org': head_org}
+    if request.method == 'POST':
+        remove_group(head_organizer, 'head-organizer')
+        head_organizer.delete()
+        logout_user(request)
+    else:
+        return render(request, 'organizers/removeAccess.html', context)

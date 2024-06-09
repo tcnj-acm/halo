@@ -1,0 +1,80 @@
+{% extends 'organizers/base.html' %}
+{% block content %}
+ 
+<br>
+
+
+{% if head_org %}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Account Deletion</h5>
+        <form method="POST" id="Admin-Deletion-Form">  {% csrf_token %}
+          <div class="row justify-content-between">
+            <div class="col-8">
+              <p class="card-text">You've made it to the end, soldier! You've earned your honorable discharge.</p>
+            </div>
+          </div>
+          <br>
+          <a class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Confirmation">Confirm</a>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="Confirmation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmationLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h2>Action Confirmation Required</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h3>Please confirm the following Action</h3>
+        <h5>You're deleting you Head Admin Account. This should only be done once the next Director of Technology has been selected, and has been give a Head Admin Account for HackTCNJ.</u></h5>
+        <h6>You will no longer have access to HackTCNJ as a Head Admin.</h6>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-info" name="account-deletion-form" tabindex="0" value="Add" id="confirmationButton" form="Admin-Deletion-Form">Confirm!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        function checkCheckboxes() {
+          const checkboxes = document.querySelectorAll('input[name="Selections"]:checked');
+          const confirmationButton = document.getElementById('confirmation-button');
+          console.log(checkboxes)
+          if (checkboxes.length > 0) {
+            confirmationButton.classList.remove('disabled');
+          } else {
+            confirmationButton.classList.add('disabled');
+          }
+        }
+
+        checkCheckboxes();
+
+        const checkboxElements = document.querySelectorAll('input[name="Selections"]');
+            checkboxElements.forEach(function(checkbox) {
+                checkbox.addEventListener('change', checkCheckboxes);
+            });
+      });
+    </script>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+<script>
+
+</script>
+
+{% endblock script %}
+  

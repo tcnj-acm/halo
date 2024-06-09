@@ -6,6 +6,7 @@
         <div class="container w-100 mt-3">
             <a href="{% url 'export-hackers' %}" class='btn btn-secondary'>Export Hackers</a>
             <a href="{% url 'export-checkedin-hackers' %}" class='btn btn-secondary'>Export Checked in Hackers</a>
+            <a href="{% url 'notify' %}" class='btn btn-secondary'>Email Waiting List</a>
         </div>
     <!-- second card, should be next to each other tho -->
             {% if messages %}
@@ -52,10 +53,10 @@
         </div>
         <div class="col-lg-3 col-md-12">
             <div class="card p-5 h-100" style="box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2), 0 6px 20px 0 rgba(0,0,0,.19);">
-                <a href="{% url 'notify' %}" class="text-decoration-none text-black">
+                <a href="{% url 'admin_removal' %}" class="text-decoration-none text-black">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Notify Waiting List</h5>
-                        <p class="card-text">Send an email to the waiting list</p>
+                        <h5 class="card-title">Remove Head Admin Role</h5>
+                        <p class="card-text">Only do this after completing the knowledge transfer with the next Director of Technology.</p>
                     </div>
                 </a>
             </div>
