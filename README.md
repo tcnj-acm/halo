@@ -119,6 +119,29 @@ We built this project because we wanted all hackathons to have a powerful applic
 
 If you are organizing a hackathon and want a smooth process to manage your hackers and team, to operate registration and check-in, and to impress your sponsors with an exclusive website "booth" -- this project is for you!
 
+## Resources
+
+Here are some resources we believe that will help you to navigate and understand the repo's codebase:
+- Free Resources
+  - [\[Article\] Frontend vs Backend](https://www.geeksforgeeks.org/frontend-vs-backend/)
+  - [\[Article\] Web Application Framework – A Comprehensive Guide](https://www.sencha.com/blog/a-comprehensive-guide-to-web-application-frameworks/)
+  - [\[Article\] model-view-controller (MVC)](https://www.techtarget.com/whatis/definition/model-view-controller-MVC)
+  - [\[Article\] Django Project MVT Structure](https://www.geeksforgeeks.org/django-project-mvt-structure/)
+  - [\[Article\] An easy guide to understanding databases](https://dev.to/efkumah/an-easy-guide-to-understanding-databases-2hcf)
+  - [\[Article\] Understanding databases: A comprehensive guide to different types for beginners](https://datasciencedojo.com/blog/understanding-databases/)
+  - [\[Blog\] SQL Tutorial](https://www.sqltutorial.org/)
+  - [\[Video\] How To Make A Portfolio Website Using HTML CSS JS | Complete Responsive Website Design (Project to follow along to.)](https://www.youtube.com/watch?v=0YFrGy_mzjY)
+  - [\[Video\] Django Project - Simple Blog App (Project to follow along to.)](https://www.youtube.com/watch?v=AF4ji8bb1M8)
+  - [\[Blog\] Getting started with Django](https://www.djangoproject.com/start/)
+  - [\[Tutorial Course\] Cloud Computing Tutorial for Beginners](https://www.simplilearn.com/tutorials/cloud-computing-tutorial)
+  - [\[Tutorial Course\] AWS Tutorial: A Step-by-Step Tutorial for Beginners](https://www.simplilearn.com/tutorials/aws-tutorial)
+  - [\[Blog\] Getting Started on Heroku with Python](https://devcenter.heroku.com/articles/getting-started-with-python)
+- Paid Resources
+  - [\[Course\] Meta Front-End Developer Professional Certificate](https://www.coursera.org/professional-certificates/meta-front-end-developer)
+  - [\[Course\] Meta Back-End Developer Professional Certificate (I used this personally to learn Django)](https://www.coursera.org/professional-certificates/meta-back-end-developer)
+  - [\[Course\] Python & Django REST API Bootcamp - Build A Python Web API](https://www.udemy.com/course/the-complete-python-django-rest-api-development-bootcamp/)
+  - [\[Course\] Ultimate AWS Certified Cloud Practitioner CLF-C02](https://www.udemy.com/course/aws-certified-cloud-practitioner-new/)
+
 ## Contributing
 
 Please read our [Contributing](https://github.com/tcnj-acm/aslan/blob/main/.github/CONTRIBUTING.md) guide and [Code Of Conduct](https://github.com/tcnj-acm/aslan/blob/main/.github/CODE_OF_CONDUCT.md).
