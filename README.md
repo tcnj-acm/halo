@@ -104,16 +104,11 @@ The project uses multiple .env variables and unfortunately couldn't be compiled 
    ```
 
 4. Set up your [environmental variables](https://github.com/tcnj-acm/aslan/blob/main-dev/.github/ENVIRONMENTAL_VARIABLES.md) 
-5. `python manage.py makemigrations`
-6. `python manage.py migrate`
-7. `python manage.py runserver`
-
-## Setup Data
-
-We've compiled some setup data that you can use. 
-
-1. `cd setup/`
-2. `sh run_create_db.sh`
+5. `python manage.py migrate`
+6. `cd setup/`
+7. `sh run_create_db.sh`
+8. `cd ..`
+9. `python manage.py runserver`
 
 
 ## Usage
