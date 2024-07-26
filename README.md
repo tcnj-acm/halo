@@ -66,7 +66,7 @@ Python 3.9.10
 
 ### Prerequisites
 
-Make sure you have `pipenv` installed. If not, run `pip install pipenv`
+A Unix-based Machine. If you only have a Windows Machine please refer to the [WSL Guide.]()
 
 ### Deployment Reqs
 

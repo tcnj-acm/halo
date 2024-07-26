@@ -86,13 +86,13 @@ ssh-ed25519 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <your_github_email
 2. On Github, navigate to your account settings, click on the SSH and GPG keys tab, and then the New SSH key option. You will then paste key from the terminal into the "Key" field.
 
 
-![Setup Image 0]()
+![Setup Image 0](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-0.png)
 
-![Setup Image 1]()
+![Setup Image 1](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-1.png)
 
-![Setup Image 2]()
+![Setup Image 2](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-2.png)
 
-![Setup Image 3]()
+![Setup Image 3](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-3.png)
 
 3. Test the Connection
 
