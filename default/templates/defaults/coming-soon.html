@@ -22,19 +22,24 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
+        <script src="{% static 'js/waitinglist/custom.js' %}" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     </head>
 
     <body>
-      <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:1%;top:0;width:10%;z-index:10000" href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=gray" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-gray.svg" alt="Major League Hacking 2023 Hackathon Season" style="width:100%"></a>
+      <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:1%;top:0;width:10%;z-index:10000" href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=gray" target="_blank">
+        <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-black.svg"
+            alt="Major League Hacking 2025 Hackathon Season" style="width:100%">
+    </a>
         <div class="main" style="background-image: url({% static '/css/waitinglist/tacofall2.jpg' %});">
             <div class="cover blue" data-color="blue"></div>
 
             <div class="container">
                 <h1 class="logo cursive">
-                    HackTCNJ 2024
+                    HackTCNJ 2025
                 </h1>
-                <h4 class="motto" style="z-index: 3; position: relative;">February 17th - February 18th, 2024</h4>
+                <h4 class="motto" style="z-index: 3; position: relative;">Event Date Coming Soon :)</h4>
                 <div class="content row d-flex justify-content-center align-items-center">
                     
                     <div class="subscribe p-4 bg-dark" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px 10px; z-index: 10; width: 55%;">
@@ -66,13 +71,22 @@
                                 Join Our Waiting List!
                               </h2>
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-4 align-self-center text-center cjustify-center">
-                                <form class="form" method="POST">
+                                <form class="form" method="POST" id="waitingListForm">
                                     {% csrf_token %}
-                                    <div class="form-group mt-1 text-white">
-                                        {{ waitlist_form.full_name }}
-                                        <br/>
-                                        {{ waitlist_form.email }}
-                                        <input type="submit" class="btn btn-info btn-fill mt-3" />
+                                    <div class=" form-group mt-1 text-white w-100">
+                                        <div class="d-flex-col justify-content-between">
+                                            <div class="row mt-2">
+                                                {{ waitlist_form.full_name }}
+                                            </div>
+                                            <div class="row mt-3">
+                                                {{ waitlist_form.email }}
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="g-recaptcha" data-sitekey="" id="myCaptcha"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit" id="formSubmission" class="btn btn-info btn-fill mt-3" disabled />
                                     </div>
                                 </form>
                             </div>
@@ -116,5 +130,28 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
+        function formSubmission() {
+            const emailField = formSubmission.querySelector('input[name="email"]');
+            const fullNameField = formSubmission.querySelector('input[name="fullName"]');
+
+            const emailValid = emailField && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value);
+            const fullNameValid = fullNameField && fullNameField.value.trim() !== "";
+
+            console.log(fullNameField);
+            console.log(emailValid);
+            console.log(captchaDone);
+            const allFieldsValid = emailValid && fullNameValid;
+
+            const submissionButton = document.getElementById("formSubmission")
+            if (captchaDone && allFieldsValid) {
+                submissionButton.removeAttribute("disabled")
+                submissionButton.classList.remove("btn-secondary")
+                submissionButton.classList.add("btn-primary")
+            } else {
+                submissionButton.setAttribute("disabled", "")
+                submissionButton.classList.remove("btn-primary")
+                submissionButton.classList.add("btn-secondary")
+            }
+        }
     </script>
 </html>

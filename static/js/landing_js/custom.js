@@ -67,6 +67,7 @@ new WOW().init();
     });
 
 })(window.jQuery);
+
 const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 const firstDate = new Date("3/26/2023");
 const secondDate = new Date();

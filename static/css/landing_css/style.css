@@ -34,6 +34,7 @@ html {
   position: relative;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  
 }
 
 body {
@@ -75,7 +76,7 @@ input {
 }
 
 a:hover {
-  color: #635CDB;
+  color: #184C7A;
   text-decoration: none;
 }
 
@@ -434,12 +435,12 @@ h5.subtitle {
 }
 
 .feature-overlay {
-  background: #635CDB;
+  background: #184C7A;
   opacity: .97;
 }
 
 .gr-overlay {
-  background: linear-gradient(135deg, #fcef41 0%, #292e2c 30%, #383593 100%);
+  background: linear-gradient(135deg, #F7B919 0%, #292e2c 30%, #184C7A 100%);
   opacity: .85;
 }
 
@@ -541,7 +542,7 @@ h5.subtitle {
 }
 
 .trans-navigation.header-white .navbar-nav a.active {
-  color: #635CDB;
+  color: #184C7A;
 }
 
 .navbar-brand img {
@@ -549,7 +550,7 @@ h5.subtitle {
 }
 
 .trans-navigation.header-white .btn-white {
-  background: #635CDB;
+  background: #184C7A;
   color: #fff;
 }
 
@@ -581,7 +582,7 @@ h5.subtitle {
 .dropdown-item:hover {
   color: #fff;
   text-decoration: none;
-  background-color: #635CDB;
+  background-color: #184C7A;
 }
 
 .dropdown-toggle::after {
@@ -635,10 +636,12 @@ h5.subtitle {
  BANNER AREA
 ----------------------------------*/
 .hack-banner {
-  width: 50%;
+  width: 53%;
   margin-top: 2rem;
-  transform: rotate(8deg);
+  /* transform: rotate(8deg); */
   margin-bottom: -2rem;
+  -webkit-filter: drop-shadow(5px 5px 5px #222222);
+  filter: drop-shadow(5px 5px 5px #222222);
 }
 
 .banner-area .content-padding {
@@ -665,7 +668,7 @@ h5.subtitle {
 
 .banner-content .subtitle {
   color: #fff;
-  background: #635CDB;
+  background: #184C7A;
   display: inline-block;
   padding: 3px 8px;
   margin-bottom: 20px;
@@ -673,7 +676,7 @@ h5.subtitle {
 }
 
 .subtitle {
-  color: #635CDB;
+  color: #184C7A;
 }
 
 .banner-content p {
@@ -752,7 +755,7 @@ INner Pages
 
 .intro-box span {
   font-size: 28px;
-  color: #635CDB;
+  color: #184C7A;
 }
 
 .intro-cta {
@@ -1217,11 +1220,9 @@ HISTORY MISSION
   border: 3px solid navy;
 }
 
-
-
 .card-pricing.popular {
   z-index: 1;
-  border: 3px solid #007bff;
+  border: 3px solid #157bd4;
 }
 
 .card-pricing .list-unstyled li {
@@ -1273,7 +1274,7 @@ HISTORY MISSION
   margin: 0 auto;
   border-radius: 100%;
   margin-bottom: 20px;
-  background: #635CDB;
+  background: #184C7A;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
 }
@@ -1304,7 +1305,7 @@ HISTORY MISSION
 }
 
 .service-inner span {
-  color: #635CDB;
+  color: #184C7A;
 }
 
 /* ================================
@@ -1383,7 +1384,7 @@ SERVICE PAGE
 }
 
 .footer-widget h4 span {
-  color: #635CDB;
+  color: #184C7A;
   display: block;
   font-size: 60px;
   line-height: 60px;
@@ -1427,7 +1428,7 @@ SERVICE PAGE
 }
 
 .footer-text p.mail {
-  color: #635CDB;
+  color: #184C7A;
 }
 
 .bg-main {
@@ -1443,7 +1444,6 @@ SERVICE PAGE
 ---------------------------------*/
 /*Extra large devices (large desktops, 1200px and up)*/
 /*Large devices (desktops, 992px and up)*/
-/*Medium devices (tablets, 768px and up)*/
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
 
@@ -1475,6 +1475,21 @@ SERVICE PAGE
     zoom: 1.5;
   }
 
+  /*-------------------
+     PRIZES
+    -------------------*/
+    .dynamic-heading-size {
+      font-size: 30px;
+    }
+
+    .mlh-span-div {
+      
+    }
+
+  .hack-banner {
+    margin-top: 4rem;
+  }
+
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
@@ -1487,6 +1502,10 @@ SERVICE PAGE
     ----------------*/
   #intro {
     padding-bottom: 90px;
+  }
+
+  .dynamic-heading-size-2 {
+    font-size: 20px;
   }
 
   /*----------------
@@ -1549,13 +1568,13 @@ SERVICE PAGE
 }
 
 .landing-login {
-  background-color: #383593ea !important;
+  background-color: #157bd4 !important;
   color: #fff !important;
   opacity: .88 !important;
 }
 
 .landing-register {
-  background-color: #beb31ee2 !important;
+  background-color: #F7B919 !important;
   color: #fff !important;
   opacity: .88 !important;
 }
@@ -1587,12 +1606,25 @@ SERVICE PAGE
     margin-bottom: 5px;
   }
 
+  .hack-banner {
+    margin-top: 4rem;
+  }
+
+
   /*----------------------
      SECTION HEAINDG
     -----------------------*/
   .section-heading {
     width: 100%;
   }
+
+  /*----------------------
+    MAILING LIST HEADING
+    -----------------------*/
+  #mailingListHeader {
+    font-size: 32px;
+  }
+
 
   /*----------------
      INTRO
@@ -1612,12 +1644,17 @@ SERVICE PAGE
     padding-bottom: 40px;
   }
 
+  .dynamic-heading-size-2 {
+    font-size: 20px;
+  }
+
   /*-------------------
      TESTIMONIAL
     -------------------*/
   .testimonial-content {
     padding: 10px;
   }
+
 
   /*--------------
      COUNTER
@@ -1703,6 +1740,8 @@ SERVICE PAGE
     margin-bottom: 10px;
   }
 
+
+
   .banner-area .content-padding {
     padding: 20% 0px 15%;
   }
@@ -1751,6 +1790,13 @@ SERVICE PAGE
     line-height: 36px;
   }
 
+  /*----------------------
+    MAILING LIST HEADING
+    -----------------------*/
+    #mailingListHeader {
+      font-size:30px;
+    }
+
   /*--------------------
      BANNER
     -----------------*/
@@ -1766,6 +1812,10 @@ SERVICE PAGE
     font-size: 16px;
   }
 
+  .banner-content {
+    padding-right: 0;
+  }
+
   /*----------------
      INTRO
     ----------------*/
@@ -1776,6 +1826,11 @@ SERVICE PAGE
   /*----------------
      ABOUT
     ----------------*/
+
+    .dynamic-heading-size-2 {
+      font-size: 20px;
+    }
+
   .about-list li {
     float: none;
     width: 100%;
