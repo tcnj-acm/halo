@@ -101,7 +101,7 @@ ssh-ed25519 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <your_github_email
 The authenticity of host 'github.com (140.82.112.3)' can't be established.
 ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Are you sure you want to continue connecting (yes/no/[fingerprint])? <yes>
 Hi <your_github_username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 ### Clone the Repository
