@@ -121,7 +121,7 @@ If you are organizing a hackathon and want a smooth process to manage your hacke
 
 ## Resources
 
-Here are some resources we believe that will help you to navigate and understand the repo's codebase:
+Here are some resources we believe will help you to navigate and understand the repo's codebase:
 - Free Resources
   - [\[Article\] Frontend vs Backend](https://www.geeksforgeeks.org/frontend-vs-backend/)
   - [\[Article\] Web Application Framework – A Comprehensive Guide](https://www.sencha.com/blog/a-comprehensive-guide-to-web-application-frameworks/)
