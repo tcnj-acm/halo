@@ -16,6 +16,7 @@ from django.db.models import Value as V
 from django.db.models.functions import Concat  
 from .helper import get_permissions
 from default.emailer import new_organizer_added, add_user_to_mailing_list, add_user_to_registered_mailing_list, initial_notification_message, reminder_notification_message, send_initial_notification, send_custom_notification
+import os
 
 from .utils import download_csv
 
@@ -170,7 +171,7 @@ def add_organizer(request):
             first_name = new_organizer.cleaned_data['first_name']
             last_name = new_organizer.cleaned_data['last_name']
             email = new_organizer.cleaned_data['email']
-            passwrd = 'hacker123!'
+            passwrd = os.getenv('ORGANIZER_PASSWORD')
             new_user = CustomUser.objects.create(first_name=first_name, last_name=last_name, email=email)
             new_user.set_password(passwrd)
             
@@ -210,7 +211,7 @@ def add_head_organizer(request):
             first_name = new_admin_data.cleaned_data['first_name']
             last_name = new_admin_data.cleaned_data['last_name']
             email = new_admin_data.cleaned_data['email']
-            passwrd = 'hacker123!'
+            passwrd = os.getenv('HEAD_ORGANIZER_PASSWORD')
             new_admin = CustomUser.objects.create_superuser(email=email, password=passwrd)
             new_admin.first_name = first_name
             new_admin.last_name = last_name
