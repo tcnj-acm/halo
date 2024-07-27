@@ -6,6 +6,13 @@ food_choices = [
     ("Gluten-Free", "Gluten-Free")
 ]
 
+food_choices_color = {
+    "None": "#0000FF",
+    "Vegetarian": "#274E13",
+    "Vegan": "#FFFF00",
+    "Gluten-Free": "#ff0000"
+}
+
 size_choices = [
     ("Unisex (XS)", "Unisex (XS)"),
     ("Unisex (S)", "Unisex (S)"),

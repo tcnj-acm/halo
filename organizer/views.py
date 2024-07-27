@@ -11,6 +11,7 @@ from .models import OrganizerInfo, OrganizerPermission, FeaturePermission, Websi
 from default.models import CustomUser, WaitingList
 from default.helper import add_group, remove_group
 from default.views import logout_user
+from default.choices import food_choices_color
 from django.db.models import Q
 from django.db.models import Value as V
 from django.db.models.functions import Concat  
@@ -118,7 +119,8 @@ def manual_checkin(request):
 
     context = {'uncheckedin_hackers': nonchecked_in_hackers,
                'just_registered': just_registered,
-                'permissions':get_permissions(request.user)
+                'permissions':get_permissions(request.user),
+                'food_choices_color': food_choices_color
                }
     return render(request, 'organizers/manualcheckin.html', context)
 
