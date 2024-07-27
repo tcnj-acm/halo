@@ -1,4 +1,6 @@
+
 {% extends 'organizers/base.html' %}
+{% load custom_filters %}
 {% block content %}
  
     <br>
@@ -39,6 +41,7 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
+                        <th class="d-none" id="food_preference_color" scope="col"></th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th class="d-none" scope="col">Food Preference</th>
@@ -51,16 +54,20 @@
                 </thead>
                 <tbody>
                     {% for h in uncheckedin_hackers %}
-                        <tr id="hacker{{ forloop.counter }}">
-                            <td>{{h.user.first_name}} {{h.user.last_name}}</td>
-                            <td>{{h.user.email}}</td>
-                            <td class="d-none" >{{h.user.food_preference}}</td>
-                            <td class="d-none">{{h.user.shirt_size}}</td>
-                            <td class="d-none" >{{h.user.level_of_study}}</td>
-                            <td class="d-none" >{{h.user.gender}}</td>
-                            <td class="d-none" >{{h.user.age}}</td>
-                            <td class=""><a  class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
-                        </tr>
+                        {% with hacker_color=food_choices_color|get_item:h.user.food_preference %}
+                            <tr id="hacker{{ forloop.counter }}">
+                                <td style="height: 20px; width: 20px; background-color: {{hacker_color}};"></td>
+
+                                <td>{{h.user.first_name}} {{h.user.last_name}}</td>
+                                <td>{{h.user.email}}</td>
+                                <td class="d-none" >{{h.user.food_preference}}</td>
+                                <td class="d-none">{{h.user.shirt_size}}</td>
+                                <td class="d-none" >{{h.user.level_of_study}}</td>
+                                <td class="d-none" >{{h.user.gender}}</td>
+                                <td class="d-none" >{{h.user.age}}</td>
+                                <td class=""><a  class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Confirmation" data-confirm="hacker{{ forloop.counter }}">Check In</a></td>
+                            </tr>
+                        {% endwith %}
                     {% endfor %}
                 </tbody>
             </table>
@@ -105,7 +112,7 @@
 
 {% block script %}
 
-<script type="text/javascript">
+<script type="text/javascript" defer>
     var myModal = document.getElementById('Confirmation')
 
     myModal.addEventListener('show.bs.modal', function (event){
@@ -128,6 +135,11 @@
         ageSpan = document.getElementById("Age").innerHTML = (a)
         document.getElementById("check-in-email-field").setAttribute("value",e)
     })
+
+    function setWrapColor(tag){
+
+    }
+
 </script>
 
 {% endblock %}
