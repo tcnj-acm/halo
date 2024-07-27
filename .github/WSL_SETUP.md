@@ -125,7 +125,7 @@ halo
 ## 4) Getting the Packages to support the Application's Dependencies
 Now we'll install all the dependencies so the HALO works as intended. This may be outdated by the time you're reading this, so if you happen need to run extra commands to getting the application up-and-running I implore to make a issue so that contributors of this repo can update this guide.
 
-### Needed Packages (You will need to enter your Ubuntu password most of these commands):
+### Needed Packages (You will need to enter your for Ubuntu password all of these commands):
 ```
 <your_username>@DESKTOP-JHLTR9B:~$ sudo apt update -y && sudo apt upgrade -y
 <your_username>@DESKTOP-JHLTR9B:~$ sudo apt install -y python-is-python3
