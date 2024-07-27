@@ -92,8 +92,8 @@ class WaitingListCreationForm(forms.ModelForm):
         fields = ('full_name', 'email')
 
         widgets = {
-            'full_name': forms.TextInput(attrs={'placeholder': 'Full Name', 'class': 'form-control transparent'}),
-            'email': forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control transparent'}),
+            'full_name': forms.TextInput(attrs={'placeholder': 'Full Name', 'class': 'form-control transparent req-input', 'name':'full_name'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control transparent req-input', 'name':'email'}),
         }
 
     def clean_email(self):

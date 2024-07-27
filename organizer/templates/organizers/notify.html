@@ -1,0 +1,118 @@
+{% extends 'organizers/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <head>
+    <style>
+        .organizerForm {
+            position: fixed;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: fit-content;
+            height: fit-content;
+            background-color: #343a40;
+            border-radius: 25px;
+            color: #fff;
+            padding: 2%;
+        }
+
+        .centerHeaderText {
+            text-align: center;
+            color: #fff;
+        }
+
+        .btn:hover {
+            border-color: #fff;
+        }
+    
+    </style>
+  </head>
+  <body>
+    <div>
+        <p id="defaultMessage1" style="display: none;">{{ initMessage }}</p>
+        <p id="defaultMessage2" style="display: none;">{{ reminderMessage }}</p>
+        <form class="organizerForm" method="POST" >
+            {% csrf_token %}
+                {% if messages %}
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-6">
+                            {% for message in messages %}
+                            <div class="alert alert-info alert-dismissible fade show mx-auto" role="alert">
+                                <strong style="text-align: center; margin: 0;">{{message}}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row" style="width: 750px;">
+                    <div id="mySelectionsContainer" class="col-3 form-group mb-3">
+                        <label for="mySelections">Notifications:</label>
+                        {{email_form.Notifications}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="messageContainer" class="col-12">
+                        <div id="initialNotification" class="message-box">
+                            <div class="form-group">
+                                {{ email_form.Message1.label_tag}}
+                                <p>Hey &lt; recipient &gt;,</p>
+                                {{ email_form.Message1 }}
+                            </div>
+                        </div>
+                        <div id="reminderNotification" style="display: none;" class="message-box">
+                            <div class="form-group">
+                                {{ email_form.Message2.label_tag}}
+                                <p>Hey &lt; recipient &gt;,</p>
+                                {{ email_form.Message2 }}
+                            </div>
+                        </div>
+                        <div id="customNotification" style="display: none;" class="message-box">
+                            <div class="form-group">
+                                {{ email_form.Message3.label_tag}}
+                                <p>Hey &lt; recipient &gt;,</p>
+                                {{ email_form.Message3 }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="col-3"><br/>Best,<br/>Team HackTCNJ</p>
+                    <div class="col-9">
+                        <div class="d-flex justify-content-end align-content-center h-100">
+                            <div class="mt-auto mb-auto">
+                                <button class="btn btn-lg btn-primary btn-outline-primary text-white" title="formSubmit" type="submit">SEND</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+    <script type="text/javascript" defer>
+        document.getElementById("textArea").innerHTML = document.getElementById("defaultMessage1").innerHTML;
+        document.getElementById("customTextArea1").innerHTML = document.getElementById("defaultMessage2").innerHTML;
+        document.getElementById("Notifications").addEventListener("change", function(){
+            var selectedValue = document.getElementById("Notifications").value;
+            
+            var map = {
+                "1" : "initialNotification",
+                "2" : "reminderNotification",
+                "3" : "customNotification",
+            }
+
+            var allMessageBox = document.getElementsByClassName("message-box")
+            for (var i = 0; i < allMessageBox.length; i++){
+                allMessageBox[i].style.display = "none";
+                allMessageBox[i].required = false;
+
+            }
+            // console.log(selectedValue, typeof(selectedValue), map[selectedValue], typeof(map[selectedValue]))
+            document.getElementById(map[selectedValue]).style.display = "block";
+            document.getElementById(map[selectedValue]).required = true;
+            // console.log(document.getElementById(map[selectedValue]).required)
+        })
+    </script>
+  </body>
+{% endblock %}

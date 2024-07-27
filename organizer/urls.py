@@ -11,7 +11,8 @@ urlpatterns = [
      path('organizers', views.display_organizers, name='all-organizers'),
      path('organizers/delete/<int:id>',
           views.delete_organizer, name='delete-organizer'),
-     path('organizers/add', views.add_organizer, name='add-organizer'),
+     path('organizers/add_regular_organizer', views.add_organizer, name='add-organizer'),
+     path('organizers/add_head_organizer', views.add_head_organizer, name='add-head-organizer'),
      path('check-in', views.manual_checkin, name='manual-checkin'),
      path('check-in/<str:first_name_hash>/<str:last_name_hash>/<int:pk>',
           views.qr_checkin, name='qr-checkin'),
@@ -20,6 +21,9 @@ urlpatterns = [
      path('waitlist/delete/<int:pk>', views.delete_waitlist_participant, name='delete-waiting-list'),
      path('settings/', views.settings, name='website-settings'),
      path('stats/', views.stats_page, name='statistics'),
-     path('organizers/edit/<int:pk>', views.organizer_setting, name='edit-organizer')
+     path('organizers/edit/<int:pk>', views.organizer_setting, name='edit-organizer'),
+     path('tables-reset-confirmation', views.display_table_reset_page, name='confirmation'),
+     path('message-users', views.display_message_page, name='notify'),
+     path('lose-access', views.admin_access_removal, name='admin_removal')
 
 ]

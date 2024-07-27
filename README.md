@@ -66,7 +66,9 @@ Python 3.9.10
 
 ### Prerequisites
 
-Make sure you have `pipenv` installed. If not, run `pip install pipenv`
+A Unix-based Machine. If you only have a Windows Machine please refer to the [WSL Guide.](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/WSL_SETUP.md)
+
+You can also find the required packages you NEED to have to run the application locally.
 
 ### Deployment Reqs
 
@@ -91,8 +93,7 @@ The project uses multiple .env variables and unfortunately couldn't be compiled 
 
 2. `cd` to repo
 
-
-4. Create the `pipenv` environment
+3. Create the `pipenv` environment
 
    ```shell
    pipenv install
@@ -104,16 +105,12 @@ The project uses multiple .env variables and unfortunately couldn't be compiled 
    pipenv shell
    ```
 
-5. Set up your [environmental variables](https://github.com/tcnj-acm/aslan/blob/main-dev/.github/ENVIRONMENTAL_VARIABLES.md) 
-6. `python manage.py makemigrations`
-7. `python manage.py runserver`
-
-## Setup Data
-
-We've compiled some setup data that you can use. 
-
-1. `cd setup/`
-2. `sh run_create_db.sh`
+4. Set up your [environmental variables](https://github.com/tcnj-acm/aslan/blob/main-dev/.github/ENVIRONMENTAL_VARIABLES.md) 
+5. `python manage.py migrate`
+6. `cd setup/`
+7. `sh run_create_db.sh`
+8. `cd ..`
+9. `python manage.py runserver`
 
 
 ## Usage
@@ -121,6 +118,29 @@ We've compiled some setup data that you can use.
 We built this project because we wanted all hackathons to have a powerful application that can tackle on the big things. 
 
 If you are organizing a hackathon and want a smooth process to manage your hackers and team, to operate registration and check-in, and to impress your sponsors with an exclusive website "booth" -- this project is for you!
+
+## Resources
+
+Here are some resources we believe that will help you to navigate and understand the repo's codebase:
+- Free Resources
+  - [\[Article\] Frontend vs Backend](https://www.geeksforgeeks.org/frontend-vs-backend/)
+  - [\[Article\] Web Application Framework – A Comprehensive Guide](https://www.sencha.com/blog/a-comprehensive-guide-to-web-application-frameworks/)
+  - [\[Article\] model-view-controller (MVC)](https://www.techtarget.com/whatis/definition/model-view-controller-MVC)
+  - [\[Article\] Django Project MVT Structure](https://www.geeksforgeeks.org/django-project-mvt-structure/)
+  - [\[Article\] An easy guide to understanding databases](https://dev.to/efkumah/an-easy-guide-to-understanding-databases-2hcf)
+  - [\[Article\] Understanding databases: A comprehensive guide to different types for beginners](https://datasciencedojo.com/blog/understanding-databases/)
+  - [\[Blog\] SQL Tutorial](https://www.sqltutorial.org/)
+  - [\[Video\] How To Make A Portfolio Website Using HTML CSS JS | Complete Responsive Website Design (Project to follow along to.)](https://www.youtube.com/watch?v=0YFrGy_mzjY)
+  - [\[Video\] Django Project - Simple Blog App (Project to follow along to.)](https://www.youtube.com/watch?v=AF4ji8bb1M8)
+  - [\[Blog\] Getting started with Django](https://www.djangoproject.com/start/)
+  - [\[Tutorial Course\] Cloud Computing Tutorial for Beginners](https://www.simplilearn.com/tutorials/cloud-computing-tutorial)
+  - [\[Tutorial Course\] AWS Tutorial: A Step-by-Step Tutorial for Beginners](https://www.simplilearn.com/tutorials/aws-tutorial)
+  - [\[Blog\] Getting Started on Heroku with Python](https://devcenter.heroku.com/articles/getting-started-with-python)
+- Paid Resources
+  - [\[Course\] Meta Front-End Developer Professional Certificate](https://www.coursera.org/professional-certificates/meta-front-end-developer)
+  - [\[Course\] Meta Back-End Developer Professional Certificate (I used this personally to learn Django)](https://www.coursera.org/professional-certificates/meta-back-end-developer)
+  - [\[Course\] Python & Django REST API Bootcamp - Build A Python Web API](https://www.udemy.com/course/the-complete-python-django-rest-api-development-bootcamp/)
+  - [\[Course\] Ultimate AWS Certified Cloud Practitioner CLF-C02](https://www.udemy.com/course/aws-certified-cloud-practitioner-new/)
 
 ## Contributing
 
@@ -142,3 +162,5 @@ We'd like to thank everyone who has contributed to the project:
 [Sterly Deracy](https://github.com/sderacy) - *Maestro of finesse, hustler extraordinaire* 
 
 [JM Tameta](https://github.com/JmTameta) - *unofficial bachelors in the arts*
+
+[Simon Blamo](https://github.com/Simon-Blamo) - *I go by Sam sometimes*

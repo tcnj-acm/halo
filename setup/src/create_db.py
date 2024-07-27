@@ -61,7 +61,6 @@ first_name_volunteers = [
     'Sahi',
     'David',
     'Dom',
-
 ]
 
 last_name_volunteers = [
@@ -219,16 +218,17 @@ shirt_sizes_hackers = [
 
 
 def create_groups():
-    Group.objects.create(name="hacker")
-    Group.objects.create(name="organizer")
-    Group.objects.create(name="head-organizer")
-    Group.objects.create(name="checked-in")
+    group_names = ["hacker", "organizer", "head-organizer", "checked-in"]
+    for name in group_names:
+        if not Group.objects.filter(name=name).exists():
+            Group.objects.create(name=name)
 
 
 def create_super_user():
     new_admin=CustomUser.objects.create_superuser(email=os.getenv('HEAD_ORG_EMAIL'), password=os.getenv('HEAD_ORG_PASSWORD'))
     new_admin.first_name=os.getenv('HEAD_ORG_FIRST_NAME')
     new_admin.last_name=os.getenv('HEAD_ORG_LAST_NAME')
+    new_admin.save()
 
 
 def create_users():
@@ -290,7 +290,7 @@ def create_feature_permissions():
         url_name='statistics', permission_name='s-Stats'))
 
 def add_organizers_to_features():
-    user = CustomUser.objects.get(email='admin@aslan.com')
+    user = CustomUser.objects.get(email=os.getenv('HEAD_ORG_EMAIL'))
     head_org = OrganizerPermission.objects.create(user=user)
     head_org.permission.add(permissions_list[0], permissions_list[1], permissions_list[2], 
                             permissions_list[3], permissions_list[4], permissions_list[5])
