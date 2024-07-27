@@ -68,7 +68,7 @@ Python 3.9.10
 
 You need a Unix-based Machine. If you only have a Windows Machine please refer to the [WSL Guide.](https://github.com/tcnj-acm/halo/blob/main-dev/.github/WSL_SETUP.md)
 
-You can also find the required packages you NEED to have to run the application locally.
+You can also find the required packages you NEED to have to run the application locally within that link.
 
 ### Deployment Reqs
 
