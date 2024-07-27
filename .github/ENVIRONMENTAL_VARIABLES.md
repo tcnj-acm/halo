@@ -35,7 +35,7 @@ export SENDGRID_API_KEY='API_KEY'
 Once you have added this in your director be sure to `source ./sendgrid.env` in your shell 
 
 
-## .env in `settings/` folder
+## .env in `halo/settings/` folder
 
 This file stores credentials and other sensitive information for the project settings. Used for both dev mode and production mode. 
 
