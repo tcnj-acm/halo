@@ -261,8 +261,14 @@ def settings(request):
     current_setting = WebsiteSettings.objects.first()
     head_org = request.user.groups.filter(name='head-organizer').exists()
     if request.method == 'POST':
+        print(request.POST)
         waitlist_value = request.POST.get('toggle-waitlist-control')
         update_ages_value = request.POST.get('update-user-ages')
+        print(waitlist_value)
+        print(update_ages_value)
+        print()
+        print()
+        print()
         if waitlist_value == 'on' and current_setting.waiting_list_status == True:
             waitlist_message = "Waiting List Status Unaffected"
         elif waitlist_value == None and current_setting.waiting_list_status == False:
