@@ -261,7 +261,6 @@ def settings(request):
     current_setting = WebsiteSettings.objects.first()
     head_org = request.user.groups.filter(name='head-organizer').exists()
     if request.method == 'POST':
-        print(request.POST)
         waitlist_value = request.POST.get('toggle-waitlist-control')
         update_ages_value = request.POST.get('update-user-ages')
         if update_ages_value == None:
