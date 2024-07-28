@@ -82,23 +82,29 @@ def registration(request):
             email = create_user_form.cleaned_data['email'].lower()
             user = create_user_form.save(commit=False)
             user.email = email
-
+            print("Hi")
             user.save()
+            print("Hi2")
+            
 
             hacker = create_hacker_form.save(commit=False)
             hacker.user = user
             hacker.save()
+            print("Hi3")
             add_group(user, 'hacker')
 
+            print("Hi4")
             # Email confirmation
             registration_confirmation(user)
             add_user_to_mailing_list(user.first_name, user.last_name, user.email)
-
+            print("Hi5")
             if user.age < 18:
                 link = request.get_host() + "/waiver"
                 minor_waiver_form_submission(user, link)
+            print("Hi6")
 
             user = authenticate(request, username=user.email, password=pword)
+            print("Hi7")
             if user is not None:
                 login(request, user)
                 return redirect('hacker-dash')

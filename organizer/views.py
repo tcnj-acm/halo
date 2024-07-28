@@ -264,11 +264,6 @@ def settings(request):
         print(request.POST)
         waitlist_value = request.POST.get('toggle-waitlist-control')
         update_ages_value = request.POST.get('update-user-ages')
-        print(waitlist_value)
-        print(update_ages_value)
-        print()
-        print()
-        print()
         if update_ages_value == None:
             if waitlist_value == 'on' and current_setting.waiting_list_status == True:
                 waitlist_message = "Waiting List Status Unaffected"
