@@ -269,7 +269,7 @@ def settings(request):
         print()
         print()
         print()
-        if update_ages_value == 'None':
+        if update_ages_value == None:
             if waitlist_value == 'on' and current_setting.waiting_list_status == True:
                 waitlist_message = "Waiting List Status Unaffected"
             elif waitlist_value == None and current_setting.waiting_list_status == False:
@@ -285,7 +285,7 @@ def settings(request):
                     current_setting.save()
             messages.info(request, waitlist_message)
         
-        if update_ages_value != 'None':
+        if update_ages_value != None:
             users = CustomUser.objects.all()
             for user in users:
                 user.save()
