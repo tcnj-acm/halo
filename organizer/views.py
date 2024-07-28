@@ -82,12 +82,12 @@ def export_hacker_csv(request):
   
 #   id;password;date_joined;last_login;is_admin;is_active;is_staff;is_superuser;email;first_name;last_name;address;food_preference;shirt_size;gender;age;school_name;level_of_study;major;resume;registration_comment;groups;user_permissions
 #   query = CustomUser.objects.only('email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major')
-  data = download_csv(request, CustomUser.objects.only('email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major'))
+  data = download_csv(request, CustomUser, ['first_name','last_name', 'email', 'phone', 'age', 'address', 'school_name','level_of_study','major'], False, '', '', True, False)
   response = HttpResponse(data, content_type='text/csv')
   return response
 
 def export_checkedin_hackers_csv(request):
-    data = download_csv(request, CustomUser.objects.filter(groups__name='checked-in').only('email','first_name','last_name','address','shirt_size','gender','age','school_name','level_of_study','major'))
+    data = download_csv(request, CustomUser, ['first_name','last_name', 'age','email','school_name','phone','level_of_study', 'address'], True, 'groups__name', 'checked-in', False, True)
     response = HttpResponse(data, content_type='text/csv')
     return response
 
