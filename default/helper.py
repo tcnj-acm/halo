@@ -5,6 +5,7 @@ from organizer.models import OrganizerInfo
 
 
 def decide_redirect(user):
+    print("HI 3")
     if user.groups.filter(name='hacker').exists(): 
         return "hacker-dash"
     elif user.groups.filter(name='organizer').exists(): 

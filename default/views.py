@@ -120,10 +120,10 @@ def login_page(request):
         passwrd = request.POST.get('password')
 
         user = authenticate(request, email=email, password=passwrd)
-
+        print("HI")
         if user is not None:
             login(request, user)
-
+            print("HI 2")
             return redirect(decide_redirect(user))
         else:
             messages.error(request, "Username or Password Incorrect")
