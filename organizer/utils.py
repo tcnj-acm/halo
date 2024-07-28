@@ -55,7 +55,7 @@ def download_csv(request, model, attributes_to_export, filter, filter_attr, filt
         print(field_names)
         
     # the csv writer
-    writer = csv.writer(response, delimiter=";")
+    writer = csv.writer(response, delimiter=",")
     # Write a first row with header information
     writer.writerow(field_names)
     for row in data:
