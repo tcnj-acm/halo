@@ -86,13 +86,13 @@ ssh-ed25519 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <your_github_email
 2. On Github, navigate to your account settings, click on the SSH and GPG keys tab, and then the New SSH key option. You will then paste key from the terminal into the "Key" field.
 
 
-![Setup Image 0](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-0.png)
+![Setup Image 0](https://github.com/tcnj-acm/halo/blob/main-dev/.github/IMAGES/setup-image-0.png)
 
-![Setup Image 1](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-1.png)
+![Setup Image 1](https://github.com/tcnj-acm/halo/blob/main-dev/.github/IMAGES/setup-image-1.png)
 
-![Setup Image 2](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-2.png)
+![Setup Image 2](https://github.com/tcnj-acm/halo/blob/main-dev/.github/IMAGES/setup-image-2.png)
 
-![Setup Image 3](https://github.com/tcnj-acm/halo/blob/2024-merge/.github/IMAGES/setup-image-3.png)
+![Setup Image 3](https://github.com/tcnj-acm/halo/blob/main-dev/.github/IMAGES/setup-image-3.png)
 
 3. Test the Connection
 
@@ -101,7 +101,7 @@ ssh-ed25519 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <your_github_email
 The authenticity of host 'github.com (140.82.112.3)' can't be established.
 ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Are you sure you want to continue connecting (yes/no/[fingerprint])? <yes>
 Hi <your_github_username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 ### Clone the Repository
@@ -125,7 +125,7 @@ halo
 ## 4) Getting the Packages to support the Application's Dependencies
 Now we'll install all the dependencies so the HALO works as intended. This may be outdated by the time you're reading this, so if you happen need to run extra commands to getting the application up-and-running I implore to make a issue so that contributors of this repo can update this guide.
 
-### Need Packages (You will need to enter your Ubuntu password most of these commands):
+### Needed Packages (You will need to enter your for Ubuntu password all of these commands):
 ```
 <your_username>@DESKTOP-JHLTR9B:~$ sudo apt update -y && sudo apt upgrade -y
 <your_username>@DESKTOP-JHLTR9B:~$ sudo apt install -y python-is-python3

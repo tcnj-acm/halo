@@ -7,10 +7,10 @@ food_choices = [
 ]
 
 food_choices_color = {
-    "None": "#0000FF",
-    "Vegetarian": "#274E13",
-    "Vegan": "#FFFF00",
-    "Gluten-Free": "#ff0000"
+    "None": "#0000FF", # Blue
+    "Vegetarian": "#274E13", # Green
+    "Vegan": "#FFFF00", # Yellow
+    "Gluten-Free": "#ff0000" # Red
 }
 
 size_choices = [

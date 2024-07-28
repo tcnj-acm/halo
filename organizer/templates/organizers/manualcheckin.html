@@ -119,13 +119,13 @@
         var button = event.relatedTarget
         var rowId = button.dataset.confirm
         var info = document.getElementById(rowId).childNodes
-        var n = info[1].textContent
-        var e = info[3].textContent
-        var f = info[5].textContent
-        var s = info[7].textContent
-        var edu = info[9].textContent
-        var g = info[11].textContent
-        var a = info[13].textContent
+        var n = info[3].textContent
+        var e = info[5].textContent
+        var f = info[7].textContent
+        var s = info[9].textContent
+        var edu = info[11].textContent
+        var g = info[13].textContent
+        var a = info[15].textContent
         document.getElementById("HackerName").innerHTML = (n)
         document.getElementById("Email").innerHTML = (e)
         document.getElementById("Shirt").innerHTML = (s)
@@ -135,10 +135,6 @@
         ageSpan = document.getElementById("Age").innerHTML = (a)
         document.getElementById("check-in-email-field").setAttribute("value",e)
     })
-
-    function setWrapColor(tag){
-
-    }
 
 </script>
 

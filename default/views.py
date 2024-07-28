@@ -1,4 +1,5 @@
 from email import message
+from datetime import date
 import email
 from multiprocessing import context
 from django.http.response import HttpResponse
@@ -65,6 +66,7 @@ def registration(request):
             state = request.POST.get('state')
             zip = request.POST.get('zip')
             country = request.POST.get('country')
+            dob = request.POST.get('dob').split("/")
 
             phone = request.POST.get('phone')
             user.phone = phone
@@ -76,12 +78,12 @@ def registration(request):
                     city + ", " + state + ", " + zip + ", " + country
 
             user.address = address
-
+            user.dob = date(int(dob[2]), int(dob[0]), int(dob[1]))
             email = create_user_form.cleaned_data['email'].lower()
             user = create_user_form.save(commit=False)
             user.email = email
-
             user.save()
+            
 
             hacker = create_hacker_form.save(commit=False)
             hacker.user = user
@@ -90,9 +92,7 @@ def registration(request):
 
             # Email confirmation
             registration_confirmation(user)
-            add_user_to_mailing_list(
-                user.first_name, user.last_name, user.email)
-
+            add_user_to_mailing_list(user.first_name, user.last_name, user.email)
             if user.age < 18:
                 link = request.get_host() + "/waiver"
                 minor_waiver_form_submission(user, link)
@@ -119,10 +119,8 @@ def login_page(request):
         passwrd = request.POST.get('password')
 
         user = authenticate(request, email=email, password=passwrd)
-
         if user is not None:
             login(request, user)
-
             return redirect(decide_redirect(user))
         else:
             messages.error(request, "Username or Password Incorrect")
