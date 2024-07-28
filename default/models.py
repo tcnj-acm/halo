@@ -1,4 +1,5 @@
 from atexit import register
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,  PermissionsMixin
 from django.core.validators import MaxValueValidator, FileExtensionValidator
@@ -31,7 +32,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
                               blank=False, null=False, choices=gender_choices)
     age = models.PositiveIntegerField(
         null=True, blank=True, validators=[MaxValueValidator(125)])
-    birth_date = models.DateField(null=True, blank=True)
+    dob = models.DateField(null=True, blank=True)
     school_name = models.CharField(
         default="", max_length=75, null=False, blank=False)
     level_of_study = models.CharField(
@@ -57,10 +58,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return True
     
     def save(self, *args, **kwargs):
-        if self.birth_date:
+        if self.dob:
             today = date.today()
-            age = today.year - self.birth_date.year
-            if (today.month, today.day) < (self.birth_date.month, self.birth_date.day):
+            age = today.year - self.dob.year
+            if (today.month, today.day) < (self.dob.month, self.dob.day):
                 age -= 1
             self.age = age
         else:

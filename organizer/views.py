@@ -261,21 +261,28 @@ def settings(request):
     current_setting = WebsiteSettings.objects.first()
     head_org = request.user.groups.filter(name='head-organizer').exists()
     if request.method == 'POST':
-        value = request.POST.get('toggle-waitlist-control')
-        if value == 'on' and current_setting.waiting_list_status == True:
-            message = "Waiting List Status Unaffected"
-        elif value == None and current_setting.waiting_list_status == False:
-            message = "Waiting List Status Unaffected"
+        waitlist_value = request.POST.get('toggle-waitlist-control')
+        update_ages_value = request.POST.get('update-user-ages')
+        if waitlist_value == 'on' and current_setting.waiting_list_status == True:
+            waitlist_message = "Waiting List Status Unaffected"
+        elif waitlist_value == None and current_setting.waiting_list_status == False:
+            waitlist_message = "Waiting List Status Unaffected"
         else:
-            if value == 'on':
+            if waitlist_value == 'on':
                 current_setting.waiting_list_status = True
-                message = "Waiting List Activated"
+                waitlist_message = "Waiting List Activated"
                 current_setting.save()
             else:
                 current_setting.waiting_list_status = False
-                message = "Waiting List Deactivated" 
+                waitlist_message = "Waiting List Deactivated" 
                 current_setting.save()
-        messages.info(request, message)
+        messages.info(request, waitlist_message)
+        
+        if update_ages_value != 'None':
+            users = CustomUser.objects.all()
+            for user in users:
+                user.save()
+            messages.info(request, 'Users\' ages have been updated in the DB.')
     
     context = {'head_org':head_org, 'current_setting':current_setting, 'permissions':get_permissions(request.user)}
     return render(request, 'organizers/websitesettings.html', context)

@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     'sponsor',
     'teams',
     'storages',
-
-
 ]
 
 MIDDLEWARE = [
