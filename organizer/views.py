@@ -269,7 +269,7 @@ def settings(request):
         print()
         print()
         print()
-        if waitlist_value != 'None':
+        if update_ages_value == 'None':
             if waitlist_value == 'on' and current_setting.waiting_list_status == True:
                 waitlist_message = "Waiting List Status Unaffected"
             elif waitlist_value == None and current_setting.waiting_list_status == False:
