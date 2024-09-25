@@ -207,13 +207,14 @@ def add_organizer(request):
 def add_head_organizer(request):
     create_organizer_form = OrganizerCreationForm()
     create_organizer_permission_form = OrganizerPermissionControlForm()
-    print()
-    print()
-    print(request.body)
-    print()
-    print()
     if request.method == 'POST':
         new_admin_data = OrganizerCreationForm(request.POST)
+        print()
+        print()
+        print(request.POST)
+        print(new_admin_data)
+        print()
+        print()
         if new_admin_data.is_valid():
             first_name = new_admin_data.cleaned_data['first_name']
             last_name = new_admin_data.cleaned_data['last_name']
