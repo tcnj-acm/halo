@@ -212,7 +212,7 @@ def add_head_organizer(request):
         print()
         print()
         print(request.POST)
-        print(new_admin_data)
+        print(new_admin_data.errors.as_data())
         print()
         print()
         if new_admin_data.is_valid():
