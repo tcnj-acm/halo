@@ -21,7 +21,7 @@ class OrganizerCreationForm(forms.Form):
         if CustomUser.objects.filter(email=email).exists():
             print()
             print()
-            print(CustomUser.objects.filter(email=email).__str__)
+            print(CustomUser.objects.filter(email=email).values())
             print()
             print()
             self.add_error('email',"This Email is already in the system!")
