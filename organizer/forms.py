@@ -18,7 +18,10 @@ class OrganizerCreationForm(forms.Form):
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
 
-        if CustomUser.objects.filter(email=email).exists() and CustomUser.objects.filter(email=email).get("is_admin") == True:
+        if CustomUser.objects.filter(email=email).exists():
+            print(CustomUser.objects.filter(email=email).get("is_admin"))
+            print(CustomUser.objects.filter(email=email).get("is_admin") == True)
+            print(CustomUser.objects.filter(email=email).get("is_admin") == "True")
             self.add_error('email',"This Email is already in the system!")
         
         return email
