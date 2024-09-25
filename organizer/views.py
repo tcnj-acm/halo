@@ -209,7 +209,7 @@ def add_head_organizer(request):
     create_organizer_permission_form = OrganizerPermissionControlForm()
     print()
     print()
-    print(request)
+    print(request.body)
     print()
     print()
     if request.method == 'POST':
