@@ -188,9 +188,9 @@ def add_user_to_registered_mailing_list(fname, lname, email):
 
     response = sg.client.marketing.contacts.put(request_body=data)
 
-start_time = "February 17 2024, 12PM" # update
-end_time = "February 18 2024, 3PM" # update
-location = "TCNJ"
+start_time = "February 22nd 2024, 10AM" # update
+end_time = "February 23rd 2024, 3:30PM" # update
+location = "TCNJ Education Building"
 
 initial_notification_message = """
 We're excited to announce that registration for HackTCNJ is now open! We know you've been patiently waiting, and we appreciate your enthusiasm for our Hackathon. 
@@ -235,7 +235,7 @@ reminder_notification_message = """
 We hope this message finds you in good spirits for the HackTCNJ! 
 
 Hackathon Details:
-    - Date: {}
+    - Date and Time: {} until {}
     - Location: {}
 
 How to Register:
