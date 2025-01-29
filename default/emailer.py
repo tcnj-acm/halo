@@ -62,7 +62,7 @@ def registration_confirmation(hacker):
     body = '''
         Hey {},
 
-        We've received your hacker application for HackTCNJ! We can't wait to see you at TCNJ on April 15th, 2023. 
+        We've received your hacker application for HackTCNJ! We can't wait to see you at TCNJ on Saturday February 22nd, 2025. 
         You'll receive emails from us regarding check-in information and some logistics. 
 
 
@@ -188,8 +188,8 @@ def add_user_to_registered_mailing_list(fname, lname, email):
 
     response = sg.client.marketing.contacts.put(request_body=data)
 
-start_time = "February 22nd 2024, 10AM" # update
-end_time = "February 23rd 2024, 3:30PM" # update
+start_time = "February 22nd 2025, 10AM" # update
+end_time = "February 23rd 2025, 3:30PM" # update
 location = "TCNJ Education Building"
 
 initial_notification_message = """
