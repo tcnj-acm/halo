@@ -54,7 +54,7 @@ let pageInfo = {
     individualValidation: new Map([
         [0, true],
         [1, true],
-        [2, true],
+        [2, false],
         [3, true],
         [4, true]
     ]),
@@ -261,10 +261,10 @@ function checkResume(event) {
     let file = event.target.files[0]
     resumeError = document.getElementById("resume_error")
 
-    if (file === undefined && file === null) {
-        pageInfo.individualValidation.set(pageInfo.currentPage, true);
-        event.target.classList.remove("is-invalid")
-        resumeError.classList.add("d-none")
+    if (file === undefined) {
+        pageInfo.individualValidation.set(pageInfo.currentPage, false);
+        event.target.classList.add("is-invalid")
+        resumeError.classList.remove("d-none")
     } else if (fileTypes.includes(file.type)) {
         pageInfo.individualValidation.set(pageInfo.currentPage, true);
         resumeError.classList.add("d-none")
